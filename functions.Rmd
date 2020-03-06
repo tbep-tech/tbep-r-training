@@ -10,7 +10,89 @@ css: styles.css
 knitr::opts_chunk$set(echo = T, warning = F, message = F, fig.path = 'figs/')
 ```
 
-Full disclaimer: Much of this content was pillaged from the wonderful text R for Data Science ([https://r4ds.had.co.nz/](https://r4ds.had.co.nz/)), specifically [chapter 19](https://r4ds.had.co.nz/functions.html). 
+Full disclaimer: Much of this content was pillaged from the wonderful text R for Data Science ([https://r4ds.had.co.nz/](https://r4ds.had.co.nz/)), specifically [chapter 19](https://r4ds.had.co.nz/functions.html). Also check out the [functions](http://adv-r.had.co.nz/Functions.html) chapter from Advanced R ([http://adv-r.had.co.nz/](http://adv-r.had.co.nz/)).
 
 ## Best practices
 
+Let's start fresh with a new project in RStudio.  
+
+1. Open RStudio and click "New project..." under the File menu
+1. Name that project something simple like "functions_practice"
+1. Once the project is created, open a new script from the file menu (or `Ctrl/Cmd + Shift + N`)
+1. At the top of the script, write some informative stuff so you know what it's for:
+
+```{r}
+# Learning about functions in R
+# Created March  10, 2020
+# FWRI R club
+
+library(tidyverse)
+```
+
+1. Save the script with an informative name, e.g., `01_functions.R`
+
+## Why functions? 
+
+Have you ever found yourself copying/pasting the same lines of code over and over for repeated tasks?  Consider the following (bad) example.  We start by creating a tibble object of random observations.
+
+```{r}
+dat <- tibble::tibble(
+  a = rnorm(100), 
+  b = rnorm(100), 
+  c = rnorm(100), 
+  d = rnorm(100)
+)
+```
+
+Suppose we want to modify the columns somehow: 
+
+```{r, eval = F}
+dat$a <- (dat$a - min(dat$a, na.rm = TRUE)) / (max(dat$a, na.rm = T) - min(dat$a, na.rm = T))
+dat$b <- (dat$b - min(dat$b, na.rm = TRUE)) / (max(dat$b, na.rm = T) - min(dat$b, na.rm = T))
+dat$c <- (dat$b - min(dat$c, na.rm = TRUE)) / (max(dat$c, na.rm = T) - min(dat$c, na.rm = T))
+dat$d <- (dat$c - min(dat$d, na.rm = TRUE)) / (max(dat$d, na.rm = T) - min(dat$d, na.rm = T))
+```
+
+What does the above code do to the `dat` object? Why is this problematic? 
+
+We can make this better using a function: 
+
+```{r}
+
+rescale_fun <- function(x) (x - min(x, na.rm = TRUE)) / (max(x, na.rm = T) - min(x, na.rm = T))
+
+dat$a <- rescale_fun(dat$a)
+dat$b <- rescale_fun(dat$b)
+dat$c <- rescale_fun(dat$c)
+dat$d <- rescale_fun(dat$d)
+```
+
+Much better, yes? 
+
+One more thing...
+
+```{r}
+dat <- mutate_all(dat, rescale_fun)
+```
+
+Functions can help you!
+
+* Shorter/cleaner code (less headaches for you)
+* Minimize errors with copy/paste 
+* Increase reproducibility if data or requirements change!  
+
+As a general rule, consider writing a function for something if you copy/paste a line/block of code more than twice. 
+
+## Parts of a function
+
+1. The name
+1. Arguments
+1. The body
+
+## The RStudio cheat
+
+## A more involved exercise
+
+## Troubleshooting a function
+
+Browser....

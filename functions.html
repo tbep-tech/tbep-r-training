@@ -437,9 +437,75 @@ summary {
 </div>
 
 
-<p>Full disclaimer: Much of this content was pillaged from the wonderful text R for Data Science (<a href="https://r4ds.had.co.nz/">https://r4ds.had.co.nz/</a>), specifically <a href="https://r4ds.had.co.nz/functions.html">chapter 19</a>.</p>
+<p>Full disclaimer: Much of this content was pillaged from the wonderful text R for Data Science (<a href="https://r4ds.had.co.nz/">https://r4ds.had.co.nz/</a>), specifically <a href="https://r4ds.had.co.nz/functions.html">chapter 19</a>. Also check out the <a href="http://adv-r.had.co.nz/Functions.html">functions</a> chapter from Advanced R (<a href="http://adv-r.had.co.nz/">http://adv-r.had.co.nz/</a>).</p>
 <div id="best-practices" class="section level2">
 <h2>Best practices</h2>
+<p>Let’s start fresh with a new project in RStudio.</p>
+<ol style="list-style-type: decimal">
+<li>Open RStudio and click “New project…” under the File menu</li>
+<li>Name that project something simple like “functions_practice”</li>
+<li>Once the project is created, open a new script from the file menu (or <code>Ctrl/Cmd + Shift + N</code>)</li>
+<li>At the top of the script, write some informative stuff so you know what it’s for:</li>
+</ol>
+<pre class="r"><code># Learning about functions in R
+# Created March  10, 2020
+# FWRI R club
+
+library(tidyverse)</code></pre>
+<ol style="list-style-type: decimal">
+<li>Save the script with an informative name, e.g., <code>01_functions.R</code></li>
+</ol>
+</div>
+<div id="why-functions" class="section level2">
+<h2>Why functions?</h2>
+<p>Have you ever found yourself copying/pasting the same lines of code over and over for repeated tasks? Consider the following (bad) example. We start by creating a tibble object of random observations.</p>
+<pre class="r"><code>dat &lt;- tibble::tibble(
+  a = rnorm(100), 
+  b = rnorm(100), 
+  c = rnorm(100), 
+  d = rnorm(100)
+)</code></pre>
+<p>Suppose we want to modify the columns somehow:</p>
+<pre class="r"><code>dat$a &lt;- (dat$a - min(dat$a, na.rm = TRUE)) / (max(dat$a, na.rm = T) - min(dat$a, na.rm = T))
+dat$b &lt;- (dat$b - min(dat$b, na.rm = TRUE)) / (max(dat$b, na.rm = T) - min(dat$b, na.rm = T))
+dat$c &lt;- (dat$b - min(dat$c, na.rm = TRUE)) / (max(dat$c, na.rm = T) - min(dat$c, na.rm = T))
+dat$d &lt;- (dat$c - min(dat$d, na.rm = TRUE)) / (max(dat$d, na.rm = T) - min(dat$d, na.rm = T))</code></pre>
+<p>What does the above code do to the <code>dat</code> object? Why is this problematic?</p>
+<p>We can make this better using a function:</p>
+<pre class="r"><code>rescale_fun &lt;- function(x) (x - min(x, na.rm = TRUE)) / (max(x, na.rm = T) - min(x, na.rm = T))
+
+dat$a &lt;- rescale_fun(dat$a)
+dat$b &lt;- rescale_fun(dat$b)
+dat$c &lt;- rescale_fun(dat$c)
+dat$d &lt;- rescale_fun(dat$d)</code></pre>
+<p>Much better, yes?</p>
+<p>One more thing…</p>
+<pre class="r"><code>dat &lt;- mutate_all(dat, rescale_fun)</code></pre>
+<p>Functions can help you!</p>
+<ul>
+<li>Shorter/cleaner code (less headaches for you)</li>
+<li>Minimize errors with copy/paste</li>
+<li>Increase reproducibility if data or requirements change!</li>
+</ul>
+<p>As a general rule, consider writing a function for something if you copy/paste a line/block of code more than twice.</p>
+</div>
+<div id="parts-of-a-function" class="section level2">
+<h2>Parts of a function</h2>
+<ol style="list-style-type: decimal">
+<li>The name</li>
+<li>Arguments</li>
+<li>The body</li>
+</ol>
+</div>
+<div id="the-rstudio-cheat" class="section level2">
+<h2>The RStudio cheat</h2>
+</div>
+<div id="a-more-involved-exercise" class="section level2">
+<h2>A more involved exercise</h2>
+</div>
+<div id="troubleshooting-a-function" class="section level2">
+<h2>Troubleshooting a function</h2>
+<p>Browser….</p>
 </div>
 
 

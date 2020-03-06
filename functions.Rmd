@@ -1,0 +1,16 @@
+---
+title: "Writing functions in R"
+output: 
+  html_document
+self_contained: yes
+css: styles.css
+---
+
+```{r setup, message = F, warning = F, results = 'hide', echo = F}
+knitr::opts_chunk$set(echo = T, warning = F, message = F, fig.path = 'figs/')
+```
+
+Full disclaimer: Much of this content was pillaged from the wonderful text R for Data Science ([https://r4ds.had.co.nz/](https://r4ds.had.co.nz/)), specifically [chapter 19](https://r4ds.had.co.nz/functions.html). 
+
+## Best practices
+

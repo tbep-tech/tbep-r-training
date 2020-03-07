@@ -1,7 +1,10 @@
 ---
 title: "Writing functions in R"
 output: 
-  html_document
+  html_document:
+    toc: true
+    toc_float: 
+       collapsed: true
 self_contained: yes
 css: styles.css
 ---
@@ -10,9 +13,19 @@ css: styles.css
 knitr::opts_chunk$set(echo = T, warning = F, message = F, fig.path = 'figs/')
 ```
 
-Full disclaimer: Much of this content was pillaged from the wonderful text R for Data Science ([https://r4ds.had.co.nz/](https://r4ds.had.co.nz/)), specifically [chapter 19](https://r4ds.had.co.nz/functions.html). Also check out the [functions](http://adv-r.had.co.nz/Functions.html) chapter from Advanced R ([http://adv-r.had.co.nz/](http://adv-r.had.co.nz/)).
+Full disclaimer: Much of this content was pillaged from the wonderful text *R for Data Science* ([https://r4ds.had.co.nz/](https://r4ds.had.co.nz/)), specifically [chapter 19](https://r4ds.had.co.nz/functions.html). Also check out the [functions](http://adv-r.had.co.nz/Functions.html) chapter from *Advanced R* ([http://adv-r.had.co.nz/](http://adv-r.had.co.nz/)).
 
-## Best practices
+## Outline
+
+* [Setup]
+* [Why functions?]
+* [Parts of a function]
+* [The RStudio cheat]
+* [A more involved exercise]
+* [Troubleshooting a function]
+* [Resources]
+
+## Setup
 
 Let's start fresh with a new project in RStudio.  
 
@@ -21,15 +34,17 @@ Let's start fresh with a new project in RStudio.
 1. Once the project is created, open a new script from the file menu (or `Ctrl/Cmd + Shift + N`)
 1. At the top of the script, write some informative stuff so you know what it's for:
 
-```{r}
+    ```{r}
 # Learning about functions in R
 # Created March  10, 2020
 # FWRI R club
 
 library(tidyverse)
-```
+    ```
 
 1. Save the script with an informative name, e.g., `01_functions.R`
+
+Use this project to follow a long or take notes!
 
 ## Why functions? 
 
@@ -55,7 +70,7 @@ dat$d <- (dat$c - min(dat$d, na.rm = TRUE)) / (max(dat$d, na.rm = T) - min(dat$d
 
 What does the above code do to the `dat` object? Why is this problematic? 
 
-We can make this better using a function: 
+We can improve this workflow by using a function for the repeated tasks.  Here we write a function called `rescale_fun()` and use it to rescale each column. Now the working parts of the code are only in one spot. 
 
 ```{r}
 
@@ -67,9 +82,7 @@ dat$c <- rescale_fun(dat$c)
 dat$d <- rescale_fun(dat$d)
 ```
 
-Much better, yes? 
-
-One more thing...
+Much better, yes? We can take this one step further witt the `mutate_all()` function from dplyr. This applies the function to every column in the dataset.
 
 ```{r}
 dat <- mutate_all(dat, rescale_fun)
@@ -81,18 +94,81 @@ Functions can help you!
 * Minimize errors with copy/paste 
 * Increase reproducibility if data or requirements change!  
 
-As a general rule, consider writing a function for something if you copy/paste a line/block of code more than twice. 
+There are differing opinions about when a function should be written.  As a general rule, consider writing a function for something if you repeat a block of code more than twice. This follows the [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) principle of __Don't Repeat Yourself__. Side note, this contrasts with the "WET" principle of "write everything twice", "we enjoy typing", or "waste everyone's time".
 
 ## Parts of a function
 
-1. The name
-1. Arguments
-1. The body
+There are three steps to writing a function:
+
+1. Choosing a __name__ that is not too long, not too short, but describes simply what the function does.
+1. Identifying a list of __arguments__ that are inputs or control how the function works. 
+1. Writing the __body__ of the funcion that does what you want. 
+
+What are the elements of the following function? 
+
+```{r}
+add_one <- function(x){
+  x + 1
+}
+```
+
+All functions have the same format.  They are *objects* you create by choosing a name and assigning the function to that name (i.e., with the assignment operator, `<-`).  Names should be chosen to be descriptive for what the function does - the shorter the better, but don't sacrifice clarity for brevity.  The arguments are included inside the `function()` and the body of the function is enclosed within the brackets.  
+
+Think of the body of the function as it's own mini environment (or a workspace within a workspace).  Anyhing you put within the body can only use what's defined by the arguments, or conversely, anything in your global environment is not recognized by the function unless explicitly used in an argument. 
+
+Here's an example that sheds some light on the function environment.
+
+```{r}
+add_one(x = 2)
+```
+
+When we try to add something to the function that's not defined by the arguments:
+
+```{r, eval = F}
+a <- 1
+add_one(x = 2, a)
+```
+```
+#> Error in add_one(x = 2, a) : unused argument (a)
+```
+
+Or we try to include something in the body that's not in the arguments:
+
+```{r, eval = F}
+add_one <- function(x){
+  x + 1 + a
+}
+add_one(2)
+```
+```
+#> Error in add_one(2) : object 'a' not found
+```
+
+Note: You don't always have to name the arguments when using a function, i.e., `add_one(x = 2)` vs. `add_one(2)`.  For simplicity, you can omit the argument name but this can sometimes be confusing if there are multiple arguments.  
+
+## A more involved exercise
+
+Let's think about a more practical example of how functions can improve your workflow. We can work with the FWC [Fisheries Independent Monitoring](https://geodata.myfwc.com/datasets/68fb6774b58a40a08a6f87959aaa53c4_26/data) dataset. For this example, I've created a subset of the data for the Tampa Bay area.  You can import the data as follows. 
+
+```{r}
+library(sf)
+
+fimdat <- st_read('https://opendata.arcgis.com/datasets/68fb6774b58a40a08a6f87959aaa53c4_26.geojson')
+```
+
+
+Where do we start to write our function?  It's often helpful to work backwards and identify which are the obects in this workflow that might change depending on when the data change or when your needs for reporting/summarizing the data change. 
 
 ## The RStudio cheat
 
-## A more involved exercise
+## How much should a function do? 
+
+Once you get comfortable the tendency is to write more complex functions that accomplish multiple tasks (automate all the things!).  Although this can be fun for a while, you'll quickly find that complexity is difficult to manage and not easily generalizable.  What defines how much a function should do and when should functions be split?  
+
+The short answer is that *one function does one task*.  The long answer is that you'll get a sense for what's manageable within the scope of a function the more functions you write to automate your workflows.  To start, try to think about the purpose of why you're writing a function. Although exceptions may arise for how data could or should be processed within a function, reminding yourself of why you wanted to create a function in the first place should help with defining the limits of what it does. 
 
 ## Troubleshooting a function
 
 Browser....
+
+## Resources

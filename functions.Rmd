@@ -20,9 +20,9 @@ Full disclaimer: Much of this content was pillaged from the wonderful text *R fo
 * [Setup]
 * [Why functions?]
 * [Parts of a function]
-* [The RStudio cheat]
 * [A more involved exercise]
-* [Troubleshooting a function]
+* [The RStudio cheat]
+* [How much should a function do?]
 * [Resources]
 
 ## Setup
@@ -44,7 +44,7 @@ library(tidyverse)
 
 1. Save the script with an informative name, e.g., `01_functions.R`
 
-Use this project to follow a long or take notes!
+Use this project to follow along or take notes!
 
 ## Why functions? 
 
@@ -82,7 +82,7 @@ dat$c <- rescale_fun(dat$c)
 dat$d <- rescale_fun(dat$d)
 ```
 
-Much better, yes? We can take this one step further witt the `mutate_all()` function from dplyr. This applies the function to every column in the dataset.
+Much better, yes? We can take this one step further with the `mutate_all()` function from dplyr. This applies the function to every column in the dataset.
 
 ```{r}
 dat <- mutate_all(dat, rescale_fun)
@@ -94,15 +94,15 @@ Functions can help you!
 * Minimize errors with copy/paste 
 * Increase reproducibility if data or requirements change!  
 
-There are differing opinions about when a function should be written.  As a general rule, consider writing a function for something if you repeat a block of code more than twice. This follows the [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) principle of __Don't Repeat Yourself__. Side note, this contrasts with the "WET" principle of "write everything twice", "we enjoy typing", or "waste everyone's time".
+There are differing opinions about when a function should be written.  As a general rule, consider writing a function if you repeat a block of code more than twice. This follows the [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) principle of __Don't Repeat Yourself__. Side note, this contrasts with the "WET" principle of "write everything twice", "we enjoy typing", or "waste everyone's time".
 
 ## Parts of a function
 
 There are three steps to writing a function:
 
 1. Choosing a __name__ that is not too long, not too short, but describes simply what the function does.
-1. Identifying a list of __arguments__ that are inputs or control how the function works. 
-1. Writing the __body__ of the funcion that does what you want. 
+1. Identifying a list of __arguments__ that are required inputs or that control how the function works. 
+1. Writing the __body__ of the function that does what you want based on the input arguments. 
 
 What are the elements of the following function? 
 
@@ -114,7 +114,7 @@ add_one <- function(x){
 
 All functions have the same format.  They are *objects* you create by choosing a name and assigning the function to that name (i.e., with the assignment operator, `<-`).  Names should be chosen to be descriptive for what the function does - the shorter the better, but don't sacrifice clarity for brevity.  The arguments are included inside the `function()` and the body of the function is enclosed within the brackets.  
 
-Think of the body of the function as it's own mini environment (or a workspace within a workspace).  Anyhing you put within the body can only use what's defined by the arguments, or conversely, anything in your global environment is not recognized by the function unless explicitly used in an argument. 
+Think of the body of the function as it's own mini environment (or a workspace within a workspace).  Anything you put within the body can only use what's defined by the arguments, or conversely, anything in your global environment is not recognized by the function unless explicitly used in an argument. 
 
 Here's an example that sheds some light on the function environment.
 
@@ -122,7 +122,7 @@ Here's an example that sheds some light on the function environment.
 add_one(x = 2)
 ```
 
-When we try to add something to the function that's not defined by the arguments:
+Works as intended... but when we try to add something to the function that's not defined by the arguments:
 
 ```{r, eval = F}
 a <- 1
@@ -148,16 +148,224 @@ Note: You don't always have to name the arguments when using a function, i.e., `
 
 ## A more involved exercise
 
-Let's think about a more practical example of how functions can improve your workflow. We can work with the FWC [Fisheries Independent Monitoring](https://geodata.myfwc.com/datasets/68fb6774b58a40a08a6f87959aaa53c4_26/data) dataset. For this example, I've created a subset of the data for the Tampa Bay area.  You can import the data as follows. 
+Let's think about a more practical example of how functions can improve your workflow. We can work with the FWC [Fisheries Independent Monitoring](https://geodata.myfwc.com/datasets/68fb6774b58a40a08a6f87959aaa53c4_26/data) dataset. For this example, I've created a subset of the data for the Old Tampa Bay area.  You can import the data as follows. 
 
 ```{r}
-tbdat <- read.csv('https://tbep-tech.github.io/tbep-r-training/data/otbfimdat.csv')
+url <- 'https://raw.githubusercontent.com/tbep-tech/tbep-r-training/master/data/otbfimdat.csv'
+otbfimdat <- read.csv(url, stringsAsFactors = F)
 ```
 
+Let's say we want to plot catch of red drum over time.  The slot limit for this species is not less than 18" or more than 27", so maybe we want to subset the data within this range to evaluate effectiveness of the regulation.  
 
-Where do we start to write our function?  It's often helpful to work backwards and identify which are the obects in this workflow that might change depending on when the data change or when your needs for reporting/summarizing the data change. 
+Here's a typical workflow for how we could wrangle the data and then plot a time series of total catch.
+
+1. Filter by species
+1. Filter by the slot limit
+1. Format the date column into a date object
+
+```{r}
+subdat <- otbfimdat %>% 
+  filter(Commonname %in% 'Red Drum') %>% 
+  filter(avg_size > 18 & avg_size < 27) %>% 
+  mutate(Sampling_Date = as.POSIXct(Sampling_Date, format = '%Y-%m-%d %H:%M:%S', tz = 'America/New_York'))
+```
+
+We also know that not all sampling gear are created equally.  How many records do we have for each gear type?
+
+```{r}
+table(subdat$Gear)
+```
+
+According to the [metadata](https://www.arcgis.com/sharing/rest/content/items/68fb6774b58a40a08a6f87959aaa53c4/info/metadata/metadata.xml?format=default&output=html), gear "20" is a 21.3-m seine.  Let's subset the data by this gear type since it has the most records. 
+
+```{r}
+subdat <- subdat %>% 
+  filter(Gear %in% 20)
+```
+
+Now let's plot the data with ggplot.  We create a simple plot of total number (as points) over time.  We also change the scale of the axis to log-scale for clarity and add a smooth line to identify a general trend.  We also add/modify the labels for context. 
+
+```{r}
+p1 <- ggplot(subdat, aes(x = Sampling_Date, y = TotalNum)) + 
+  geom_point() + 
+  scale_y_log10() + 
+  geom_smooth(method = 'lm') + 
+  labs(
+    x = NULL,
+    y = 'Total catch', 
+    title = "Red drum catch in gear 20", 
+    subtitle = "Data subset to average size between 18-27 inches"
+  )
+p1
+```
+
+Not a very interesting story here. Let's look at another species. The slot limit for spotted sea trout is within 15 and 20 inches. 
+
+```{r}
+subdat <- otbfimdat %>% 
+  filter(Commonname %in% 'Spotted Seatrout') %>% 
+  filter(avg_size > 15 & avg_size < 20) %>% 
+  filter(Gear %in% 20) %>% 
+  mutate(Sampling_Date = as.POSIXct(Sampling_Date, format = '%Y-%m-%d %H:%M:%S', tz = 'America/New_York'))
+
+p2 <- ggplot(subdat, aes(x = Sampling_Date, y = TotalNum)) + 
+  geom_point() + 
+  scale_y_log10() + 
+  geom_smooth(method = 'lm') + 
+  labs(
+    x = NULL,
+    y = 'Total catch', 
+    title = "Spotted Seatrout catch in gear 20", 
+    subtitle = "Data subset to average size between 15-20 inches"
+  )
+p2 
+```
+
+What's the potential problem with this workflow?  How can we make it better? 
+
+Let's write a function to automate the data wrangling and plotting.  Where do we start to write our function?  It's often helpful to work backwards and identify the parts of this workflow that might change depending on when the data change or when your needs for reporting/summarizing the data change. Some arguments could include:
+
+* Common name
+* Sizes to plot
+* Gear to plot
+
+We start with writing the skeleton of the function.
+
+```{r}
+plotcatch <- function(name, szrng, gearsel){}
+```
+
+What else is missing?  Remember, the function acts as a mini-environment, so you want to include the required data as input. 
+
+```{r}
+plotcatch <- function(name, szrng, gearsel, datin){}
+```
+
+Now we add the body. We'll need to "generalize" the places in the code where the arguments are added (i.e., replace the actual values with the argument names).  This happens in the workflow for creating `subdat`, but also note what we've done for the plot labels. 
+
+```{r}
+plotcatch <- function(name, szrng, gearsel, datin){
+  
+  subdat <- datin %>% 
+    filter(Commonname %in% name) %>% 
+    filter(avg_size > szrng[1] & avg_size < szrng[2]) %>% 
+    filter(Gear %in% gearsel) %>% 
+    mutate(Sampling_Date = as.POSIXct(Sampling_Date, format = '%Y-%m-%d %H:%M:%S', tz = 'America/New_York'))
+  
+  p <- ggplot(subdat, aes(x = Sampling_Date, y = TotalNum)) + 
+    geom_point() + 
+    scale_y_log10() + 
+    geom_smooth(method = 'lm') + 
+    labs(
+      x = NULL,
+      y = 'Total catch', 
+      title = paste0(name, " catch in gear ", gearsel), 
+      subtitle = paste0("Data subset to average size between ", szrng[1], '-', szrng[2], " inches")
+    )
+  
+  p 
+  
+}
+```
+
+Now we can use our function!
+
+```{r}
+plotcatch('Red Drum', c(25, 30), 20, otbfimdat)
+```
+
+You can also include some default values for the arguments. These will help you (and others) understand the format of the required inputs and not require each argument to be used if the inputs don't change.  
+
+```{r}
+plotcatch <- function(name = 'Red Drum', szrng = c(18, 27), gearsel = 20, datin = otbfimdat){
+  
+  subdat <- datin %>% 
+    filter(Commonname %in% name) %>% 
+    filter(avg_size > szrng[1] & avg_size < szrng[2]) %>% 
+    filter(Gear %in% gearsel) %>% 
+    mutate(Sampling_Date = as.POSIXct(Sampling_Date, format = '%Y-%m-%d %H:%M:%S', tz = 'America/New_York'))
+  
+  p <- ggplot(subdat, aes(x = Sampling_Date, y = TotalNum)) + 
+    geom_point() + 
+    scale_y_log10() + 
+    geom_smooth(method = 'lm') + 
+    labs(
+      x = NULL,
+      y = 'Total catch', 
+      title = paste0(name, " catch in gear ", gearsel), 
+      subtitle = paste0("Data subset to average size between ", szrng[1], '-', szrng[2], " inches")
+    )
+  
+  p
+  
+}
+```
+
+What are some other ways we can improve this function? 
 
 ## The RStudio cheat
+
+RStudio has a useful feature that might help you write functions. The "Extract Function" shortcut (under the Code menu, or `Ctrl/Cmd + Alt + X`) can create a function by identifying the arguments and body in a block of code.  It works pretty well for simple examples, but is questionable for more complex examples.
+
+A simple example: 
+
+```{r, eval = F}
+x + 1
+```
+
+Using the extract function shortcut: 
+
+```{r}
+addone <- function(x) {
+  x + 1
+}
+```
+
+Our example:
+
+```{r, eval = F}
+subdat <- otbfimdat %>% 
+  filter(Commonname %in% 'Spotted Seatrout') %>% 
+  filter(avg_size > 15 & avg_size < 20) %>% 
+  filter(Gear %in% 20) %>% 
+  mutate(Sampling_Date = as.POSIXct(Sampling_Date, format = '%Y-%m-%d %H:%M:%S', tz = 'America/New_York'))
+
+p <- ggplot(subdat, aes(x = Sampling_Date, y = TotalNum)) + 
+  geom_point() + 
+  scale_y_log10() + 
+  geom_smooth(method = 'lm') + 
+  labs(
+    x = NULL,
+    y = 'Total catch', 
+    title = "Spotted Seatrout catch in gear 20", 
+    subtitle = "Data subset to average size between 15-20 inches"
+  )
+p 
+```
+
+Using the extract function shortcut - not so good, but we can clean it up by hand with minimal effort.
+
+```{r}
+plotcatch <- function(otbfimdat, Commonname, avg_size, Gear, Sampling_Date, TotalNum) {
+  subdat <- otbfimdat %>% 
+    filter(Commonname %in% 'Spotted Seatrout') %>% 
+    filter(avg_size > 15 & avg_size < 20) %>% 
+    filter(Gear %in% 20) %>% 
+    mutate(Sampling_Date = as.POSIXct(Sampling_Date, format = '%Y-%m-%d %H:%M:%S', tz = 'America/New_York'))
+  
+  p <- ggplot(subdat, aes(x = Sampling_Date, y = TotalNum)) + 
+    geom_point() + 
+    scale_y_log10() + 
+    geom_smooth(method = 'lm') + 
+    labs(
+      x = NULL,
+      y = 'Total catch', 
+      title = "Spotted Seatrout catch in gear 20", 
+      subtitle = "Data subset to average size between 15-20 inches"
+    )
+  p 
+}
+```
 
 ## How much should a function do? 
 
@@ -165,8 +373,11 @@ Once you get comfortable the tendency is to write more complex functions that ac
 
 The short answer is that *one function does one task*.  The long answer is that you'll get a sense for what's manageable within the scope of a function the more functions you write to automate your workflows.  To start, try to think about the purpose of why you're writing a function. Although exceptions may arise for how data could or should be processed within a function, reminding yourself of why you wanted to create a function in the first place should help with defining the limits of what it does. 
 
-## Troubleshooting a function
-
-Browser....
-
 ## Resources
+
+* *R for Data Science* ([https://r4ds.had.co.nz/](https://r4ds.had.co.nz/)), [chapter 19](https://r4ds.had.co.nz/functions.html)
+
+* *Advanced R* ([http://adv-r.had.co.nz/](http://adv-r.had.co.nz/)),  [functions](http://adv-r.had.co.nz/Functions.html)
+
+* [*Source content*](https://github.com/tbep-tech/tbep-r-training)
+

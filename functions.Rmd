@@ -144,7 +144,7 @@ add_one(2)
 #> Error in add_one(2) : object 'a' not found
 ```
 
-Note: You don't always have to name the arguments when using a function, i.e., `add_one(x = 2)` vs. `add_one(2)`.  For simplicity, you can omit the argument name but this can sometimes be confusing if there are multiple arguments.  
+Note: You don't always have to name the arguments when using a function, i.e., `add_one(x = 2)` vs. `add_one(2)`.  For simplicity, you can omit the argument name but this can sometimes be confusing or lead to accidents if there are multiple arguments.  
 
 ## A more involved exercise
 
@@ -223,7 +223,9 @@ p2
 
 What's the potential problem with this workflow?  How can we make it better? 
 
-Let's write a function to automate the data wrangling and plotting.  Where do we start to write our function?  It's often helpful to work backwards and identify the parts of this workflow that might change depending on when the data change or when your needs for reporting/summarizing the data change. Some arguments could include:
+Let's write a function to automate the data wrangling and plotting.  Where do we start to write our function?
+
+It's often helpful to work backwards and identify the parts of this workflow that might change depending on when the data change or when your needs for reporting/summarizing the data change. Some arguments could include:
 
 * Common name
 * Sizes to plot
@@ -241,7 +243,7 @@ What else is missing?  Remember, the function acts as a mini-environment, so you
 plotcatch <- function(name, szrng, gearsel, datin){}
 ```
 
-Now we add the body. We'll need to "generalize" the places in the code where the arguments are added (i.e., replace the actual values with the argument names).  This happens in the workflow for creating `subdat`, but also note what we've done for the plot labels. 
+Now we add the body. We'll need to "generalize" the places in the code where the arguments are added (i.e., replace specific names with the argument names).  This happens in the workflow for creating `subdat`, but also note what we've done for the plot labels. 
 
 ```{r}
 plotcatch <- function(name, szrng, gearsel, datin){
@@ -305,7 +307,7 @@ What are some other ways we can improve this function?
 
 ## The RStudio cheat
 
-RStudio has a useful feature that might help you write functions. The "Extract Function" shortcut (under the Code menu, or `Ctrl/Cmd + Alt + X`) can create a function by identifying the arguments and body in a block of code.  It works pretty well for simple examples, but is questionable for more complex examples.
+RStudio has a useful feature that might help you write functions. The "Extract Function" shortcut (under the Code menu, or `Ctrl/Cmd + Alt + X`) can create a function by identifying the arguments and body in a block of code.  It works pretty well for simple examples and kind of well for more complex examples.
 
 A simple example: 
 
@@ -313,7 +315,7 @@ A simple example:
 x + 1
 ```
 
-Using the extract function shortcut: 
+Using the extract function shortcut (select text, then hit `Ctrl/Cmd + Alt + X`): 
 
 ```{r}
 addone <- function(x) {

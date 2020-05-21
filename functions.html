@@ -25,6 +25,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -352,16 +354,49 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="usingr.html">What, why, and how of R</a>
+  <a href="R_Basics.html">
+    <span class="fa fa-university"></span>
+     
+    R Basics
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-wrench"></span>
+     
+    Data wrangling
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Data_Wrangling_1.html">Part 1</a>
+    </li>
+    <li>
+      <a href="Data_Wrangling_2.html">Part 2</a>
+    </li>
+  </ul>
 </li>
 <li>
-  <a href="wrangleplot.html">Wrangling and plotting</a>
+  <a href="Viz_and_Graphics.html">
+    <span class="fa fa-chart-line"></span>
+     
+    Viz and graphics
+  </a>
 </li>
 <li>
-  <a href="tbeptools.html">Using the tbeptools package</a>
+  <a href="mapping.html">
+    <span class="fa fa-globe-americas"></span>
+     
+    Spatial analysis and mapping
+  </a>
 </li>
 <li>
-  <a href="mapping.html">Spatial analysis and mapping</a>
+  <a href="Resources.html">
+    <span class="fa fa-list"></span>
+     
+    Resources
+  </a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -507,7 +542,7 @@ otbfimdat &lt;- read.csv(url, stringsAsFactors = F)</code></pre>
     subtitle = &quot;Data subset to average size between 18-27 inches&quot;
   )
 p1</code></pre>
-<p><img src="figs/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="figure/unnamed-chunk-14-1.png" width="672" /></p>
 <p>Not a very interesting story here. Let’s look at another species. The slot limit for spotted sea trout is within 15 and 20 inches.</p>
 <pre class="r"><code>subdat &lt;- otbfimdat %&gt;% 
   filter(Commonname %in% &#39;Spotted Seatrout&#39;) %&gt;% 
@@ -526,7 +561,7 @@ p2 &lt;- ggplot(subdat, aes(x = Sampling_Date, y = TotalNum)) +
     subtitle = &quot;Data subset to average size between 15-20 inches&quot;
   )
 p2 </code></pre>
-<p><img src="figs/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="figure/unnamed-chunk-15-1.png" width="672" /></p>
 <p>What’s the potential problem with this workflow? How can we make it better?</p>
 <p>Let’s write a function to automate the data wrangling and plotting. Where do we start to write our function?</p>
 <p>It’s often helpful to work backwards and identify the parts of this workflow that might change depending on when the data change or when your needs for reporting/summarizing the data change. Some arguments could include:</p>
@@ -564,7 +599,7 @@ p2 </code></pre>
 }</code></pre>
 <p>Now we can use our function!</p>
 <pre class="r"><code>plotcatch(&#39;Red Drum&#39;, c(25, 30), 20, otbfimdat)</code></pre>
-<p><img src="figs/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="figure/unnamed-chunk-19-1.png" width="672" /></p>
 <p>You can also include some default values for the arguments. These will help you (and others) understand the format of the required inputs and not require each argument to be used if the inputs don’t change.</p>
 <pre class="r"><code>plotcatch &lt;- function(name = &#39;Red Drum&#39;, szrng = c(18, 27), gearsel = 20, datin = otbfimdat){
   

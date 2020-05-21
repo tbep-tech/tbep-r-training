@@ -6,4 +6,4 @@ x<-lapply(pkgs, library, character.only = TRUE)
 opts_chunk$set(tidy = FALSE, message = F, warning = F)
 ```
 
-# Wrangling and plotting data with R
+# Data wrangling part 1

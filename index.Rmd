@@ -14,19 +14,25 @@ This course is designed to expose you to the fundamentals of using R for reprodu
 
 ## Agenda
 
-* __9:00 - 10:00__ The what, why, and how of R
+* __9:00 - 10:00__ R basics
   
   BREAK
   
-* __10:15-12:00__ Data wrangling and plotting
+* __10:15-11:15__ Data wrangling part 1
 
-  LUNCH
+BREAK
+
+* __11:30-12:30__ Data wrangling part 2
+
+LUNCH
   
-* __1:00 - 2:30__ Using the tbeptools package
+* __1:30 - 2:30__ Viz and graphics
 
   BREAK
   
-* __2:45 - 4:00__ Spatial data analysis in R
+* __2:45 - 3:45__ Spatial data analysis in R
+
+* __3:45 - 4:00__ Wrapup and continued learnig
 
 ## Software requirements
 

@@ -10,7 +10,7 @@ css: styles.css
 ---
 
 ```{r setup, message = F, warning = F, results = 'hide', echo = F}
-knitr::opts_chunk$set(echo = T, warning = F, message = F, fig.path = 'figs/')
+knitr::opts_chunk$set(echo = T, warning = F, message = F, fig.path = 'figure/')
 ```
 
 Full disclaimer: Much of this content was pillaged from the wonderful text *R for Data Science* ([https://r4ds.had.co.nz/](https://r4ds.had.co.nz/)), specifically [chapter 19](https://r4ds.had.co.nz/functions.html). Also check out the [functions](http://adv-r.had.co.nz/Functions.html) chapter from *Advanced R* ([http://adv-r.had.co.nz/](http://adv-r.had.co.nz/)).

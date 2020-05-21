@@ -5,14 +5,25 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "What, why, and how of R"
-      href: usingr.html
-    - text: "Wrangling and plotting"
-      href: wrangleplot.html
-    - text: "Using the tbeptools package"
-      href: tbeptools.html
+    - text: "R Basics"
+      icon: fa-university
+      href: R_Basics.html
+    - text: "Data wrangling"
+      icon: fa-wrench
+      menu: 
+        - text: "Part 1"
+          href: "Data_Wrangling_1.html"
+        - text: "Part 2"
+          href: "Data_Wrangling_2.html"
+    - text: "Viz and graphics"
+      icon: fa-chart-line
+      href: Viz_and_Graphics.html
     - text: "Spatial analysis and mapping"
+      icon: fa-globe-americas
       href: mapping.html
+    - text: "Resources"
+      icon: fa-list
+      href: Resources.html
 output_dir: "."
 output:
   html_document:

@@ -16,19 +16,19 @@ This course is designed to expose you to the fundamentals of using R for reprodu
 
 * __9:00 - 10:00__ R basics
   
-  BREAK
+  BREAK (15 min)
   
 * __10:15-11:15__ Data wrangling part 1
 
-BREAK
+  BREAK (15 min)
 
 * __11:30-12:30__ Data wrangling part 2
 
-LUNCH
+  LUNCH (60 min)
   
 * __1:30 - 2:30__ Viz and graphics
 
-  BREAK
+  BREAK (15 min)
   
 * __2:45 - 3:45__ Spatial data analysis in R
 
@@ -36,11 +36,14 @@ LUNCH
 
 ## Software requirements
 
-All required software will be pre-installed on computers provided by the training venue.  You are not required to bring your own laptop.  If you prefer to bring your own laptop, please have a current version of RStudio and R installed. The [setup instructions](setup.html) will guide you through the installation the process.  Take note of the required R packages that you must also download and install.  Please contact the instructor with any questions or issues related to setup.  
+This training will use RStudio and R. Please make sure that you are ready to use the required software prior to the workshop.  __We will not be available for installation issues or questions the day of the workshop__.  There are two options for setup:
+
+1. Install RStudio and R on your personal computer following the [setup instructions](setup.html). 
+1. Use RStudio Cloud to access from a web browser following the [setup instructions](setupcloud.html). 
 
 ## Instructor
 
-[Marcus Beck](https://fawda123.github.io/CV/Beck_CV.pdf) ([mbeck@tbep.org](mailto:mbeck@tbep.org)) - Marcus is the Program Scientist for the Tampa Bay Estuary Program and is developing data analysis and visualization methods for Bay health indicators.  He received his BS in Zoology from the University of Florida in 2007 and his MSc and PhD in Conservation Biology from the University of Minnesota in 2009 and 2013. Marcus has experience researching environmental indicators and developing open science products to support environmental decision-making.  He has over ten years of experience using and developing software in the R Statistical Programming Language and is the lead developer for the SWMPr R package to retrieve, organize, and analyze NERRS data from the SWMP network.
+[Marcus Beck](https://fawda123.github.io/CV/Beck_CV.pdf) ([mbeck@tbep.org](mailto:mbeck@tbep.org)) - Marcus is the Program Scientist for the Tampa Bay Estuary Program and is developing data analysis and visualization methods for Bay health indicators.  He received his BS in Zoology from the University of Florida in 2007 and his MSc and PhD in Conservation Biology from the University of Minnesota in 2009 and 2013. Marcus has experience researching environmental indicators and developing open science products to support environmental decision-making.  He has over ten years of experience using and developing software in the R Statistical Programming Language.
 
 ## Source content
 

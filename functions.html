@@ -509,7 +509,7 @@ add_one(2)</code></pre>
 <div id="a-more-involved-exercise" class="section level2">
 <h2>A more involved exercise</h2>
 <p>Let’s think about a more practical example of how functions can improve your workflow. We can work with the FWC <a href="https://geodata.myfwc.com/datasets/68fb6774b58a40a08a6f87959aaa53c4_26/data">Fisheries Independent Monitoring</a> dataset. For this example, I’ve created a subset of the data for the Old Tampa Bay area. You can import the data as follows.</p>
-<pre class="r"><code>url &lt;- &#39;https://raw.githubusercontent.com/tbep-tech/tbep-r-training/master/data/otbfimdat.csv&#39;
+<pre class="r"><code>url &lt;- &#39;https://raw.githubusercontent.com/tbep-tech/tbep-r-training/master/data/otbfimdatcmb.csv&#39;
 otbfimdat &lt;- read.csv(url, stringsAsFactors = F)</code></pre>
 <p>Let’s say we want to plot catch of red drum over time. The slot limit for this species is not less than 18" or more than 27", so maybe we want to subset the data within this range to evaluate effectiveness of the regulation.</p>
 <p>Here’s a typical workflow for how we could wrangle the data and then plot a time series of total catch.</p>

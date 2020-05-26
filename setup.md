@@ -1,4 +1,4 @@
-# Set Up
+# Set Up On Your Computer
 
 Thanks for your interest in learning R.  For the workshop, we will be using [RStudio](https://www.rstudio.com/) as our interface to R.  In order to participate in this workshop you will need to make sure you have R and RStudio installed on your laptop.
 

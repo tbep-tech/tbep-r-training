@@ -21,9 +21,12 @@ navbar:
     - text: "Spatial analysis and mapping"
       icon: fa-globe-americas
       href: mapping.html
+  right:
     - text: "Resources"
       icon: fa-list
       href: Resources.html
+    - icon: fa-github fa-lg
+      href: https://github.com/tbep-tech/tbep-r-training
 output_dir: "."
 output:
   html_document:
@@ -32,5 +35,4 @@ output:
     toc: true
     toc_float: 
        collapsed: true
-       
     

@@ -390,16 +390,21 @@ div.tocify {
     Spatial analysis and mapping
   </a>
 </li>
-<li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
   <a href="Resources.html">
     <span class="fa fa-list"></span>
      
     Resources
   </a>
 </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        
+<li>
+  <a href="https://github.com/tbep-tech/tbep-r-training">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -451,7 +456,7 @@ div.tocify {
 <ul>
 <li>The growth of R as explained in the <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">Stack Overflow blog</a>, <a href="http://blog.revolutionanalytics.com/2016/07/r-moves-up-to-5th-place-in-ieee-language-rankings.html">IEEE rating</a></li>
 </ul>
-<p>R is also an open-source programming language - not only is it free, but this means anybody can contribute to it’s development. As of 2020-05-26, there are 15664 supplemental packages for R on CRAN!</p>
+<p>R is also an open-source programming language - not only is it free, but this means anybody can contribute to it’s development. As of 2020-05-26, there are 15669 supplemental packages for R on CRAN!</p>
 </div>
 </div>
 <div id="rstudio" class="section level2">
@@ -507,7 +512,7 @@ div.tocify {
 <div id="r-language-fundamentals" class="section level2">
 <h2>R language fundamentals</h2>
 <p>The basic syntax of a function follows the form: <code>function_name(arg1, arg2, ...)</code>.</p>
-<p>With the base install, you will gain access to many functions (3560, to be exact). Some examples:</p>
+<p>With the base install, you will gain access to many functions (3573, to be exact). Some examples:</p>
 <pre class="r"><code># print
 print(&#39;hello world!&#39;)</code></pre>
 <pre><code>## [1] &quot;hello world!&quot;</code></pre>
@@ -516,32 +521,25 @@ seq(1, 10)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code># random numbers
 rnorm(100, mean = 10, sd = 2)</code></pre>
-<pre><code>##   [1] 14.022211  6.830252  9.667272  6.948859  9.617912 10.296894  8.852970
-##   [8]  9.000935  8.372235 12.430010 12.999736  9.689148 13.605071  5.062221
-##  [15]  7.074985 10.736970 13.047987  9.452972  9.271120  8.088437  8.203614
-##  [22] 10.141793  8.770376  9.874031  7.378484  7.008507  9.948122  9.324171
-##  [29]  8.473017 11.006298  8.693253 10.050349  8.771695  9.111686  6.967655
-##  [36]  7.956703  9.020848  7.916699 10.399175  5.135917 10.693406 10.025819
-##  [43] 11.115079 11.175755 10.115307 10.306078 11.347615  7.513393 10.299625
-##  [50]  9.158295  5.617191  9.168693  9.216656  6.221709  8.295850  9.993476
-##  [57]  9.240654 12.524125 11.725690 12.072619 12.018885 12.754984  7.560435
-##  [64] 11.391481  9.692325 11.874646 10.302192  3.722717  8.468414 12.982459
-##  [71]  8.182131  9.535359  9.590478 11.809834  6.437874  8.524476  8.806797
-##  [78] 14.603822 12.673483  8.780911  8.372198  7.234949  8.467931 11.844219
-##  [85]  7.792054  5.874758  9.253130 10.120910  7.229359  9.022037 12.819204
-##  [92]  9.350498 12.132762 11.337890  9.635236  8.060475 15.198380  9.058174
-##  [99] 11.943913  7.836087</code></pre>
+<pre><code>##   [1]  7.894569  8.321973 10.326384  9.664422 12.498396  8.171836  6.217183  7.645556 10.939742 14.117631 10.116816 12.510891 11.770165
+##  [14]  8.903905 12.046662  9.608516  8.228389 11.676131  6.609543 13.013618  8.227025  8.651426  7.758916  9.736946 10.303558  9.929803
+##  [27]  8.206831 10.988106  8.567235  7.457168 11.643009 13.752855 13.210754 14.558338 11.262980  9.955375 10.038931  8.131087 10.590833
+##  [40] 11.901957  7.687820 10.228120  9.895014  9.931873 12.411753  8.349661  8.434080  7.651471  6.156208  9.908364  7.808763 12.849470
+##  [53] 12.265078 11.521040  9.379046  7.303859  7.224819  8.708448 11.838361  9.015907  6.991515 12.196314 11.727524  8.709311 11.591422
+##  [66] 10.004590  8.263125 13.411699 14.318272  9.485052 10.387739 11.521449 10.081674  8.156315 10.111683 11.610066 10.560479  8.788328
+##  [79] 12.066541 10.207176  7.057106  9.017609  9.989124  8.501040 10.023128 15.354453 10.480146 13.912240  6.717726 11.582769  7.777550
+##  [92]  8.386282  7.501432 11.438397  9.898639 12.962747 12.374259 13.317702  8.427445  8.810892</code></pre>
 <pre class="r"><code># average 
 mean(rnorm(100))</code></pre>
-<pre><code>## [1] -0.06026447</code></pre>
+<pre><code>## [1] -0.08143378</code></pre>
 <pre class="r"><code># sum
 sum(rnorm(100))</code></pre>
-<pre><code>## [1] -1.307372</code></pre>
+<pre><code>## [1] -7.524245</code></pre>
 <p>Very often you will see functions used like this:</p>
 <pre class="r"><code>my_random_sum &lt;- sum(rnorm(100))</code></pre>
 <p>In this case the first part of the line is the name of an object. You make this up. Ideally it should have some meaning, but the only rules are that it can’t start with a number and must not have any spaces. The second bit, <code>&lt;-</code>, is the assignment operator. This tells R to take the result of <code>sum(rnorm(100))</code> and store it in an object named, <code>my_random_sum</code>. It is stored in the environment and can be used by just executing it’s name in the console.</p>
 <pre class="r"><code>my_random_sum</code></pre>
-<pre><code>## [1] 5.351787</code></pre>
+<pre><code>## [1] -1.34819</code></pre>
 <p>With this, you have the very basics of how we write R code and save objects that can be used later.</p>
 <div id="packages" class="section level3">
 <h3>Packages</h3>
@@ -549,7 +547,7 @@ sum(rnorm(100))</code></pre>
 </div>
 <div id="cran" class="section level3">
 <h3>CRAN</h3>
-<p>One of the reasons for R’s popularity is CRAN, <a href="http://cran.r-project.org/">The Comprehensive R Archive Network</a>. This is where you download R and also where most will gain access to packages (there are other places, but that is for later). Not much else to say about this now other than to be aware of it. As of 2020-05-26, there are 15664 on CRAN!</p>
+<p>One of the reasons for R’s popularity is CRAN, <a href="http://cran.r-project.org/">The Comprehensive R Archive Network</a>. This is where you download R and also where most will gain access to packages (there are other places, but that is for later). Not much else to say about this now other than to be aware of it. As of 2020-05-26, there are 15669 on CRAN!</p>
 </div>
 <div id="installing-packages" class="section level3">
 <h3>Installing packages</h3>
@@ -695,27 +693,26 @@ dim(fishdat)</code></pre>
 <pre><code>## [1] 4080    3</code></pre>
 <pre class="r"><code># get the column names
 names(fishdat)</code></pre>
-<pre><code>##  [1] &quot;OBJECTID&quot;       &quot;Reference&quot;      &quot;Sampling_Date&quot;  &quot;Gear&quot;          
-##  [5] &quot;Scientificname&quot; &quot;Commonname&quot;     &quot;TotalNum&quot;       &quot;avg_size&quot;      
-##  [9] &quot;min_size&quot;       &quot;max_size&quot;       &quot;ExDate&quot;</code></pre>
+<pre><code>##  [1] &quot;OBJECTID&quot;       &quot;Reference&quot;      &quot;Sampling_Date&quot;  &quot;Gear&quot;           &quot;Scientificname&quot; &quot;Commonname&quot;     &quot;TotalNum&quot;      
+##  [8] &quot;avg_size&quot;       &quot;min_size&quot;       &quot;max_size&quot;       &quot;ExDate&quot;</code></pre>
 <pre class="r"><code>names(statloc)</code></pre>
 <pre><code>## [1] &quot;Reference&quot; &quot;Latitude&quot;  &quot;Longitude&quot;</code></pre>
 <pre class="r"><code># see the first six rows
 head(fishdat)</code></pre>
-<pre><code>##   OBJECTID     Reference       Sampling_Date Gear      Scientificname
-## 1  1549799 TBM1996011812 1996-01-17 19:00:00   20    Anchoa mitchilli
-## 2  1549800 TBM1996011812 1996-01-17 19:00:00   20      Gobiosoma bosc
-## 3  1549802 TBM1996011819 1996-01-17 19:00:00   20      Mugil cephalus
-## 4  1549804 TBM1996011904 1996-01-18 19:00:00   20 Callinectes sapidus
-## 5  1549806 TBM1996011908 1996-01-18 19:00:00  300 Callinectes sapidus
-## 6  1549860 TBM1996011802 1996-01-17 19:00:00   20 Cynoscion nebulosus
-##         Commonname TotalNum avg_size min_size max_size              ExDate
-## 1      Bay Anchovy      320       23       20       28 2018-04-12 06:25:14
-## 2       Naked Goby        4       25       22       33 2018-04-12 06:25:14
-## 3   Striped Mullet        1       20       20       20 2018-04-12 06:25:14
-## 4        Blue Crab        2       17       15       20 2018-04-12 06:25:14
-## 5        Blue Crab        1      103      103      103 2018-04-12 06:25:23
-## 6 Spotted Seatrout        1       63       63       63 2018-04-12 06:27:38</code></pre>
+<pre><code>##   OBJECTID     Reference       Sampling_Date Gear      Scientificname       Commonname TotalNum avg_size min_size max_size
+## 1  1549799 TBM1996011812 1996-01-17 19:00:00   20    Anchoa mitchilli      Bay Anchovy      320       23       20       28
+## 2  1549800 TBM1996011812 1996-01-17 19:00:00   20      Gobiosoma bosc       Naked Goby        4       25       22       33
+## 3  1549802 TBM1996011819 1996-01-17 19:00:00   20      Mugil cephalus   Striped Mullet        1       20       20       20
+## 4  1549804 TBM1996011904 1996-01-18 19:00:00   20 Callinectes sapidus        Blue Crab        2       17       15       20
+## 5  1549806 TBM1996011908 1996-01-18 19:00:00  300 Callinectes sapidus        Blue Crab        1      103      103      103
+## 6  1549860 TBM1996011802 1996-01-17 19:00:00   20 Cynoscion nebulosus Spotted Seatrout        1       63       63       63
+##                ExDate
+## 1 2018-04-12 06:25:14
+## 2 2018-04-12 06:25:14
+## 3 2018-04-12 06:25:14
+## 4 2018-04-12 06:25:14
+## 5 2018-04-12 06:25:23
+## 6 2018-04-12 06:27:38</code></pre>
 <pre class="r"><code>head(statloc)</code></pre>
 <pre><code>##       Reference Latitude Longitude
 ## 1 TBM1996011812 27.95683 -82.70567

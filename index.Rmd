@@ -39,6 +39,9 @@ This course is designed to expose you to the fundamentals of using R for reprodu
 This training will use RStudio and R. Please make sure that you are ready to use the required software prior to the workshop.  __We will not be available for installation issues or questions the day of the workshop__.  There are two options for setup:
 
 1. Install RStudio and R on your personal computer following the [setup instructions](setup.html). 
+
+     OR 
+  
 1. Use RStudio Cloud to access from a web browser following the [setup instructions](setupcloud.html). 
 
 ## Instructor

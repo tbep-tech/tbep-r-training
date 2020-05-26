@@ -8,7 +8,7 @@ To use Rstudio Cloud, copy this link and paste it in a web browser: <https://rst
 
 This URL is the link to all of the course materials hosted on RStudio Cloud as a project.  If you do not have an RStudio Cloud account, you will see this screen when you first visit the URL: 
 
-![](figure/cloudsignup.png#inline-img "rstudio cloud sign in")
+![](figure/cloudsignup.PNG#inline-img "rstudio cloud sign in")
 
 <br></br>
 
@@ -16,7 +16,7 @@ You can [setup an account](https://login.rstudio.cloud/register?redirect=https%3
 
 After your account is setup, you should a screen that looks something like this:
 
-![](figure/tempproj.png#inline-img "temporary project")
+![](figure/tempproj.PNG#inline-img "temporary project")
 
 <br></br>
 

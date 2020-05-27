@@ -2,7 +2,7 @@
 
 Thanks for your interest in learning R.  For the workshop, we will be using [RStudio](https://www.rstudio.com/) as our interface to R. [RStudio Cloud](https://rstudio.cloud/) allows you to access RStudio and R for free using a web browser.  You will not have to install the software on your personal computer.
 
-Please note that is ideal for teaching, but installing the software on your own computer is strongly recommended for using R after the workshop.  Please see the instructions [here](setup.html) to install on your personal computer.   
+Please note that RStudio Cloud works well for teaching, but installing the software on your own computer is strongly recommended for using R after the workshop.  Please see the instructions [here](setup.html) to install on your personal computer.   
 
 To use Rstudio Cloud, copy this link and paste it in a web browser: <https://rstudio.cloud/project/1318333> 
 

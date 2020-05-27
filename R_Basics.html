@@ -420,6 +420,7 @@ div.tocify {
 
 <div id="r-basics" class="section level1">
 <h1>R Basics</h1>
+<p>Get the lesson R script: <a href="R_Basics.R">R_Basics.R</a></p>
 <div id="lesson-outline" class="section level2">
 <h2>Lesson Outline</h2>
 <ul>
@@ -456,7 +457,7 @@ div.tocify {
 <ul>
 <li>The growth of R as explained in the <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">Stack Overflow blog</a>, <a href="http://blog.revolutionanalytics.com/2016/07/r-moves-up-to-5th-place-in-ieee-language-rankings.html">IEEE rating</a></li>
 </ul>
-<p>R is also an open-source programming language - not only is it free, but this means anybody can contribute to it’s development. As of 2020-05-26, there are 15669 supplemental packages for R on CRAN!</p>
+<p>R is also an open-source programming language - not only is it free, but this means anybody can contribute to it’s development. As of 2020-05-27, there are 15682 supplemental packages for R on CRAN!</p>
 </div>
 </div>
 <div id="rstudio" class="section level2">
@@ -500,19 +501,19 @@ div.tocify {
 </div>
 <div id="exercise-1" class="section level2">
 <h2>Exercise 1</h2>
-<p>This exercise will make sure R and RStudio are working and that you can get around the basics in RStudio. Use the blue stickies when you have completed, and red stickies if you are running into problems.</p>
+<p>This exercise will make sure R and RStudio are working and that you can get around the basics in RStudio.</p>
 <ol style="list-style-type: decimal">
-<li><p>Start RStudio: To start both R and RStudio requires only firing up RStudio. RStudio should be available from All Programs at the Start Menu. Fire up RStudio.</p></li>
-<li><p>Create a new project. Name it “cabw_r_workshop”. We will use this for the rest of the workshop.</p></li>
+<li><p>Start RStudio if using a version you installed OR navigate to <a href="https://rstudio.cloud/project/1318333" class="uri">https://rstudio.cloud/project/1318333</a> if using RStudio Cloud. To start both R and RStudio requires only firing up RStudio. RStudio should be available from All Programs at the Start Menu. Fire up RStudio.</p></li>
+<li><p>If you’re not using RStudio Cloud, create a new project. Name it “r_workshop”. We will use this for the rest of the workshop.</p></li>
 <li><p>Create a new “R Script” in the Source Pane, save that file into your newly created project and name it “cabw_script.R”. It’ll just be a blank text file at this point.</p></li>
 <li><p>Add in a comment line to separate this section. It should look something like: <code># Exercise 1: Just Getting used to RStudio and Scripts</code>.</p></li>
-<li><p>Lastly, we need to get this project set up with some example data for our exercises. You should have downloaded this already, but if not, the data are available <a href="https://SCCWRP.github.io/CABW2018_R_training/data/datazip.zip">here</a>. The data are in a zipped folder. Download the file to your computer (anywhere). Create a folder in your new project named <code>data</code> and extract the files into this location.</p></li>
+<li><p>Lastly, we need to get this project set up with some example data for our exercises. You should have downloaded this already, but if not, the data are available <a href="https://SCCWRP.github.io/tbep_r_training/data/datazip.zip">here</a>. The data are in a zipped folder. Download the file to your computer (anywhere). Create a folder in your new project named <code>data</code> and extract the files into this location.</p></li>
 </ol>
 </div>
 <div id="r-language-fundamentals" class="section level2">
 <h2>R language fundamentals</h2>
 <p>The basic syntax of a function follows the form: <code>function_name(arg1, arg2, ...)</code>.</p>
-<p>With the base install, you will gain access to many functions (3573, to be exact). Some examples:</p>
+<p>With the base install, you will gain access to many functions (3735, to be exact). Some examples:</p>
 <pre class="r"><code># print
 print(&#39;hello world!&#39;)</code></pre>
 <pre><code>## [1] &quot;hello world!&quot;</code></pre>
@@ -521,25 +522,25 @@ seq(1, 10)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code># random numbers
 rnorm(100, mean = 10, sd = 2)</code></pre>
-<pre><code>##   [1]  7.110623  8.055312  9.545281  6.928368  8.582066  7.845873 12.507526 14.349652 12.410440 12.046870  8.348157 12.026074 12.481576
-##  [14] 11.766041  8.769014 11.626240  9.737754  8.270728  7.554690  8.721484  5.613981 10.609907  7.324848  7.894124  9.339152  9.750042
-##  [27] 11.619594  4.367191  7.465922 10.814257  9.400359  9.633993 12.494132 11.120941 13.216917 10.509034  8.978146 12.805443  8.435442
-##  [40]  5.415355 10.037390 11.005731 13.143897  8.497196 12.283032  7.685919  7.385360 14.767590  4.782190  9.132183 10.246643  9.772898
-##  [53] 11.545581 12.264989 11.550266  9.308528 12.813636  9.709732  9.157066 13.272507  9.818393  9.843556 10.961027  8.253693  8.477841
-##  [66] 13.796589  9.511449  9.344967  5.808731  7.111164  9.942850 10.210947 10.840200  6.233366 11.979005 12.452073 10.793031  9.401387
-##  [79]  5.765536  6.798294 11.228574 12.410940 10.021686  9.837483  8.508186  8.543254  9.419386  8.277391  8.732436 11.678541  8.167928
-##  [92] 10.969628 10.064345  6.902057 11.915315  8.224384  7.982385 13.135081 13.238252  9.821868</code></pre>
+<pre><code>##   [1]  6.935981 10.680508 11.254313  9.741120  9.581689  9.208004  9.481668  7.881499  7.692205 10.391252 10.937402  8.132516  8.953245
+##  [14]  7.613247  8.761140  6.995435  7.195232  6.660466 14.408422  8.132306  7.744159 10.995585 11.753920 10.230458 10.634223  8.332896
+##  [27]  9.402373  9.475291 10.140481 13.791032 12.642832  9.718668 11.299844  9.479431  7.739813  7.997645  9.057614  9.380528  6.832238
+##  [40] 14.789669 11.990327  7.052175 16.133339 12.143816  9.822584 12.180207 11.102772 10.224331 10.565116 11.291256 10.740849 11.242822
+##  [53]  5.766208  9.120803 14.122463  9.820416 10.777642  8.592364  7.303034 11.438088  9.447589 11.209968 10.530124  8.473108 13.493754
+##  [66]  9.789085 10.110309 12.876084  8.917970  6.765736 10.091364  9.110988 11.597094 11.654426  7.946692  9.788162  8.100533 10.176436
+##  [79]  7.855848  9.483114  8.929613  9.365659 13.965401  8.715654  7.617370 13.297225  9.038970 10.976560 10.548700  8.955293  7.594562
+##  [92]  9.217869  9.312841 11.431985  9.943279 11.319360  9.669241  6.988893  9.003222  9.019266</code></pre>
 <pre class="r"><code># average 
 mean(rnorm(100))</code></pre>
-<pre><code>## [1] 0.1124373</code></pre>
+<pre><code>## [1] 0.04833542</code></pre>
 <pre class="r"><code># sum
 sum(rnorm(100))</code></pre>
-<pre><code>## [1] -4.190219</code></pre>
+<pre><code>## [1] 7.949528</code></pre>
 <p>Very often you will see functions used like this:</p>
 <pre class="r"><code>my_random_sum &lt;- sum(rnorm(100))</code></pre>
 <p>In this case the first part of the line is the name of an object. You make this up. Ideally it should have some meaning, but the only rules are that it can’t start with a number and must not have any spaces. The second bit, <code>&lt;-</code>, is the assignment operator. This tells R to take the result of <code>sum(rnorm(100))</code> and store it in an object named, <code>my_random_sum</code>. It is stored in the environment and can be used by just executing it’s name in the console.</p>
 <pre class="r"><code>my_random_sum</code></pre>
-<pre><code>## [1] 5.225215</code></pre>
+<pre><code>## [1] -16.57031</code></pre>
 <p>With this, you have the very basics of how we write R code and save objects that can be used later.</p>
 <div id="packages" class="section level3">
 <h3>Packages</h3>
@@ -547,7 +548,7 @@ sum(rnorm(100))</code></pre>
 </div>
 <div id="cran" class="section level3">
 <h3>CRAN</h3>
-<p>One of the reasons for R’s popularity is CRAN, <a href="http://cran.r-project.org/">The Comprehensive R Archive Network</a>. This is where you download R and also where most will gain access to packages (there are other places, but that is for later). Not much else to say about this now other than to be aware of it. As of 2020-05-26, there are 15669 on CRAN!</p>
+<p>One of the reasons for R’s popularity is CRAN, <a href="http://cran.r-project.org/">The Comprehensive R Archive Network</a>. This is where you download R and also where most will gain access to packages (there are other places, but that is for later). Not much else to say about this now other than to be aware of it. As of 2020-05-27, there are 15682 on CRAN!</p>
 </div>
 <div id="installing-packages" class="section level3">
 <h3>Installing packages</h3>
@@ -562,18 +563,14 @@ sum(rnorm(100))</code></pre>
 <pre class="r"><code># install packages from CRAN
 install.packages(&quot;tidyverse&quot;)
 install.packages(&quot;sf&quot;)
-install.packages(&quot;mapview&quot;)
-install.packages(&quot;viridis&quot;)
-install.packages(&quot;USAboundaries&quot;)</code></pre></li>
+install.packages(&quot;mapview&quot;)</code></pre></li>
 <li><p>Select all the lines by clicking and dragging the mouse pointer over the text.</p></li>
 <li><p>Send all the commands to the console using <code>ctrl+enter</code>. You should see some text output on the console about the installation process. The installation may take a few minutes so don’t be alarmed.</p></li>
 <li><p>After the packages are done installing, verify that there were no errors during the process (this should be pretty obvious, i.e., error text in big scary red letters).</p></li>
 <li><p>Load the packages after they’ve installed.</p>
 <pre class="r"><code>library(&quot;tidyverse&quot;)
 library(&quot;sf&quot;)
-library(&quot;mapview&quot;)
-library(&quot;viridis&quot;)
-library(&quot;USAboundaries&quot;)</code></pre></li>
+library(&quot;mapview&quot;)</code></pre></li>
 </ol>
 <div id="getting-help" class="section level3">
 <h3>Getting Help</h3>
@@ -674,72 +671,89 @@ mydf</code></pre>
 <div id="getting-your-data-into-r" class="section level2">
 <h2>Getting your data into R</h2>
 <p>It is the rare case when you manually enter your data in R, not to mention impractical for most datasets. Most data analysis workflows typically begin with importing a dataset from an external source. Literally, this means committing a dataset to memory (i.e., storing it as a variable) as one of R’s data structure formats.</p>
-<p>Flat data files (text only, rectangular format) present the least complications on import because there is very little to assume about the structure of the data. On import, R tries to guess the data type for each column and this is fairly unambiguous with flat files. The base installation of R comes with some easy to use functions for importing flat files, such as <code>read.table()</code> and <code>read.csv()</code>.</p>
+<p>Flat data files (text only, rectangular format) present the least complications on import because there is very little to assume about the structure of the data. On import, R tries to guess the data type for each column and this is fairly unambiguous with flat files. We’ll be using <code>read_csv()</code> function from the readr package that comes with the tidyverse.</p>
 <div id="exercise-3" class="section level3">
 <h3>Exercise 3</h3>
-<p>Now that we have the data downloaded and extracted to our data folder, we’ll use <code>read.csv</code> to import two files.</p>
+<p>Now that we have the data downloaded and extracted to our data folder, we’ll use <code>read_csv</code> to import two files.</p>
 <ol style="list-style-type: decimal">
 <li><p>Type the following in your script. Note the use of <em>relative</em> file paths within your project.</p>
-<pre class="r"><code>fishdat &lt;- read.csv(&#39;data/fishdat.csv&#39;, stringsAsFactors = F)
-statloc &lt;- read.csv(&#39;data/statloc.csv&#39;, stringsAsFactors = F)</code></pre></li>
+<pre class="r"><code>fishdat &lt;- read_csv(&#39;data/fishdat.csv&#39;)
+statloc &lt;- read_csv(&#39;data/statloc.csv&#39;)</code></pre></li>
 <li><p>Send the commands to the console with <code>ctrl+enter</code>.</p></li>
 <li><p>Verify that the data imported correctly by viewing the first six rows of each dataset. Use the <code>head()</code> function directly in the console, e.g., <code>head(fishdat)</code> or <code>head(statloc)</code></p></li>
 </ol>
 <p>Let’s explore the datasets a bit. There are many useful functions for exploring the characteristics of a dataset. This is always a good idea when you first import something.</p>
 <pre class="r"><code># get the dimensions
 dim(fishdat)</code></pre>
-<pre><code>## [1] 30206    11</code></pre>
+<pre><code>## [1] 2844   11</code></pre>
 <pre class="r"><code>dim(statloc)</code></pre>
-<pre><code>## [1] 4080    3</code></pre>
+<pre><code>## [1] 2173    3</code></pre>
 <pre class="r"><code># get the column names
 names(fishdat)</code></pre>
-<pre><code>##  [1] &quot;OBJECTID&quot;       &quot;Reference&quot;      &quot;Sampling_Date&quot;  &quot;Gear&quot;           &quot;Scientificname&quot; &quot;Commonname&quot;     &quot;TotalNum&quot;      
-##  [8] &quot;avg_size&quot;       &quot;min_size&quot;       &quot;max_size&quot;       &quot;ExDate&quot;</code></pre>
+<pre><code>##  [1] &quot;OBJECTID&quot;      &quot;Reference&quot;     &quot;Sampling_Date&quot; &quot;Gear&quot;          &quot;ExDate&quot;        &quot;Bluefish&quot;      &quot;Common Snook&quot;  &quot;Mullets&quot;      
+##  [9] &quot;Pinfish&quot;       &quot;Red Drum&quot;      &quot;Sand Seatrout&quot;</code></pre>
 <pre class="r"><code>names(statloc)</code></pre>
 <pre><code>## [1] &quot;Reference&quot; &quot;Latitude&quot;  &quot;Longitude&quot;</code></pre>
 <pre class="r"><code># see the first six rows
 head(fishdat)</code></pre>
-<pre><code>##   OBJECTID     Reference       Sampling_Date Gear      Scientificname       Commonname TotalNum avg_size min_size max_size
-## 1  1549799 TBM1996011812 1996-01-17 19:00:00   20    Anchoa mitchilli      Bay Anchovy      320       23       20       28
-## 2  1549800 TBM1996011812 1996-01-17 19:00:00   20      Gobiosoma bosc       Naked Goby        4       25       22       33
-## 3  1549802 TBM1996011819 1996-01-17 19:00:00   20      Mugil cephalus   Striped Mullet        1       20       20       20
-## 4  1549804 TBM1996011904 1996-01-18 19:00:00   20 Callinectes sapidus        Blue Crab        2       17       15       20
-## 5  1549806 TBM1996011908 1996-01-18 19:00:00  300 Callinectes sapidus        Blue Crab        1      103      103      103
-## 6  1549860 TBM1996011802 1996-01-17 19:00:00   20 Cynoscion nebulosus Spotted Seatrout        1       63       63       63
-##                ExDate
-## 1 2018-04-12 06:25:14
-## 2 2018-04-12 06:25:14
-## 3 2018-04-12 06:25:14
-## 4 2018-04-12 06:25:14
-## 5 2018-04-12 06:25:23
-## 6 2018-04-12 06:27:38</code></pre>
+<pre><code>## # A tibble: 6 x 11
+##   OBJECTID Reference    Sampling_Date        Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
+##      &lt;dbl&gt; &lt;chr&gt;        &lt;dttm&gt;              &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
+## 1  1550020 TBM19960320~ 1996-03-19 19:00:00   300 2018-04-12 06:27:38        0              0       0       0          0               1
+## 2  1550749 TBM19960320~ 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0              0       0      54          0               0
+## 3  1550750 TBM19960320~ 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0              0       0       0          1               0
+## 4  1550762 TBM19960322~ 1996-03-21 19:00:00    20 2018-04-12 06:25:23        0              0       0      80          0               0
+## 5  1550828 TBM19960426~ 1996-04-25 20:00:00   160 2018-04-12 06:25:23        0              0       0       0          4               0
+## 6  1550838 TBM19960513~ 1996-05-12 20:00:00   300 2018-04-12 06:25:23        0              0       0       0          0               1</code></pre>
 <pre class="r"><code>head(statloc)</code></pre>
-<pre><code>##       Reference Latitude Longitude
-## 1 TBM1996011812 27.95683 -82.70567
-## 2 TBM1996011819 27.98933 -82.61967
-## 3 TBM1996011904 27.99250 -82.68417
-## 4 TBM1996011908 28.01283 -82.67350
-## 5 TBM1996011802 27.87650 -82.53583
-## 6 TBM1996011809 27.96317 -82.59083</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   Reference     Latitude Longitude
+##   &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;
+## 1 TBM1996032006     27.9     -82.6
+## 2 TBM1996032004     27.9     -82.6
+## 3 TBM1996032207     27.9     -82.5
+## 4 TBM1996042601     28.0     -82.7
+## 5 TBM1996051312     27.9     -82.6
+## 6 TBM1996051407     27.9     -82.6</code></pre>
 <pre class="r"><code># get the overall structure
 str(fishdat)</code></pre>
-<pre><code>## &#39;data.frame&#39;:    30206 obs. of  11 variables:
-##  $ OBJECTID      : int  1549799 1549800 1549802 1549804 1549806 1549860 1549863 1549864 1549865 1549867 ...
-##  $ Reference     : chr  &quot;TBM1996011812&quot; &quot;TBM1996011812&quot; &quot;TBM1996011819&quot; &quot;TBM1996011904&quot; ...
-##  $ Sampling_Date : chr  &quot;1996-01-17 19:00:00&quot; &quot;1996-01-17 19:00:00&quot; &quot;1996-01-17 19:00:00&quot; &quot;1996-01-18 19:00:00&quot; ...
-##  $ Gear          : int  20 20 20 20 300 20 300 300 20 300 ...
-##  $ Scientificname: chr  &quot;Anchoa mitchilli&quot; &quot;Gobiosoma bosc&quot; &quot;Mugil cephalus&quot; &quot;Callinectes sapidus&quot; ...
-##  $ Commonname    : chr  &quot;Bay Anchovy&quot; &quot;Naked Goby&quot; &quot;Striped Mullet&quot; &quot;Blue Crab&quot; ...
-##  $ TotalNum      : int  320 4 1 2 1 1 1 1 3 1 ...
-##  $ avg_size      : int  23 25 20 17 103 63 39 97 31 185 ...
-##  $ min_size      : int  20 22 20 15 103 63 39 97 27 185 ...
-##  $ max_size      : int  28 33 20 20 103 63 39 97 37 185 ...
-##  $ ExDate        : chr  &quot;2018-04-12 06:25:14&quot; &quot;2018-04-12 06:25:14&quot; &quot;2018-04-12 06:25:14&quot; &quot;2018-04-12 06:25:14&quot; ...</code></pre>
+<pre><code>## tibble [2,844 x 11] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ OBJECTID     : num [1:2844] 1550020 1550749 1550750 1550762 1550828 ...
+##  $ Reference    : chr [1:2844] &quot;TBM1996032006&quot; &quot;TBM1996032004&quot; &quot;TBM1996032004&quot; &quot;TBM1996032207&quot; ...
+##  $ Sampling_Date: POSIXct[1:2844], format: &quot;1996-03-19 19:00:00&quot; &quot;1996-03-19 19:00:00&quot; &quot;1996-03-19 19:00:00&quot; &quot;1996-03-21 19:00:00&quot; ...
+##  $ Gear         : num [1:2844] 300 22 22 20 160 300 300 300 300 22 ...
+##  $ ExDate       : POSIXct[1:2844], format: &quot;2018-04-12 06:27:38&quot; &quot;2018-04-12 06:25:23&quot; &quot;2018-04-12 06:25:23&quot; &quot;2018-04-12 06:25:23&quot; ...
+##  $ Bluefish     : num [1:2844] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ Common Snook : num [1:2844] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ Mullets      : num [1:2844] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ Pinfish      : num [1:2844] 0 54 0 80 0 0 0 0 1 1 ...
+##  $ Red Drum     : num [1:2844] 0 0 1 0 4 0 0 0 0 0 ...
+##  $ Sand Seatrout: num [1:2844] 1 0 0 0 0 1 5 66 0 0 ...
+##  - attr(*, &quot;spec&quot;)=
+##   .. cols(
+##   ..   OBJECTID = col_double(),
+##   ..   Reference = col_character(),
+##   ..   Sampling_Date = col_datetime(format = &quot;&quot;),
+##   ..   Gear = col_double(),
+##   ..   ExDate = col_datetime(format = &quot;&quot;),
+##   ..   Bluefish = col_double(),
+##   ..   `Common Snook` = col_double(),
+##   ..   Mullets = col_double(),
+##   ..   Pinfish = col_double(),
+##   ..   `Red Drum` = col_double(),
+##   ..   `Sand Seatrout` = col_double()
+##   .. )</code></pre>
 <pre class="r"><code>str(statloc)</code></pre>
-<pre><code>## &#39;data.frame&#39;:    4080 obs. of  3 variables:
-##  $ Reference: chr  &quot;TBM1996011812&quot; &quot;TBM1996011819&quot; &quot;TBM1996011904&quot; &quot;TBM1996011908&quot; ...
-##  $ Latitude : num  28 28 28 28 27.9 ...
-##  $ Longitude: num  -82.7 -82.6 -82.7 -82.7 -82.5 ...</code></pre>
+<pre><code>## tibble [2,173 x 3] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ Reference: chr [1:2173] &quot;TBM1996032006&quot; &quot;TBM1996032004&quot; &quot;TBM1996032207&quot; &quot;TBM1996042601&quot; ...
+##  $ Latitude : num [1:2173] 27.9 27.9 27.9 28 27.9 ...
+##  $ Longitude: num [1:2173] -82.6 -82.6 -82.5 -82.7 -82.6 ...
+##  - attr(*, &quot;spec&quot;)=
+##   .. cols(
+##   ..   Reference = col_character(),
+##   ..   Latitude = col_double(),
+##   ..   Longitude = col_double()
+##   .. )</code></pre>
 <p>You can also view each dataset in a spreadsheet style in the scripting window:</p>
 <pre class="r"><code>View(fishdat)
 View(statloc)</code></pre>

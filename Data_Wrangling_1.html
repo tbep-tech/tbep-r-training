@@ -73,6 +73,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="css\styles.css" type="text/css" />
 
 
 
@@ -418,242 +419,392 @@ div.tocify {
 </div>
 
 
+<script src="js/hideoutput.js"></script>
 <div id="data-wrangling-part-1" class="section level1">
 <h1>Data wrangling part 1</h1>
+<p>Get the lesson R script: <a href="Data_Wrangling_1.R">Data_Wrangling_1.R</a></p>
 <div id="lesson-outline" class="section level2">
 <h2>Lesson Outline</h2>
 <ul>
-<li><a href="#todays-goals">Today’s goals</a></li>
-<li>[The tidyverse]</li>
-<li>[Data wrangling with <code>dplyr</code>]</li>
-<li>[Piping]</li>
+<li><a href="#goals">Goals</a></li>
+<li><a href="#the-tidyverse">The tidyverse</a></li>
+<li><a href="#data-wrangling-with-dplyr">Data wrangling with <code>dplyr</code></a></li>
+<li><a href="#piping">Piping</a></li>
 </ul>
 </div>
 <div id="lesson-exercises" class="section level2">
 <h2>Lesson Exercises</h2>
 <ul>
-<li>[Exercise 1]</li>
-<li>[Exercise 2]</li>
-<li>[Exercise 3]</li>
+<li><a href="#exercise-1">Exercise 1</a></li>
+<li><a href="#exercise-2">Exercise 2</a></li>
 </ul>
 </div>
-<div id="todays-goals" class="section level2">
-<h2>Today’s goals</h2>
+<div id="goals" class="section level2">
+<h2>Goals</h2>
 <p>Data wrangling (manipulation, ninjery, cleaning, etc.) is the part of any data analysis that will take the most time. While it may not necessarily be fun, it is foundational to all the work that follows. I strongly believe that mastering these skills has more value than mastering a particular analysis. Check out <a href="https://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html">this article</a> if you don’t believe me.</p>
-<!-- As before, we only have two hours to cover the basics of data wrangling. It’s an unrealistic expectation that you will be a ninja wrangler after this training. As such, the goals are to expose you to fundamentals and to develop an appreciation of what’s possible. I also want to provide resources that you can use for follow-up learning on your own. -->
-<!-- Today you should be able to answer (or be able to find answers to) the following: -->
-<!-- * Why do we need to manipulate data? -->
-<!-- * What is the tidyverse?  -->
-<!-- * What can you do with dplyr? -->
-<!-- * What is piping? -->
-<!-- ## Exercise 1 -->
-<!-- As a refresher and to get our brains working, we're going to repeat the exercises from our training last week.  The only exception is that we'll be using some data from the Bight.  In this exercise, we'll make a new project in RStudio and create a script for importing and working with these data today. -->
-<!-- 1. Start RStudio: To start both R and RStudio requires only firing up RStudio.  RStudio should be available from All Programs at the Start Menu.  Fire up RStudio. Take a minute or two to orient yourself to the different panes if you need a refresher from last time.  -->
-<!-- 2. Create a new project.  Name it "wrangling_workshop" or something similar. -->
-<!-- 3. Create a new "R Script" in the Source (scripting) Pane, save that file into your project and name it "data_wrangling1.R". It'll just be a blank text file at this point. -->
-<!-- 4. Add in a comment line at the top stating the purpose. It should look something like: `# Exercise 1: Scripting for data wrangling part 1`. -->
-<!-- 5. Make a folder in your project called `data`. You should have downloaded this already, but if not, download the Bight dataset from here: [https://github.com/SCCWRP/R_training_2018/raw/master/lessons/data/B13 Chem data.xlsx](https://github.com/SCCWRP/R_training_2018/raw/master/lessons/data/B13 Chem data.xlsx). Also download some metadata about the Bight stations from here: [https://github.com/SCCWRP/R_training_2018/raw/master/lessons/data/Master Data - Station Info.xlsx](https://github.com/SCCWRP/R_training_2018/raw/master/lessons/data/Master Data - Station Info.xlsx). Copy these files into the `data` folder in your project. -->
-<!-- 6. Add some lines to your script to import and store the data in your Enviroment. Remember that the data should be in your `data` folder in your project.  The `read_excel` function from the `readxl` package is your friend here and the paths are `"data/B13 Chem data.xlsx"` and `"data/Master Data - Station Info.xlsx"`.  Remember to install/load the `readxl` library and to assign the data to a variable (`<-`) -->
-<!-- 7. Now run your script and make sure it doesn't throw any errors and you do in fact get a data frame (or tibble). -->
-<!-- 8. Explore the data frame using some of the functions we covered last time (e.g. `head()`,`dim()`, or `str()`).  This part does not need to be included in the script and can be done directly in the console. It is just a quick QA step to be sure the data read in as expected. -->
-<!-- ## The tidyverse -->
-<!-- The [tidyverse](https://www.tidyverse.org/) is a set of packages that work in harmony because they share common data representations and design. The tidyverse package is designed to make it easy to install and load core packages from the tidyverse in a single command. With tidyverse, you'll be able to address all steps of data exploration.   -->
-<!-- ![](figure/data-science.png) -->
-<!-- From the excellent book, [R for Data Science](http://r4ds.had.co.nz/), **data exploration** is the art of looking at your data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again.  Tools in the tidyverse also have direct application to more formal analyses with many of the other available R packages on [CRAN](https://cran.r-project.org/). -->
-<!-- You should already have the tidyverse installed, but let's give it a go if you haven't done this part yet: -->
-<!-- ```{r eval = F} -->
-<!-- # install  -->
-<!-- install.packages('tidyverse') -->
-<!-- ``` -->
-<!-- After installation, we can load the package: -->
-<!-- ```{r message = T} -->
-<!-- # load -->
-<!-- library(tidyverse) -->
-<!-- ``` -->
-<!-- Notice that the messages you get after loading are a bit different from other packages.  That's because tidyverse is a package that manages other packages.  Loading tidyverse will load all of the core packagbes: -->
-<!-- -   [ggplot2](http://ggplot2.tidyverse.org), for data visualisation. -->
-<!-- -   [dplyr](http://dplyr.tidyverse.org), for data manipulation. -->
-<!-- -   [tidyr](http://tidyr.tidyverse.org), for data tidying. -->
-<!-- -   [readr](http://readr.tidyverse.org), for data import. -->
-<!-- -   [purrr](http://purrr.tidyverse.org), for functional programming. -->
-<!-- -   [tibble](http://tibble.tidyverse.org), for tibbles, a modern re-imagining of data frames. -->
-<!-- Other packages (e.g., `readxl`) are also included but you will probably not use these as frequently.   -->
-<!-- A nice freature of tidyverse is the ability to check for and install new versions of each package: -->
-<!-- ``` r -->
-<!-- tidyverse_update() -->
-<!-- #> The following packages are out of date: -->
-<!-- #>  * broom (0.4.0 -> 0.4.1) -->
-<!-- #>  * DBI   (0.4.1 -> 0.5) -->
-<!-- #>  * Rcpp  (0.12.6 -> 0.12.7) -->
-<!-- #> Update now? -->
-<!-- #>  -->
-<!-- #> 1: Yes -->
-<!-- #> 2: No -->
-<!-- ``` -->
-<!-- As you'll soon learn using R, there are often several ways to achieve the same goal.  The tidyverse provides tools to address problems that can be solved with other packages or even functions from the base installation.  Tidyverse is admittedly an *opinionated* approach to data exploration, but it's popularity and rapid growth within the R community is a testament to the power of the tools that are provided.  -->
-<!-- ## Data wrangling with `dplyr` -->
-<!-- ![](figure/data-science-wrangle.png) -->
-<!-- As the graphic implies, the data wrangling process includes data import, tidying, and transformation.  The process directly feeds into, and is not mutually exclusive, with the *understanding* or modelling side of data exploration.  More generally, I consider data wrangling as the manipulation or combination of datasets for the purpose of analysis.   -->
-<!-- Wrangling begins with import and ends with an output of some kind, such as a plot or a model.  In a perfect world, the wrangling process is linear with no need for back-tracking.  In reality, we often uncover more information about a dataset, either through wrangling or modeling, that warrants re-evaluation or even gathering more data.  Data also come in many forms and the form you need for analysis is rarely the required form of the input data.  For these reasons, data wrangling will consume most of your time in data exploration.  -->
-<!-- **All wrangling is based on a purpose.**  No one wrangles for the sake of wrangling (usually), so the process always begins by answering the following two questions: -->
-<!-- * What do my input data look like? -->
-<!-- * What should my input data look like given what I want to do? -->
-<!-- At the most basic level, going from what your data looks like to what it should look like will require a few key operations.  Some common examples: -->
-<!-- * Selecting specific variables -->
-<!-- * Filtering observations by some criteria -->
-<!-- * Adding or modifying existing variables -->
-<!-- * Renaming variables -->
-<!-- * Arranging rows by a variable -->
-<!-- * Summarizing variable conditional on others -->
-<!-- The `dplyr` package provides easy tools for these common data manipulation tasks. It is built to work directly with data frames and this is one of the foundational packages in what is now known as the tidyverse. The philosophy of dplyr is that one function does one thing and the name of the function says what it does. This is where the tidyverse generally departs from other packages and even base R.  It is meant to be easy, logical, and intuitive.  There is a lot of great info on dplyr. If you have an interest, I’d encourage you to look more. The vignettes are particularly good. -->
-<!-- * [`dplyr` GitHub repo](https://github.com/hadley/dplyr) -->
-<!-- * [CRAN page: vignettes here](http://cran.rstudio.com/web/packages/dplyr/) -->
-<!-- * [Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf) -->
-<!-- I'll demonstrate the examples with the `mpg` dataset from last time. This dataset describes fuel economy of different vehicles and it comes with the tidyverse. Let's get a feel for the data. -->
-<!-- ```{r} -->
-<!-- # convert to data frame, just cause -->
-<!-- mpg <- as.data.frame(mpg) -->
-<!-- # see first six rows -->
-<!-- head(mpg) -->
-<!-- # dimensions -->
-<!-- dim(mpg) -->
-<!-- # column names -->
-<!-- names(mpg) -->
-<!-- # structure  -->
-<!-- str(mpg) -->
-<!-- ``` -->
-<!-- ### Selecting -->
-<!-- Let's begin using dplyr. Don't forget to load the tidyverse if you haven't done so already.  -->
-<!-- ```{r} -->
-<!-- # first, select some columns -->
-<!-- dplyr_sel1 <- select(mpg, manufacturer, model, cty, hwy) -->
-<!-- head(dplyr_sel1) -->
-<!-- # select everything but class and drv -->
-<!-- dplyr_sel2 <- select(mpg, -drv, -class) -->
-<!-- head(dplyr_sel2) -->
-<!-- # select columns that contain the letter c -->
-<!-- dplyr_sel3 <- select(mpg, matches('c')) -->
-<!-- head(dplyr_sel3) -->
-<!-- ``` -->
-<!-- ### Filtering -->
-<!-- After selecting columns, you'll probably want to remove observations that don't fit some criteria.  For example, maybe you want to remove all cars from the dataset that have low mileage on the highway.  Maybe you want to look at only six cylinder cars. -->
-<!-- ```{r} -->
-<!-- # now select (filter) some observations -->
-<!-- dplyr_good_fuel <- filter(mpg, hwy > 25) -->
-<!-- head(dplyr_good_fuel) -->
-<!-- # now select observations for only six cylinder vehicles -->
-<!-- dplyr_six_cyl <- filter(mpg, cyl == 6) -->
-<!-- head(dplyr_six_cyl) -->
-<!-- ``` -->
-<!-- Filtering can take a bit of time to master because there are several ways to tell R what you want. Within the filter function, the working part is a *logical selection* of `TRUE` and `FALSE` values that are used to selected rows (`TRUE` means I want that row, `FALSE` means I don't).  Every selection within the filter function, no matter how complicated, will always be a T/F vector.  This is similar to running queries on a database if you're familiar with SQL. -->
-<!-- To use filtering effectively, you have to know how to select the observations that you want using the comparison operators. R provides the standard suite: `>`, `>=`, `<`, `<=`, `!=` (not equal), and `==` (equal). When you're starting out with R, the easiest mistake to make is to use `=` instead of `==` when testing for equality.  -->
-<!-- Multiple arguments to `filter()` are combined with "and": every expression must be true in order for a row to be included in the output. For other types of combinations, you'll need to use Boolean operators yourself: `&` is "and", `|` is "or", and `!` is "not". This is the complete set of Boolean operations. -->
-<!-- ![](figure/transform-logical.png) -->
-<!-- Let's start combining filtering operations. -->
-<!-- ```{r} -->
-<!-- # get cars with city mileage betwen 18 and 22 -->
-<!-- filt1 <- filter(mpg, cty > 18 & cty < 22) -->
-<!-- head(filt1) -->
-<!-- # get four cylinder or compact cars -->
-<!-- filt2 <- filter(mpg, cyl == 4 | class == 'compact') -->
-<!-- head(filt2) -->
-<!-- # get four cylinder and compact cars -->
-<!-- filt3 <- filter(mpg, cyl == 4 & class == 'compact') -->
-<!-- head(filt3) -->
-<!-- # get cars manufactured by ford or toyota -->
-<!-- filt4 <- filter(mpg, manufacturer == 'ford' | manufacturer == 'toyota') -->
-<!-- head(filt4) -->
-<!-- # an alternative way to get ford and toyota  -->
-<!-- filt5 <- filter(mpg, manufacturer %in% c('ford', 'toyota')) -->
-<!-- head(filt5) -->
-<!-- ``` -->
-<!-- ### Mutating -->
-<!-- Now that we've seen how to filter observations and select columns of a data frame, maybe we want to add a new column. In dplyr, `mutate` allows us to add new columns. These can be vectors you are adding or based on expressions applied to existing columns. For instance, we have a column of highway mileage and maybe we want to convert to km/l (Google says the conversion factor is 0.425). -->
-<!-- ```{r} -->
-<!-- # add a column for km/L -->
-<!-- dplyr_mut <- mutate(mpg, hwy_kml = hwy * 0.425) -->
-<!-- head(dplyr_mut) -->
-<!-- # add a column for lo/hi fuel economy -->
-<!-- dplyr_mut2 <- mutate(mpg, hwy_cat = ifelse(hwy < 25, 'hi', 'lo')) -->
-<!-- head(dplyr_mut2) -->
-<!-- ``` -->
-<!-- Some other useful dplyr functions include `arrange` to sort the observations (rows) by a column and `rename` to (you guessed it) rename a column. -->
-<!-- ```{r} -->
-<!-- # arrange by highway economy -->
-<!-- dplyr_arr <- arrange(mpg, hwy) -->
-<!-- head(dplyr_arr) -->
-<!-- # rename some columns -->
-<!-- dplyr_rnm <- rename(mpg, make = manufacturer) -->
-<!-- head(dplyr_rnm) -->
-<!-- ``` -->
-<!-- There are many more functions in `dplyr` but the one's above are by far the most used.  As you can imagine, they are most effective when used to together because there is never only one step in the data wrangling process.  After the exercise, we'll talk about how we can efficiently *pipe* the functions in dplyr to create a new data object.   -->
-<!-- ## Exercise 2 -->
-<!-- Now that you know the basic functions in `dplyr` and how to use them, let's apply them to a more relevant dataset.  We're going to import the sediment chemistry dataset from Bight13 and grab some specific data that we want. We'll be getting all of the observations for chlorophyll (`Total_CHL`) and organic carbon (`Total Organic Carbon`).  We'll remove everything else in the data that we don't need. -->
-<!-- 1. Import the Bight chemistry data using the `read_excel` function from the readxl package. The data should be in your `data` folder. Make sure to store it as an object in your workspace (use `<-`). -->
-<!-- 2. Now we need to think about what variables we need to get the chlorophyll data.  Select the `StationID`, `Parameter`, and `Result` columns and assign it as a new object in your environment. -->
-<!-- 3. Using the new object, let's filter the observations (i.e., the `Parameter` column) to get only chlorophyll (`Total_CHL`) and organic carbon (`Total Organic Carbon`). Again, assign the new object to your environment. -->
-<!-- 4. When you're happy with the result, have a look at the data.  Did you get what you wanted?  How many observations do you have compared to the original data file? Did you succesfully filter the right parameters (hint: `table(dat$Parameter)`?  -->
-<!-- 5. Save the new file to your data folder using `write_csv` and call it `Bight_wrangle.csv`. Don't forget to include the full path within your project when saving the file.   -->
-<!-- ## Piping -->
-<!-- A complete data wrangling exercise will always include multiple steps to go from the raw data to the output you need. Here's a terrible wrangling example using functions from base R: -->
-<!-- ```{r base, eval=FALSE} -->
-<!-- cropdat <- rawdat[1:28] -->
-<!-- savecols <- data.frame(cropdat$Party, cropdat$`Last Inventory Year (2015)`) -->
-<!-- names(savecols) <- c('Party','2015') -->
-<!-- savecols$rank2015 <- rank(-savecols$`2015`) -->
-<!-- top10df <- savecols[savecols$rank2015 <= 10,] -->
-<!-- basedat <- cropdat[cropdat$Party %in% top10df$Party,] -->
-<!-- ``` -->
-<!-- Technically, if this works it's not "wrong", but there are a couple issues that can lead to problems down the line. First, the flow of functions to manipulate the data is not obvious and this makes your code very hard to read. Second, lots of unecessary intermediates have been created in your workspace.  Anything that adds to clutter should be avoided because R is fundamentally based on object assignments.  The less you assign as a variable in your environment the easier it will be to navigate complex scripts.  -->
-<!-- The good news is that you now know how to use the dplyr functions to wrangle data.  The function names in dplyr were chosen specifically to be descriptive.  This will make your code much more readable than if you were using base R counterparts.  The bad news is that I haven't told you how to easily link the functions.  Fortunately, there's an easy fix to this problem. -->
-<!-- The `magrittr` package (comes with tidyverse) provides a very useful method called *piping* that will make wrangling a whole lot easier.  The idea is simple: a pipe (`%>%`) is used to chain functions together.  The output from one function becomes the input to the next function in the pipe. This avoids the need to create intermediate objects and creates a logical progression of steps that demystify the wrangling process. -->
-<!-- Consider the simple example: -->
-<!-- ```{r} -->
-<!-- # not using pipes, select a column, filter rows -->
-<!-- bad_ex <- select(mpg, manufacturer, hwy) -->
-<!-- bad_ex2 <- filter(bad_ex, hwy > 25) -->
-<!-- ``` -->
-<!-- With pipes, it looks like this: -->
-<!-- ```{r} -->
-<!-- # with pipes, select a column, filter rows -->
-<!-- good_ex <- select(mpg, manufacturer, hwy) %>%  -->
-<!--   filter(hwy > 25) -->
-<!-- ``` -->
-<!-- Now we've created only one new object in our environment and we can clearly see that we select, then filter.  The only real coding difference is now the filter function only includes the part about which rows to keep.  You do not need to specify a data object as input to a function if you're using piping. The pipe will always use the input that comes from above.  -->
-<!-- Using pipes, you can link together as many functions as you like.  -->
-<!-- ```{r} -->
-<!-- # a complete piping example -->
-<!-- all_pipes <- mpg %>%  -->
-<!--   select(manufacturer, year, hwy, cty) %>%  -->
-<!--   filter(year == 2008 & hwy <= 25) %>%  -->
-<!--   rename( -->
-<!--     make = manufacturer,  -->
-<!--     hmpg = hwy,  -->
-<!--     cmpg = cty -->
-<!--     ) %>%  -->
-<!--   arrange(-hmpg) -->
-<!-- head(all_pipes) -->
-<!-- ``` -->
-<!-- A couple comments about piping: -->
-<!-- * I find it very annoying to type the pipe operator (six key strokes!).  RStudio has a nice keyboard shortcut: `Crtl + Shift + M` for Windows (use `Cmd + Shift + M` on a mac). -->
-<!-- * It's convention to start a new function on the next line after a pipe operator.  This makes the code easier to read and you can also comment out a single step in a long pipe.  -->
-<!-- * Don't make your pipes too long, limit them to a particular data object or task. -->
-<!-- ## Exercise 3 -->
-<!-- Now that we know how to pipe functions, let's repeat exercise 2 with the Bight data.  You should already have code to import, select, and filter the data. In theory, you could create all of exercise 2 with a single continuous pipe.  That's a bit excessive so try to do this by creating only two objects in your workspace. Make one object the raw data and the second object the wrangled data.   -->
-<!-- 1. Using your code from exercise two, try to replicate the steps using pipes.  The steps we used in exercise two were: -->
-<!--      * Import the raw data with `read_excel` -->
-<!--      * Select the columns `StationID`, `Parameter`, and `Result` -->
-<!--      * Filter parameter to get only `Total_CHL` and `Total Organic Carbon` (hint: use `%in%`) -->
-<!-- 2. When you're done, you should have a data object that's exactly the same as the one you created in exercise two. Try to verify this with the `identical` function from base R (check the help file with `?identical` if you don't know how to use this function). -->
-<!-- ## Next time  -->
-<!-- Now you should be able to answer (or be able to find answers to) the following: -->
-<!-- * Why do we need to manipulate data? -->
-<!-- * What is the tidyverse?  -->
-<!-- * What can you do with dplyr? -->
-<!-- * What is piping? -->
-<!-- Next time we'll continue with data wrangling.  -->
-<!-- ## Attribution -->
-<!-- Content in this lesson was pillaged extensively from the USGS-R training curriculum [here](https://github.com/USGS-R/training-curriculum) and [R for data Science](https://github.com/hadley/r4ds). -->
+<p>We’ll have two hours to cover parts 1 and 2 of data wrangling. It’s an unrealistic expectation that you will be a ninja wrangler after this training. As such, the goals are to expose you to fundamentals and to develop an appreciation of what’s possible. I also want to provide resources that you can use for follow-up learning on your own.</p>
+<p>After this lesson you should be able to answer (or be able to find answers to) the following:</p>
+<ul>
+<li>Why do we need to manipulate data?</li>
+<li>What is the tidyverse?</li>
+<li>What can you do with dplyr?</li>
+<li>What is piping?</li>
+</ul>
+</div>
+<div id="the-tidyverse" class="section level2">
+<h2>The tidyverse</h2>
+<p>The <a href="https://www.tidyverse.org/">tidyverse</a> is a set of packages that work in harmony because they share common data representations and design. The tidyverse package is designed to make it easy to install and load core packages from the tidyverse in a single command. With tidyverse, you’ll be able to address all steps of data exploration.</p>
+<p><img src="figure/data-science.png" /></p>
+<p>From the excellent book, <a href="http://r4ds.had.co.nz/">R for Data Science</a>, <strong>data exploration</strong> is the art of looking at your data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again. Tools in the tidyverse also have direct application to more formal analyses with many of the other available R packages on <a href="https://cran.r-project.org/">CRAN</a>.</p>
+<p>You should already have the tidyverse installed, but let’s give it a go if you haven’t done this part yet:</p>
+<pre class="r"><code># install
+install.packages(&#39;tidyverse&#39;)</code></pre>
+<p>After installation, we can load the package:</p>
+<pre class="r"><code># load
+library(tidyverse)</code></pre>
+<p>Notice that the messages you get after loading are a bit different from other packages. That’s because tidyverse is a package that manages other packages. Loading tidyverse will load all of the core packagbes:</p>
+<ul>
+<li><a href="http://ggplot2.tidyverse.org">ggplot2</a>, for data visualisation.</li>
+<li><a href="http://dplyr.tidyverse.org">dplyr</a>, for data manipulation.</li>
+<li><a href="http://tidyr.tidyverse.org">tidyr</a>, for data tidying.</li>
+<li><a href="http://readr.tidyverse.org">readr</a>, for data import.</li>
+<li><a href="http://purrr.tidyverse.org">purrr</a>, for functional programming.</li>
+<li><a href="http://tibble.tidyverse.org">tibble</a>, for tibbles, a modern re-imagining of data frames.</li>
+</ul>
+<p>Other packages (e.g., <code>readxl</code>) are also included but you will probably not use these as frequently.</p>
+<p>A nice freature of tidyverse is the ability to check for and install new versions of each package:</p>
+<pre class="r"><code>tidyverse_update()
+#&gt; The following packages are out of date:
+#&gt;  * broom (0.4.0 -&gt; 0.4.1)
+#&gt;  * DBI   (0.4.1 -&gt; 0.5)
+#&gt;  * Rcpp  (0.12.6 -&gt; 0.12.7)
+#&gt; Update now?
+#&gt;
+#&gt; 1: Yes
+#&gt; 2: No</code></pre>
+<p>As you’ll soon learn using R, there are often several ways to achieve the same goal. The tidyverse provides tools to address problems that can be solved with other packages or even functions from the base installation. Tidyverse is admittedly an <em>opinionated</em> approach to data exploration, but it’s popularity and rapid growth within the R community is a testament to the power of the tools that are provided.</p>
+</div>
+<div id="data-wrangling-with-dplyr" class="section level2">
+<h2>Data wrangling with <code>dplyr</code></h2>
+<p><img src="figure/data-science-wrangle.png" /></p>
+<p>The data wrangling process includes data import, tidying, and transformation. The process directly feeds into, and is not mutually exclusive, with the <em>understanding</em> or modelling side of data exploration. More generally, I consider data wrangling as the manipulation or combination of datasets for the purpose of analysis.</p>
+<p>Wrangling begins with import and ends with an output of some kind, such as a plot or a model. In a perfect world, the wrangling process is linear with no need for back-tracking. In reality, we often uncover more information about a dataset, either through wrangling or modeling, that warrants re-evaluation or even gathering more data. Data also come in many forms and the form you need for analysis is rarely the required form of the input data. For these reasons, data wrangling will consume most of your time in data exploration.</p>
+<p><strong>All wrangling is based on a purpose.</strong> No one wrangles for the sake of wrangling (usually), so the process always begins by answering the following two questions:</p>
+<ul>
+<li>What do my input data look like?</li>
+<li>What should my input data look like given what I want to do?</li>
+</ul>
+<p>At the most basic level, going from what your data looks like to what it should look like will require a few key operations. Some common examples:</p>
+<ul>
+<li>Selecting specific variables</li>
+<li>Filtering observations by some criteria</li>
+<li>Adding or modifying existing variables</li>
+<li>Renaming variables</li>
+<li>Arranging rows by a variable</li>
+<li>Summarizing variable conditional on others</li>
+</ul>
+<p>The <code>dplyr</code> package provides easy tools for these common data manipulation tasks. It is built to work directly with data frames and this is one of the foundational packages in what is now known as the tidyverse. The philosophy of dplyr is that one function does one thing and the name of the function says what it does. This is where the tidyverse generally departs from other packages and even base R. It is meant to be easy, logical, and intuitive. There is a lot of great info on dplyr. If you have an interest, I’d encourage you to look more. The vignettes are particularly good.</p>
+<ul>
+<li><a href="https://github.com/hadley/dplyr"><code>dplyr</code> GitHub repo</a></li>
+<li><a href="http://cran.rstudio.com/web/packages/dplyr/">CRAN page: vignettes here</a></li>
+<li><a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">Cheatsheet</a></li>
+</ul>
+<p>I’ll demonstrate the examples with the <code>fishdat</code> dataset from the last lesson. This dataset includes over 30000 catch records of fish from Old Tampa Bay.</p>
+<pre class="r"><code># import the data
+fishdat &lt;- read_csv(&#39;data/fishdat.csv&#39;)
+
+# see first six rows
+head(fishdat)</code></pre>
+<pre><code>## # A tibble: 6 x 11
+##   OBJECTID Reference    Sampling_Date        Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
+##      &lt;dbl&gt; &lt;chr&gt;        &lt;dttm&gt;              &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
+## 1  1550020 TBM19960320~ 1996-03-19 19:00:00   300 2018-04-12 06:27:38        0              0       0       0          0               1
+## 2  1550749 TBM19960320~ 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0              0       0      54          0               0
+## 3  1550750 TBM19960320~ 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0              0       0       0          1               0
+## 4  1550762 TBM19960322~ 1996-03-21 19:00:00    20 2018-04-12 06:25:23        0              0       0      80          0               0
+## 5  1550828 TBM19960426~ 1996-04-25 20:00:00   160 2018-04-12 06:25:23        0              0       0       0          4               0
+## 6  1550838 TBM19960513~ 1996-05-12 20:00:00   300 2018-04-12 06:25:23        0              0       0       0          0               1</code></pre>
+<pre class="r"><code># dimensions
+dim(fishdat)</code></pre>
+<pre><code>## [1] 2844   11</code></pre>
+<pre class="r"><code># column names
+names(fishdat)</code></pre>
+<pre><code>##  [1] &quot;OBJECTID&quot;      &quot;Reference&quot;     &quot;Sampling_Date&quot; &quot;Gear&quot;          &quot;ExDate&quot;        &quot;Bluefish&quot;      &quot;Common Snook&quot;  &quot;Mullets&quot;      
+##  [9] &quot;Pinfish&quot;       &quot;Red Drum&quot;      &quot;Sand Seatrout&quot;</code></pre>
+<pre class="r"><code># structure
+str(fishdat)</code></pre>
+<pre><code>## tibble [2,844 x 11] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ OBJECTID     : num [1:2844] 1550020 1550749 1550750 1550762 1550828 ...
+##  $ Reference    : chr [1:2844] &quot;TBM1996032006&quot; &quot;TBM1996032004&quot; &quot;TBM1996032004&quot; &quot;TBM1996032207&quot; ...
+##  $ Sampling_Date: POSIXct[1:2844], format: &quot;1996-03-19 19:00:00&quot; &quot;1996-03-19 19:00:00&quot; &quot;1996-03-19 19:00:00&quot; &quot;1996-03-21 19:00:00&quot; ...
+##  $ Gear         : num [1:2844] 300 22 22 20 160 300 300 300 300 22 ...
+##  $ ExDate       : POSIXct[1:2844], format: &quot;2018-04-12 06:27:38&quot; &quot;2018-04-12 06:25:23&quot; &quot;2018-04-12 06:25:23&quot; &quot;2018-04-12 06:25:23&quot; ...
+##  $ Bluefish     : num [1:2844] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ Common Snook : num [1:2844] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ Mullets      : num [1:2844] 0 0 0 0 0 0 0 0 0 0 ...
+##  $ Pinfish      : num [1:2844] 0 54 0 80 0 0 0 0 1 1 ...
+##  $ Red Drum     : num [1:2844] 0 0 1 0 4 0 0 0 0 0 ...
+##  $ Sand Seatrout: num [1:2844] 1 0 0 0 0 1 5 66 0 0 ...
+##  - attr(*, &quot;spec&quot;)=
+##   .. cols(
+##   ..   OBJECTID = col_double(),
+##   ..   Reference = col_character(),
+##   ..   Sampling_Date = col_datetime(format = &quot;&quot;),
+##   ..   Gear = col_double(),
+##   ..   ExDate = col_datetime(format = &quot;&quot;),
+##   ..   Bluefish = col_double(),
+##   ..   `Common Snook` = col_double(),
+##   ..   Mullets = col_double(),
+##   ..   Pinfish = col_double(),
+##   ..   `Red Drum` = col_double(),
+##   ..   `Sand Seatrout` = col_double()
+##   .. )</code></pre>
+<div id="selecting" class="section level3">
+<h3>Selecting</h3>
+<p>Let’s begin using dplyr. Don’t forget to load the tidyverse if you haven’t done so already. We can use the <code>select</code> function to, you guess it, select columns.</p>
+<pre class="r"><code># first, select some columns
+dplyr_sel1 &lt;- select(fishdat, Sampling_Date, Gear, Pinfish)
+head(dplyr_sel1)</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   Sampling_Date        Gear Pinfish
+##   &lt;dttm&gt;              &lt;dbl&gt;   &lt;dbl&gt;
+## 1 1996-03-19 19:00:00   300       0
+## 2 1996-03-19 19:00:00    22      54
+## 3 1996-03-19 19:00:00    22       0
+## 4 1996-03-21 19:00:00    20      80
+## 5 1996-04-25 20:00:00   160       0
+## 6 1996-05-12 20:00:00   300       0</code></pre>
+<pre class="r"><code># select everything but ObjectId and ExDate
+dplyr_sel2 &lt;- select(fishdat, -OBJECTID, -ExDate)
+head(dplyr_sel2)</code></pre>
+<pre><code>## # A tibble: 6 x 9
+##   Reference     Sampling_Date        Gear Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
+##   &lt;chr&gt;         &lt;dttm&gt;              &lt;dbl&gt;    &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
+## 1 TBM1996032006 1996-03-19 19:00:00   300        0              0       0       0          0               1
+## 2 TBM1996032004 1996-03-19 19:00:00    22        0              0       0      54          0               0
+## 3 TBM1996032004 1996-03-19 19:00:00    22        0              0       0       0          1               0
+## 4 TBM1996032207 1996-03-21 19:00:00    20        0              0       0      80          0               0
+## 5 TBM1996042601 1996-04-25 20:00:00   160        0              0       0       0          4               0
+## 6 TBM1996051312 1996-05-12 20:00:00   300        0              0       0       0          0               1</code></pre>
+<pre class="r"><code># select columns that contain the letter c
+dplyr_sel3 &lt;- select(fishdat, matches(&#39;c&#39;))
+head(dplyr_sel3)</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   OBJECTID Reference     `Common Snook`
+##      &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;
+## 1  1550020 TBM1996032006              0
+## 2  1550749 TBM1996032004              0
+## 3  1550750 TBM1996032004              0
+## 4  1550762 TBM1996032207              0
+## 5  1550828 TBM1996042601              0
+## 6  1550838 TBM1996051312              0</code></pre>
+</div>
+<div id="filtering" class="section level3">
+<h3>Filtering</h3>
+<p>After selecting columns, you’ll probably want to remove observations that don’t fit some criteria. For example, maybe you want to remove all rows with low catch or maybe you want to look only at fish caught in Gear 20 (a 21 m seine net).</p>
+<pre class="r"><code># now filter observations with more than 20 fish caught
+dplyr_high_catch &lt;- filter(fishdat, Mullets &gt; 20)
+head(dplyr_high_catch)</code></pre>
+<pre><code>## # A tibble: 0 x 11
+## # ... with 11 variables: OBJECTID &lt;dbl&gt;, Reference &lt;chr&gt;, Sampling_Date &lt;dttm&gt;, Gear &lt;dbl&gt;, ExDate &lt;dttm&gt;, Bluefish &lt;dbl&gt;, `Common
+## #   Snook` &lt;dbl&gt;, Mullets &lt;dbl&gt;, Pinfish &lt;dbl&gt;, `Red Drum` &lt;dbl&gt;, `Sand Seatrout` &lt;dbl&gt;</code></pre>
+<pre class="r"><code># now filter observations for Gear type as 20
+dplyr_gear20 &lt;- filter(fishdat, Gear == 20)
+head(dplyr_gear20)</code></pre>
+<pre><code>## # A tibble: 6 x 11
+##   OBJECTID Reference    Sampling_Date        Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
+##      &lt;dbl&gt; &lt;chr&gt;        &lt;dttm&gt;              &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
+## 1  1550762 TBM19960322~ 1996-03-21 19:00:00    20 2018-04-12 06:25:23        0              0       0      80          0               0
+## 2  1555259 TBM19960221~ 1996-02-20 19:00:00    20 2018-04-12 06:25:31        0              0       0      29          0               0
+## 3  1573079 TBM19960621~ 1996-06-20 20:00:00    20 2018-04-12 06:26:15        0              0       0      54          0               0
+## 4  1576651 TBM19960220~ 1996-02-19 19:00:00    20 2018-04-12 06:25:24        0              0       0       2          0               0
+## 5  1584465 TBM19960619~ 1996-06-18 20:00:00    20 2018-04-12 06:26:04        0              0       0      19          0               0
+## 6  1584803 TBM19960119~ 1996-01-18 19:00:00    20 2018-04-12 06:25:26        0              0       0       0          1               0</code></pre>
+<p>Filtering can take a bit of time to master because there are several ways to tell R what you want. Within the filter function, the working part is a <em>logical selection</em> of <code>TRUE</code> and <code>FALSE</code> values that are used to selected rows (<code>TRUE</code> means I want that row, <code>FALSE</code> means I don’t). Every selection within the filter function, no matter how complicated, will always be a T/F vector. This is similar to running queries on a database if you’re familiar with SQL.</p>
+<p>To use filtering effectively, you have to know how to select the observations that you want using the comparison operators. R provides the standard suite: <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>!=</code> (not equal), and <code>==</code> (equal). When you’re starting out with R, the easiest mistake to make is to use <code>=</code> instead of <code>==</code> when testing for equality.</p>
+<p>Multiple arguments to <code>filter()</code> are combined with “and”: every expression must be true in order for a row to be included in the output. For other types of combinations, you’ll need to use Boolean operators yourself: <code>&amp;</code> is “and”, <code>|</code> is “or”, and <code>!</code> is “not”. This is the complete set of Boolean operations.</p>
+<p><img src="figure/transform-logical.png" /></p>
+<p>Let’s start combining filtering operations.</p>
+<pre class="r"><code># get rows with &gt; 20 but less than 100 fish
+filt1 &lt;- filter(fishdat, Mullets &gt; 20 &amp; Mullets &lt; 100)
+head(filt1)</code></pre>
+<pre><code>## # A tibble: 0 x 11
+## # ... with 11 variables: OBJECTID &lt;dbl&gt;, Reference &lt;chr&gt;, Sampling_Date &lt;dttm&gt;, Gear &lt;dbl&gt;, ExDate &lt;dttm&gt;, Bluefish &lt;dbl&gt;, `Common
+## #   Snook` &lt;dbl&gt;, Mullets &lt;dbl&gt;, Pinfish &lt;dbl&gt;, `Red Drum` &lt;dbl&gt;, `Sand Seatrout` &lt;dbl&gt;</code></pre>
+<pre class="r"><code># get rows with gear type 20 or blue crab
+filt2 &lt;- filter(fishdat, Gear == 20 | `Red Drum` &gt; 40)
+head(filt2)</code></pre>
+<pre><code>## # A tibble: 6 x 11
+##   OBJECTID Reference    Sampling_Date        Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
+##      &lt;dbl&gt; &lt;chr&gt;        &lt;dttm&gt;              &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
+## 1  1550762 TBM19960322~ 1996-03-21 19:00:00    20 2018-04-12 06:25:23        0              0       0      80          0               0
+## 2  1555259 TBM19960221~ 1996-02-20 19:00:00    20 2018-04-12 06:25:31        0              0       0      29          0               0
+## 3  1573079 TBM19960621~ 1996-06-20 20:00:00    20 2018-04-12 06:26:15        0              0       0      54          0               0
+## 4  1576651 TBM19960220~ 1996-02-19 19:00:00    20 2018-04-12 06:25:24        0              0       0       2          0               0
+## 5  1584465 TBM19960619~ 1996-06-18 20:00:00    20 2018-04-12 06:26:04        0              0       0      19          0               0
+## 6  1584803 TBM19960119~ 1996-01-18 19:00:00    20 2018-04-12 06:25:26        0              0       0       0          1               0</code></pre>
+<pre class="r"><code># get rows with Bluefish and Mullets
+filt3 &lt;- filter(fishdat, Gear == 20 | Gear == 5)
+head(filt3)</code></pre>
+<pre><code>## # A tibble: 6 x 11
+##   OBJECTID Reference    Sampling_Date        Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
+##      &lt;dbl&gt; &lt;chr&gt;        &lt;dttm&gt;              &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
+## 1  1550762 TBM19960322~ 1996-03-21 19:00:00    20 2018-04-12 06:25:23        0              0       0      80          0               0
+## 2  1555259 TBM19960221~ 1996-02-20 19:00:00    20 2018-04-12 06:25:31        0              0       0      29          0               0
+## 3  1573079 TBM19960621~ 1996-06-20 20:00:00    20 2018-04-12 06:26:15        0              0       0      54          0               0
+## 4  1576651 TBM19960220~ 1996-02-19 19:00:00    20 2018-04-12 06:25:24        0              0       0       2          0               0
+## 5  1584465 TBM19960619~ 1996-06-18 20:00:00    20 2018-04-12 06:26:04        0              0       0      19          0               0
+## 6  1584803 TBM19960119~ 1996-01-18 19:00:00    20 2018-04-12 06:25:26        0              0       0       0          1               0</code></pre>
+<pre class="r"><code># get rows with Bluefish and Mullets
+filt4 &lt;- filter(fishdat, Gear %in% c(20, 5))
+head(filt4)</code></pre>
+<pre><code>## # A tibble: 6 x 11
+##   OBJECTID Reference    Sampling_Date        Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
+##      &lt;dbl&gt; &lt;chr&gt;        &lt;dttm&gt;              &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
+## 1  1550762 TBM19960322~ 1996-03-21 19:00:00    20 2018-04-12 06:25:23        0              0       0      80          0               0
+## 2  1555259 TBM19960221~ 1996-02-20 19:00:00    20 2018-04-12 06:25:31        0              0       0      29          0               0
+## 3  1573079 TBM19960621~ 1996-06-20 20:00:00    20 2018-04-12 06:26:15        0              0       0      54          0               0
+## 4  1576651 TBM19960220~ 1996-02-19 19:00:00    20 2018-04-12 06:25:24        0              0       0       2          0               0
+## 5  1584465 TBM19960619~ 1996-06-18 20:00:00    20 2018-04-12 06:26:04        0              0       0      19          0               0
+## 6  1584803 TBM19960119~ 1996-01-18 19:00:00    20 2018-04-12 06:25:26        0              0       0       0          1               0</code></pre>
+<p>As a side note, any variable (i.e., column name) with spaces or non-standard characters can be referenced by enclosing it with backticks (see <a href="http://adv-r.had.co.nz/Environments.html#binding">here</a>).</p>
+</div>
+<div id="mutating" class="section level3">
+<h3>Mutating</h3>
+<p>Now that we’ve seen how to filter observations and select columns of a data frame, maybe we want to add a new column. In dplyr, <code>mutate</code> allows us to add new columns. These can be vectors you are adding or based on expressions applied to existing columns. For instance, we have a column for average size in mm and maybe we want to convert to cm.</p>
+<pre class="r"><code># add a column as bluefish divided by 100
+dplyr_mut &lt;- mutate(fishdat, Bluefish_p100 = Bluefish / 100)
+head(dplyr_mut)</code></pre>
+<pre><code>## # A tibble: 6 x 12
+##   OBJECTID Reference Sampling_Date        Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
+##      &lt;dbl&gt; &lt;chr&gt;     &lt;dttm&gt;              &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
+## 1  1550020 TBM19960~ 1996-03-19 19:00:00   300 2018-04-12 06:27:38        0              0       0       0          0               1
+## 2  1550749 TBM19960~ 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0              0       0      54          0               0
+## 3  1550750 TBM19960~ 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0              0       0       0          1               0
+## 4  1550762 TBM19960~ 1996-03-21 19:00:00    20 2018-04-12 06:25:23        0              0       0      80          0               0
+## 5  1550828 TBM19960~ 1996-04-25 20:00:00   160 2018-04-12 06:25:23        0              0       0       0          4               0
+## 6  1550838 TBM19960~ 1996-05-12 20:00:00   300 2018-04-12 06:25:23        0              0       0       0          0               1
+## # ... with 1 more variable: Bluefish_p100 &lt;dbl&gt;</code></pre>
+<pre class="r"><code># add a column for many/few mullet
+dplyr_mut2 &lt;- mutate(fishdat, mullet_cat = ifelse(Mullets &lt; 20, &#39;few&#39;, &#39;many&#39;))
+head(dplyr_mut2)</code></pre>
+<pre><code>## # A tibble: 6 x 12
+##   OBJECTID Reference Sampling_Date        Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
+##      &lt;dbl&gt; &lt;chr&gt;     &lt;dttm&gt;              &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
+## 1  1550020 TBM19960~ 1996-03-19 19:00:00   300 2018-04-12 06:27:38        0              0       0       0          0               1
+## 2  1550749 TBM19960~ 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0              0       0      54          0               0
+## 3  1550750 TBM19960~ 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0              0       0       0          1               0
+## 4  1550762 TBM19960~ 1996-03-21 19:00:00    20 2018-04-12 06:25:23        0              0       0      80          0               0
+## 5  1550828 TBM19960~ 1996-04-25 20:00:00   160 2018-04-12 06:25:23        0              0       0       0          4               0
+## 6  1550838 TBM19960~ 1996-05-12 20:00:00   300 2018-04-12 06:25:23        0              0       0       0          0               1
+## # ... with 1 more variable: mullet_cat &lt;chr&gt;</code></pre>
+<p>Some other useful dplyr functions include <code>arrange</code> to sort the observations (rows) by a column and <code>rename</code> to (you guessed it) rename a column.</p>
+<pre class="r"><code># arrange by maximum size
+dplyr_arr &lt;- arrange(fishdat, `Sand Seatrout`)
+head(dplyr_arr)</code></pre>
+<pre><code>## # A tibble: 6 x 11
+##   OBJECTID Reference    Sampling_Date        Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
+##      &lt;dbl&gt; &lt;chr&gt;        &lt;dttm&gt;              &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
+## 1  1550749 TBM19960320~ 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0              0       0      54          0               0
+## 2  1550750 TBM19960320~ 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0              0       0       0          1               0
+## 3  1550762 TBM19960322~ 1996-03-21 19:00:00    20 2018-04-12 06:25:23        0              0       0      80          0               0
+## 4  1550828 TBM19960426~ 1996-04-25 20:00:00   160 2018-04-12 06:25:23        0              0       0       0          4               0
+## 5  1551311 TBM19960322~ 1996-03-21 19:00:00   300 2018-04-12 06:25:20        0              0       0       1          0               0
+## 6  1551335 TBM19960418~ 1996-04-17 20:00:00    22 2018-04-12 06:25:24        0              0       0       1          0               0</code></pre>
+<pre class="r"><code># rename some columns
+dplyr_rnm &lt;- rename(fishdat, snook = `Common Snook`)
+head(dplyr_rnm)</code></pre>
+<pre><code>## # A tibble: 6 x 11
+##   OBJECTID Reference     Sampling_Date        Gear ExDate              Bluefish snook Mullets Pinfish `Red Drum` `Sand Seatrout`
+##      &lt;dbl&gt; &lt;chr&gt;         &lt;dttm&gt;              &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
+## 1  1550020 TBM1996032006 1996-03-19 19:00:00   300 2018-04-12 06:27:38        0     0       0       0          0               1
+## 2  1550749 TBM1996032004 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0     0       0      54          0               0
+## 3  1550750 TBM1996032004 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0     0       0       0          1               0
+## 4  1550762 TBM1996032207 1996-03-21 19:00:00    20 2018-04-12 06:25:23        0     0       0      80          0               0
+## 5  1550828 TBM1996042601 1996-04-25 20:00:00   160 2018-04-12 06:25:23        0     0       0       0          4               0
+## 6  1550838 TBM1996051312 1996-05-12 20:00:00   300 2018-04-12 06:25:23        0     0       0       0          0               1</code></pre>
+<p>There are many more functions in <code>dplyr</code> but the one’s above are by far the most used. As you can imagine, they are most effective when used to together because there is never only one step in the data wrangling process. After the exercise, we’ll talk about how we can efficiently <em>pipe</em> the functions in dplyr to create a new data object.</p>
+</div>
+</div>
+<div id="exercise-1" class="section level2">
+<h2>Exercise 1</h2>
+<p>Now that you know the basic functions in <code>dplyr</code> and how to use them, let’s put them to use. Using <code>fishdat</code>, let’s select some columns of interest, filter by species and gear type, filter only large catches, and arrange in ascending order.</p>
+<ol style="list-style-type: decimal">
+<li><p>Remove all but the <code>Reference</code>, <code>Sampling_Date</code>, <code>Gear</code>, <code>Commonname</code>, and <code>Pinfish</code> columns. Assign this dataset to a new object in your workspace.</p></li>
+<li><p>Using the new object, filter again to get only Sand Seatrout and Pinfish caugth with Gear 20 (hint, filter by the <code>Gear</code> column<code>and don't forget ot use</code>==`).</p></li>
+<li><p>Rename the <code>Sampling_Date</code> column to <code>date</code>.</p></li>
+<li><p>When you’re done, type the number of rows in your dataset into the group chat.</p></li>
+</ol>
+<div class="fold s o">
+<pre class="r"><code>ex1 &lt;- select(fishdat, Reference, Sampling_Date, Gear, Pinfish)
+ex1 &lt;- filter(ex1, Gear == 20)
+ex1 &lt;- rename(ex1, date = Sampling_Date)
+nrow(ex1)</code></pre>
+</div>
+</div>
+<div id="piping" class="section level2">
+<h2>Piping</h2>
+<p>A complete data wrangling exercise will always include multiple steps to go from the raw data to the output you need. Here’s a terrible wrangling example using functions from base R:</p>
+<pre class="r"><code>cropdat &lt;- rawdat[1:28]
+savecols &lt;- data.frame(cropdat$Party, cropdat$`Last Inventory Year (2015)`)
+names(savecols) &lt;- c(&#39;Party&#39;,&#39;2015&#39;)
+savecols$rank2015 &lt;- rank(-savecols$`2015`)
+top10df &lt;- savecols[savecols$rank2015 &lt;= 10,]
+basedat &lt;- cropdat[cropdat$Party %in% top10df$Party,]</code></pre>
+<p>Technically, if this works it’s not “wrong”, but there are a couple issues that can lead to problems down the line. First, the flow of functions to manipulate the data is not obvious and this makes your code very hard to read. Second, lots of unecessary intermediates have been created in your workspace. Anything that adds to clutter should be avoided because R is fundamentally based on object assignments. The less you assign as a variable in your environment the easier it will be to navigate complex scripts.</p>
+<p>The good news is that you now know how to use the dplyr functions to wrangle data. The function names in dplyr were chosen specifically to be descriptive. This will make your code much more readable than if you were using base R counterparts. The bad news is that I haven’t told you how to easily link the functions. Fortunately, there’s an easy fix to this problem.</p>
+<p>The <code>magrittr</code> package (comes with tidyverse) provides a very useful method called <em>piping</em> that will make wrangling a whole lot easier. The idea is simple: a pipe (<code>%&gt;%</code>) is used to chain functions together. The output from one function becomes the input to the next function in the pipe. This avoids the need to create intermediate objects and creates a logical progression of steps that demystify the wrangling process.</p>
+<p>Consider the simple example:</p>
+<pre class="r"><code># not using pipes, select a column, filter rows
+bad_ex &lt;- select(fishdat, Gear, `Common Snook`)
+bad_ex2 &lt;- filter(bad_ex, `Common Snook` &gt; 25)</code></pre>
+<p>With pipes, it looks like this:</p>
+<pre class="r"><code># with pipes, select a column, filter rows
+good_ex &lt;- fishdat %&gt;% 
+  select(Gear, `Common Snook`) %&gt;%
+  filter(`Common Snook` &gt; 25)</code></pre>
+<p>Now we’ve created only one new object in our environment and we can clearly see that we select, then filter. The only real coding difference is now the select and filter functions only include the relevant information. You do not need to specify a data object as input to a function if you’re using piping. The pipe will always use the input that comes from above.</p>
+<p>A couple comments about piping:</p>
+<ul>
+<li>I find it very annoying to type the pipe operator (six key strokes!). RStudio has a nice keyboard shortcut: <code>Crtl + Shift + M</code> for Windows (use <code>Cmd + Shift + M</code> on a mac).</li>
+<li>It’s convention to start a new function on the next line after a pipe operator. This makes the code easier to read and you can also comment out a single step in a long pipe.</li>
+<li>Don’t make your pipes too long, limit them to a particular data object or task.</li>
+</ul>
+</div>
+<div id="exercise-2" class="section level2">
+<h2>Exercise 2</h2>
+<p>Now that we know how to pipe functions, let’s repeat exercise 1. You should already have code to select and filter the data. Use the following to repeate the analysis but with pipes. You should only have to create one data object in this exercise.</p>
+<ol style="list-style-type: decimal">
+<li>Using your code from exercise two, try to replicate the steps using pipes. The steps we used in exercise two were:
+<ul>
+<li>From fishdat, select the <code>Reference</code>, <code>Sampling_Date</code>, <code>Gear</code>, and <code>Pinfish</code> columns</li>
+<li>Filter by <code>Gear</code> to get only gear 20</li>
+<li>Rename <code>Smapling_Date</code> to <code>date</code></li>
+</ul></li>
+<li>When you’re done, you should have a data object that’s exactly the same as the one you created in exercise two. Try to verify this with the <code>identical</code> function from base R (check the help file with <code>?identical</code> if you don’t know how to use this function).</li>
+</ol>
+<div class="fold s o">
+<pre class="r"><code>ex2 &lt;- fishdat %&gt;% 
+  select(Reference, Reference, Sampling_Date, Gear, Pinfish) %&gt;% 
+  filter(Gear == 20) %&gt;% 
+  rename(date = Sampling_Date)
+identical(ex1, ex2)</code></pre>
+</div>
+</div>
+<div id="next-time" class="section level2">
+<h2>Next time</h2>
+<p>Now you should be able to answer (or be able to find answers to) the following:</p>
+<ul>
+<li>Why do we need to manipulate data?</li>
+<li>What is the tidyverse?</li>
+<li>What can you do with dplyr?</li>
+<li>What is piping?</li>
+</ul>
+<p>Next we’ll continue with data wrangling.</p>
+</div>
+<div id="attribution" class="section level2">
+<h2>Attribution</h2>
+<p>Content in this lesson was pillaged extensively from the USGS-R training curriculum <a href="https://github.com/USGS-R/training-curriculum">here</a> and <a href="https://github.com/hadley/r4ds">R for data Science</a>.</p>
 </div>
 </div>
 

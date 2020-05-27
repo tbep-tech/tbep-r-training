@@ -8,6 +8,8 @@ opts_chunk$set(tidy = FALSE, message = F, warning = F)
 
 # R Basics
 
+Get the lesson R script: [R_Basics.R](R_Basics.R)
+
 ## Lesson Outline
 
 - [Goals and Motivation]
@@ -92,17 +94,17 @@ There are two outcomes when you run code.  First, the code will simply print out
 
 ## Exercise 1
 
-This exercise will make sure R and RStudio are working and that you can get around the basics in RStudio.  Use the blue stickies when you have completed, and red stickies if you are running into problems.
+This exercise will make sure R and RStudio are working and that you can get around the basics in RStudio.
 
-1. Start RStudio: To start both R and RStudio requires only firing up RStudio.  RStudio should be available from All Programs at the Start Menu.  Fire up RStudio. 
+1. Start RStudio if using a version you installed OR navigate to https://rstudio.cloud/project/1318333 if using RStudio Cloud. To start both R and RStudio requires only firing up RStudio.  RStudio should be available from All Programs at the Start Menu.  Fire up RStudio. 
 
-1. Create a new project.  Name it "cabw_r_workshop".  We will use this for the rest of the workshop.
+1. If you're not using RStudio Cloud, create a new project.  Name it "r_workshop".  We will use this for the rest of the workshop.
 
 1. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "cabw_script.R". It'll just be a blank text file at this point.
 
 1. Add in a comment line to separate this section.  It should look something like: `# Exercise 1: Just Getting used to RStudio and Scripts`.
 
-1. Lastly, we need to get this project set up with some example data for our exercises.  You should have downloaded this already, but if not, the data are available [here](https://SCCWRP.github.io/CABW2018_R_training/data/datazip.zip).  The data are in a zipped folder.  Download the file to your computer (anywhere).  Create a folder in your new project named `data` and extract the files into this location.  
+1. Lastly, we need to get this project set up with some example data for our exercises.  You should have downloaded this already, but if not, the data are available [here](https://SCCWRP.github.io/tbep_r_training/data/datazip.zip).  The data are in a zipped folder.  Download the file to your computer (anywhere).  Create a folder in your new project named `data` and extract the files into this location.  
 
 ## R language fundamentals
 
@@ -165,8 +167,6 @@ We're going to install some packages from CRAN that will give us the tools for o
 install.packages("tidyverse")
 install.packages("sf")
 install.packages("mapview")
-install.packages("viridis")
-install.packages("USAboundaries")
     ```
 
 1. Select all the lines by clicking and dragging the mouse pointer over the text.  
@@ -177,12 +177,10 @@ install.packages("USAboundaries")
 
 1. Load the packages after they've installed. 
 
-    ```{r eval=FALSE}
+    ```{r, message = F, warning = F, results = 'hide'}
 library("tidyverse")
 library("sf")
 library("mapview")
-library("viridis")
-library("USAboundaries")
     ```
 
 ### Getting Help
@@ -296,17 +294,17 @@ The only constraints required to make a data frame are:
 
 It is the rare case when you manually enter your data in R, not to mention impractical for most datasets.  Most data analysis workflows typically begin with importing a dataset from an external source.  Literally, this means committing a dataset to memory (i.e., storing it as a variable) as one of R's data structure formats.
 
-Flat data files (text only, rectangular format) present the least complications on import because there is very little to assume about the structure of the data. On import, R tries to guess the data type for each column and this is fairly unambiguous with flat files.  The base installation of R comes with some easy to use functions for importing flat files, such as `read.table()` and `read.csv()`.
+Flat data files (text only, rectangular format) present the least complications on import because there is very little to assume about the structure of the data. On import, R tries to guess the data type for each column and this is fairly unambiguous with flat files.  We'll be using `read_csv()` function from the readr package that comes with the tidyverse.
 
 ### Exercise 3
 
-Now that we have the data downloaded and extracted to our data folder, we'll use `read.csv` to import two files.
+Now that we have the data downloaded and extracted to our data folder, we'll use `read_csv` to import two files.
 
 1. Type the following in your script.  Note the use of *relative* file paths within your project.
 
     ```{r}
-fishdat <- read.csv('data/fishdat.csv', stringsAsFactors = F)
-statloc <- read.csv('data/statloc.csv', stringsAsFactors = F)
+fishdat <- read_csv('data/fishdat.csv')
+statloc <- read_csv('data/statloc.csv')
     ```
 
 1. Send the commands to the console with `ctrl+enter`.

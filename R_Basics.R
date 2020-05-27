@@ -21,14 +21,10 @@ my_random_sum
 ## install.packages("tidyverse")
 ## install.packages("sf")
 ## install.packages("mapview")
-## install.packages("viridis")
-## install.packages("USAboundaries")
 
-## library("tidyverse")
-## library("sf")
-## library("mapview")
-## library("viridis")
-## library("USAboundaries")
+library("tidyverse")
+library("sf")
+library("mapview")
 
 ## # Using the help command/shortcut
 ## # When you know the name of a function
@@ -64,8 +60,8 @@ logs <- c(T, F, T)
 mydf <- data.frame(ltrs, nums, logs)
 mydf
 
-fishdat <- read.csv('data/fishdat.csv', stringsAsFactors = F)
-statloc <- read.csv('data/statloc.csv', stringsAsFactors = F)
+fishdat <- read_csv('data/fishdat.csv')
+statloc <- read_csv('data/statloc.csv')
 
 # get the dimensions
 dim(fishdat)

@@ -303,7 +303,7 @@ We can group the dataset by more than one column to get summaries with multiple 
 
 ```{r}
 by_spp_gear <- tidydat %>%
-  group_by(Species, Species) %>%
+  group_by(Species) %>%
   summarize(totals = sum(Count))
 by_spp_gear
 ```
@@ -311,7 +311,7 @@ by_spp_gear
 We can also get more than one summary at a time.  The summary function can use any function that operates on a vector.  Some common examples include `min`, `max`, `sd`, `var`, `median`, `mean`, and `n`.  It's usually good practice to include a summary of how many observations were in each group, so get used to including the `n` function.
 ```{r}
 more_sums <-tidydat %>%
-  group_by(Species, Species) %>%
+  group_by(Species) %>%
   summarize(
     n = n(),
     min_count = min(Count),

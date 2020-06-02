@@ -75,12 +75,12 @@ by_spp <- tidydat %>%
 by_spp
 
 by_spp_gear <- tidydat %>%
-  group_by(Species, Species) %>%
+  group_by(Species) %>%
   summarize(totals = sum(Count))
 by_spp_gear
 
 more_sums <-tidydat %>%
-  group_by(Species, Species) %>%
+  group_by(Species) %>%
   summarize(
     n = n(),
     min_count = min(Count),

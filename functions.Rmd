@@ -151,7 +151,7 @@ Note: You don't always have to name the arguments when using a function, i.e., `
 Let's think about a more practical example of how functions can improve your workflow. We can work with the FWC [Fisheries Independent Monitoring](https://geodata.myfwc.com/datasets/68fb6774b58a40a08a6f87959aaa53c4_26/data) dataset. For this example, I've created a subset of the data for the Old Tampa Bay area.  You can import the data as follows. 
 
 ```{r}
-url <- 'https://raw.githubusercontent.com/tbep-tech/tbep-r-training/master/data/otbfimdatcmb.csv'
+url <- 'https://raw.githubusercontent.com/tbep-tech/tbep-r-training/013432d6924d278a9fbb151591ddcfd5b7de87ab/data/otbfimdat.csv'
 otbfimdat <- read.csv(url, stringsAsFactors = F)
 ```
 

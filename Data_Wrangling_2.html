@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Data_Wrangling_2.utf8</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/spacelab.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="css\styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 52px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h2 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h3 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h4 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h5 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.section h6 {
+  padding-top: 57px;
+  margin-top: -57px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">TBEP R Training</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="R_Basics.html">
+    <span class="fa fa-university"></span>
+     
+    R Basics
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-wrench"></span>
+     
+    Data wrangling
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="Data_Wrangling_1.html">Part 1</a>
+    </li>
+    <li>
+      <a href="Data_Wrangling_2.html">Part 2</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="Viz_and_Graphics.html">
+    <span class="fa fa-chart-line"></span>
+     
+    Viz and graphics
+  </a>
+</li>
+<li>
+  <a href="mapping.html">
+    <span class="fa fa-globe-americas"></span>
+     
+    Spatial analysis and mapping
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="Resources.html">
+    <span class="fa fa-list"></span>
+     
+    Resources
+  </a>
+</li>
+<li>
+  <a href="https://github.com/tbep-tech/tbep-r-training">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<script src="js/hideoutput.js"></script>
+<div id="data-wrangling-part-2" class="section level1">
+<h1>Data wrangling part 2</h1>
+<p>Get the lesson R script: <a href="Data_Wrangling_2.R">Data_Wrangling_2.R</a></p>
+<div id="lesson-outline" class="section level2">
+<h2>Lesson Outline</h2>
+<ul>
+<li><a href="#combining-data">Combining data</a></li>
+<li><a href="#tidy-data">Tidy data</a></li>
+<li><a href="#group-by-and-summarize">Group by and summarize</a></li>
+</ul>
+</div>
+<div id="lesson-exercises" class="section level2">
+<h2>Lesson Exercises</h2>
+<ul>
+<li><a href="#exercise-1">Exercise 1</a></li>
+<li><a href="#exercise-2">Exercise 2</a></li>
+<li><a href="#exercise-3">Exercise 3</a></li>
+</ul>
+</div>
+<div id="goals" class="section level2">
+<h2>Goals</h2>
+<p>In this lesson we’ll continue our discussion of data wrangling with the tidyverse. Data wrangling is the manipulation or combination of datasets for the purpose of understanding. It fits within the broader scheme of <strong>data exploration</strong>, described as the art of looking at your data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again (from <a href="http://r4ds.had.co.nz/">R for Data Science</a>, as is most of today’s content).</p>
+<p><img src="figure/data-science-wrangle.png" /></p>
+<p>Always remember that <strong>wrangling is based on a purpose.</strong> The process always begins by answering the following two questions:</p>
+<ul>
+<li>What do my input data look like?</li>
+<li>What should my input data look like given what I want to do?</li>
+</ul>
+<p>You define what steps to take to get your data from input to where you want to go.</p>
+<p>Last lesson we learned the following functions from the <code>dplyr</code> package (cheatsheet <a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">here</a>):</p>
+<ul>
+<li>Selecting variables with <code>select</code></li>
+<li>Filtering observations by some criteria with <code>filter</code></li>
+<li>Adding or modifying existing variables with <code>mutate</code></li>
+<li>Renaming variables with <code>rename</code></li>
+<li>Arranging rows by a variable with <code>arrange</code></li>
+</ul>
+<p>As before, we only have one hour to cover the basics of data wrangling. It’s an unrealistic expectation that you will be a ninja wrangler after this training. As such, the goals are to expose you to fundamentals and to develop an appreciation of what’s possible. I also want to provide resources that you can use for follow-up learning on your own.</p>
+<p>Today you should be able to answer (or be able to find answers to) the following:</p>
+<ul>
+<li>How are data joined?</li>
+<li>What is tidy data?</li>
+<li>How do I summarize a dataset?</li>
+</ul>
+<p>You should already have the tidyverse package installed, but let’s give it a go if you haven’t done this part yet:</p>
+<pre class="r"><code># install
+install.packages(&#39;tidyverse&#39;)</code></pre>
+<p>After installation, we can load the package:</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+</div>
+<div id="combining-data" class="section level2">
+<h2>Combining data</h2>
+<p>Combining data is a common task of data wrangling. Perhaps we want to combine information between two datasets that share a common identifier. As a real world example, our fisheries data contain information about fish catch, but we also want to include spatial about the stations (i.e., lat, lon). We would need to (and we will) combine data if this information is in two different places. Combining data with dplyr is called joining.</p>
+<p>All joins require that each of the tables can be linked by shared identifiers. These are called ‘keys’ and are usually represented as a separate column that acts as a unique variable for the observations. The “Station ID” is a common key, but remember that a key might need to be unique for each row. It doesn’t make sense to join two tables by station ID if multiple site visits were made. In that case, your key should include some information about the site visit <strong>and</strong> station ID.</p>
+<div id="types-of-joins" class="section level3">
+<h3>Types of joins</h3>
+<p>The challenge with joins is that the two datasets may not represent the same observations for a given key. For example, you might have one table with all observations for every key, another with only some observations, or two tables with only a few shared keys. What you get back from a join will depend on what’s shared between tables, in addition to the type of join you use.</p>
+<p>We can demonstrate types of joins with simple graphics. The first is an <strong>inner-join</strong>.</p>
+<p><img src="figure/join-inner.png" /></p>
+<p>The second is an <strong>outer-join</strong>, and comes in three flavors: left, right, and full.</p>
+<p><img src="figure/join-outer.png" /></p>
+<p>If all keys are shared between two data objects, then left, right, and full joins will give you the same result. I typically only use left_join just because it’s intuitive to me. This assumes that there is never any more information in the second table - it has the same or less keys as the original table.</p>
+<p>The data we downloaded for this workshop included fisheries catch data and the locations of each station. If we want to plot any of the catch data by location, we need to join the two datasets.</p>
+<pre class="r"><code># load the fish data
+fishdat &lt;- read_csv(&#39;data/fishdat.csv&#39;)
+
+# load the station data
+statloc &lt;- read_csv(&#39;data/statloc.csv&#39;)
+
+# join the two 
+joindat &lt;- left_join(fishdat, statloc, by = &#39;Reference&#39;)
+head(joindat)</code></pre>
+<pre><code>## # A tibble: 6 x 13
+##   OBJECTID Reference Sampling_Date        Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
+##      &lt;dbl&gt; &lt;chr&gt;     &lt;dttm&gt;              &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
+## 1  1550020 TBM19960~ 1996-03-19 19:00:00   300 2018-04-12 06:27:38        0              0       0       0          0               1
+## 2  1550749 TBM19960~ 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0              0       0      54          0               0
+## 3  1550750 TBM19960~ 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0              0       0       0          1               0
+## 4  1550762 TBM19960~ 1996-03-21 19:00:00    20 2018-04-12 06:25:23        0              0       0      80          0               0
+## 5  1550828 TBM19960~ 1996-04-25 20:00:00   160 2018-04-12 06:25:23        0              0       0       0          4               0
+## 6  1550838 TBM19960~ 1996-05-12 20:00:00   300 2018-04-12 06:25:23        0              0       0       0          0               1
+## # ... with 2 more variables: Latitude &lt;dbl&gt;, Longitude &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<div id="exercise-1" class="section level2">
+<h2>Exercise 1</h2>
+<p>For this exercise we’ll repeat the join we just did, but on a subset of the data. We’re going to select some columns of interest from our fisheries dataset, filter by gear type, then use a full_join with the station data. Try to use pipes if you can.</p>
+<ol style="list-style-type: decimal">
+<li><p>Select the <code>Reference</code>, <code>Sampling_Date</code>, <code>Gear</code>, and <code>Common Snook</code> columns from the fisheries dataset (hint, use <code>select</code> from dplyr).</p></li>
+<li><p>Filter the fisheries dataset by gear type five (hint, use <code>filter == 5</code>). Check the dimensions of the new dataset with <code>dim</code>.</p></li>
+<li><p>Use a <code>full_join</code> to join the fisheries dataset with the station location dataset. What is the key value for joining?</p></li>
+<li><p>Check the dimensions of the new table. What happened? Select only the <code>StationID</code>, <code>StationWaterDepth</code>, <code>SampleLatitude</code>, and <code>SampleLongitude</code> columns from the master data.</p></li>
+</ol>
+<div class="fold s o">
+<pre class="r"><code># load the fish data
+fishdat &lt;- read_csv(&#39;data/fishdat.csv&#39;)
+
+# load the station data
+statloc &lt;- read_csv(&#39;data/statloc.csv&#39;)
+
+# wrangle before join
+joindat &lt;- fishdat %&gt;% 
+  select(Reference, Sampling_Date, Gear, `Common Snook`) %&gt;% 
+  filter(Gear == 5) 
+
+dim(joindat)
+
+# full join
+joindat &lt;- joindat %&gt;% 
+  full_join(statloc, by = &#39;Reference&#39;)
+
+dim(joindat)</code></pre>
+</div>
+</div>
+<div id="tidy-data" class="section level2">
+<h2>Tidy data</h2>
+<p>The opposite of a tidy dataset is a messy dataset. You should always strive to create a tidy data set as an outcome of the wrangling process. Tidy data are easy to work with and will make downstream analysis much simpler. This will become apparent when we start summarizing and plotting our data.</p>
+<p>To help understand tidy data, it’s useful to look at alternative ways of representing data. The example below shows the same data organised in four different ways. Each dataset shows the same values of four variables <em>country</em>, <em>year</em>, <em>population</em>, and <em>cases</em>, but each dataset organises the values in a different way. Only one of these examples is tidy.</p>
+<pre class="r"><code>table1</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<pre class="r"><code>table2</code></pre>
+<pre><code>## # A tibble: 12 x 4
+##    country      year type            count
+##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
+##  1 Afghanistan  1999 cases             745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000 cases            2666
+##  4 Afghanistan  2000 population   20595360
+##  5 Brazil       1999 cases           37737
+##  6 Brazil       1999 population  172006362
+##  7 Brazil       2000 cases           80488
+##  8 Brazil       2000 population  174504898
+##  9 China        1999 cases          212258
+## 10 China        1999 population 1272915272
+## 11 China        2000 cases          213766
+## 12 China        2000 population 1280428583</code></pre>
+<pre class="r"><code>table3</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   country      year rate             
+## * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
+## 1 Afghanistan  1999 745/19987071     
+## 2 Afghanistan  2000 2666/20595360    
+## 3 Brazil       1999 37737/172006362  
+## 4 Brazil       2000 80488/174504898  
+## 5 China        1999 212258/1272915272
+## 6 China        2000 213766/1280428583</code></pre>
+<pre class="r"><code># Spread across two tibbles
+table4a  # cases</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   country     `1999` `2000`
+## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+## 3 China       212258 213766</code></pre>
+<pre class="r"><code>table4b  # population</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   country         `1999`     `2000`
+## * &lt;chr&gt;            &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan   19987071   20595360
+## 2 Brazil       172006362  174504898
+## 3 China       1272915272 1280428583</code></pre>
+<p>These are all representations of the same underlying data but they are not equally easy to work with. The tidy dataset is much easier to work with inside the tidyverse.</p>
+<p>There are three inter-correlated rules which make a dataset tidy:</p>
+<ol style="list-style-type: decimal">
+<li>Each variable must have its own column.</li>
+<li>Each observation must have its own row.</li>
+<li>Each value must have its own cell.</li>
+</ol>
+<p><img src="figure/tidy-1.png" /></p>
+<p>There are some very real reasons why you would encounter untidy data:</p>
+<ol style="list-style-type: decimal">
+<li><p>Most people aren’t familiar with the principles of tidy data, and it’s hard to derive them yourself unless you spend a <em>lot</em> of time working with data.</p></li>
+<li><p>Data is often organised to facilitate some use other than analysis. For example, data is often organised to make entry as easy as possible.</p></li>
+</ol>
+<p>This means for most real analyses, you’ll need to do some tidying. The first step is always to figure out what the variables and observations are. The second step is to resolve one of two common problems:</p>
+<ol style="list-style-type: decimal">
+<li><p>One variable might be spread across multiple columns.</p></li>
+<li><p>One observation might be scattered across multiple rows.</p></li>
+</ol>
+<p>To fix these problems, you’ll need the two most important functions in tidyr: <code>gather()</code> and <code>spread()</code>.</p>
+<div id="gathering" class="section level3">
+<h3>Gathering</h3>
+<p>A common problem is a dataset where some of the column names are not names of variables, but <em>values</em> of a variable. Take <code>table4a</code>: the column names <code>1999</code> and <code>2000</code> represent values of the <code>year</code> variable, and each row represents two observations, not one.</p>
+<pre class="r"><code>table4a</code></pre>
+<pre><code>## # A tibble: 3 x 3
+##   country     `1999` `2000`
+## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
+## 1 Afghanistan    745   2666
+## 2 Brazil       37737  80488
+## 3 China       212258 213766</code></pre>
+<p>To tidy a dataset like this, we need to <strong>gather</strong> those columns into a new pair of variables. To describe that operation we need three parameters:</p>
+<ul>
+<li><p>The set of columns that represent values, not variables. In this example, those are the columns <code>1999</code> and <code>2000</code>.</p></li>
+<li><p>The name of the variable whose values form the column names. I call that the <code>key</code>, and here it is <code>year</code>.</p></li>
+<li><p>The name of the variable whose values are spread over the cells. I call that <code>value</code>, and here it’s the number of <code>cases</code>.</p></li>
+</ul>
+<p>Together those parameters generate the call to <code>gather()</code>:</p>
+<pre class="r"><code>table4a %&gt;%
+  gather(`1999`, `2000`, key = &quot;year&quot;, value = &quot;cases&quot;)</code></pre>
+<pre><code>## # A tibble: 6 x 3
+##   country     year   cases
+##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;
+## 1 Afghanistan 1999     745
+## 2 Brazil      1999   37737
+## 3 China       1999  212258
+## 4 Afghanistan 2000    2666
+## 5 Brazil      2000   80488
+## 6 China       2000  213766</code></pre>
+<p>Gathering can be graphically demonstrated:</p>
+<p><img src="figure/tidy-9.png" /></p>
+</div>
+<div id="spreading" class="section level3">
+<h3>Spreading</h3>
+<p>Spreading is the opposite of gathering. You use it when an observation is scattered across multiple rows. For example, take <code>table2</code>: an observation is a country in a year, but each observation is spread across two rows.</p>
+<pre class="r"><code>table2</code></pre>
+<pre><code>## # A tibble: 12 x 4
+##    country      year type            count
+##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
+##  1 Afghanistan  1999 cases             745
+##  2 Afghanistan  1999 population   19987071
+##  3 Afghanistan  2000 cases            2666
+##  4 Afghanistan  2000 population   20595360
+##  5 Brazil       1999 cases           37737
+##  6 Brazil       1999 population  172006362
+##  7 Brazil       2000 cases           80488
+##  8 Brazil       2000 population  174504898
+##  9 China        1999 cases          212258
+## 10 China        1999 population 1272915272
+## 11 China        2000 cases          213766
+## 12 China        2000 population 1280428583</code></pre>
+<p>To tidy this up, we first analyse the representation in similar way to <code>gather()</code>. This time, however, we only need two parameters:</p>
+<ul>
+<li><p>The column that contains variable names, the <code>key</code> column. Here, it’s <code>type</code>.</p></li>
+<li><p>The column that contains values forms multiple variables, the <code>value</code> column. Here it’s <code>count</code>.</p></li>
+</ul>
+<p>Once we’ve figured that out, we can use <code>spread()</code>, as shown programmatically below.</p>
+<pre class="r"><code>spread(table2, key = type, value = count)</code></pre>
+<pre><code>## # A tibble: 6 x 4
+##   country      year  cases population
+##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+## 1 Afghanistan  1999    745   19987071
+## 2 Afghanistan  2000   2666   20595360
+## 3 Brazil       1999  37737  172006362
+## 4 Brazil       2000  80488  174504898
+## 5 China        1999 212258 1272915272
+## 6 China        2000 213766 1280428583</code></pre>
+<p>Spreading can be graphically demonstrated:</p>
+<p><img src="figure/tidy-8.png" /></p>
+</div>
+</div>
+<div id="exercise-2" class="section level2">
+<h2>Exercise 2</h2>
+<p>Let’s take a look at the fisheries data. Are these tidy data? What rules do they violate? We can use the functions in the <code>tidyr</code> package from the tidyverse to make these data tidy.</p>
+<ol style="list-style-type: decimal">
+<li><p>Inspect the fisheries dataset What are the dimensions (hint: <code>dim</code>)? What are the names and column types (hint: <code>str</code>)?</p></li>
+<li><p>We need to make these data tidy. Which columns need to be tidied? What are your keys? What are your values?</p></li>
+<li><p>Use the <code>gather</code> function to make the data tidy. Assign the new tidy dataset to a variable in your environment.</p></li>
+<li><p>Check the dimensions and structure of your new dataset. What’s different?</p></li>
+</ol>
+<div class="fold o s">
+<pre class="r"><code># check dimensions, structure
+dim(fishdat)
+str(fishdat)
+
+# tidy alldat
+tidydat &lt;- fishdat %&gt;%
+  gather(key = &#39;Species&#39;, value = &#39;Count&#39;, Bluefish, `Common Snook`, Mullets, Pinfish, `Red Drum`, `Sand Seatrout`)
+
+# check dimensions, structure
+dim(tidydat)
+str(tidydat)</code></pre>
+</div>
+</div>
+<div id="group-by-and-summarize" class="section level2">
+<h2>Group by and summarize</h2>
+<p>The last tool we’re going to learn about in <code>dplyr</code> is the <code>summarize</code> function. As the name implies, this function lets you summarize columns in a dataset. Think of it as a way to condense rows using a summary method of your choice, e.g., what’s the average of the values in a column?</p>
+<p>The summarize function is most useful with the <code>group_by</code> function. This function lets you define a column that serves as a grouping variable for developing separate summaries, as compared to summarizing the entire dataset. The <code>group_by</code> function works with any <code>dplyr</code> function so it can be quite powerful.</p>
+<p>Let’s use our tidied fisheries dataset from exercise 2.</p>
+<pre class="r"><code>head(tidydat)</code></pre>
+<pre><code>## # A tibble: 6 x 7
+##   OBJECTID Reference     Sampling_Date        Gear ExDate              Species  Count
+##      &lt;dbl&gt; &lt;chr&gt;         &lt;dttm&gt;              &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;    &lt;dbl&gt;
+## 1  1550020 TBM1996032006 1996-03-19 19:00:00   300 2018-04-12 06:27:38 Bluefish     0
+## 2  1550749 TBM1996032004 1996-03-19 19:00:00    22 2018-04-12 06:25:23 Bluefish     0
+## 3  1550750 TBM1996032004 1996-03-19 19:00:00    22 2018-04-12 06:25:23 Bluefish     0
+## 4  1550762 TBM1996032207 1996-03-21 19:00:00    20 2018-04-12 06:25:23 Bluefish     0
+## 5  1550828 TBM1996042601 1996-04-25 20:00:00   160 2018-04-12 06:25:23 Bluefish     0
+## 6  1550838 TBM1996051312 1996-05-12 20:00:00   300 2018-04-12 06:25:23 Bluefish     0</code></pre>
+<p>This is not a terribly interesting dataset until we start to evaluate some of the differences. It’s also setup in a way to let us easily group by different variables. We could ask a simple question: how does highway total catch vary across species (ignoring gear differences)?</p>
+<p>First we can use <code>group_by</code>. Notice the new information at the top of the output.</p>
+<pre class="r"><code>by_spp &lt;- group_by(tidydat, Species)
+by_spp</code></pre>
+<pre><code>## # A tibble: 17,064 x 7
+## # Groups:   Species [6]
+##    OBJECTID Reference     Sampling_Date        Gear ExDate              Species  Count
+##       &lt;dbl&gt; &lt;chr&gt;         &lt;dttm&gt;              &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;    &lt;dbl&gt;
+##  1  1550020 TBM1996032006 1996-03-19 19:00:00   300 2018-04-12 06:27:38 Bluefish     0
+##  2  1550749 TBM1996032004 1996-03-19 19:00:00    22 2018-04-12 06:25:23 Bluefish     0
+##  3  1550750 TBM1996032004 1996-03-19 19:00:00    22 2018-04-12 06:25:23 Bluefish     0
+##  4  1550762 TBM1996032207 1996-03-21 19:00:00    20 2018-04-12 06:25:23 Bluefish     0
+##  5  1550828 TBM1996042601 1996-04-25 20:00:00   160 2018-04-12 06:25:23 Bluefish     0
+##  6  1550838 TBM1996051312 1996-05-12 20:00:00   300 2018-04-12 06:25:23 Bluefish     0
+##  7  1550842 TBM1996051407 1996-05-13 20:00:00   300 2018-04-12 06:25:23 Bluefish     0
+##  8  1551131 TBM1996051415 1996-05-13 20:00:00   300 2018-04-12 06:27:38 Bluefish     0
+##  9  1551311 TBM1996032209 1996-03-21 19:00:00   300 2018-04-12 06:25:20 Bluefish     0
+## 10  1551335 TBM1996041807 1996-04-17 20:00:00    22 2018-04-12 06:25:24 Bluefish     0
+## # ... with 17,054 more rows</code></pre>
+<p>We can then <code>summarize</code> to get the total count.</p>
+<pre class="r"><code>by_spp &lt;- summarize(by_spp, totals = sum(Count))
+by_spp</code></pre>
+<pre><code>## # A tibble: 6 x 2
+##   Species       totals
+##   &lt;chr&gt;          &lt;dbl&gt;
+## 1 Bluefish           7
+## 2 Common Snook    3898
+## 3 Mullets           17
+## 4 Pinfish        98182
+## 5 Red Drum        3422
+## 6 Sand Seatrout   7789</code></pre>
+<p>Of course, this can (and should) be done with pipes:</p>
+<pre class="r"><code>by_spp &lt;- tidydat %&gt;%
+  group_by(Species) %&gt;%
+  summarize(totals = sum(Count))
+by_spp</code></pre>
+<pre><code>## # A tibble: 6 x 2
+##   Species       totals
+##   &lt;chr&gt;          &lt;dbl&gt;
+## 1 Bluefish           7
+## 2 Common Snook    3898
+## 3 Mullets           17
+## 4 Pinfish        98182
+## 5 Red Drum        3422
+## 6 Sand Seatrout   7789</code></pre>
+<p>We can group the dataset by more than one column to get summaries with multiple groups. Here we can look at total count by each unique combination of gear and species.</p>
+<pre class="r"><code>by_spp_gear &lt;- tidydat %&gt;%
+  group_by(Species) %&gt;%
+  summarize(totals = sum(Count))
+by_spp_gear</code></pre>
+<pre><code>## # A tibble: 6 x 2
+##   Species       totals
+##   &lt;chr&gt;          &lt;dbl&gt;
+## 1 Bluefish           7
+## 2 Common Snook    3898
+## 3 Mullets           17
+## 4 Pinfish        98182
+## 5 Red Drum        3422
+## 6 Sand Seatrout   7789</code></pre>
+<p>We can also get more than one summary at a time. The summary function can use any function that operates on a vector. Some common examples include <code>min</code>, <code>max</code>, <code>sd</code>, <code>var</code>, <code>median</code>, <code>mean</code>, and <code>n</code>. It’s usually good practice to include a summary of how many observations were in each group, so get used to including the <code>n</code> function.</p>
+<pre class="r"><code>more_sums &lt;-tidydat %&gt;%
+  group_by(Species) %&gt;%
+  summarize(
+    n = n(),
+    min_count = min(Count),
+    max_count = max(Count),
+    total = sum(Count)
+  )
+more_sums</code></pre>
+<pre><code>## # A tibble: 6 x 5
+##   Species           n min_count max_count total
+##   &lt;chr&gt;         &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
+## 1 Bluefish       2844         0         2     7
+## 2 Common Snook   2844         0       127  3898
+## 3 Mullets        2844         0         5    17
+## 4 Pinfish        2844         0      2530 98182
+## 5 Red Drum       2844         0       123  3422
+## 6 Sand Seatrout  2844         0       560  7789</code></pre>
+<p>Finally, many of the summary functions we’ve used (e.g., <code>sum</code>, <code>min</code>, <code>max</code>, <code>mean</code>) will not work correctly if there are missing observations in your data. You’ll see these as <code>NA</code> (or sometimes <code>NaN</code>) entries. You have to use the argument <code>na.rm = T</code> to explicitly tell R how to handle the missing values.</p>
+<pre class="r"><code>x &lt;- c(1, 2, NA, 4)
+mean(x)</code></pre>
+<pre><code>## [1] NA</code></pre>
+<pre class="r"><code>mean(x, na.rm = T)</code></pre>
+<pre><code>## [1] 2.333333</code></pre>
+<p>A quick check for missing values can be done with <code>anyNA</code>. This works on vectors and data frames.</p>
+<pre class="r"><code>anyNA(x)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="exercise-3" class="section level2">
+<h2>Exercise 3</h2>
+<p>Now we have access to a several tools in the tidyverse to help us wrangle more effectively. For the final exercise, we’re going subset our fisheries data and get a summary. Specifically, we’ll filter our data by Gear type 20 and Pinfish, then summarize the average catch across stations.</p>
+<ol style="list-style-type: decimal">
+<li><p>Using the tidy data we created in exercise 2, filter the data by Gear type 20 and Pinfish (hint, <code>filter(Gear == 20 &amp; Species == 'Pinfish')</code>.</p></li>
+<li><p>Group the data by site so you can summarize the cach of Pinfish (hint, <code>group_by(Reference)</code>.</p></li>
+<li><p>Summarize the count column by taking the average (hint, <code>summarise(ave = mean(Count))</code>)</p></li>
+<li><p>Which station has the highest average catch of Pinfish (hint, <code>arrange(ave)</code>)?</p></li>
+</ol>
+<div class="fold o s">
+<pre class="r"><code>sumdat &lt;- tidydat %&gt;%
+  filter(Gear == 20 &amp; Species == &#39;Pinfish&#39;) %&gt;% 
+  group_by(Reference) %&gt;% 
+  summarize(
+    ave = mean(Count)
+  ) %&gt;% 
+  arrange(-ave)
+sumdat</code></pre>
+</div>
+</div>
+<div id="next-time" class="section level2">
+<h2>Next time</h2>
+<p>Now you should be able to answer (or be able to find answers to) the following:</p>
+<ul>
+<li>How are data joined?</li>
+<li>What is tidy data?</li>
+<li>How do I summarize a dataset?</li>
+</ul>
+<p>In the next lesson we’ll learn about data visualization and graphics.</p>
+</div>
+<div id="attribution" class="section level2">
+<h2>Attribution</h2>
+<p>Content in this lesson was pillaged extensively from the USGS-R training curriculum <a href="https://github.com/USGS-R/training-curriculum">here</a> and <a href="https://github.com/hadley/r4ds">R for data Science</a>.</p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

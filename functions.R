@@ -42,7 +42,7 @@ add_one(x = 2)
 ## }
 ## add_one(2)
 
-url <- 'https://raw.githubusercontent.com/tbep-tech/tbep-r-training/master/data/otbfimdatcmb.csv'
+url <- 'https://raw.githubusercontent.com/tbep-tech/tbep-r-training/013432d6924d278a9fbb151591ddcfd5b7de87ab/data/otbfimdat.csv'
 otbfimdat <- read.csv(url, stringsAsFactors = F)
 
 subdat <- otbfimdat %>% 

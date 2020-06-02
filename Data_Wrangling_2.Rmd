@@ -29,7 +29,7 @@ Get the lesson R script: [Data_Wrangling_2.R](Data_Wrangling_2.R)
 * [Exercise 2]
 * [Exercise 3]
 
-## Today's goals
+## Goals
 
 In this lesson we'll continue our discussion of data wrangling with the tidyverse. Data wrangling is the manipulation or combination of datasets for the purpose of understanding.  It fits within the broader scheme of **data exploration**, described as the art of looking at your data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again (from [R for Data Science](http://r4ds.had.co.nz/), as is most of today's content). 
 

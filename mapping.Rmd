@@ -249,23 +249,23 @@ __How many fish were caught where seagrass was observed in 2016?_
 The first task is to subset the 2016 fisheries data by locations where seagrass was observed.  There are a few ways we can do this.  The first is to make simple subset where we filter the station locations using a spatial overlay with the seagrass polygons  The second and more complete approach is to intersect the two data objects to subset and combine the attributes.
 
 ```{r}
-fish_sub <- filt_dat[sgdat, ]
-plot(fish_sub$geometry)
-fish_sub
+fish_crop <- filt_dat[sgdat, ]
+plot(fish_crop$geometry)
+fish_crop
 ```
 
 With this first approach we can see which stations were located over seagrass, but we don't know which polygons they're located in for the seagrass data. A better approach is to use `st_intersection` to both overlay and combine the attribute fields from the two data objects.
 
 ```{r}
-fish_sub <- st_intersection(alldat, sgdat)
-plot(fish_sub$geometry)
-fish_sub
+fish_int <- st_intersection(alldat, sgdat)
+plot(fish_int$geometry)
+fish_int
 ```
 
 Now we can easily see which stations are in which seagrass polygon.  We can use some familiar tools from dplyr to get the aggregate catch data for the different polygon counts.  Specifically, the `FLUCCS` attribute identifies seagrass polygons as continuous (`9116`) or patchy (`9113`) (metadata [here](https://www.arcgis.com/sharing/rest/content/items/f0ecff0cf0de491685f8fb074adb278b/info/metadata/metadata.xml?format=default&output=html).  Maybe we want to summarise species counts by seagrass polygon type.
 
 ```{r}
-fish_cnt <- fish_sub %>% 
+fish_cnt <- fish_int %>% 
   group_by(FLUCCS) %>% 
   summarise(
     cnt = sum(Pinfish)
@@ -310,7 +310,7 @@ There’s a lot more we can do with `mapview` but the point is that these maps a
 
 We've certainly covered a lot in this lesson, so we'll spend any remaining time we have on getting more comfortable with basic geospatial analysis and mapping in R.  We'll repeat what we just did above, but selecting different years and only continous seagrass.  
 
-1. Start by filtering the `alldat` object by the 9116 `FLUCCS` code and only `2016` data.  (hint: use `filter(FLUCSS == 9116)` and then `filter(yr == 2016)`)
+1. Start by filtering the `fish_int` object by the 9116 `FLUCCS` code and only `2016` data.  (hint: use `filter(FLUCSS == 9116)` and then `filter(yr == 2016)`)
 
 1. Create a map of this filtered object using `mapview()`.  Use the `zcol` argument to map the color values to different attributes in your dataset, e.g., `Pinfish` or `Bluefish`.  
 
@@ -319,7 +319,7 @@ We've certainly covered a lot in this lesson, so we'll spend any remaining time 
 <div class="fold s o">
 ```{r results = 'hide'}
 # filter alldat 
-tomap <- alldat %>% 
+tomap <- fish_int %>% 
   filter(FLUCCS == 9116) %>% 
   filter(yr == 2016)
 
@@ -328,7 +328,7 @@ mapview(tomap, zcol = 'Pinfish')
 mapview(tomap, zcol = 'Bluefish')
 
 # join maps
-mapview(sgdat) + mapvew(tomap, zcol = 'Pinfish')
+mapview(sgdat) + mapview(tomap, zcol = 'Pinfish')
 ```
 </div>
 

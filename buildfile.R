@@ -9,5 +9,5 @@ rmarkdown::clean_site()
 rmarkdown::render_site()
 source('R/dat_proc.R')
 tobld <- list.files(pattern = '\\.Rmd$', recursive = F)
-tobld <- tobld[!tobld %in% c('Resources.Rmd', 'index.Rmd')]
+tobld <- tobld[!tobld %in% c('Data_and_Resources.Rmd', 'index.Rmd')]
 sapply(tobld, knitr::purl, documentation = 0L)

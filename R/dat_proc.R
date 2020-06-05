@@ -6,7 +6,7 @@ library(lubridate)
 
 # fimdat <- st_read('https://opendata.arcgis.com/datasets/68fb6774b58a40a08a6f87959aaa53c4_26.geojson')
 # 
-# otb <- tbseg[tbseg$bay_segment %in% 'OTB',]
+otb <- tbseg[tbseg$bay_segment %in% 'OTB',]
 # otbclip <- fimdat[otb, ]
 # otbfimdatcmb <- st_set_geometry(otbclip, NULL) %>%
 #   select(-Scientificname, -avg_size, -min_size, -max_size) %>%

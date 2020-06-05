@@ -61,6 +61,7 @@ My most frequent use for base R graphics inlude:
 
 We'll explore some of these simple tools in base R with the `mpg` dataset that comes with R. The workhorse plotting function is `plot`.  Let's make a simple plot of highway mileage vs engine size.
 ```{r}
+data(mpg)
 plot(hwy ~ displ, data = mpg)
 ```
 

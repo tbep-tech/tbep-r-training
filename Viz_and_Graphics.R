@@ -1,3 +1,4 @@
+data(mpg)
 plot(hwy ~ displ, data = mpg)
 
 plot(mpg$displ, mpg$hwy)

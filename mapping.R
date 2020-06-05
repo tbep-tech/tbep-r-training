@@ -56,15 +56,15 @@ filt_dat <- alldat %>%
   filter(yr == 2016)
 plot(filt_dat$geometry)
 
-fish_sub <- filt_dat[sgdat, ]
-plot(fish_sub$geometry)
-fish_sub
+fish_crop <- filt_dat[sgdat, ]
+plot(fish_crop$geometry)
+fish_crop
 
-fish_sub <- st_intersection(alldat, sgdat)
-plot(fish_sub$geometry)
-fish_sub
+fish_int <- st_intersection(alldat, sgdat)
+plot(fish_int$geometry)
+fish_int
 
-fish_cnt <- fish_sub %>% 
+fish_cnt <- fish_int %>% 
   group_by(FLUCCS) %>% 
   summarise(
     cnt = sum(Pinfish)
@@ -83,7 +83,7 @@ mapview(sgdat, col.regions = 'green') +
   mapview(alldat, zcol = 'Gear')
 
 # filter alldat 
-tomap <- alldat %>% 
+tomap <- fish_int %>% 
   filter(FLUCCS == 9116) %>% 
   filter(yr == 2016)
 
@@ -92,4 +92,4 @@ mapview(tomap, zcol = 'Pinfish')
 mapview(tomap, zcol = 'Bluefish')
 
 # join maps
-mapview(sgdat) + mapvew(tomap, zcol = 'Pinfish')
+mapview(sgdat) + mapview(tomap, zcol = 'Pinfish')

@@ -24,7 +24,7 @@ navbar:
   right:
     - text: "Resources"
       icon: fa-list
-      href: Resources.html
+      href: Data_and_Resources.html
     - icon: fa-github fa-lg
       href: https://github.com/tbep-tech/tbep-r-training
 output_dir: "."

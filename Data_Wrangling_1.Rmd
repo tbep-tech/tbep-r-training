@@ -17,6 +17,8 @@ opts_chunk$set(tidy = FALSE, message = F, warning = F)
 
 Get the lesson R script: [Data_Wrangling_1.R](Data_Wrangling_1.R)
 
+Get the lesson data: [download zip](https://github.com/tbep-tech/tbep-r-training/raw/master/data/data.zip)
+
 ## Lesson Outline
 
 * [Goals]

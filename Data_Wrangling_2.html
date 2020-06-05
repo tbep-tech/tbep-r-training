@@ -394,7 +394,7 @@ div.tocify {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="Resources.html">
+  <a href="Data_and_Resources.html">
     <span class="fa fa-list"></span>
      
     Resources
@@ -423,6 +423,7 @@ div.tocify {
 <div id="data-wrangling-part-2" class="section level1">
 <h1>Data wrangling part 2</h1>
 <p>Get the lesson R script: <a href="Data_Wrangling_2.R">Data_Wrangling_2.R</a></p>
+<p>Get the lesson data: <a href="https://github.com/tbep-tech/tbep-r-training/raw/master/data/data.zip">download zip</a></p>
 <div id="lesson-outline" class="section level2">
 <h2>Lesson Outline</h2>
 <ul>
@@ -492,15 +493,15 @@ statloc &lt;- read_csv(&#39;data/statloc.csv&#39;)
 # join the two 
 joindat &lt;- left_join(fishdat, statloc, by = &#39;Reference&#39;)
 head(joindat)</code></pre>
-<pre><code>## # A tibble: 6 x 13
-##   OBJECTID Reference Sampling_Date        Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout` Latitude
-##      &lt;dbl&gt; &lt;chr&gt;     &lt;dttm&gt;              &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt;
-## 1  1550020 TBM19960~ 1996-03-19 19:00:00   300 2018-04-12 06:27:38        0              0       0       0          0               1     27.9
-## 2  1550749 TBM19960~ 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0              0       0      54          0               0     27.9
-## 3  1550750 TBM19960~ 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0              0       0       0          1               0     27.9
-## 4  1550762 TBM19960~ 1996-03-21 19:00:00    20 2018-04-12 06:25:23        0              0       0      80          0               0     27.9
-## 5  1550828 TBM19960~ 1996-04-25 20:00:00   160 2018-04-12 06:25:23        0              0       0       0          4               0     28.0
-## 6  1550838 TBM19960~ 1996-05-12 20:00:00   300 2018-04-12 06:25:23        0              0       0       0          0               1     27.9
+<pre><code>## # A tibble: 6 x 14
+##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout` Latitude
+##      &lt;dbl&gt; &lt;chr&gt;     &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt;
+## 1  1550020 TBM19960~ 1996-03-20     1996   300 2018-04-12 10:27:38        0              0       0       0          0               1     27.9
+## 2  1550749 TBM19960~ 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0      54          0               0     27.9
+## 3  1550750 TBM19960~ 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0       0          1               0     27.9
+## 4  1550762 TBM19960~ 1996-03-22     1996    20 2018-04-12 10:25:23        0              0       0      80          0               0     27.9
+## 5  1550828 TBM19960~ 1996-04-26     1996   160 2018-04-12 10:25:23        0              0       0       0          4               0     28.0
+## 6  1550838 TBM19960~ 1996-05-13     1996   300 2018-04-12 10:25:23        0              0       0       0          0               1     27.9
 ## # ... with 1 more variable: Longitude &lt;dbl&gt;</code></pre>
 </div>
 </div>
@@ -707,33 +708,33 @@ str(tidydat)</code></pre>
 <p>The summarize function is most useful with the <code>group_by</code> function. This function lets you define a column that serves as a grouping variable for developing separate summaries, as compared to summarizing the entire dataset. The <code>group_by</code> function works with any <code>dplyr</code> function so it can be quite powerful.</p>
 <p>Let’s use our tidied fisheries dataset from exercise 2.</p>
 <pre class="r"><code>head(tidydat)</code></pre>
-<pre><code>## # A tibble: 6 x 7
-##   OBJECTID Reference     Sampling_Date        Gear ExDate              Species  Count
-##      &lt;dbl&gt; &lt;chr&gt;         &lt;dttm&gt;              &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;    &lt;dbl&gt;
-## 1  1550020 TBM1996032006 1996-03-19 19:00:00   300 2018-04-12 06:27:38 Bluefish     0
-## 2  1550749 TBM1996032004 1996-03-19 19:00:00    22 2018-04-12 06:25:23 Bluefish     0
-## 3  1550750 TBM1996032004 1996-03-19 19:00:00    22 2018-04-12 06:25:23 Bluefish     0
-## 4  1550762 TBM1996032207 1996-03-21 19:00:00    20 2018-04-12 06:25:23 Bluefish     0
-## 5  1550828 TBM1996042601 1996-04-25 20:00:00   160 2018-04-12 06:25:23 Bluefish     0
-## 6  1550838 TBM1996051312 1996-05-12 20:00:00   300 2018-04-12 06:25:23 Bluefish     0</code></pre>
+<pre><code>## # A tibble: 6 x 8
+##   OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Species  Count
+##      &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;    &lt;dbl&gt;
+## 1  1550020 TBM1996032006 1996-03-20     1996   300 2018-04-12 10:27:38 Bluefish     0
+## 2  1550749 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23 Bluefish     0
+## 3  1550750 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23 Bluefish     0
+## 4  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23 Bluefish     0
+## 5  1550828 TBM1996042601 1996-04-26     1996   160 2018-04-12 10:25:23 Bluefish     0
+## 6  1550838 TBM1996051312 1996-05-13     1996   300 2018-04-12 10:25:23 Bluefish     0</code></pre>
 <p>This is not a terribly interesting dataset until we start to evaluate some of the differences. It’s also setup in a way to let us easily group by different variables. We could ask a simple question: how does highway total catch vary across species (ignoring gear differences)?</p>
 <p>First we can use <code>group_by</code>. Notice the new information at the top of the output.</p>
 <pre class="r"><code>by_spp &lt;- group_by(tidydat, Species)
 by_spp</code></pre>
-<pre><code>## # A tibble: 17,064 x 7
+<pre><code>## # A tibble: 17,064 x 8
 ## # Groups:   Species [6]
-##    OBJECTID Reference     Sampling_Date        Gear ExDate              Species  Count
-##       &lt;dbl&gt; &lt;chr&gt;         &lt;dttm&gt;              &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;    &lt;dbl&gt;
-##  1  1550020 TBM1996032006 1996-03-19 19:00:00   300 2018-04-12 06:27:38 Bluefish     0
-##  2  1550749 TBM1996032004 1996-03-19 19:00:00    22 2018-04-12 06:25:23 Bluefish     0
-##  3  1550750 TBM1996032004 1996-03-19 19:00:00    22 2018-04-12 06:25:23 Bluefish     0
-##  4  1550762 TBM1996032207 1996-03-21 19:00:00    20 2018-04-12 06:25:23 Bluefish     0
-##  5  1550828 TBM1996042601 1996-04-25 20:00:00   160 2018-04-12 06:25:23 Bluefish     0
-##  6  1550838 TBM1996051312 1996-05-12 20:00:00   300 2018-04-12 06:25:23 Bluefish     0
-##  7  1550842 TBM1996051407 1996-05-13 20:00:00   300 2018-04-12 06:25:23 Bluefish     0
-##  8  1551131 TBM1996051415 1996-05-13 20:00:00   300 2018-04-12 06:27:38 Bluefish     0
-##  9  1551311 TBM1996032209 1996-03-21 19:00:00   300 2018-04-12 06:25:20 Bluefish     0
-## 10  1551335 TBM1996041807 1996-04-17 20:00:00    22 2018-04-12 06:25:24 Bluefish     0
+##    OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Species  Count
+##       &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;    &lt;dbl&gt;
+##  1  1550020 TBM1996032006 1996-03-20     1996   300 2018-04-12 10:27:38 Bluefish     0
+##  2  1550749 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23 Bluefish     0
+##  3  1550750 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23 Bluefish     0
+##  4  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23 Bluefish     0
+##  5  1550828 TBM1996042601 1996-04-26     1996   160 2018-04-12 10:25:23 Bluefish     0
+##  6  1550838 TBM1996051312 1996-05-13     1996   300 2018-04-12 10:25:23 Bluefish     0
+##  7  1550842 TBM1996051407 1996-05-14     1996   300 2018-04-12 10:25:23 Bluefish     0
+##  8  1551131 TBM1996051415 1996-05-14     1996   300 2018-04-12 10:27:38 Bluefish     0
+##  9  1551311 TBM1996032209 1996-03-22     1996   300 2018-04-12 10:25:20 Bluefish     0
+## 10  1551335 TBM1996041807 1996-04-18     1996    22 2018-04-12 10:25:24 Bluefish     0
 ## # ... with 17,054 more rows</code></pre>
 <p>We can then <code>summarize</code> to get the total count.</p>
 <pre class="r"><code>by_spp &lt;- summarize(by_spp, totals = sum(Count))

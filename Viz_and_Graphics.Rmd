@@ -17,6 +17,8 @@ opts_chunk$set(tidy = FALSE, message = F, warning = F)
 
 Get the lesson R script: [Viz_and_Graphics.R](Viz_and_Graphics.R)
 
+Get the lesson data: [download zip](https://github.com/tbep-tech/tbep-r-training/raw/master/data/data.zip)
+
 ## Lesson Outline
 
 * [Base R graphics]
@@ -39,9 +41,7 @@ This section will introduce you to concepts of data visualization and graphics i
 
 Graphics capabilities in R have improved tremendously in the last ten years. The de facto plotting library is `ggplot2` as part of the `tidyverse`, but there are many other packages available that enhance or build on existing functionality.  The base R installation also comes with its own set of plotting functions.  These are useful for quick and dirty exploration but you'll quickly find that these methods are tedious.  We'll start this lesson with a cursory look at some of the base R plotting functions.  Later, we'll focus on `ggplot2`.
 
-The goals of this lesson are to expose you to fundamentals and to develop an appreciation of what’s possible. I also want to provide resources that you can use for follow-up learning on your own.
-
-Today you should be able to answer (or be able to find answers to) the following:
+After this lesson you should be able to answer (or be able to find answers to) the following:
 
 * What can I do with base R plots?
 * What are the requirements of every ggplot?

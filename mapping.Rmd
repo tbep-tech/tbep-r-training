@@ -344,7 +344,7 @@ Now you should be able to:
 
 1) Execute basic geospatial functions in R
 
-This concludes our training workshop. I hope you’ve enjoyed the material and found the content useful. Please continue to use this website as a resource for developing your R skills and definitely checkout our [Data and Resources](https://tbep-tech.github.io/tbep-r-training/Data_Resources.html) page for additional learning material.  
+This concludes our training workshop. I hope you’ve enjoyed the material and found the content useful. Please continue to use this website as a resource for developing your R skills and definitely checkout our [Data and Resources](https://tbep-tech.github.io/tbep-r-training/Data_and_Resources.html) page for additional learning material.  
 
 
 

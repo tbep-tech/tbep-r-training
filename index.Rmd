@@ -14,23 +14,23 @@ This course is designed to expose you to the fundamentals of using R for reprodu
 
 ## Agenda
 
-* __9:00 - 10:00__ R basics
+* __9:00 - 10:00__ [R basics](R_Basics.html)
   
   BREAK (15 min)
   
-* __10:15-11:15__ Data wrangling part 1
+* __10:15-11:15__ [Data wrangling part 1](Data_Wrangling_1.html)
 
   BREAK (15 min)
 
-* __11:30-12:30__ Data wrangling part 2
+* __11:30-12:30__ [Data wrangling part 2](Data_Wrangling_2.html)
 
   LUNCH (60 min)
   
-* __1:30 - 2:30__ Viz and graphics
+* __1:30 - 2:30__ [Viz and graphics](Viz_and_Graphics.html)
 
   BREAK (15 min)
   
-* __2:45 - 3:45__ Spatial data analysis in R
+* __2:45 - 3:45__ [Spatial data analysis in R](mapping.html)
 
 * __3:45 - 4:00__ Wrapup and continued learnig
 

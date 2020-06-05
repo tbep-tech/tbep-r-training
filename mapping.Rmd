@@ -119,7 +119,7 @@ sgdat <- st_read('data/sgdat.shp')
 ```
 </div>
 
-## Loading or creating spatial data with simple features
+## Creating spatial data with simple features
 
 Now that we're setup, let's talk about how the `sf` package can be used.  After the package is loaded, you can check out all of the methods that are available for `sf` data objects.  Many of these names will look familiar if you've done geospatial analysis before.  We'll use some of these a little bit later.
 
@@ -306,7 +306,7 @@ mapview(sgdat, col.regions = 'green') +
 
 There’s a lot more we can do with `mapview` but the point is that these maps are incredibly easy to make with `sf` objects and they offer a lot more functionality than static plots.
 
-## Excercise 3
+## Exercise 3
 
 We've certainly covered a lot in this lesson, so we'll spend any remaining time we have on getting more comfortable with basic geospatial analysis and mapping in R.  We'll repeat what we just did above, but selecting different years and only continous seagrass.  
 

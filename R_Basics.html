@@ -457,7 +457,7 @@ div.tocify {
 <ul>
 <li>The growth of R as explained in the <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">Stack Overflow blog</a>, <a href="http://blog.revolutionanalytics.com/2016/07/r-moves-up-to-5th-place-in-ieee-language-rankings.html">IEEE rating</a></li>
 </ul>
-<p>R is also an open-source programming language - not only is it free, but this means anybody can contribute to it’s development. As of 2020-06-02, there are 15687 supplemental packages for R on CRAN!</p>
+<p>R is also an open-source programming language - not only is it free, but this means anybody can contribute to it’s development. As of 2020-06-05, there are 15749 supplemental packages for R on CRAN!</p>
 </div>
 </div>
 <div id="rstudio" class="section level2">
@@ -522,25 +522,25 @@ seq(1, 10)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code># random numbers
 rnorm(100, mean = 10, sd = 2)</code></pre>
-<pre><code>##   [1] 14.977673 10.622399  9.816727  7.469920  8.356987  6.345529 11.168479 10.168236 14.305502  8.849477  9.197080  9.070740 10.896396
-##  [14] 11.333451 11.139174 12.766954  6.378424 10.014282  9.257604  8.429411 11.869160  9.863962 12.732435 11.701901  9.853960  9.322395
-##  [27] 11.998637  6.064594  8.747867 10.684703 12.848953  9.537425 13.025764 11.766639 11.342632 12.804071 11.139941 13.209809  8.616080
-##  [40] 12.843345 14.980216 12.428380  9.401605  9.797934 11.444611 11.855061 10.022274 10.584152 10.397969 11.688776 13.028101 10.740870
-##  [53] 13.272474 12.222106  9.275226 11.332688  8.673352  8.231338  8.382318  7.263303  9.598148  7.568408 12.933457  6.835650 10.640841
-##  [66] 11.913457  7.001790  9.917042 11.040515  9.669932  8.661342  7.153603 13.090192  7.856692 10.420875  5.806235  8.457917 10.470889
-##  [79] 12.460161  9.311125 12.696104 10.579592 14.007065  6.156452  8.613734  9.048470 10.981606  7.401372 12.114489 11.804352  8.454542
-##  [92]  7.600155  6.700839  9.554244  7.931963 10.266393  9.908716 10.009787  8.021355  9.052320</code></pre>
+<pre><code>##   [1] 13.138566 11.606381 12.048369  9.518863 10.981337 11.088145 10.235577  8.838382  9.752487 10.227387  8.289348  6.122685  9.931545  9.882937
+##  [15]  6.192715 10.245709  8.426150  7.918487 10.633781  7.804665  9.501124 12.080946 11.165593  9.575049 11.749311  7.389125  8.581388  7.599632
+##  [29]  8.877303 11.294007  8.208447 10.831584 11.997745  8.220388  6.118944  9.941046  8.484384 10.771026  7.909004  8.572346 10.239469  9.002775
+##  [43] 14.178005  8.355269  7.149485  7.607402 11.112138 10.381192  9.844012  4.398488 11.649510  9.269279 11.607711 10.033305  8.560618 10.693777
+##  [57] 12.685482 13.090828 10.285965  9.572403  5.076672  7.622626 13.035762 10.643934 12.130911 12.126052  7.678159 12.602686  7.475612 12.547276
+##  [71] 11.250966  8.436782  9.721073 11.684492  8.491317  8.377685 13.190441 13.299991  8.342795  9.376531 10.690576 10.892626 10.526191  9.993087
+##  [85] 11.858341  9.687808  7.528141  8.897244  9.080635 10.989078 10.989525  5.320095 15.008327 11.242860  9.962734  9.561392  6.274980 11.903267
+##  [99]  8.110678  6.931494</code></pre>
 <pre class="r"><code># average 
 mean(rnorm(100))</code></pre>
-<pre><code>## [1] -0.1455199</code></pre>
+<pre><code>## [1] 0.09323023</code></pre>
 <pre class="r"><code># sum
 sum(rnorm(100))</code></pre>
-<pre><code>## [1] 4.060946</code></pre>
+<pre><code>## [1] 2.182113</code></pre>
 <p>Very often you will see functions used like this:</p>
 <pre class="r"><code>my_random_sum &lt;- sum(rnorm(100))</code></pre>
 <p>In this case the first part of the line is the name of an object. You make this up. Ideally it should have some meaning, but the only rules are that it can’t start with a number and must not have any spaces. The second bit, <code>&lt;-</code>, is the assignment operator. This tells R to take the result of <code>sum(rnorm(100))</code> and store it in an object named, <code>my_random_sum</code>. It is stored in the environment and can be used by just executing it’s name in the console.</p>
 <pre class="r"><code>my_random_sum</code></pre>
-<pre><code>## [1] -10.13217</code></pre>
+<pre><code>## [1] 6.599391</code></pre>
 <p>With this, you have the very basics of how we write R code and save objects that can be used later.</p>
 <div id="packages" class="section level3">
 <h3>Packages</h3>
@@ -548,7 +548,7 @@ sum(rnorm(100))</code></pre>
 </div>
 <div id="cran" class="section level3">
 <h3>CRAN</h3>
-<p>One of the reasons for R’s popularity is CRAN, <a href="http://cran.r-project.org/">The Comprehensive R Archive Network</a>. This is where you download R and also where most will gain access to packages (there are other places, but that is for later). Not much else to say about this now other than to be aware of it. As of 2020-06-02, there are 15687 on CRAN!</p>
+<p>One of the reasons for R’s popularity is CRAN, <a href="http://cran.r-project.org/">The Comprehensive R Archive Network</a>. This is where you download R and also where most will gain access to packages (there are other places, but that is for later). Not much else to say about this now other than to be aware of it. As of 2020-06-05, there are 15749 on CRAN!</p>
 </div>
 <div id="installing-packages" class="section level3">
 <h3>Installing packages</h3>
@@ -690,21 +690,21 @@ dim(fishdat)</code></pre>
 <pre><code>## [1] 2173    3</code></pre>
 <pre class="r"><code># get the column names
 names(fishdat)</code></pre>
-<pre><code>##  [1] &quot;OBJECTID&quot;      &quot;Reference&quot;     &quot;Sampling_Date&quot; &quot;Gear&quot;          &quot;ExDate&quot;        &quot;Bluefish&quot;      &quot;Common Snook&quot;  &quot;Mullets&quot;      
-##  [9] &quot;Pinfish&quot;       &quot;Red Drum&quot;      &quot;Sand Seatrout&quot;</code></pre>
+<pre><code>##  [1] &quot;OBJECTID&quot;      &quot;Reference&quot;     &quot;Sampling_Date&quot; &quot;Gear&quot;          &quot;ExDate&quot;        &quot;Bluefish&quot;      &quot;Common Snook&quot;  &quot;Mullets&quot;       &quot;Pinfish&quot;      
+## [10] &quot;Red Drum&quot;      &quot;Sand Seatrout&quot;</code></pre>
 <pre class="r"><code>names(statloc)</code></pre>
 <pre><code>## [1] &quot;Reference&quot; &quot;Latitude&quot;  &quot;Longitude&quot;</code></pre>
 <pre class="r"><code># see the first six rows
 head(fishdat)</code></pre>
 <pre><code>## # A tibble: 6 x 11
-##   OBJECTID Reference    Sampling_Date        Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
-##      &lt;dbl&gt; &lt;chr&gt;        &lt;dttm&gt;              &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
-## 1  1550020 TBM19960320~ 1996-03-19 19:00:00   300 2018-04-12 06:27:38        0              0       0       0          0               1
-## 2  1550749 TBM19960320~ 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0              0       0      54          0               0
-## 3  1550750 TBM19960320~ 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0              0       0       0          1               0
-## 4  1550762 TBM19960322~ 1996-03-21 19:00:00    20 2018-04-12 06:25:23        0              0       0      80          0               0
-## 5  1550828 TBM19960426~ 1996-04-25 20:00:00   160 2018-04-12 06:25:23        0              0       0       0          4               0
-## 6  1550838 TBM19960513~ 1996-05-12 20:00:00   300 2018-04-12 06:25:23        0              0       0       0          0               1</code></pre>
+##   OBJECTID Reference     Sampling_Date        Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
+##      &lt;dbl&gt; &lt;chr&gt;         &lt;dttm&gt;              &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
+## 1  1550020 TBM1996032006 1996-03-19 19:00:00   300 2018-04-12 06:27:38        0              0       0       0          0               1
+## 2  1550749 TBM1996032004 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0              0       0      54          0               0
+## 3  1550750 TBM1996032004 1996-03-19 19:00:00    22 2018-04-12 06:25:23        0              0       0       0          1               0
+## 4  1550762 TBM1996032207 1996-03-21 19:00:00    20 2018-04-12 06:25:23        0              0       0      80          0               0
+## 5  1550828 TBM1996042601 1996-04-25 20:00:00   160 2018-04-12 06:25:23        0              0       0       0          4               0
+## 6  1550838 TBM1996051312 1996-05-12 20:00:00   300 2018-04-12 06:25:23        0              0       0       0          0               1</code></pre>
 <pre class="r"><code>head(statloc)</code></pre>
 <pre><code>## # A tibble: 6 x 3
 ##   Reference     Latitude Longitude

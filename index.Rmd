@@ -44,7 +44,7 @@ This training will use RStudio and R. Please make sure that you are ready to use
 
 ## Data and resources
 
-Please view the [Data and Resources](Data_and_Resources.html) page for data downloads used in this workshop and additional links for R learning material.  A [live coding](https://tinyurl.com/tbep-r-training-live-coding) link is also available.
+Please view the [Data and Resources](Data_and_Resources.html) page for data used in this workshop and additional links for R learning material.  A [live coding](https://tinyurl.com/tbep-r-training-live-coding) link is also available.
 
 ## Instructor
 

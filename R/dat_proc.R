@@ -1,6 +1,7 @@
 library(sf)
 library(tbeptools)
 library(lubridate)
+library(tidyverse)
 
 # FIM csv data ------------------------------------------------------------
 
@@ -40,6 +41,7 @@ st_write(sgdat, 'data/sgdat.shp', delete_layer = T)
 
 # zip all data ------------------------------------------------------------
 
+setwd('data/')
 fls <- list.files('.', pattern = '^sgdat|^fishdat\\.csv$|^statloc\\.csv$', recursive = T)
-
-zip('data/data.zip', fls)
+zip('data.zip', fls)
+setwd('..')

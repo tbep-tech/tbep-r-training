@@ -94,10 +94,9 @@ Install packages available for all R users from [CRAN](https://cran.r-project.or
 install.packages("tidyverse")
 install.packages("sf")
 install.packages("mapview")
-install.packages("devtools")
 ```
 
-If you see 
+If you see something like this:
 
 ![](figure/personal_library_dialog.png#inline-img "dialog box behind")
 
@@ -105,41 +104,8 @@ That's OK! There’s a dialog box hiding behind RStudio asking if you want to cr
 
 ![](figure/general_pkg_output.png#inline-img "console output")
 
-Finally, install the tbeptools package from GitHub.  This requires the devtools package that you installed above. 
-
-```r
-devtools::install_github('tbep-tech/tbeptools')
-```
-
-If you are prompted to install packages from source, select no. 
-
 # Grab the Sample Datasets
 
-We'll be working with some fisheries data from Tampa Bay for the workshop.  The data are available as two separate csv files for the sampling data and station location information.
-
-* `fishdat.csv`: fisheries sampling data
-* `statloc.csv`: station location data
-
-Download the zipped file of all the data from this [link](https://tbep-tech.github.io/tbep-r-training/data/datazip.zip).  Unzip the content into a folder on your computer that you can access for the workshop.
-
-## Exercise 1
-
-Just to make sure everything is working do the following:
-
-1. Open up RStudio.
-2. Find the "Console."  This is usually the left part RStudio.
-3. In the "Console", find the R Prompt.
-4. Type in (copy and paste from here will also work) the following commands at the R Prompt and hit return.  
-
-
-```r
-c("tidyverse", "sf", "mapview", "tbeptools") %in% installed.packages()
-```
-
-The end result should look something like this in the R console:
-
-```r
-[1] TRUE TRUE TRUE TRUE
-```
+Download the zipped file of all the data from this [link](https://tbep-tech.github.io/tbep-r-training/data/data.zip).  Unzip the content into a folder on your computer that you can access for the workshop.
 
 

@@ -3,8 +3,6 @@ navbar:
   title: "TBEP R Training"
   type: inverse
   left:
-    - text: "Home"
-      href: index.html
     - text: "R Basics"
       icon: fa-university
       href: R_Basics.html

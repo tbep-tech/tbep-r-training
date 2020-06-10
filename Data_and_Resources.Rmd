@@ -24,7 +24,7 @@ This is a list of the data sources used in this workshop. For live-coding, pleas
          - [sgdat.shp](data/sgdat.shp)
          - [sgdat.shx](data/sgdat.shx)
          
- - Lesson R code
+ - All R scripts used in the lessons as a [zipped folder](scripts.zip).  Inside you'll find these files: 
     - [R_Basics.R](R_Basics.R)
     - [Data_Wrangling_1.R](Data_Wrangling_1.R)
     - [Data_Wrangling_2.R](Data_Wrangling_2.R)

@@ -104,8 +104,10 @@ That's OK! There’s a dialog box hiding behind RStudio asking if you want to cr
 
 ![](figure/general_pkg_output.png#inline-img "console output")
 
-# Grab the Sample Datasets
+# Grab the sample datasets
 
-Download the zipped file of all the data from this [link](https://tbep-tech.github.io/tbep-r-training/data/data.zip).  Unzip the content into a folder on your computer that you can access for the workshop.
+Download the zipped file of all the data from this [link](data/data.zip).  Unzip the content into a folder on your computer that you can access for the workshop.
 
+# Download the lesson R scripts
 
+Download the zipped file of all the R scripts used for each lesson from this [link](scripts.zip).  Unzip the content into a folder on your computer that you can access for the workshop. 

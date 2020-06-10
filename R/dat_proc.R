@@ -38,10 +38,3 @@ sgdat <- sgdat2016[otb, ] %>%
   select(OBJECTID, FLUCCS = FLUCCS_CODE)
 
 st_write(sgdat, 'data/sgdat.shp', delete_layer = T)
-
-# zip all data ------------------------------------------------------------
-
-setwd('data/')
-fls <- list.files('.', pattern = '^sgdat|^fishdat\\.csv$|^statloc\\.csv$', recursive = T)
-zip('data.zip', fls)
-setwd('..')

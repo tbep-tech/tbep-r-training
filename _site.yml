@@ -20,7 +20,7 @@ navbar:
       icon: fa-globe-americas
       href: mapping.html
   right:
-    - text: "Resources"
+    - text: "Data and resources"
       icon: fa-list
       href: Data_and_Resources.html
     - icon: fa-github fa-lg

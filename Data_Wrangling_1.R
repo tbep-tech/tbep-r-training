@@ -39,19 +39,19 @@ head(dplyr_high_catch)
 dplyr_gear20 <- filter(fishdat, Gear == 20)
 head(dplyr_gear20)
 
-# get rows with > 20 but less than 100 fish
-filt1 <- filter(fishdat, Mullets > 20 & Mullets < 100)
+# get rows with > 20 and less than 100 Pinfish
+filt1 <- filter(fishdat, Pinfish > 20 & Pinfish < 100)
 head(filt1)
 
-# get rows with gear type 20 or blue crab
+# get rows with gear type 20 or red drum larger than 40
 filt2 <- filter(fishdat, Gear == 20 | `Red Drum` > 40)
 head(filt2)
 
-# get rows with Bluefish and Mullets
+# get rows gear 20 or gear 5
 filt3 <- filter(fishdat, Gear == 20 | Gear == 5)
 head(filt3)
 
-# get rows with Bluefish and Mullets
+# get rows with gear 20 or gear 5 using different syntax
 filt4 <- filter(fishdat, Gear %in% c(20, 5))
 head(filt4)
 
@@ -71,7 +71,7 @@ head(dplyr_arr)
 dplyr_rnm <- rename(fishdat, snook = `Common Snook`)
 head(dplyr_rnm)
 
-## ex1 <- select(fishdat, Reference, Sampling_Date, Gear, Pinfish)
+## ex1 <- select(fishdat, Reference, Sampling_Date, Gear, `Sand Seatrout`)
 ## ex1 <- filter(ex1, Gear == 20)
 ## ex1 <- rename(ex1, date = Sampling_Date)
 ## nrow(ex1)
@@ -93,7 +93,7 @@ good_ex <- fishdat %>%
   filter(`Common Snook` > 25)
 
 ## ex2 <- fishdat %>%
-##   select(Reference, Reference, Sampling_Date, Gear, Pinfish) %>%
+##   select(Reference, Reference, Sampling_Date, Gear, `Sand Seatrout`) %>%
 ##   filter(Gear == 20) %>%
 ##   rename(date = Sampling_Date)
 ## identical(ex1, ex2)

@@ -182,19 +182,19 @@ Multiple arguments to `filter()` are combined with "and": every expression must 
 Let's start combining filtering operations.
 
 ```{r}
-# get rows with > 20 but less than 100 fish
-filt1 <- filter(fishdat, Mullets > 20 & Mullets < 100)
+# get rows with > 20 and less than 100 Pinfish
+filt1 <- filter(fishdat, Pinfish > 20 & Pinfish < 100)
 head(filt1)
 
-# get rows with gear type 20 or blue crab
+# get rows with gear type 20 or red drum larger than 40
 filt2 <- filter(fishdat, Gear == 20 | `Red Drum` > 40)
 head(filt2)
 
-# get rows with Bluefish and Mullets
+# get rows gear 20 or gear 5
 filt3 <- filter(fishdat, Gear == 20 | Gear == 5)
 head(filt3)
 
-# get rows with Bluefish and Mullets
+# get rows with gear 20 or gear 5 using different syntax
 filt4 <- filter(fishdat, Gear %in% c(20, 5))
 head(filt4)
 ```
@@ -233,7 +233,7 @@ There are many more functions in `dplyr` but the one's above are by far the most
 
 Now that you know the basic functions in `dplyr` and how to use them, let's put them to use.  Using `fishdat`, let's select some columns of interest, filter by species and gear type, filter only large catches, and arrange in ascending order.
 
-1.  Remove all but the `Reference`, `Sampling_Date`, `Gear`, `Commonname`, and `Pinfish` columns.  Assign this dataset to a new object in your workspace.
+1.  Remove all but the `Reference`, `Sampling_Date`, `Gear`, and `Sand Seatrout` columns.  Assign this dataset to a new object in your workspace.
 
 1. Using the new object, filter again to get only Sand Seatrout and Pinfish caugth with Gear 20 (hint, filter by the `Gear` column` and don't forget ot use `==`). 
 
@@ -243,7 +243,7 @@ Now that you know the basic functions in `dplyr` and how to use them, let's put 
 
 <div class="fold s o">
 ```{r, eval = F}
-ex1 <- select(fishdat, Reference, Sampling_Date, Gear, Pinfish)
+ex1 <- select(fishdat, Reference, Sampling_Date, Gear, `Sand Seatrout`)
 ex1 <- filter(ex1, Gear == 20)
 ex1 <- rename(ex1, date = Sampling_Date)
 nrow(ex1)
@@ -296,19 +296,19 @@ A couple comments about piping:
 
 ## Exercise 2
 
-Now that we know how to pipe functions, let's repeat exercise 1.  You should already have code to select and filter the data. Use the following to repeate the analysis but with pipes.  You should only have to create one data object in this exercise. 
+Now that we know how to pipe functions, let's repeat exercise 1.  You should already have code to select and filter the data. Use the following to repeat the analysis but with pipes.  You should only have to create one data object in this exercise. 
 
 1. Using your code from exercise two, try to replicate the steps using pipes.  The steps we used in exercise two were:
-     * From fishdat, select the `Reference`, `Sampling_Date`, `Gear`, and `Pinfish` columns
+     * From fishdat, select the `Reference`, `Sampling_Date`, `Gear`, and `Sand Seatrout` columns
      * Filter by `Gear` to get only gear 20
-     * Rename `Smapling_Date` to `date`
+     * Rename `Sampling_Date` to `date`
 
 2. When you're done, you should have a data object that's exactly the same as the one you created in exercise two. Try to verify this with the `identical` function from base R (check the help file with `?identical` if you don't know how to use this function).
 
 <div class="fold s o">
 ```{r, eval = F}
 ex2 <- fishdat %>% 
-  select(Reference, Reference, Sampling_Date, Gear, Pinfish) %>% 
+  select(Reference, Reference, Sampling_Date, Gear, `Sand Seatrout`) %>% 
   filter(Gear == 20) %>% 
   rename(date = Sampling_Date)
 identical(ex1, ex2)

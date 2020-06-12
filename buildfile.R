@@ -15,7 +15,7 @@ source('R/dat_proc.R')
 # zip all data
 setwd('data/')
 fls <- list.files('.', pattern = '^sgdat|^fishdat\\.csv$|^statloc\\.csv$', recursive = T)
-zip('data.zip', c(fls, rfls))
+zip('data.zip', fls)
 setwd('..')
 
 # zip all r rscripts

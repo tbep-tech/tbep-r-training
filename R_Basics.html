@@ -455,7 +455,7 @@ div.tocify {
 <ul>
 <li>The growth of R as explained in the <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">Stack Overflow blog</a>, <a href="http://blog.revolutionanalytics.com/2016/07/r-moves-up-to-5th-place-in-ieee-language-rankings.html">IEEE rating</a></li>
 </ul>
-<p>R is also an open-source programming language - not only is it free, but this means anybody can contribute to it’s development. As of 2020-06-11, there are 15777 supplemental packages for R on CRAN!</p>
+<p>R is also an open-source programming language - not only is it free, but this means anybody can contribute to it’s development. As of 2020-06-12, there are 15762 supplemental packages for R on CRAN!</p>
 </div>
 </div>
 <div id="rstudio" class="section level2">
@@ -511,7 +511,7 @@ div.tocify {
 <div id="r-language-fundamentals" class="section level2">
 <h2>R language fundamentals</h2>
 <p>The basic syntax of a function follows the form: <code>function_name(arg1, arg2, ...)</code>.</p>
-<p>With the base install, you will gain access to many functions (3751, to be exact). Some examples:</p>
+<p>With the base install, you will gain access to many functions (3718, to be exact). Some examples:</p>
 <pre class="r"><code># print
 print(&#39;hello world!&#39;)</code></pre>
 <pre><code>## [1] &quot;hello world!&quot;</code></pre>
@@ -520,25 +520,25 @@ seq(1, 10)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code># random numbers
 rnorm(100, mean = 10, sd = 2)</code></pre>
-<pre><code>##   [1]  9.913758 12.234427  8.155343  8.532083  8.324886 10.393756 11.046284  9.591928 11.375298 10.956450 13.422919  7.502046 10.424764 10.461918
-##  [15] 10.929097  3.116730  8.367317  7.444091  6.879457  9.218398 11.869483 13.472906 10.987048  8.964623  9.934906 10.065505  7.748521 11.251335
-##  [29] 11.956263 11.214152 12.976121  9.998348 11.074848  7.624178 10.098786 10.482772 12.525620 11.934246 10.704391 10.005224  8.341985  9.218853
-##  [43] 10.654782  5.979721  8.911443 12.851843  7.295620  9.334283 12.079186  6.378193  8.507460  8.555920  9.377820 10.980141 11.169194  7.032827
-##  [57] 10.580779  9.076395  5.199918 10.445066 10.181157  9.560216 10.977233 14.118804  8.477064  9.416151 10.909210  9.742186 13.273028 12.936478
-##  [71] 14.527296  7.291133  9.911664  9.885863  5.454743 12.211503 10.188240  9.633656 11.372952  9.398989 10.618089  9.885815  7.295919 10.642583
-##  [85]  9.229916 10.116643  9.819617 10.359327  6.408876  8.508890 11.071374  8.219915  8.997775 10.921460 10.105667 10.939408 10.097503 10.443770
-##  [99] 10.050146 13.838073</code></pre>
+<pre><code>##   [1] 13.471042  7.111375  8.720146 12.557695 12.024659 10.315769  9.700626  9.465874 11.813494 10.237028 12.281879 10.915702 11.437104  8.447054
+##  [15]  9.838386  9.824662 12.412864  8.731362  6.951118 13.881159  9.698707  6.807991  9.619406 10.217891 10.172594  9.222600 10.615784  7.824262
+##  [29] 10.153884  8.692601 11.075697  8.109243  7.444520  9.570736 10.646776 11.193000  8.939237  8.705954 10.744174 12.609918  9.404089 10.480231
+##  [43]  9.333348 10.211772 12.097179  6.699516 10.295820 13.568668 11.629258 13.802761  6.415530  7.910735  8.259574 10.724643  8.166002  9.464833
+##  [57] 12.546773 12.105769 11.430687  4.390778  9.231539 11.321384 12.553346  8.604450  8.821519 10.485522  4.692721  7.022661 11.578307 10.768834
+##  [71]  6.742560 12.693035  7.153271 11.003940  5.947255 10.301958  9.899864  8.426587 10.961556 11.728542  9.680467  7.471436  9.358266  9.069212
+##  [85] 10.979481  9.649942 10.217139 11.099179 10.874768  8.683050 10.620606 11.170153  9.392825 10.788972 11.428951  7.680497 10.794069 13.998874
+##  [99] 11.392232 10.221706</code></pre>
 <pre class="r"><code># average 
 mean(rnorm(100))</code></pre>
-<pre><code>## [1] 0.003565375</code></pre>
+<pre><code>## [1] -0.003222507</code></pre>
 <pre class="r"><code># sum
 sum(rnorm(100))</code></pre>
-<pre><code>## [1] -6.599608</code></pre>
+<pre><code>## [1] -10.07162</code></pre>
 <p>Very often you will see functions used like this:</p>
 <pre class="r"><code>my_random_sum &lt;- sum(rnorm(100))</code></pre>
 <p>In this case the first part of the line is the name of an object. You make this up. Ideally it should have some meaning, but the only rules are that it can’t start with a number and must not have any spaces. The second bit, <code>&lt;-</code>, is the assignment operator. This tells R to take the result of <code>sum(rnorm(100))</code> and store it in an object named, <code>my_random_sum</code>. It is stored in the environment and can be used by just executing it’s name in the console.</p>
 <pre class="r"><code>my_random_sum</code></pre>
-<pre><code>## [1] -2.952845</code></pre>
+<pre><code>## [1] -6.074662</code></pre>
 <p>With this, you have the very basics of how we write R code and save objects that can be used later.</p>
 <div id="packages" class="section level3">
 <h3>Packages</h3>
@@ -546,7 +546,7 @@ sum(rnorm(100))</code></pre>
 </div>
 <div id="cran" class="section level3">
 <h3>CRAN</h3>
-<p>One of the reasons for R’s popularity is CRAN, <a href="http://cran.r-project.org/">The Comprehensive R Archive Network</a>. This is where you download R and also where most will gain access to packages (there are other places, but that is for later). Not much else to say about this now other than to be aware of it. As of 2020-06-11, there are 15777 on CRAN!</p>
+<p>One of the reasons for R’s popularity is CRAN, <a href="http://cran.r-project.org/">The Comprehensive R Archive Network</a>. This is where you download R and also where most will gain access to packages (there are other places, but that is for later). Not much else to say about this now other than to be aware of it. As of 2020-06-12, there are 15762 on CRAN!</p>
 </div>
 <div id="installing-packages" class="section level3">
 <h3>Installing packages</h3>

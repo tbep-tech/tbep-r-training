@@ -511,7 +511,7 @@ div.tocify {
 <div id="r-language-fundamentals" class="section level2">
 <h2>R language fundamentals</h2>
 <p>The basic syntax of a function follows the form: <code>function_name(arg1, arg2, ...)</code>.</p>
-<p>With the base install, you will gain access to many functions (3751, to be exact). Some examples:</p>
+<p>With the base install, you will gain access to many functions (3941, to be exact). Some examples:</p>
 <pre class="r"><code># print
 print(&#39;hello world!&#39;)</code></pre>
 <pre><code>## [1] &quot;hello world!&quot;</code></pre>
@@ -520,25 +520,25 @@ seq(1, 10)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code># random numbers
 rnorm(100, mean = 10, sd = 2)</code></pre>
-<pre><code>##   [1] 14.653528  6.919834 10.249345  9.704087 10.092044  9.886912 11.920633  8.455979  9.301608  9.507464 11.928597 10.472959  9.500053  6.745325
-##  [15] 10.269673  6.566828  9.530090 10.352585 10.696004 11.680518 12.985420 10.531961  7.252642  9.487928 11.756010  8.471103  9.410498 10.903547
-##  [29] 10.597700 12.080605 13.301520  8.855546 12.151392  6.009848  7.979179  9.052303  5.827207  8.921142  9.885453 12.346538 11.197695 11.284582
-##  [43] 10.266600  8.829217  7.180790 10.226673 10.404527 11.620094 10.510674 11.450081  9.604643  9.733919  8.862937 10.780055 11.656043 10.078761
-##  [57]  9.002607  6.420158 10.427030 10.826874  9.827923 11.129683  9.499867  8.067088  8.507547  7.970305 10.282197  9.808287  5.834299  5.934238
-##  [71]  8.655813 10.895252 10.466117 10.015381  8.561546  9.291769 11.319558 11.857122  9.492802  8.795061 12.207541 14.672240  9.324251 11.762264
-##  [85]  6.650716  8.791667  6.164329  9.943310  9.381134  6.134448 12.674855 11.732334  8.308179  8.733109  8.760335 11.104939  9.879886 14.725198
-##  [99]  9.742823 10.505637</code></pre>
+<pre><code>##   [1]  9.988153  6.067018 11.752918 10.537236 10.828468 11.859655 11.940245 12.388219  7.893470  5.621396 10.864446  8.435175  8.571302  9.864045
+##  [15] 10.889096 11.662255 12.528145  8.760724  8.222228  8.118140 11.744991 11.034302  9.305374  9.006686  9.539354 11.195620  9.571664 13.943381
+##  [29]  8.905481 13.763829 11.268957  6.508219 12.374051 12.943707 11.579360 12.652523 12.156188 11.530921 12.371317  4.801330  6.009218  7.902216
+##  [43]  7.618370 11.210261 12.036181 11.372257  9.968582 11.446764  9.956169  9.618346 10.828032  9.394257  7.689306 10.874338 11.549199  9.897375
+##  [57] 10.790365  9.565673 11.356089  7.268295 10.521627  9.631554 10.154680  9.881094 10.163448 11.874485  5.184644 12.358419  8.447359 10.040176
+##  [71]  9.976822 12.316383  7.576365 12.466145  4.367348 13.561237 10.985795 11.828272 10.897473  7.541781  9.118778 10.402944 12.001856  8.284478
+##  [85] 12.423602  8.802478 14.231557 10.001217  8.003160  6.900825 10.003662 11.495972 13.270500 12.198760 12.066247 11.447989 10.887019 13.728874
+##  [99]  9.959625 11.561168</code></pre>
 <pre class="r"><code># average 
 mean(rnorm(100))</code></pre>
-<pre><code>## [1] -0.06233288</code></pre>
+<pre><code>## [1] -0.08625993</code></pre>
 <pre class="r"><code># sum
 sum(rnorm(100))</code></pre>
-<pre><code>## [1] 7.000025</code></pre>
+<pre><code>## [1] -0.4707159</code></pre>
 <p>Very often you will see functions used like this:</p>
 <pre class="r"><code>my_random_sum &lt;- sum(rnorm(100))</code></pre>
 <p>In this case the first part of the line is the name of an object. You make this up. Ideally it should have some meaning, but the only rules are that it can’t start with a number and must not have any spaces. The second bit, <code>&lt;-</code>, is the assignment operator. This tells R to take the result of <code>sum(rnorm(100))</code> and store it in an object named, <code>my_random_sum</code>. It is stored in the environment and can be used by just executing it’s name in the console.</p>
 <pre class="r"><code>my_random_sum</code></pre>
-<pre><code>## [1] 8.427812</code></pre>
+<pre><code>## [1] -2.635188</code></pre>
 <p>With this, you have the very basics of how we write R code and save objects that can be used later.</p>
 <div id="packages" class="section level3">
 <h3>Packages</h3>

@@ -48,7 +48,7 @@ There are a few housekeeping items we need to go over before we start the worksh
 
 1. Finally, if you are not using RStudio Cloud, please make sure to download the required datasets [here](https://tbep-tech.github.io/tbep-r-training/data/data.zip) and make sure you have the the `tidyverse`, `sf`, and `mapview` packages installed. See the [setup instructions](https://tbep-tech.github.io/tbep-r-training/setup.html) for details.  
 
-All exercises and breaks will be timed to make sure that we stay on schedule. We'll display a timer on the screen to track progress. 
+All exercises and breaks will be timed to make sure that we stay on schedule. We'll display a timer on the screen to track progress. Each lesson will also be recorded so you can review at a later date. 
 
 ## Software requirements
 

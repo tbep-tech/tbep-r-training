@@ -102,11 +102,11 @@ This exercise will make sure R and RStudio are working and that you can get arou
 
 1. If you're not using RStudio Cloud, create a new project.  Name it "r_workshop".  We will use this for the rest of the workshop.
 
-1. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "cabw_script.R". It'll just be a blank text file at this point.
+1. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "first_script.R". It'll just be a blank text file at this point.
 
 1. Add in a comment line to separate this section.  It should look something like: `# Exercise 1: Just Getting used to RStudio and Scripts`.
 
-1. Lastly, we need to get this project set up with some example data for our exercises.  You should have downloaded this already, but if not, the data are available [here](https://SCCWRP.github.io/tbep_r_training/data/datazip.zip).  The data are in a zipped folder.  Download the file to your computer (anywhere).  Create a folder in your new project named `data` and extract the files into this location.  
+1. Lastly, we need to get this project set up with some example data for our exercises (if using RStudio Cloud, ignore this step).  You should have downloaded this already, but if not, the data are available [here](https://SCCWRP.github.io/tbep_r_training/data/datazip.zip).  The data are in a zipped folder.  Download the file to your computer (anywhere).  Create a folder in your new project named `data` and extract the files into this location.  
 
 ## R language fundamentals
 
@@ -160,7 +160,7 @@ When a package gets installed, that means the source code is downloaded and put 
 
 ## Exercise 2
 
-We're going to install some packages from CRAN that will give us the tools for our workshop today.  We'll use the tidyverse, sf, mapview, viridis, and USAboundaries packages.  Later, we'll explain in detail what each of these packages provide.  
+We're going to install some packages from CRAN that will give us the tools for our workshop today.  We'll use the tidyverse, sf, and mapview packages.  Later, we'll explain in detail what each of these packages provide.  Again, if you are using RStudio Cloud, these packages will already be installed.  You can skip to step 5 in this case.  
 
 1. At the top of the script you just created, type the following functions.
 
@@ -213,7 +213,7 @@ In addition to help from within R itself, CRAN and the R-Project have many resou
 
 - [R Help Mailing List](https://stat.ethz.ch/mailman/listinfo/r-help): The main mailing list for R help.  Can be a bit daunting and some (although not most) senior folks can be, um, curmudgeonly...
 - [R-sig-ecology](https://stat.ethz.ch/mailman/listinfo/r-sig-ecology): A special interest group for use of R in ecology.  Less daunting than the main help with participation from some big names in ecological modelling and statistics (e.g., Ben Bolker, Gavin Simpson, and Phil Dixon).
-- [Environmetrics Task View](http://cran.r-project.org/web/views/Environmetrics.html): Task views are great in that they provide an annotated list of packages relevant to a particular field.  This one is maintained by Gavin Simpson and has great info on packages relevant to much of the work at EPA.
+- [Environmetrics Task View](http://cran.r-project.org/web/views/Environmetrics.html): Task views are great in that they provide an annotated list of packages relevant to a particular field.  This one is maintained by Gavin Simpson and has great info on packages relevant to the environmental sciences.
 - [Spatial Analysis Task View](http://cran.r-project.org/web/views/Spatial.html): One I use a lot that lists all the relevant packages for spatial analysis, GIS, and Remote Sensing in R. 
 
 ### Google and StackOverflow
@@ -234,7 +234,8 @@ One specific resource that I use quite a bit is [StackOverflow with the 'r' tag]
 As I mentioned earlier, there are TOO many resources to list here and everyone has their favorites.  Below are just a few that I like.
 
 - [R For Cats](http://rforcats.net/): Basic introduction site, meant to be a gentle and light-hearted introduction
-- [Advanced R](http://adv-r.had.co.nz/): Web home of Hadley Wickham's new book.  Gets into more advanced topics, but also covers the basics in a great way.
+- [R for Data Science](https://r4ds.had.co.nz/): My favorite resource for learning data science methods with R, focusing on the tidyverse. Much of the content in this training is adapted from this book. 
+- [Advanced R](http://adv-r.had.co.nz/): Web home of Hadley Wickham's book, the same author of R for Data Science.  Gets into more advanced topics, but also covers the basics in a great way.
 - [CRAN Cheatsheets](http://cran.r-project.org/doc/contrib/Short-refcard.pdf): A good cheat sheet from the official source
 - [RStudio Cheatsheets](http://www.rstudio.com/resources/cheatsheets/): Additional cheat sheets from RStudio.  I am especially fond of the data wrangling one.
 
@@ -300,7 +301,7 @@ Flat data files (text only, rectangular format) present the least complications 
 
 ### Exercise 3
 
-Now that we have the data downloaded and extracted to our data folder, we'll use `read_csv` to import two files.
+Now that we have the data downloaded and extracted to our data folder, we'll use `read_csv` to import two files into our environment.  The `read_csv` function comes with the tidyverse package, so make sure that package is loaded (i.e., `library(tidyverse)`) before you do this exercise.  This should have been done in the second exercise.
 
 1. Type the following in your script.  Note the use of *relative* file paths within your project.
 
@@ -342,7 +343,7 @@ View(statloc)
 
 ### Other ways to import data
 
-More often you will probably have an Excel spreadsheet to import. In the old days, importing spreadsheets into R was almost impossible given the proprietary data structure of Excel.  The tools available in R have since matured and it's now pretty painless to import a spreadsheet.  The `readxl` package is the most recent and by far most flexible data import package for Excel files. It comes with the `tidyverse` family of packages.
+You might want to import an Excel spreadsheet as well. In the old days, importing spreadsheets into R was almost impossible given the proprietary data structure used by Microsoft.  The tools available in R have since matured and it's now pretty painless to import a spreadsheet.  The `readxl` package is the most recent and by far most flexible data import package for Excel files. It comes with the `tidyverse` family of packages.
 
 Once installed, we can load it to access the import functions.
 

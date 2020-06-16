@@ -507,7 +507,7 @@ div.tocify {
 <div id="r-language-fundamentals" class="section level2">
 <h2>R language fundamentals</h2>
 <p>R is built around functions. These are commands that do specific things based on what you provide. The basic syntax of a function follows the form: <code>function_name(arg1, arg2, ...)</code>.</p>
-<p>With the base install, you will gain access to many functions (3718, to be exact). Some examples:</p>
+<p>With the base install, you will gain access to many functions (2682, to be exact). Some examples:</p>
 <pre class="r"><code># print
 print(&#39;hello world!&#39;)</code></pre>
 <pre><code>## [1] &quot;hello world!&quot;</code></pre>
@@ -516,24 +516,32 @@ seq(1, 10)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code># random numbers
 rnorm(100, mean = 10, sd = 2)</code></pre>
-<pre><code>##   [1]  6.644495 12.267602  9.738088 10.577649 10.360824  8.284307 10.524151  9.107200 12.262725 12.761636 13.233327  9.701835  9.699129 11.576255 11.858686
-##  [16]  7.847759 12.230789 10.465036  8.714797 10.411922 10.292870 11.814022 10.833297 10.037501  9.840274 11.104897 11.145624 10.607025  8.117241  9.300042
-##  [31]  9.768533  7.349876 10.889593 13.593477  6.914639 11.405511 10.582680 11.425432  7.240339 12.065179 11.909233  9.768004  7.967221  9.816552  9.226634
-##  [46]  8.486781 12.344990 11.760967  9.273219  8.131772 11.436059 10.129684  6.538425 10.637431  6.732764  8.498949 10.591698  8.958319 10.591305 12.001943
-##  [61]  9.241166 11.678830 11.854814  9.827552  9.947598  6.873555 10.471440 11.636314  6.066345  9.943105  6.940714  7.774934  6.479814 10.732023 11.104658
-##  [76] 14.830109  5.868386  8.854035 10.593346  7.517627 15.844640 13.558371  6.633768  5.425455 11.121842 10.098146  9.978649  9.664609 10.285664 12.002989
-##  [91] 12.143919  8.369945 10.330888  5.524585  8.024322  7.975179 13.250265  8.560592  9.325944 10.038204</code></pre>
+<pre><code>##   [1]  8.918541  8.708617 12.740976  9.397573  7.835029  8.128551  7.253444
+##   [8]  8.588827  9.709521 10.238861 12.486227 10.571899 11.226899  6.952402
+##  [15] 14.001036 10.025450  9.750195  9.416111 10.149790  9.237704 11.739697
+##  [22]  9.536287 10.835295 14.105017  5.856444  7.521928 10.695204  9.104420
+##  [29] 11.301049 10.666550 10.134474  8.009632  7.698212 13.648845 12.750741
+##  [36]  7.409503  6.103261 11.924812 10.808877  9.266842  7.641700 10.382826
+##  [43]  9.957729 10.595912 11.944470 10.292638 12.102744 10.033293  6.298621
+##  [50] 14.087910 11.137456 15.588576  7.224731  8.002809  9.851506  9.666850
+##  [57]  6.881302 10.416314 10.341639 11.125932  8.399921  8.129190 10.086970
+##  [64]  9.855790  9.787652 10.413727  9.636757  8.134305  9.694767 15.945335
+##  [71] 11.103728 12.170370 10.355678 10.584063  9.337266  9.070723  8.856415
+##  [78] 11.069205 10.747060 13.512498  9.695272 10.218440 11.422636 13.083305
+##  [85] 10.649387 10.744557 10.338647  9.290234  8.371768 10.187534 13.277565
+##  [92]  9.430888 12.074832 12.011856  9.615695 11.229941  9.107787  9.828270
+##  [99] 11.117116  9.297636</code></pre>
 <pre class="r"><code># average 
 mean(rnorm(100))</code></pre>
-<pre><code>## [1] -0.06074195</code></pre>
+<pre><code>## [1] -0.02080965</code></pre>
 <pre class="r"><code># sum
 sum(rnorm(100))</code></pre>
-<pre><code>## [1] -10.74124</code></pre>
+<pre><code>## [1] 10.63043</code></pre>
 <p>Very often you will see functions used like this:</p>
 <pre class="r"><code>my_random_sum &lt;- sum(rnorm(100))</code></pre>
 <p>In this case the first part of the line is the name of an object. You make this up. Ideally it should have some meaning, but the only rules are that it can’t start with a number and must not have any spaces. The second bit, <code>&lt;-</code>, is the assignment operator. This tells R to take the result of <code>sum(rnorm(100))</code> and store it in an object named, <code>my_random_sum</code>. It is stored in the environment and can be used by just executing it’s name in the console.</p>
 <pre class="r"><code>my_random_sum</code></pre>
-<pre><code>## [1] -5.950737</code></pre>
+<pre><code>## [1] 7.21466</code></pre>
 <div id="what-is-the-environment" class="section level3">
 <h3>What is the environment?</h3>
 <p>There are two outcomes when you run code. First, the code will simply print output directly in the console. Second, there is no output because you have stored it as a variable using <code>&lt;-</code>. Output that is stored is actually saved in the <code>environment</code>. The environment is the collection of named objects that are stored in memory for your current R session. Anything stored in memory will be accessible by it’s name without running the original script that was used to create it.</p>
@@ -590,7 +598,7 @@ apropos(&quot;print&quot;) # Returns all available functions with &quot;print&qu
 </div>
 <div id="official-r-resources" class="section level3">
 <h3>Official R Resources</h3>
-<p>In addition to help from within R itself, CRAN and the R-Project have many resources available for support. Two of the most notable are the mailing lists and the <a href="http://cran.r-project.org/web/views/">task views</a>{:target="_blank"}.</p>
+<p>In addition to help from within R itself, CRAN and the R-Project have many resources available for support. Two of the most notable are the mailing lists and the <a href="http://cran.r-project.org/web/views/" target="_blank">task views</a>.</p>
 <ul>
 <li><a href="https://stat.ethz.ch/mailman/listinfo/r-help">R Help Mailing List</a>: The main mailing list for R help. Can be a bit daunting and some (although not most) senior folks can be, um, curmudgeonly…</li>
 <li><a href="https://stat.ethz.ch/mailman/listinfo/r-sig-ecology">R-sig-ecology</a>: A special interest group for use of R in ecology. Less daunting than the main help with participation from some big names in ecological modelling and statistics (e.g., Ben Bolker, Gavin Simpson, and Phil Dixon).</li>
@@ -688,21 +696,24 @@ dim(fishdat)</code></pre>
 <pre><code>## [1] 2173    3</code></pre>
 <pre class="r"><code># get the column names
 names(fishdat)</code></pre>
-<pre><code>##  [1] &quot;OBJECTID&quot;      &quot;Reference&quot;     &quot;Sampling_Date&quot; &quot;yr&quot;            &quot;Gear&quot;          &quot;ExDate&quot;        &quot;Bluefish&quot;      &quot;Common Snook&quot;  &quot;Mullets&quot;      
-## [10] &quot;Pinfish&quot;       &quot;Red Drum&quot;      &quot;Sand Seatrout&quot;</code></pre>
+<pre><code>##  [1] &quot;OBJECTID&quot;      &quot;Reference&quot;     &quot;Sampling_Date&quot; &quot;yr&quot;           
+##  [5] &quot;Gear&quot;          &quot;ExDate&quot;        &quot;Bluefish&quot;      &quot;Common Snook&quot; 
+##  [9] &quot;Mullets&quot;       &quot;Pinfish&quot;       &quot;Red Drum&quot;      &quot;Sand Seatrout&quot;</code></pre>
 <pre class="r"><code>names(statloc)</code></pre>
 <pre><code>## [1] &quot;Reference&quot; &quot;Latitude&quot;  &quot;Longitude&quot;</code></pre>
 <pre class="r"><code># see the first six rows
 head(fishdat)</code></pre>
 <pre><code>## # A tibble: 6 x 12
-##   OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
-##      &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
-## 1  1550020 TBM1996032006 1996-03-20     1996   300 2018-04-12 10:27:38        0              0       0       0          0               1
-## 2  1550749 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0      54          0               0
-## 3  1550750 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0       0          1               0
-## 4  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23        0              0       0      80          0               0
-## 5  1550828 TBM1996042601 1996-04-26     1996   160 2018-04-12 10:25:23        0              0       0       0          4               0
-## 6  1550838 TBM1996051312 1996-05-13     1996   300 2018-04-12 10:25:23        0              0       0       0          0               1</code></pre>
+##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Bluefish
+##      &lt;dbl&gt; &lt;chr&gt;     &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;
+## 1  1550020 TBM19960~ 1996-03-20     1996   300 2018-04-12 10:27:38        0
+## 2  1550749 TBM19960~ 1996-03-20     1996    22 2018-04-12 10:25:23        0
+## 3  1550750 TBM19960~ 1996-03-20     1996    22 2018-04-12 10:25:23        0
+## 4  1550762 TBM19960~ 1996-03-22     1996    20 2018-04-12 10:25:23        0
+## 5  1550828 TBM19960~ 1996-04-26     1996   160 2018-04-12 10:25:23        0
+## 6  1550838 TBM19960~ 1996-05-13     1996   300 2018-04-12 10:25:23        0
+## # ... with 5 more variables: `Common Snook` &lt;dbl&gt;, Mullets &lt;dbl&gt;,
+## #   Pinfish &lt;dbl&gt;, `Red Drum` &lt;dbl&gt;, `Sand Seatrout` &lt;dbl&gt;</code></pre>
 <pre class="r"><code>head(statloc)</code></pre>
 <pre><code>## # A tibble: 6 x 3
 ##   Reference     Latitude Longitude
@@ -718,10 +729,10 @@ str(fishdat)</code></pre>
 <pre><code>## tibble [2,844 x 12] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ OBJECTID     : num [1:2844] 1550020 1550749 1550750 1550762 1550828 ...
 ##  $ Reference    : chr [1:2844] &quot;TBM1996032006&quot; &quot;TBM1996032004&quot; &quot;TBM1996032004&quot; &quot;TBM1996032207&quot; ...
-##  $ Sampling_Date: Date[1:2844], format: &quot;1996-03-20&quot; &quot;1996-03-20&quot; &quot;1996-03-20&quot; &quot;1996-03-22&quot; ...
+##  $ Sampling_Date: Date[1:2844], format: &quot;1996-03-20&quot; &quot;1996-03-20&quot; ...
 ##  $ yr           : num [1:2844] 1996 1996 1996 1996 1996 ...
 ##  $ Gear         : num [1:2844] 300 22 22 20 160 300 300 300 300 22 ...
-##  $ ExDate       : POSIXct[1:2844], format: &quot;2018-04-12 10:27:38&quot; &quot;2018-04-12 10:25:23&quot; &quot;2018-04-12 10:25:23&quot; &quot;2018-04-12 10:25:23&quot; ...
+##  $ ExDate       : POSIXct[1:2844], format: &quot;2018-04-12 10:27:38&quot; &quot;2018-04-12 10:25:23&quot; ...
 ##  $ Bluefish     : num [1:2844] 0 0 0 0 0 0 0 0 0 0 ...
 ##  $ Common Snook : num [1:2844] 0 0 0 0 0 0 0 0 0 0 ...
 ##  $ Mullets      : num [1:2844] 0 0 0 0 0 0 0 0 0 0 ...

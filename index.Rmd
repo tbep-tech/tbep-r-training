@@ -38,15 +38,15 @@ There are a few housekeeping items we need to go over before we start the worksh
 
 1. First and most importantly, please mute your microphones and do not use your camera so that we can preserve bandwidth.  If you have a question, please type it into the chat and one of our moderators will notify me or contact you directly.  Also, please be aware that we will not be able to respond to all questions given the number of participants. 
 
-1. Please use RStudio Cloud or your own installation of RStudio during this workshop.  The setup instructions for RStudio Cloud are [here](https://tbep-tech.github.io/tbep-r-training/setupcloud.html) and for RStudio installation [here](https://tbep-tech.github.io/tbep-r-training/setup.html).  You may use one or the other, but we recommend RStudio Cloud for the training. 
+1. Please use RStudio Cloud or your own installation of RStudio during this workshop.  The setup instructions for RStudio Cloud are [here](setupcloud.html) and for RStudio installation [here](setup.html).  You may use one or the other, but we recommend RStudio Cloud for the training. 
 
-1. We have a [live coding](https://tinyurl.com/tbep-r-training-live-coding) link that we'll be using as we go through the lessons. If you get lost, you can copy/paste code from this link into RStudio. 
+1. We have a [live coding](https://tinyurl.com/tbep-r-training-live-coding){target="_blank"} link that we'll be using as we go through the lessons. If you get lost, you can copy/paste code from this link into RStudio. 
 
 1. All training content is on this website.  We will be covering the content directly on the website, so if you get lost you can view the agenda to see which lesson we're covering and find where we're at by scrolling through the content. 
 
 1. Each lesson has it's own R script that is linked at the top. If you are not using the live coding link, you can download the lesson R script and use that directly. 
 
-1. Finally, if you are not using RStudio Cloud, please make sure to download the required datasets [here](https://tbep-tech.github.io/tbep-r-training/data/data.zip) and make sure you have the the `tidyverse`, `sf`, and `mapview` packages installed. See the [setup instructions](https://tbep-tech.github.io/tbep-r-training/setup.html) for details.  
+1. Finally, if you are not using RStudio Cloud, please make sure to download the required datasets [here](https://tbep-tech.github.io/tbep-r-training/data/data.zip) and make sure you have the the `tidyverse`, `sf`, and `mapview` packages installed. See the [setup instructions](setup.html) for details.  
 
 All exercises and breaks will be timed to make sure that we stay on schedule. We'll display a timer on the screen to track progress. Each lesson will also be recorded so you can review at a later date. 
 
@@ -62,12 +62,12 @@ This training will use RStudio and R. Please make sure that you are ready to use
 
 ## Data and resources
 
-Please view the [Data and Resources](Data_and_Resources.html) page for data used in this workshop and additional links for R learning material.  A [live coding](https://tinyurl.com/tbep-r-training-live-coding) link is also available.
+Please view the [Data and Resources](Data_and_Resources.html) page for data used in this workshop and additional links for R learning material.  A [live coding](https://tinyurl.com/tbep-r-training-live-coding){target="_blank"} link is also available.
 
 ## Instructor
 
-[Marcus Beck](https://fawda123.github.io/CV/Beck_CV.pdf) ([mbeck@tbep.org](mailto:mbeck@tbep.org)) - Marcus is the Program Scientist for the Tampa Bay Estuary Program and is developing data analysis and visualization methods for Bay health indicators.  He received his BS in Zoology from the University of Florida in 2007 and his MSc and PhD in Conservation Biology from the University of Minnesota in 2009 and 2013. Marcus has experience researching environmental indicators and developing open science products to support environmental decision-making.  He has over ten years of experience using and developing software in the R Statistical Programming Language.
+[Marcus Beck](https://fawda123.github.io/CV/Beck_CV.pdf){target="_blank"} ([mbeck@tbep.org](mailto:mbeck@tbep.org)) - Marcus is the Program Scientist for the Tampa Bay Estuary Program and is developing data analysis and visualization methods for Bay health indicators.  He received his BS in Zoology from the University of Florida in 2007 and his MSc and PhD in Conservation Biology from the University of Minnesota in 2009 and 2013. Marcus has experience researching environmental indicators and developing open science products to support environmental decision-making.  He has over ten years of experience using and developing software in the R Statistical Programming Language.
 
 ## Source content
 
-All source materials for this website can be accessed at https://github.com/tbep-tech/tbep-r-training
+All source materials for this website can be accessed at [https://github.com/tbep-tech/tbep-r-training](https://github.com/tbep-tech/tbep-r-training){target="_blank"}

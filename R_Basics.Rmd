@@ -68,7 +68,7 @@ There are four panes in RStudio:
 
 ### RStudio projects
 
-I strongly encourage you to use RStudio projects when you are working with R.  The RStudio project provides a central location for working on a particular task.  It helps with file management and is portable because all the files live in the same project.  RStudio projects also remember history - what commands you used and what data objects are in your enviornment.  
+I strongly encourage you to use RStudio projects when you are working with R.  The RStudio project provides a central location for working on a particular task.  It helps with file management and is portable because all the files live in the same project.  RStudio projects also remember history - what commands you used and what data objects are in your environment.  
 
 To create a new project, click on the File menu at the top and select 'New project...'
 

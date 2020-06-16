@@ -61,10 +61,10 @@ If you haven't done so, download and install RStudio from the link above.  After
 
 There are four panes in RStudio: 
 
-* Source
-* console
-* Environment, History, etc.
-* Files, plots, etc.
+* __Source__: Your primary window for writing code to send to the console, this is where you write and save R "scripts"
+* __Console__: This is where code is executed in R - you should almost never write code here.
+* __Environment, History, etc.__: A tabbed window showing your working environment, code execution history, and other useful things
+* __Files, plots, etc.__: A tabbed window showing a file explorer, a plot window, list of installed packages, help files, and viewer 
 
 ### RStudio projects
 

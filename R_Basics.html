@@ -455,7 +455,7 @@ div.tocify {
 <ul>
 <li>The growth of R as explained in the <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">Stack Overflow blog</a>, <a href="http://blog.revolutionanalytics.com/2016/07/r-moves-up-to-5th-place-in-ieee-language-rankings.html">IEEE rating</a></li>
 </ul>
-<p>R is also an open-source programming language - not only is it free, but this means anybody can contribute to it’s development. As of 2020-06-15, there are 15751 supplemental packages for R on CRAN!</p>
+<p>R is also an open-source programming language - not only is it free, but this means anybody can contribute to it’s development. As of 2020-06-16, there are 15725 supplemental packages for R on CRAN!</p>
 </div>
 </div>
 <div id="rstudio" class="section level2">
@@ -468,10 +468,10 @@ div.tocify {
 <p><img src="figure/rstudio.png" /></p>
 <p>There are four panes in RStudio:</p>
 <ul>
-<li>Source</li>
-<li>console</li>
-<li>Environment, History, etc.</li>
-<li>Files, plots, etc.</li>
+<li><strong>Source</strong>: Your primary window for writing code to send to the console, this is where you write and save R “scripts”</li>
+<li><strong>Console</strong>: This is where code is executed in R - you should almost never write code here.</li>
+<li><strong>Environment, History, etc.</strong>: A tabbed window showing your working environment, code execution history, and other useful things</li>
+<li><strong>Files, plots, etc.</strong>: A tabbed window showing a file explorer, a plot window, list of installed packages, help files, and viewer</li>
 </ul>
 </div>
 <div id="rstudio-projects" class="section level3">
@@ -511,7 +511,7 @@ div.tocify {
 <div id="r-language-fundamentals" class="section level2">
 <h2>R language fundamentals</h2>
 <p>The basic syntax of a function follows the form: <code>function_name(arg1, arg2, ...)</code>.</p>
-<p>With the base install, you will gain access to many functions (3941, to be exact). Some examples:</p>
+<p>With the base install, you will gain access to many functions (2682, to be exact). Some examples:</p>
 <pre class="r"><code># print
 print(&#39;hello world!&#39;)</code></pre>
 <pre><code>## [1] &quot;hello world!&quot;</code></pre>
@@ -520,25 +520,32 @@ seq(1, 10)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code># random numbers
 rnorm(100, mean = 10, sd = 2)</code></pre>
-<pre><code>##   [1] 11.178950  9.486595 10.618705  5.864584 12.257164  8.548734  7.207920 10.771298 14.294294 12.271514  9.607043 12.038216  5.614979  6.662547
-##  [15] 11.054953 12.255006  9.191078  9.009720 12.258841 13.231426  7.263941  6.356982  8.225939  9.657015  9.676464  7.126621  7.948294 10.384699
-##  [29] 11.392994  8.860102 11.987420  7.303553  7.753431  6.528830 10.252787  7.270103  7.516356 10.070834 11.527461 11.336586 10.001061  9.676065
-##  [43] 10.285417  8.989100 12.769215  8.172971 10.216166  8.916324 12.274290 12.214394 13.854139  7.086594 10.350988  8.107130  8.009349  7.304274
-##  [57]  7.581207 12.288380 11.950754  9.626769 10.844110 12.470504 11.224227 10.018519 13.726325  9.243373  9.099259  6.562160  9.911522 10.507085
-##  [71]  9.309596 10.087943  9.160279  8.931100  9.443977  9.927081  9.214604 10.575984 14.574647 10.298190 13.220669  9.370826  9.237804  9.325497
-##  [85] 11.777808 12.579924 15.286692  8.476709 10.479324 11.294778  8.335781  9.119806  4.666782 10.277642  9.230001  9.468887  7.460628  8.969708
-##  [99] 13.321332 10.887425</code></pre>
+<pre><code>##   [1]  9.583847 11.897860 13.309565 10.353375 10.555519  9.835460  8.451599
+##   [8]  9.199000  9.764162  7.997693 10.327332 10.429909  9.907653 10.862914
+##  [15]  8.464008  9.089815  7.505658  8.879579  8.141135  9.289509 12.237541
+##  [22] 14.738124  8.368184 11.233598 11.223941 12.543412 11.009909  8.906354
+##  [29]  9.298084  9.639140 10.297492  8.861184 12.552108  8.973711 12.084728
+##  [36] 11.342665  6.835926 11.318094 10.344078  8.912165 10.417474 13.331247
+##  [43] 15.051134  9.392302  5.631280  7.271852  8.864404 10.188709 10.178848
+##  [50] 10.525105 10.764543  8.102991  9.025905 14.463841 10.846990 11.028780
+##  [57] 10.043939  9.172162 11.990411  9.362972 12.467086  6.178278  8.392830
+##  [64]  9.213702  6.965469 11.101472  5.104998 10.674994 10.887804 12.617242
+##  [71] 10.036964  6.778810  9.671316  9.707348 13.004901  8.556471 10.637871
+##  [78] 11.511535  7.393466 13.331905  9.814752 11.958668  8.629024  7.251348
+##  [85]  7.505835  7.349892 10.309389  9.765807  9.947425  8.999045  6.817016
+##  [92]  8.246478 11.569003 10.811619  8.466969  8.467869 11.412878 11.891449
+##  [99] 11.208207 10.800526</code></pre>
 <pre class="r"><code># average 
 mean(rnorm(100))</code></pre>
-<pre><code>## [1] 0.001964265</code></pre>
+<pre><code>## [1] -0.113438</code></pre>
 <pre class="r"><code># sum
 sum(rnorm(100))</code></pre>
-<pre><code>## [1] 4.38025</code></pre>
+<pre><code>## [1] -8.435791</code></pre>
 <p>Very often you will see functions used like this:</p>
 <pre class="r"><code>my_random_sum &lt;- sum(rnorm(100))</code></pre>
 <p>In this case the first part of the line is the name of an object. You make this up. Ideally it should have some meaning, but the only rules are that it can’t start with a number and must not have any spaces. The second bit, <code>&lt;-</code>, is the assignment operator. This tells R to take the result of <code>sum(rnorm(100))</code> and store it in an object named, <code>my_random_sum</code>. It is stored in the environment and can be used by just executing it’s name in the console.</p>
 <pre class="r"><code>my_random_sum</code></pre>
-<pre><code>## [1] -1.304934</code></pre>
+<pre><code>## [1] -15.13122</code></pre>
 <p>With this, you have the very basics of how we write R code and save objects that can be used later.</p>
 <div id="packages" class="section level3">
 <h3>Packages</h3>
@@ -546,7 +553,7 @@ sum(rnorm(100))</code></pre>
 </div>
 <div id="cran" class="section level3">
 <h3>CRAN</h3>
-<p>One of the reasons for R’s popularity is CRAN, <a href="http://cran.r-project.org/">The Comprehensive R Archive Network</a>. This is where you download R and also where most will gain access to packages (there are other places, but that is for later). Not much else to say about this now other than to be aware of it. As of 2020-06-15, there are 15751 on CRAN!</p>
+<p>One of the reasons for R’s popularity is CRAN, <a href="http://cran.r-project.org/">The Comprehensive R Archive Network</a>. This is where you download R and also where most will gain access to packages (there are other places, but that is for later). Not much else to say about this now other than to be aware of it. As of 2020-06-16, there are 15725 on CRAN!</p>
 </div>
 <div id="installing-packages" class="section level3">
 <h3>Installing packages</h3>
@@ -689,21 +696,24 @@ dim(fishdat)</code></pre>
 <pre><code>## [1] 2173    3</code></pre>
 <pre class="r"><code># get the column names
 names(fishdat)</code></pre>
-<pre><code>##  [1] &quot;OBJECTID&quot;      &quot;Reference&quot;     &quot;Sampling_Date&quot; &quot;yr&quot;            &quot;Gear&quot;          &quot;ExDate&quot;        &quot;Bluefish&quot;      &quot;Common Snook&quot;  &quot;Mullets&quot;      
-## [10] &quot;Pinfish&quot;       &quot;Red Drum&quot;      &quot;Sand Seatrout&quot;</code></pre>
+<pre><code>##  [1] &quot;OBJECTID&quot;      &quot;Reference&quot;     &quot;Sampling_Date&quot; &quot;yr&quot;           
+##  [5] &quot;Gear&quot;          &quot;ExDate&quot;        &quot;Bluefish&quot;      &quot;Common Snook&quot; 
+##  [9] &quot;Mullets&quot;       &quot;Pinfish&quot;       &quot;Red Drum&quot;      &quot;Sand Seatrout&quot;</code></pre>
 <pre class="r"><code>names(statloc)</code></pre>
 <pre><code>## [1] &quot;Reference&quot; &quot;Latitude&quot;  &quot;Longitude&quot;</code></pre>
 <pre class="r"><code># see the first six rows
 head(fishdat)</code></pre>
 <pre><code>## # A tibble: 6 x 12
-##   OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
-##      &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
-## 1  1550020 TBM1996032006 1996-03-20     1996   300 2018-04-12 10:27:38        0              0       0       0          0               1
-## 2  1550749 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0      54          0               0
-## 3  1550750 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0       0          1               0
-## 4  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23        0              0       0      80          0               0
-## 5  1550828 TBM1996042601 1996-04-26     1996   160 2018-04-12 10:25:23        0              0       0       0          4               0
-## 6  1550838 TBM1996051312 1996-05-13     1996   300 2018-04-12 10:25:23        0              0       0       0          0               1</code></pre>
+##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Bluefish
+##      &lt;dbl&gt; &lt;chr&gt;     &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;
+## 1  1550020 TBM19960~ 1996-03-20     1996   300 2018-04-12 10:27:38        0
+## 2  1550749 TBM19960~ 1996-03-20     1996    22 2018-04-12 10:25:23        0
+## 3  1550750 TBM19960~ 1996-03-20     1996    22 2018-04-12 10:25:23        0
+## 4  1550762 TBM19960~ 1996-03-22     1996    20 2018-04-12 10:25:23        0
+## 5  1550828 TBM19960~ 1996-04-26     1996   160 2018-04-12 10:25:23        0
+## 6  1550838 TBM19960~ 1996-05-13     1996   300 2018-04-12 10:25:23        0
+## # ... with 5 more variables: `Common Snook` &lt;dbl&gt;, Mullets &lt;dbl&gt;,
+## #   Pinfish &lt;dbl&gt;, `Red Drum` &lt;dbl&gt;, `Sand Seatrout` &lt;dbl&gt;</code></pre>
 <pre class="r"><code>head(statloc)</code></pre>
 <pre><code>## # A tibble: 6 x 3
 ##   Reference     Latitude Longitude
@@ -719,10 +729,10 @@ str(fishdat)</code></pre>
 <pre><code>## tibble [2,844 x 12] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ OBJECTID     : num [1:2844] 1550020 1550749 1550750 1550762 1550828 ...
 ##  $ Reference    : chr [1:2844] &quot;TBM1996032006&quot; &quot;TBM1996032004&quot; &quot;TBM1996032004&quot; &quot;TBM1996032207&quot; ...
-##  $ Sampling_Date: Date[1:2844], format: &quot;1996-03-20&quot; &quot;1996-03-20&quot; &quot;1996-03-20&quot; &quot;1996-03-22&quot; ...
+##  $ Sampling_Date: Date[1:2844], format: &quot;1996-03-20&quot; &quot;1996-03-20&quot; ...
 ##  $ yr           : num [1:2844] 1996 1996 1996 1996 1996 ...
 ##  $ Gear         : num [1:2844] 300 22 22 20 160 300 300 300 300 22 ...
-##  $ ExDate       : POSIXct[1:2844], format: &quot;2018-04-12 10:27:38&quot; &quot;2018-04-12 10:25:23&quot; &quot;2018-04-12 10:25:23&quot; &quot;2018-04-12 10:25:23&quot; ...
+##  $ ExDate       : POSIXct[1:2844], format: &quot;2018-04-12 10:27:38&quot; &quot;2018-04-12 10:25:23&quot; ...
 ##  $ Bluefish     : num [1:2844] 0 0 0 0 0 0 0 0 0 0 ...
 ##  $ Common Snook : num [1:2844] 0 0 0 0 0 0 0 0 0 0 ...
 ##  $ Mullets      : num [1:2844] 0 0 0 0 0 0 0 0 0 0 ...

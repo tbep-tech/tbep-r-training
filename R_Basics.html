@@ -516,32 +516,32 @@ seq(1, 10)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code># random numbers
 rnorm(100, mean = 10, sd = 2)</code></pre>
-<pre><code>##   [1]  8.918541  8.708617 12.740976  9.397573  7.835029  8.128551  7.253444
-##   [8]  8.588827  9.709521 10.238861 12.486227 10.571899 11.226899  6.952402
-##  [15] 14.001036 10.025450  9.750195  9.416111 10.149790  9.237704 11.739697
-##  [22]  9.536287 10.835295 14.105017  5.856444  7.521928 10.695204  9.104420
-##  [29] 11.301049 10.666550 10.134474  8.009632  7.698212 13.648845 12.750741
-##  [36]  7.409503  6.103261 11.924812 10.808877  9.266842  7.641700 10.382826
-##  [43]  9.957729 10.595912 11.944470 10.292638 12.102744 10.033293  6.298621
-##  [50] 14.087910 11.137456 15.588576  7.224731  8.002809  9.851506  9.666850
-##  [57]  6.881302 10.416314 10.341639 11.125932  8.399921  8.129190 10.086970
-##  [64]  9.855790  9.787652 10.413727  9.636757  8.134305  9.694767 15.945335
-##  [71] 11.103728 12.170370 10.355678 10.584063  9.337266  9.070723  8.856415
-##  [78] 11.069205 10.747060 13.512498  9.695272 10.218440 11.422636 13.083305
-##  [85] 10.649387 10.744557 10.338647  9.290234  8.371768 10.187534 13.277565
-##  [92]  9.430888 12.074832 12.011856  9.615695 11.229941  9.107787  9.828270
-##  [99] 11.117116  9.297636</code></pre>
+<pre><code>##   [1]  6.535742  6.333900  7.988237 11.083593  8.829375  8.740424  9.809486
+##   [8]  7.483692  8.922473  8.473713 12.963236  9.496830  9.011451  8.736249
+##  [15]  8.649881  8.073784 14.777256 11.406238 10.518012 11.983831 13.146897
+##  [22] 11.442217  8.719795 14.117699 10.326457 11.034650  9.719021 11.221649
+##  [29]  9.408987 10.094733 10.179781 12.358961 10.753688 10.366295  4.926082
+##  [36] 10.501256  5.468717 10.088183  8.860062  7.348577 10.818901 10.174472
+##  [43]  8.856633 11.874159  7.512743 12.052028  9.137197 10.403097 11.674305
+##  [50] 10.094504  8.308066 11.061189  9.043048 11.129945  8.999059  9.189317
+##  [57] 11.972109 10.589969  8.672966 11.732084  8.474749  8.892818  8.237701
+##  [64] 10.449047  7.824186 10.718093  7.268171  8.953386 12.660030 14.681239
+##  [71] 13.618599  9.603271 11.486309 10.900423  6.661400  9.336848  4.838318
+##  [78]  9.518585 13.463135  9.656740 15.131719  9.509847  8.809949 13.629513
+##  [85]  8.550854  9.364679  7.455626  8.611980 10.553519  8.265520 14.022866
+##  [92]  9.818457 12.908463  9.888297 11.271491  9.417296  8.292343 10.627911
+##  [99]  8.842073 12.674115</code></pre>
 <pre class="r"><code># average 
 mean(rnorm(100))</code></pre>
-<pre><code>## [1] -0.02080965</code></pre>
+<pre><code>## [1] -0.1145252</code></pre>
 <pre class="r"><code># sum
 sum(rnorm(100))</code></pre>
-<pre><code>## [1] 10.63043</code></pre>
+<pre><code>## [1] 5.553806</code></pre>
 <p>Very often you will see functions used like this:</p>
 <pre class="r"><code>my_random_sum &lt;- sum(rnorm(100))</code></pre>
 <p>In this case the first part of the line is the name of an object. You make this up. Ideally it should have some meaning, but the only rules are that it can’t start with a number and must not have any spaces. The second bit, <code>&lt;-</code>, is the assignment operator. This tells R to take the result of <code>sum(rnorm(100))</code> and store it in an object named, <code>my_random_sum</code>. It is stored in the environment and can be used by just executing it’s name in the console.</p>
 <pre class="r"><code>my_random_sum</code></pre>
-<pre><code>## [1] 7.21466</code></pre>
+<pre><code>## [1] -13.44178</code></pre>
 <div id="what-is-the-environment" class="section level3">
 <h3>What is the environment?</h3>
 <p>There are two outcomes when you run code. First, the code will simply print output directly in the console. Second, there is no output because you have stored it as a variable using <code>&lt;-</code>. Output that is stored is actually saved in the <code>environment</code>. The environment is the collection of named objects that are stored in memory for your current R session. Anything stored in memory will be accessible by it’s name without running the original script that was used to create it.</p>
@@ -600,10 +600,10 @@ apropos(&quot;print&quot;) # Returns all available functions with &quot;print&qu
 <h3>Official R Resources</h3>
 <p>In addition to help from within R itself, CRAN and the R-Project have many resources available for support. Two of the most notable are the mailing lists and the <a href="http://cran.r-project.org/web/views/" target="_blank">task views</a>.</p>
 <ul>
-<li><a href="https://stat.ethz.ch/mailman/listinfo/r-help">R Help Mailing List</a>: The main mailing list for R help. Can be a bit daunting and some (although not most) senior folks can be, um, curmudgeonly…</li>
-<li><a href="https://stat.ethz.ch/mailman/listinfo/r-sig-ecology">R-sig-ecology</a>: A special interest group for use of R in ecology. Less daunting than the main help with participation from some big names in ecological modelling and statistics (e.g., Ben Bolker, Gavin Simpson, and Phil Dixon).</li>
-<li><a href="http://cran.r-project.org/web/views/Environmetrics.html">Environmetrics Task View</a>: Task views are great in that they provide an annotated list of packages relevant to a particular field. This one is maintained by Gavin Simpson and has great info on packages relevant to the environmental sciences.</li>
-<li><a href="http://cran.r-project.org/web/views/Spatial.html">Spatial Analysis Task View</a>: One I use a lot that lists all the relevant packages for spatial analysis, GIS, and Remote Sensing in R.</li>
+<li><a href="https://stat.ethz.ch/mailman/listinfo/r-help" target="_blank">R Help Mailing List</a>: The main mailing list for R help. Can be a bit daunting and some (although not most) senior folks can be, um, curmudgeonly…</li>
+<li><a href="https://stat.ethz.ch/mailman/listinfo/r-sig-ecology" target="_blank">R-sig-ecology</a>: A special interest group for use of R in ecology. Less daunting than the main help with participation from some big names in ecological modelling and statistics (e.g., Ben Bolker, Gavin Simpson, and Phil Dixon).</li>
+<li><a href="http://cran.r-project.org/web/views/Environmetrics.html" target="_blank">Environmetrics Task View</a>: Task views are great in that they provide an annotated list of packages relevant to a particular field. This one is maintained by Gavin Simpson and has great info on packages relevant to the environmental sciences.</li>
+<li><a href="http://cran.r-project.org/web/views/Spatial.html" target="_blank">Spatial Analysis Task View</a>: One I use a lot that lists all the relevant packages for spatial analysis, GIS, and Remote Sensing in R.</li>
 </ul>
 </div>
 <div id="google-and-stackoverflow" class="section level3">
@@ -614,19 +614,19 @@ apropos(&quot;print&quot;) # Returns all available functions with &quot;print&qu
 <li>Always preface the search with “r”</li>
 <li>Understand which sources are reliable</li>
 <li>Take note of the number of hits and date of a web page</li>
-<li>When in doubt, search with the exact error message (see here for <a href="https://cran.r-project.org/doc/manuals/R-lang.html#Exception-handling">details</a> about warnings vs errors)</li>
+<li>When in doubt, search with the exact error message (see here for <a href="https://cran.r-project.org/doc/manuals/R-lang.html#Exception-handling" target="_blank">details</a> about warnings vs errors)</li>
 </ul>
-<p>One specific resource that I use quite a bit is <a href="http://stackoverflow.com/questions/tagged/r">StackOverflow with the ‘r’ tag</a>. StackOverflow is a discussion forum for all things related to programming. You can then use this tag and the search functions in StackOverflow and find answers to almost anything you can think of. However, these forums are also very strict and I typically use them to find answers not to ask questions.</p>
+<p>One specific resource that I use quite a bit is <a href="http://stackoverflow.com/questions/tagged/r" target="_blank">StackOverflow with the ‘r’ tag</a>. StackOverflow is a discussion forum for all things related to programming. You can then use this tag and the search functions in StackOverflow and find answers to almost anything you can think of. However, these forums are also very strict and I typically use them to find answers not to ask questions.</p>
 </div>
 <div id="other-resources" class="section level3">
 <h3>Other Resources</h3>
 <p>As I mentioned earlier, there are TOO many resources to list here and everyone has their favorites. Below are just a few that I like.</p>
 <ul>
-<li><a href="http://rforcats.net/">R For Cats</a>: Basic introduction site, meant to be a gentle and light-hearted introduction</li>
-<li><a href="https://r4ds.had.co.nz/">R for Data Science</a>: My favorite resource for learning data science methods with R, focusing on the tidyverse. Much of the content in this training is adapted from this book.</li>
-<li><a href="http://adv-r.had.co.nz/">Advanced R</a>: Web home of Hadley Wickham’s book, the same author of R for Data Science. Gets into more advanced topics, but also covers the basics in a great way.</li>
-<li><a href="http://cran.r-project.org/doc/contrib/Short-refcard.pdf">CRAN Cheatsheets</a>: A good cheat sheet from the official source</li>
-<li><a href="http://www.rstudio.com/resources/cheatsheets/">RStudio Cheatsheets</a>: Additional cheat sheets from RStudio. I am especially fond of the data wrangling one.</li>
+<li><a href="http://rforcats.net/" target="_blank">R For Cats</a>: Basic introduction site, meant to be a gentle and light-hearted introduction</li>
+<li><a href="https://r4ds.had.co.nz/" target="_blank">R for Data Science</a>: My favorite resource for learning data science methods with R, focusing on the tidyverse. Much of the content in this training is adapted from this book.</li>
+<li><a href="http://adv-r.had.co.nz/" target="_blank">Advanced R</a>: Web home of Hadley Wickham’s book, the same author of R for Data Science. Gets into more advanced topics, but also covers the basics in a great way.</li>
+<li><a href="http://cran.r-project.org/doc/contrib/Short-refcard.pdf" target="_blank">CRAN Cheatsheets</a>: A good cheat sheet from the official source</li>
+<li><a href="http://www.rstudio.com/resources/cheatsheets/" target="_blank">RStudio Cheatsheets</a>: Additional cheat sheets from RStudio. I am especially fond of the data wrangling one.</li>
 </ul>
 </div>
 </div>

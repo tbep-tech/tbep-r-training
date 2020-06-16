@@ -28,7 +28,7 @@ Get the lesson data: [download zip](https://github.com/tbep-tech/tbep-r-training
 
 ## Goals and Motivation
 
-<a href="https://www.r-project.org/" target="_blank">R</a> is a language for statistical computing as well as a general purpose programming language. Increasingly, it has become one of the primary languages used in data science and for data analysis across many of the natural sciences. 
+[R](https://www.r-project.org/){target="_blank"} is a language for statistical computing as well as a general purpose programming language. Increasingly, it has become one of the primary languages used in data science and for data analysis across many of the natural sciences. 
 
 The goals of this training are to expose you to fundamentals and to develop an appreciation of what's possible with this software.  We also provide resources that you can use for follow-up learning on your own. You should be able to answer these questions at the end of this session:
 
@@ -43,13 +43,13 @@ The goals of this training are to expose you to fundamentals and to develop an a
 
 There are many programming languages available and each has it's specific benefits. R was originally created as a statistical programming language but now it is largely viewed as a 'data science' language. Why would you invest time in learning R compared to other languages?  
 
-* The growth of R as explained in the <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/" target="_blank">Stack Overflow blog</a>, <a href="http://blog.revolutionanalytics.com/2016/07/r-moves-up-to-5th-place-in-ieee-language-rankings.html" target="_blank">IEEE rating</a>
+* The growth of R as explained in the [Stack Overflow blog](https://stackoverflow.blog/2017/10/10/impressive-growth-r/){target="_blank"}, [IEEE rating](http://blog.revolutionanalytics.com/2016/07/r-moves-up-to-5th-place-in-ieee-language-rankings.html){target="_blank"}
 
 R is also an open-source programming language - not only is it free, but this means anybody can contribute to it's development. As of `r format(Sys.time(), "%Y-%m-%d")`, there are `r nrow(available.packages())` supplemental packages for R on CRAN!   
 
 ## RStudio
 
-In the old days, the only way to use R was directly from the Console - this is a bare bones way of running R only with direct input of commands. Now, <a href="https://www.rstudio.com/" target="_blank">RStudio</a> is the go-to Interactive Development Environment (IDE) for R. Think of it like a car that is built around an engine. It is integrated with the console (engine) and includes many other features to improve the user's experience, such as version control, debugging, dynamic documents, package manager and creation, and code highlighting and completion. 
+In the old days, the only way to use R was directly from the Console - this is a bare bones way of running R only with direct input of commands. Now, [RStudio](https://www.rstudio.com/){target="_blank"} is the go-to Interactive Development Environment (IDE) for R. Think of it like a car that is built around an engine. It is integrated with the console (engine) and includes many other features to improve the user's experience, such as version control, debugging, dynamic documents, package manager and creation, and code highlighting and completion. 
 
 Let's get familiar with RStudio before we go on.  
 
@@ -94,7 +94,7 @@ After you write code in your script, it can be sent to the Console to run the co
 
 This exercise will make sure R and RStudio are working and that you can get around the basics in RStudio.
 
-1. Start RStudio if using a version you installed OR navigate to <a href="https://rstudio.cloud/project/1318333" target="_blank">https://rstudio.cloud/project/1318333</a> if using RStudio Cloud. To start both R and RStudio requires only firing up RStudio.  RStudio should be available from All Programs at the Start Menu.  Fire up RStudio. 
+1. Start RStudio if using a version you installed OR navigate to [https://rstudio.cloud/project/1318333](https://rstudio.cloud/project/1318333){target="_blank"} if using RStudio Cloud. To start both R and RStudio requires only firing up RStudio.  RStudio should be available from All Programs at the Start Menu.  Fire up RStudio. 
 
 1. If you're not using RStudio Cloud, create a new project.  Name it "r_workshop".  We will use this for the rest of the workshop.
 
@@ -152,7 +152,7 @@ The base install of R is quite powerful, but you will soon have a need or desire
 
 ### CRAN
 
-One of the reasons for R's popularity is CRAN, <a href="http://cran.r-project.org/" target="_blank">The Comprehensive R Archive Network</a>.  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of `r format(Sys.time(), "%Y-%m-%d")`, there are `r nrow(available.packages())` on CRAN! 
+One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/){target="_blank"}.  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of `r format(Sys.time(), "%Y-%m-%d")`, there are `r nrow(available.packages())` on CRAN! 
 
 ### Installing packages
 
@@ -211,10 +211,10 @@ apropos("print") # Returns all available functions with "print" in the name
 
 In addition to help from within R itself, CRAN and the R-Project have many resources available for support.  Two of the most notable are the mailing lists and the [task views](http://cran.r-project.org/web/views/){target="_blank"}.
 
-- [R Help Mailing List](https://stat.ethz.ch/mailman/listinfo/r-help): The main mailing list for R help.  Can be a bit daunting and some (although not most) senior folks can be, um, curmudgeonly...
-- [R-sig-ecology](https://stat.ethz.ch/mailman/listinfo/r-sig-ecology): A special interest group for use of R in ecology.  Less daunting than the main help with participation from some big names in ecological modelling and statistics (e.g., Ben Bolker, Gavin Simpson, and Phil Dixon).
-- [Environmetrics Task View](http://cran.r-project.org/web/views/Environmetrics.html): Task views are great in that they provide an annotated list of packages relevant to a particular field.  This one is maintained by Gavin Simpson and has great info on packages relevant to the environmental sciences.
-- [Spatial Analysis Task View](http://cran.r-project.org/web/views/Spatial.html): One I use a lot that lists all the relevant packages for spatial analysis, GIS, and Remote Sensing in R. 
+- [R Help Mailing List](https://stat.ethz.ch/mailman/listinfo/r-help){target="_blank"}: The main mailing list for R help.  Can be a bit daunting and some (although not most) senior folks can be, um, curmudgeonly...
+- [R-sig-ecology](https://stat.ethz.ch/mailman/listinfo/r-sig-ecology){target="_blank"}: A special interest group for use of R in ecology.  Less daunting than the main help with participation from some big names in ecological modelling and statistics (e.g., Ben Bolker, Gavin Simpson, and Phil Dixon).
+- [Environmetrics Task View](http://cran.r-project.org/web/views/Environmetrics.html){target="_blank"}: Task views are great in that they provide an annotated list of packages relevant to a particular field.  This one is maintained by Gavin Simpson and has great info on packages relevant to the environmental sciences.
+- [Spatial Analysis Task View](http://cran.r-project.org/web/views/Spatial.html){target="_blank"}: One I use a lot that lists all the relevant packages for spatial analysis, GIS, and Remote Sensing in R. 
 
 ### Google and StackOverflow
 
@@ -225,19 +225,19 @@ Blind googling can require a bit of strategy to get the info you want.  Some poi
 * Always preface the search with "r"
 * Understand which sources are reliable
 * Take note of the number of hits and date of a web page
-* When in doubt, search with the exact error message (see here for [details](https://cran.r-project.org/doc/manuals/R-lang.html#Exception-handling) about warnings vs errors)
+* When in doubt, search with the exact error message (see here for [details](https://cran.r-project.org/doc/manuals/R-lang.html#Exception-handling){target="_blank"} about warnings vs errors)
 
-One specific resource that I use quite a bit is [StackOverflow with the 'r' tag](http://stackoverflow.com/questions/tagged/r).  StackOverflow is a discussion forum for all things related to programming.  You can then use this tag and the search functions in StackOverflow and find answers to almost anything you can think of. However, these forums are also very strict and I typically use them to find answers not to ask questions.  
+One specific resource that I use quite a bit is [StackOverflow with the 'r' tag](http://stackoverflow.com/questions/tagged/r){target="_blank"}.  StackOverflow is a discussion forum for all things related to programming.  You can then use this tag and the search functions in StackOverflow and find answers to almost anything you can think of. However, these forums are also very strict and I typically use them to find answers not to ask questions.  
 
 ### Other Resources
 
 As I mentioned earlier, there are TOO many resources to list here and everyone has their favorites.  Below are just a few that I like.
 
-- [R For Cats](http://rforcats.net/): Basic introduction site, meant to be a gentle and light-hearted introduction
-- [R for Data Science](https://r4ds.had.co.nz/): My favorite resource for learning data science methods with R, focusing on the tidyverse. Much of the content in this training is adapted from this book. 
-- [Advanced R](http://adv-r.had.co.nz/): Web home of Hadley Wickham's book, the same author of R for Data Science.  Gets into more advanced topics, but also covers the basics in a great way.
-- [CRAN Cheatsheets](http://cran.r-project.org/doc/contrib/Short-refcard.pdf): A good cheat sheet from the official source
-- [RStudio Cheatsheets](http://www.rstudio.com/resources/cheatsheets/): Additional cheat sheets from RStudio.  I am especially fond of the data wrangling one.
+- [R For Cats](http://rforcats.net/){target="_blank"}: Basic introduction site, meant to be a gentle and light-hearted introduction
+- [R for Data Science](https://r4ds.had.co.nz/){target="_blank"}: My favorite resource for learning data science methods with R, focusing on the tidyverse. Much of the content in this training is adapted from this book. 
+- [Advanced R](http://adv-r.had.co.nz/){target="_blank"}: Web home of Hadley Wickham's book, the same author of R for Data Science.  Gets into more advanced topics, but also covers the basics in a great way.
+- [CRAN Cheatsheets](http://cran.r-project.org/doc/contrib/Short-refcard.pdf){target="_blank"}: A good cheat sheet from the official source
+- [RStudio Cheatsheets](http://www.rstudio.com/resources/cheatsheets/){target="_blank"}: Additional cheat sheets from RStudio.  I am especially fond of the data wrangling one.
 
 ## Data structures in R
 

@@ -420,7 +420,7 @@ div.tocify {
 <div id="visualization-and-graphics" class="section level1">
 <h1>Visualization and Graphics</h1>
 <p>Get the lesson R script: <a href="Viz_and_Graphics.R">Viz_and_Graphics.R</a></p>
-<p>Get the lesson data: <a href="https://github.com/tbep-tech/tbep-r-training/raw/master/data/data.zip">download zip</a></p>
+<p>Get the lesson data: <a href="data/data.zip">download zip</a></p>
 <div id="lesson-outline" class="section level2">
 <h2>Lesson Outline</h2>
 <ul>
@@ -465,7 +465,8 @@ div.tocify {
 <li>Histograms to explore the distribution of a variable (<code>hist</code>)</li>
 </ul>
 <p>We’ll explore some of these simple tools in base R with the <code>mpg</code> dataset that comes with R. The workhorse plotting function is <code>plot</code>. Let’s make a simple plot of highway mileage vs engine size.</p>
-<pre class="r"><code>data(mpg)
+<pre class="r"><code>library(tidyverse)
+data(mpg)
 plot(hwy ~ displ, data = mpg)</code></pre>
 <p><img src="Viz_and_Graphics_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>We created this plot using the <code>formula</code> notation. We can also create the plot by calling the columns directly.</p>
@@ -529,7 +530,7 @@ plot(Pinfish ~ Sampling_Date, data = fishdat, main = &#39;Pinfish catch for all 
 <h2>GGplot2</h2>
 <div id="basics" class="section level3">
 <h3>Basics</h3>
-<p>The <code>ggplot2</code> package (full <a href="http://ggplot2.tidyverse.org/index.html">reference</a>) is a huge improvement over base R because it was developed following a strict philosophy known as the <em>grammar of graphics</em>. This philosophy was designed to make thinking, reasoning, and communicating about graphs easier by following a few simple rules. Like building a sentence in speech (aka grammar), all graphs start with a foundational component that is used for building other graph pieces.</p>
+<p>The <code>ggplot2</code> package (full <a href="http://ggplot2.tidyverse.org/index.html" target="_blank">reference</a>) is a huge improvement over base R because it was developed following a strict philosophy known as the <em>grammar of graphics</em>. This philosophy was designed to make thinking, reasoning, and communicating about graphs easier by following a few simple rules. Like building a sentence in speech (aka grammar), all graphs start with a foundational component that is used for building other graph pieces.</p>
 <p>With ggplot2, you begin a plot with the function <code>ggplot()</code>. <code>ggplot()</code> creates a coordinate system that you can add layers to. The first argument of <code>ggplot()</code> is the dataset to use in the graph. So <code>ggplot(data = mpg)</code> creates an empty base graph.</p>
 <pre class="r"><code>ggplot(data = mpg)</code></pre>
 <p>You complete your graph by adding one or more layers (aka <code>geoms</code>) to <code>ggplot()</code>. The function <code>geom_point()</code> adds a layer of points to your plot, which creates a scatterplot. Ggplot2 comes with many geom functions that each add a different type of layer to a plot.</p>
@@ -628,7 +629,7 @@ Execution halted</code></pre>
     panel.background = element_rect(fill = &#39;lightblue&#39;)
   )</code></pre>
 <p><img src="Viz_and_Graphics_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
-<p>Changing plot elements with theme can take some practice because there’s lots to modify. In some respects, this is how <code>ggplot</code> is similar to base R. With flexibility comes tedium. Fortunately, there are several pre-packaged themes that modify several components at once. See <a href="http://ggplot2.tidyverse.org/reference/ggtheme.html">here</a> for the full documentation. There are also additional packages available that supplement the existing themes in<code>ggplot</code> (see <a href="https://github.com/jrnold/ggthemes">here</a>.</p>
+<p>Changing plot elements with theme can take some practice because there’s lots to modify. In some respects, this is how <code>ggplot</code> is similar to base R. With flexibility comes tedium. Fortunately, there are several pre-packaged themes that modify several components at once. See <a href="http://ggplot2.tidyverse.org/reference/ggtheme.html" target="_blank">here</a> for the full documentation. There are also additional packages available that supplement the existing themes in<code>ggplot</code> (see <a href="https://github.com/jrnold/ggthemes" target="_blank">here</a>).</p>
 <p>Black and white:</p>
 <pre class="r"><code>ggplot(mpg, aes(x = displ, y = hwy, colour = drv)) + 
   geom_point() + 
@@ -683,7 +684,7 @@ Execution halted</code></pre>
 <p>Let’s modify the scatterplot we created in exercise 3 by adding a theme, a statistical summary, and facets. We’ll map the <code>stat_smooth</code> function to the Gear type and also use this variable to create a three-panel plot.</p>
 <ol style="list-style-type: decimal">
 <li><p>Setup the initial plot as before. Map the x variable to <code>Sampling_Date</code> and the y variable to <code>Pinfish</code>. In addition, use the <code>group</code> argument in the <code>aes()</code> function to group the data by Gear. The intiial <code>ggplot</code> line will look like this <code>ggplot(fishdata, aes(x = Sampling_Date, y = Pinfish, group = Gear)</code>. Add the <code>geom_point</code> geom and the <code>scale_y_continuous</code> scale with <code>trans = "log10"</code> to transform catch.</p></li>
-<li><p>Add one of the pre-packaged themes to the plot: <code>theme_bw()</code>, <code>theme_classic()</code>, or <code>theme_minimal()</code>. You can also use any of the other themes from the tidyverse (see <a href="http://ggplot2.tidyverse.org/reference/ggtheme.html">here</a>) or use one from the <code>ggthemes</code> package (see <a href="https://github.com/jrnold/ggthemes">here</a>). You’ll have to install and load the <code>ggthemes</code> package if using the latter.</p></li>
+<li><p>Add one of the pre-packaged themes to the plot: <code>theme_bw()</code>, <code>theme_classic()</code>, or <code>theme_minimal()</code>. You can also use any of the other themes from the tidyverse (see <a href="http://ggplot2.tidyverse.org/reference/ggtheme.html" target="_blank">here</a>) or use one from the <code>ggthemes</code> package (see <a href="https://github.com/jrnold/ggthemes" target="_blank">here</a>). You’ll have to install and load the <code>ggthemes</code> package if using the latter.</p></li>
 <li><p>Add the <code>stat_smooth</code> function with the argument <code>method = "lm"</code> to add linear smooths between catch and time for each gear type.</p></li>
 <li><p>Use <code>facet_wrap</code> to create a three-panel plot by depth category (hint: <code>facet_wrap(~ Gear, ncol = 3)</code>).</p></li>
 <li><p>You can change the scaling of the axes to make them specific to each facet. Try using the argument <code>scales = "free"</code> within <code>facet_wrap</code>. How does this change the interpretation?</p></li>
@@ -703,10 +704,10 @@ Execution halted</code></pre>
 <p><img src="figure/saveplot.JPG" /></p>
 <p>Although this is convenient, you don’t have fine control over many options that can really make your graphic pop. I recommend using either the <code>ggsave</code> function that comes with the tidyverse, or preferably, one of the available graphics devices from base R (<code>bmp</code>, <code>jpeg</code>, <code>png</code>, <code>tiff</code>, <code>eps</code>, <code>ps</code>, <code>tex</code>, <code>svg</code>, <code>wmf</code>, and my favorite, <code>pdf</code>).</p>
 <p>The <code>ggsave</code> function works only with ggplot objects. You can contol where the plot is saved, the file type, plotting dimensions, resolution, and a few other minor options. By default, it will save the last ggplot that you made.</p>
-<pre class="r"><code>ggsave(&#39;lessons/figure/myfig.jpg&#39;, device = &#39;jpeg&#39;, width = 5, height = 4, units = &#39;in&#39;, dpi = 300)</code></pre>
+<pre class="r"><code>ggsave(&#39;figure/myfig.jpg&#39;, device = &#39;jpeg&#39;, width = 5, height = 4, units = &#39;in&#39;, dpi = 300)</code></pre>
 <p>The <code>ggsave</code> functions uses the graphics devices from base R behind the scenes. You can always use these directly to save any type of plot (ggplot, base, etc.). These work a bit differently from regular functions. First, you “open” a graphics device by executing the function (e.g., <code>png()</code>, <code>jpeg()</code>, etc.) at the command line. Then you execute your plot command and finish by “closing” the device with <code>dev.off()</code>. In a script, it will look something like this.</p>
 <pre class="r"><code># save a plot as png file
-png(&#39;lessons/figure/myfig.png&#39;, width = 5, height = 4, units = &#39;in&#39;, res = 300)
+png(&#39;figure/myfig.png&#39;, width = 5, height = 4, units = &#39;in&#39;, res = 300)
 plot
 dev.off()</code></pre>
 <p>The value of this approach is the ability to fine tune the output for your graphics. You can save as many figures as you like when the graphics device is open, just make sure to use <code>dev.off()</code> when you’re done.</p>
@@ -726,7 +727,7 @@ dev.off()</code></pre>
 </div>
 <div id="attribution" class="section level2">
 <h2>Attribution</h2>
-<p>Content in this lesson was pillaged extensively from the USGS-R training curriculum <a href="https://github.com/USGS-R/training-curriculum">here</a> and <a href="https://github.com/hadley/r4ds">R for data Science</a>.</p>
+<p>Content in this lesson was pillaged extensively from the USGS-R training curriculum <a href="https://github.com/USGS-R/training-curriculum" target="_blank">here</a> and <a href="https://github.com/hadley/r4ds" target="_blank">R for data Science</a>.</p>
 </div>
 </div>
 

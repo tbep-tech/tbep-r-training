@@ -17,7 +17,7 @@ opts_chunk$set(tidy = FALSE, message = F, warning = F)
 
 Get the lesson R script: [Viz_and_Graphics.R](Viz_and_Graphics.R)
 
-Get the lesson data: [download zip](https://github.com/tbep-tech/tbep-r-training/raw/master/data/data.zip)
+Get the lesson data: [download zip](data/data.zip)
 
 ## Lesson Outline
 
@@ -60,7 +60,8 @@ My most frequent use for base R graphics inlude:
 * Histograms to explore the distribution of a variable (`hist`)
 
 We'll explore some of these simple tools in base R with the `mpg` dataset that comes with R. The workhorse plotting function is `plot`.  Let's make a simple plot of highway mileage vs engine size.
-```{r}
+```{r message = F, warning = F}
+library(tidyverse)
 data(mpg)
 plot(hwy ~ displ, data = mpg)
 ```
@@ -154,7 +155,7 @@ plot(Pinfish ~ Sampling_Date, data = fishdat, main = 'Pinfish catch for all stat
 
 ### Basics
 
-The `ggplot2` package (full [reference](http://ggplot2.tidyverse.org/index.html)) is a huge improvement over base R because it was developed following a strict philosophy known as the *grammar of graphics*.  This philosophy was designed to make thinking, reasoning, and communicating about graphs easier by following a few simple rules.  Like building a sentence in speech (aka grammar), all graphs start with a foundational component that is used for building other graph pieces.  
+The `ggplot2` package (full [reference](http://ggplot2.tidyverse.org/index.html){target="_blank"}) is a huge improvement over base R because it was developed following a strict philosophy known as the *grammar of graphics*.  This philosophy was designed to make thinking, reasoning, and communicating about graphs easier by following a few simple rules.  Like building a sentence in speech (aka grammar), all graphs start with a foundational component that is used for building other graph pieces.  
 
 With ggplot2, you begin a plot with the function `ggplot()`. `ggplot()` creates a coordinate system that you can add layers to. The first argument of `ggplot()` is the dataset to use in the graph. So `ggplot(data = mpg)` creates an empty base graph.
 
@@ -311,7 +312,7 @@ ggplot(mpg, aes(x = displ, y = hwy, colour = drv)) +
   )
 ```
 
-Changing plot elements with theme can take some practice because there's lots to modify. In some respects, this is how `ggplot` is similar to base R. With flexibility comes tedium. Fortunately, there are several pre-packaged themes that modify several components at once.  See [here](http://ggplot2.tidyverse.org/reference/ggtheme.html) for the full documentation.  There are also additional packages available that supplement the existing themes in`ggplot` (see [here](https://github.com/jrnold/ggthemes).
+Changing plot elements with theme can take some practice because there's lots to modify. In some respects, this is how `ggplot` is similar to base R. With flexibility comes tedium. Fortunately, there are several pre-packaged themes that modify several components at once.  See [here](http://ggplot2.tidyverse.org/reference/ggtheme.html){target="_blank"} for the full documentation.  There are also additional packages available that supplement the existing themes in`ggplot` (see [here](https://github.com/jrnold/ggthemes){target="_blank"}).
 
 Black and white:
 ```{r}
@@ -389,7 +390,7 @@ Let's modify the scatterplot we created in exercise 3 by adding a theme, a stati
 
 1. Setup the initial plot as before. Map the x variable to `Sampling_Date` and the y variable to `Pinfish`. In addition, use the `group` argument in the `aes()` function to group the data by Gear.  The intiial `ggplot` line will look like this `ggplot(fishdata, aes(x = Sampling_Date, y = Pinfish, group = Gear)`.  Add the `geom_point` geom and the `scale_y_continuous` scale with `trans = "log10"` to transform catch.
 
-1. Add one of the pre-packaged themes to the plot: `theme_bw()`, `theme_classic()`, or `theme_minimal()`.  You can also use any of the other themes from the tidyverse (see [here](http://ggplot2.tidyverse.org/reference/ggtheme.html)) or use one from the `ggthemes` package (see [here](https://github.com/jrnold/ggthemes)). You'll have to install and load the `ggthemes` package if using the latter.
+1. Add one of the pre-packaged themes to the plot: `theme_bw()`, `theme_classic()`, or `theme_minimal()`.  You can also use any of the other themes from the tidyverse (see [here](http://ggplot2.tidyverse.org/reference/ggtheme.html){target="_blank"}) or use one from the `ggthemes` package (see [here](https://github.com/jrnold/ggthemes){target="_blank"}). You'll have to install and load the `ggthemes` package if using the latter.
 
 1. Add the `stat_smooth` function with the argument `method = "lm"` to add linear smooths between catch and time for each gear type. 
 
@@ -419,14 +420,14 @@ Although this is convenient, you don't have fine control over many options that 
 The `ggsave` function works only with ggplot objects.  You can contol where the plot is saved, the file type, plotting dimensions, resolution, and a few other minor options.  By default, it will save the last ggplot that you made.
 
 ```{r, eval = F}
-ggsave('lessons/figure/myfig.jpg', device = 'jpeg', width = 5, height = 4, units = 'in', dpi = 300)
+ggsave('figure/myfig.jpg', device = 'jpeg', width = 5, height = 4, units = 'in', dpi = 300)
 ```
 
 The `ggsave` functions uses the graphics devices from base R behind the scenes.  You can always use these directly to save any type of plot (ggplot, base, etc.).  These work a bit differently from regular functions.  First, you "open" a graphics device by executing the function (e.g., `png()`, `jpeg()`, etc.) at the command line.  Then you execute your plot command and finish by "closing" the device with `dev.off()`.  In a script, it will look something like this.
 
 ```{r, eval = F}
 # save a plot as png file
-png('lessons/figure/myfig.png', width = 5, height = 4, units = 'in', res = 300)
+png('figure/myfig.png', width = 5, height = 4, units = 'in', res = 300)
 plot
 dev.off()
 ```
@@ -448,4 +449,4 @@ In the next lesson we'll learn about the basics of spatial analysis in R.
 
 ## Attribution
 
-Content in this lesson was pillaged extensively from the USGS-R training curriculum [here](https://github.com/USGS-R/training-curriculum) and [R for data Science](https://github.com/hadley/r4ds).
+Content in this lesson was pillaged extensively from the USGS-R training curriculum [here](https://github.com/USGS-R/training-curriculum){target="_blank"} and [R for data Science](https://github.com/hadley/r4ds){target="_blank"}.

@@ -10,7 +10,7 @@ opts_chunk$set(tidy = FALSE, message = F, warning = F)
 
 Get the lesson R script: [R_Basics.R](R_Basics.R)
 
-Get the lesson data: [download zip](https://github.com/tbep-tech/tbep-r-training/raw/master/data/data.zip)
+Get the lesson data: [download zip](data/data.zip)
 
 ## Lesson Outline
 

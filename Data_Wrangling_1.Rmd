@@ -17,7 +17,7 @@ opts_chunk$set(tidy = FALSE, message = F, warning = F)
 
 Get the lesson R script: [Data_Wrangling_1.R](Data_Wrangling_1.R)
 
-Get the lesson data: [download zip](https://github.com/tbep-tech/tbep-r-training/raw/master/data/data.zip)
+Get the lesson data: [download zip](data/data.zip)
 
 ## Lesson Outline
 
@@ -33,7 +33,7 @@ Get the lesson data: [download zip](https://github.com/tbep-tech/tbep-r-training
 
 ## Goals
 
-Data wrangling (manipulation, ninjery, cleaning, etc.) is the part of any data analysis that will take the most time. While it may not necessarily be fun, it is foundational to all the work that follows. I strongly believe that mastering these skills has more value than mastering a particular analysis.  Check out [this article](https://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html) if you don't believe me.
+Data wrangling (manipulation, ninjery, cleaning, etc.) is the part of any data analysis that will take the most time. While it may not necessarily be fun, it is foundational to all the work that follows. I strongly believe that mastering these skills has more value than mastering a particular analysis.  Check out [this article](https://www.nytimes.com/2014/08/18/technology/for-big-data-scientists-hurdle-to-insights-is-janitor-work.html){target="_blank"} if you don't believe me.
 
 We'll have two hours to cover parts 1 and 2 of data wrangling. It’s an unrealistic expectation that you will be a ninja wrangler after this training. As such, the goals are to expose you to fundamentals and to develop an appreciation of what’s possible. I also want to provide resources that you can use for follow-up learning on your own.
 
@@ -46,11 +46,11 @@ After this lesson you should be able to answer (or be able to find answers to) t
 
 ## The tidyverse
 
-The [tidyverse](https://www.tidyverse.org/) is a set of packages that work in harmony because they share common data representations and design. The tidyverse package is designed to make it easy to install and load core packages from the tidyverse in a single command. With tidyverse, you'll be able to address all steps of data exploration.
+The [tidyverse](https://www.tidyverse.org/){target="_blank"} is a set of packages that work in harmony because they share common data representations and design. The tidyverse package is designed to make it easy to install and load core packages from the tidyverse in a single command. With tidyverse, you'll be able to address all steps of data exploration.
 
 ![](figure/data-science.png)
 
-From the excellent book, [R for Data Science](http://r4ds.had.co.nz/), **data exploration** is the art of looking at your data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again.  Tools in the tidyverse also have direct application to more formal analyses with many of the other available R packages on [CRAN](https://cran.r-project.org/).
+From the excellent book, [R for Data Science](http://r4ds.had.co.nz/){target="_blank"}, **data exploration** is the art of looking at your data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again.  Tools in the tidyverse also have direct application to more formal analyses with many of the other available R packages on [CRAN](https://cran.r-project.org/){target="_blank"}.
 
 You should already have the tidyverse installed, but let's give it a go if you haven't done this part yet:
 
@@ -67,12 +67,12 @@ library(tidyverse)
 
 Notice that the messages you get after loading are a bit different from other packages.  That's because tidyverse is a package that manages other packages.  Loading tidyverse will load all of the core packagbes:
 
--   [ggplot2](http://ggplot2.tidyverse.org), for data visualisation.
--   [dplyr](http://dplyr.tidyverse.org), for data manipulation.
--   [tidyr](http://tidyr.tidyverse.org), for data tidying.
--   [readr](http://readr.tidyverse.org), for data import.
--   [purrr](http://purrr.tidyverse.org), for functional programming.
--   [tibble](http://tibble.tidyverse.org), for tibbles, a modern re-imagining of data frames.
+-   [ggplot2](http://ggplot2.tidyverse.org){target="_blank"}, for data visualisation.
+-   [dplyr](http://dplyr.tidyverse.org){target="_blank"}, for data manipulation.
+-   [tidyr](http://tidyr.tidyverse.org){target="_blank"}, for data tidying.
+-   [readr](http://readr.tidyverse.org){target="_blank"}, for data import.
+-   [purrr](http://purrr.tidyverse.org){target="_blank"}, for functional programming.
+-   [tibble](http://tibble.tidyverse.org){target="_blank"}, for tibbles, a modern re-imagining of data frames.
 
 Other packages (e.g., `readxl`) are also included but you will probably not use these as frequently.
 
@@ -116,9 +116,9 @@ At the most basic level, going from what your data looks like to what it should 
 
 The `dplyr` package provides easy tools for these common data manipulation tasks. It is built to work directly with data frames and this is one of the foundational packages in what is now known as the tidyverse. The philosophy of dplyr is that one function does one thing and the name of the function says what it does. This is where the tidyverse generally departs from other packages and even base R.  It is meant to be easy, logical, and intuitive.  There is a lot of great info on dplyr. If you have an interest, I’d encourage you to look more. The vignettes are particularly good.
 
-* [`dplyr` GitHub repo](https://github.com/hadley/dplyr)
-* [CRAN page: vignettes here](http://cran.rstudio.com/web/packages/dplyr/)
-* [Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf)
+* [`dplyr` GitHub repo](https://github.com/hadley/dplyr){target="_blank"}
+* [CRAN page: vignettes here](http://cran.rstudio.com/web/packages/dplyr/){target="_blank"}
+* [Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf){target="_blank"}
 
 I'll demonstrate the examples with the `fishdat` dataset from the last lesson. This dataset includes over 30000 catch records of fish from Old Tampa Bay.
 
@@ -199,7 +199,7 @@ filt4 <- filter(fishdat, Gear %in% c(20, 5))
 head(filt4)
 ```
 
-As a side note, any variable (i.e., column name) with spaces or non-standard characters can be referenced by enclosing it with backticks (see [here](http://adv-r.had.co.nz/Environments.html#binding)).
+As a side note, any variable (i.e., column name) with spaces or non-standard characters can be referenced by enclosing it with backticks (see [here](http://adv-r.had.co.nz/Environments.html#binding){target="_blank"}).
 
 ### Mutating
 
@@ -328,4 +328,4 @@ Next we'll continue with data wrangling.
 
 ## Attribution
 
-Content in this lesson was pillaged extensively from the USGS-R training curriculum [here](https://github.com/USGS-R/training-curriculum) and [R for data Science](https://github.com/hadley/r4ds).
+Content in this lesson was pillaged extensively from the USGS-R training curriculum [here](https://github.com/USGS-R/training-curriculum){target="_blank"} and [R for data Science](https://github.com/hadley/r4ds){target="_blank"}.

@@ -420,7 +420,7 @@ div.tocify {
 <div id="data-wrangling-part-2" class="section level1">
 <h1>Data wrangling part 2</h1>
 <p>Get the lesson R script: <a href="Data_Wrangling_2.R">Data_Wrangling_2.R</a></p>
-<p>Get the lesson data: <a href="https://github.com/tbep-tech/tbep-r-training/raw/master/data/data.zip">download zip</a></p>
+<p>Get the lesson data: <a href="data/data.zip">download zip</a></p>
 <div id="lesson-outline" class="section level2">
 <h2>Lesson Outline</h2>
 <ul>
@@ -439,7 +439,7 @@ div.tocify {
 </div>
 <div id="goals" class="section level2">
 <h2>Goals</h2>
-<p>In this lesson we’ll continue our discussion of data wrangling with the tidyverse. Data wrangling is the manipulation or combination of datasets for the purpose of understanding. It fits within the broader scheme of <strong>data exploration</strong>, described as the art of looking at your data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again (from <a href="http://r4ds.had.co.nz/">R for Data Science</a>, as is most of today’s content).</p>
+<p>In this lesson we’ll continue our discussion of data wrangling with the tidyverse. Data wrangling is the manipulation or combination of datasets for the purpose of understanding. It fits within the broader scheme of <strong>data exploration</strong>, described as the art of looking at your data, rapidly generating hypotheses, quickly testing them, then repeating again and again and again (from <a href="http://r4ds.had.co.nz/" target="_blank">R for Data Science</a>, as is most of today’s content).</p>
 <p><img src="figure/data-science-wrangle.png" /></p>
 <p>Always remember that <strong>wrangling is based on a purpose.</strong> The process always begins by answering the following two questions:</p>
 <ul>
@@ -447,7 +447,7 @@ div.tocify {
 <li>What should my input data look like given what I want to do?</li>
 </ul>
 <p>You define what steps to take to get your data from input to where you want to go.</p>
-<p>Last lesson we learned the following functions from the <code>dplyr</code> package (cheatsheet <a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">here</a>):</p>
+<p>Last lesson we learned the following functions from the <code>dplyr</code> package (cheatsheet <a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf" target="_blank">here</a>):</p>
 <ul>
 <li>Selecting variables with <code>select</code></li>
 <li>Filtering observations by some criteria with <code>filter</code></li>
@@ -467,6 +467,14 @@ div.tocify {
 install.packages(&#39;tidyverse&#39;)</code></pre>
 <p>After installation, we can load the package:</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## -- Attaching packages ------------------------------------------------------------------------------------------------------------------------ tidyverse 1.2.1 --</code></pre>
+<pre><code>## v ggplot2 3.3.1     v readr   1.3.1
+## v tibble  3.0.1     v purrr   0.3.3
+## v tidyr   1.0.2     v stringr 1.4.0
+## v ggplot2 3.3.1     v forcats 0.4.0</code></pre>
+<pre><code>## -- Conflicts --------------------------------------------------------------------------------------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
 </div>
 <div id="combining-data" class="section level2">
 <h2>Combining data</h2>
@@ -491,14 +499,17 @@ statloc &lt;- read_csv(&#39;data/statloc.csv&#39;)
 joindat &lt;- left_join(fishdat, statloc, by = &#39;Reference&#39;)
 head(joindat)</code></pre>
 <pre><code>## # A tibble: 6 x 14
-##   OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout` Latitude Longitude
-##      &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
-## 1  1550020 TBM1996032006 1996-03-20     1996   300 2018-04-12 10:27:38        0              0       0       0          0               1     27.9     -82.6
-## 2  1550749 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0      54          0               0     27.9     -82.6
-## 3  1550750 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0       0          1               0     27.9     -82.6
-## 4  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23        0              0       0      80          0               0     27.9     -82.5
-## 5  1550828 TBM1996042601 1996-04-26     1996   160 2018-04-12 10:25:23        0              0       0       0          4               0     28.0     -82.7
-## 6  1550838 TBM1996051312 1996-05-13     1996   300 2018-04-12 10:25:23        0              0       0       0          0               1     27.9     -82.6</code></pre>
+##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Bluefish
+##      &lt;dbl&gt; &lt;chr&gt;     &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;
+## 1  1550020 TBM19960~ 1996-03-20     1996   300 2018-04-12 10:27:38        0
+## 2  1550749 TBM19960~ 1996-03-20     1996    22 2018-04-12 10:25:23        0
+## 3  1550750 TBM19960~ 1996-03-20     1996    22 2018-04-12 10:25:23        0
+## 4  1550762 TBM19960~ 1996-03-22     1996    20 2018-04-12 10:25:23        0
+## 5  1550828 TBM19960~ 1996-04-26     1996   160 2018-04-12 10:25:23        0
+## 6  1550838 TBM19960~ 1996-05-13     1996   300 2018-04-12 10:25:23        0
+## # ... with 7 more variables: `Common Snook` &lt;dbl&gt;, Mullets &lt;dbl&gt;,
+## #   Pinfish &lt;dbl&gt;, `Red Drum` &lt;dbl&gt;, `Sand Seatrout` &lt;dbl&gt;, Latitude &lt;dbl&gt;,
+## #   Longitude &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <div id="exercise-1" class="section level2">
@@ -705,33 +716,33 @@ str(tidydat)</code></pre>
 <p>Let’s use our tidied fisheries dataset from exercise 2.</p>
 <pre class="r"><code>head(tidydat)</code></pre>
 <pre><code>## # A tibble: 6 x 8
-##   OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Species  Count
-##      &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;    &lt;dbl&gt;
-## 1  1550020 TBM1996032006 1996-03-20     1996   300 2018-04-12 10:27:38 Bluefish     0
-## 2  1550749 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23 Bluefish     0
-## 3  1550750 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23 Bluefish     0
-## 4  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23 Bluefish     0
-## 5  1550828 TBM1996042601 1996-04-26     1996   160 2018-04-12 10:25:23 Bluefish     0
-## 6  1550838 TBM1996051312 1996-05-13     1996   300 2018-04-12 10:25:23 Bluefish     0</code></pre>
+##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Species Count
+##      &lt;dbl&gt; &lt;chr&gt;     &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;   &lt;dbl&gt;
+## 1  1550020 TBM19960~ 1996-03-20     1996   300 2018-04-12 10:27:38 Bluefi~     0
+## 2  1550749 TBM19960~ 1996-03-20     1996    22 2018-04-12 10:25:23 Bluefi~     0
+## 3  1550750 TBM19960~ 1996-03-20     1996    22 2018-04-12 10:25:23 Bluefi~     0
+## 4  1550762 TBM19960~ 1996-03-22     1996    20 2018-04-12 10:25:23 Bluefi~     0
+## 5  1550828 TBM19960~ 1996-04-26     1996   160 2018-04-12 10:25:23 Bluefi~     0
+## 6  1550838 TBM19960~ 1996-05-13     1996   300 2018-04-12 10:25:23 Bluefi~     0</code></pre>
 <p>This is not a terribly interesting dataset until we start to evaluate some of the differences. It’s also setup in a way to let us easily group by different variables. We could ask a simple question: how does highway total catch vary across species (ignoring gear differences)?</p>
 <p>First we can use <code>group_by</code>. Notice the new information at the top of the output.</p>
 <pre class="r"><code>by_spp &lt;- group_by(tidydat, Species)
 by_spp</code></pre>
 <pre><code>## # A tibble: 17,064 x 8
 ## # Groups:   Species [6]
-##    OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Species  Count
-##       &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;    &lt;dbl&gt;
-##  1  1550020 TBM1996032006 1996-03-20     1996   300 2018-04-12 10:27:38 Bluefish     0
-##  2  1550749 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23 Bluefish     0
-##  3  1550750 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23 Bluefish     0
-##  4  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23 Bluefish     0
-##  5  1550828 TBM1996042601 1996-04-26     1996   160 2018-04-12 10:25:23 Bluefish     0
-##  6  1550838 TBM1996051312 1996-05-13     1996   300 2018-04-12 10:25:23 Bluefish     0
-##  7  1550842 TBM1996051407 1996-05-14     1996   300 2018-04-12 10:25:23 Bluefish     0
-##  8  1551131 TBM1996051415 1996-05-14     1996   300 2018-04-12 10:27:38 Bluefish     0
-##  9  1551311 TBM1996032209 1996-03-22     1996   300 2018-04-12 10:25:20 Bluefish     0
-## 10  1551335 TBM1996041807 1996-04-18     1996    22 2018-04-12 10:25:24 Bluefish     0
-## # ... with 17,054 more rows</code></pre>
+##    OBJECTID Reference Sampling_Date    yr  Gear ExDate              Species
+##       &lt;dbl&gt; &lt;chr&gt;     &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;  
+##  1  1550020 TBM19960~ 1996-03-20     1996   300 2018-04-12 10:27:38 Bluefi~
+##  2  1550749 TBM19960~ 1996-03-20     1996    22 2018-04-12 10:25:23 Bluefi~
+##  3  1550750 TBM19960~ 1996-03-20     1996    22 2018-04-12 10:25:23 Bluefi~
+##  4  1550762 TBM19960~ 1996-03-22     1996    20 2018-04-12 10:25:23 Bluefi~
+##  5  1550828 TBM19960~ 1996-04-26     1996   160 2018-04-12 10:25:23 Bluefi~
+##  6  1550838 TBM19960~ 1996-05-13     1996   300 2018-04-12 10:25:23 Bluefi~
+##  7  1550842 TBM19960~ 1996-05-14     1996   300 2018-04-12 10:25:23 Bluefi~
+##  8  1551131 TBM19960~ 1996-05-14     1996   300 2018-04-12 10:27:38 Bluefi~
+##  9  1551311 TBM19960~ 1996-03-22     1996   300 2018-04-12 10:25:20 Bluefi~
+## 10  1551335 TBM19960~ 1996-04-18     1996    22 2018-04-12 10:25:24 Bluefi~
+## # ... with 17,054 more rows, and 1 more variable: Count &lt;dbl&gt;</code></pre>
 <p>We can then <code>summarize</code> to get the total count.</p>
 <pre class="r"><code>by_spp &lt;- summarize(by_spp, totals = sum(Count))
 by_spp</code></pre>
@@ -833,7 +844,7 @@ sumdat</code></pre>
 </div>
 <div id="attribution" class="section level2">
 <h2>Attribution</h2>
-<p>Content in this lesson was pillaged extensively from the USGS-R training curriculum <a href="https://github.com/USGS-R/training-curriculum">here</a> and <a href="https://github.com/hadley/r4ds">R for data Science</a>.</p>
+<p>Content in this lesson was pillaged extensively from the USGS-R training curriculum <a href="https://github.com/USGS-R/training-curriculum" target="_blank">here</a> and <a href="https://github.com/hadley/r4ds" target="_blank">R for data Science</a>.</p>
 </div>
 </div>
 

@@ -455,7 +455,7 @@ div.tocify {
 <ul>
 <li>The growth of R as explained in the <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/">Stack Overflow blog</a>, <a href="http://blog.revolutionanalytics.com/2016/07/r-moves-up-to-5th-place-in-ieee-language-rankings.html">IEEE rating</a></li>
 </ul>
-<p>R is also an open-source programming language - not only is it free, but this means anybody can contribute to it’s development. As of 2020-06-16, there are 15725 supplemental packages for R on CRAN!</p>
+<p>R is also an open-source programming language - not only is it free, but this means anybody can contribute to it’s development. As of 2020-06-16, there are 15734 supplemental packages for R on CRAN!</p>
 </div>
 </div>
 <div id="rstudio" class="section level2">
@@ -489,12 +489,8 @@ div.tocify {
 </div>
 <div id="executing-code-in-rstudio" class="section level3">
 <h3>Executing code in RStudio</h3>
-<p>After you write your script it can be sent to the Console to run the code in R. Any variables you create in your script will not be available in your working environment until this is done. There are two ways to send code to the console. First, you can hit the <code>Run</code> button at the top right of the scripting window. Second, and preferred, you can use <code>ctrl+enter</code> (<code>cmd+enter</code> on a Mac). Both approaches will send the selected line to the console, then move to the next line in your script. You can also highlight and send an entire block of code.</p>
+<p>After you write code in your script, it can be sent to the Console to run the code in R. Anything you write in the script will not be run or saved in R until it is sent to the console. There are two ways to do this. First, you can hit the <code>Run</code> button at the top right of the scripting window. Second, you can use <code>ctrl+enter</code> (<code>cmd+enter</code> on a Mac). Both approaches will send the selected line to the console, then move to the next line in your script. You can also highlight and send an entire block of code.</p>
 <p><img src="figure/rstudio_run.jpg" /></p>
-</div>
-<div id="what-is-the-environment" class="section level3">
-<h3>What is the environment?</h3>
-<p>There are two outcomes when you run code. First, the code will simply print output directly in the console. Second, there is no output because you have stored it as a variable (we’ll talk about variable assignment later). Output that is stored is actually saved in the <code>environment</code>. The environment is the collection of named objects that are stored in memory for your current R session. Anything stored in memory will be accessible by it’s name without running the original script that was used to create it.</p>
 </div>
 </div>
 <div id="exercise-1" class="section level2">
@@ -505,12 +501,12 @@ div.tocify {
 <li><p>If you’re not using RStudio Cloud, create a new project. Name it “r_workshop”. We will use this for the rest of the workshop.</p></li>
 <li><p>Create a new “R Script” in the Source Pane, save that file into your newly created project and name it “first_script.R”. It’ll just be a blank text file at this point.</p></li>
 <li><p>Add in a comment line to separate this section. It should look something like: <code># Exercise 1: Just Getting used to RStudio and Scripts</code>.</p></li>
-<li><p>Lastly, we need to get this project set up with some example data for our exercises (if using RStudio Cloud, ignore this step). You should have downloaded this already, but if not, the data are available <a href="https://SCCWRP.github.io/tbep_r_training/data/datazip.zip">here</a>. The data are in a zipped folder. Download the file to your computer (anywhere). Create a folder in your new project named <code>data</code> and extract the files into this location.</p></li>
+<li><p>Lastly, we need to get this project set up with some example data for our exercises (if you’re using RStudio Cloud, ignore this step). You should have downloaded this already, but if not, the data are available <a href="https://SCCWRP.github.io/tbep_r_training/data/datazip.zip">here</a>. The data are in a zipped folder. Download the file to your computer (anywhere). Create a folder in your new project named <code>data</code> and extract the files into this location.</p></li>
 </ol>
 </div>
 <div id="r-language-fundamentals" class="section level2">
 <h2>R language fundamentals</h2>
-<p>The basic syntax of a function follows the form: <code>function_name(arg1, arg2, ...)</code>.</p>
+<p>R is built around functions. These are commands that do specific things based on what you provide. The basic syntax of a function follows the form: <code>function_name(arg1, arg2, ...)</code>.</p>
 <p>With the base install, you will gain access to many functions (2682, to be exact). Some examples:</p>
 <pre class="r"><code># print
 print(&#39;hello world!&#39;)</code></pre>
@@ -520,40 +516,44 @@ seq(1, 10)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code># random numbers
 rnorm(100, mean = 10, sd = 2)</code></pre>
-<pre><code>##   [1]  9.217754 10.105007 11.651833  9.754965  9.852993 10.986536  8.608811
-##   [8]  9.448168 10.940484 11.498287  8.298703  6.717725  8.947219  8.868937
-##  [15] 14.078888 13.813589  7.181688 10.504000 12.846145  5.428698 11.317234
-##  [22] 10.045977  8.936990 10.751127 10.898936 14.108026  9.259675 12.537562
-##  [29]  8.411212 10.183021 12.144773 12.184094 13.884152  8.444598 10.163757
-##  [36] 10.626725 10.767477 13.264420 10.566638  8.586441  9.905140 13.694068
-##  [43] 13.945949  8.020836  7.625826  9.517603 11.379806  8.989186 10.131037
-##  [50] 10.103176  9.389055  7.960418 12.304715 10.395556 12.473747 14.573912
-##  [57]  8.075748 10.048810 12.440161 11.050694  9.429049 11.317834 10.458275
-##  [64]  7.108270 10.064030  8.826924 11.162800 10.398096 13.190234  7.675559
-##  [71]  9.837235  7.238032  7.349820  7.604444 11.838739  9.460844  5.363157
-##  [78]  6.969630 11.286660 10.730905 10.112495  8.843499 11.688466  8.906762
-##  [85] 10.234091 12.695654  8.484747 10.684667 10.134011 10.513710  7.570964
-##  [92]  7.927201  9.057976 11.257124 11.197262 10.213320  6.537212  9.573255
-##  [99] 11.778208  7.313099</code></pre>
+<pre><code>##   [1] 10.992700 10.147477 12.329211 10.486675 10.572357  8.683112 13.695521
+##   [8] 11.317955  6.819402 11.679303 11.831672 11.669787  9.153228 11.996964
+##  [15] 12.463474 10.752981 10.049320  7.356887 10.200892 10.827003 10.856530
+##  [22]  8.421231 12.856581  9.950361 11.024071 10.770347  9.198297 10.638197
+##  [29] 11.448240  9.645180 13.792804  8.172067  9.000906  6.128625 11.306663
+##  [36]  6.476714 10.846236 10.563731 12.626526  7.796242 13.795643  8.068189
+##  [43]  7.488866  9.618860 12.929806 10.017018 10.281068 10.333309  8.593658
+##  [50]  8.679311  7.378551 11.395437  8.244259  9.609776 10.416079 14.588055
+##  [57] 11.485771  7.306746  8.775633 12.903805 10.343986 10.338424  9.095772
+##  [64] 10.442127 14.433153 12.881496 10.525909 10.119563 11.090029  7.738159
+##  [71]  9.879614 11.427763 10.700089  8.920762 11.754313  9.588871 10.870908
+##  [78]  9.422032 11.514298 14.514548  9.184769 10.130947  9.144674 11.665951
+##  [85] 10.902676  8.579343 10.677609 11.673664 10.539328  7.050081  7.708236
+##  [92] 10.394426 10.737073  8.589152 10.240434  9.426662  7.335015 11.598018
+##  [99] 11.014854 12.411973</code></pre>
 <pre class="r"><code># average 
 mean(rnorm(100))</code></pre>
-<pre><code>## [1] 0.01380896</code></pre>
+<pre><code>## [1] 0.03734853</code></pre>
 <pre class="r"><code># sum
 sum(rnorm(100))</code></pre>
-<pre><code>## [1] -3.009854</code></pre>
+<pre><code>## [1] -6.376993</code></pre>
 <p>Very often you will see functions used like this:</p>
 <pre class="r"><code>my_random_sum &lt;- sum(rnorm(100))</code></pre>
 <p>In this case the first part of the line is the name of an object. You make this up. Ideally it should have some meaning, but the only rules are that it can’t start with a number and must not have any spaces. The second bit, <code>&lt;-</code>, is the assignment operator. This tells R to take the result of <code>sum(rnorm(100))</code> and store it in an object named, <code>my_random_sum</code>. It is stored in the environment and can be used by just executing it’s name in the console.</p>
 <pre class="r"><code>my_random_sum</code></pre>
-<pre><code>## [1] -5.164518</code></pre>
+<pre><code>## [1] 3.65245</code></pre>
+<div id="what-is-the-environment" class="section level3">
+<h3>What is the environment?</h3>
+<p>There are two outcomes when you run code. First, the code will simply print output directly in the console. Second, there is no output because you have stored it as a variable using <code>&lt;-</code>. Output that is stored is actually saved in the <code>environment</code>. The environment is the collection of named objects that are stored in memory for your current R session. Anything stored in memory will be accessible by it’s name without running the original script that was used to create it.</p>
 <p>With this, you have the very basics of how we write R code and save objects that can be used later.</p>
+</div>
 <div id="packages" class="section level3">
 <h3>Packages</h3>
 <p>The base install of R is quite powerful, but you will soon have a need or desire to go beyond this. Packages provide this ability. They are a standardized way of extending R with new methods, techniques, and programming functionality. There is a lot to say about packages regarding finding them, using them, etc., but for now let’s focus just on the basics.</p>
 </div>
 <div id="cran" class="section level3">
 <h3>CRAN</h3>
-<p>One of the reasons for R’s popularity is CRAN, <a href="http://cran.r-project.org/">The Comprehensive R Archive Network</a>. This is where you download R and also where most will gain access to packages (there are other places, but that is for later). Not much else to say about this now other than to be aware of it. As of 2020-06-16, there are 15725 on CRAN!</p>
+<p>One of the reasons for R’s popularity is CRAN, <a href="http://cran.r-project.org/">The Comprehensive R Archive Network</a>. This is where you download R and also where most will gain access to packages (there are other places, but that is for later). Not much else to say about this now other than to be aware of it. As of 2020-06-16, there are 15734 on CRAN!</p>
 </div>
 <div id="installing-packages" class="section level3">
 <h3>Installing packages</h3>

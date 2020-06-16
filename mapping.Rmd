@@ -17,7 +17,7 @@ opts_chunk$set(tidy = FALSE, message = F, warning = F)
 
 Get the lesson R script: [mapping.R](mapping.R)
 
-Get the lesson data: [download zip](https://github.com/tbep-tech/tbep-r-training/raw/master/data/data.zip)
+Get the lesson data: [download zip](data/data.zip)
 
 ## Lesson Outline
 
@@ -33,7 +33,7 @@ Get the lesson data: [download zip](https://github.com/tbep-tech/tbep-r-training
 * [Exercise 2]
 * [Exercise 3]
 
-R has been around for over twenty years and most of its use has focused on statistical analysis.  Tools for spatial analysis have been developed in recent years that allow the use of R as a full-blown GIS with capabilities similar or even superior to commerical software.  This lesson will focus on geospatial analysis using the [simple features](https://r-spatial.github.io/sf/) package.  We will focus entirely on working with vector data in this lesson, but checkout the [raster](https://cran.r-project.org/web/packages/raster/) and [rgdal](https://cran.r-project.org/web/packages/rgdal/index.html) packages if you want to work with raster data in R.  There are several useful vignettes in the raster link.
+R has been around for over twenty years and most of its use has focused on statistical analysis.  Tools for spatial analysis have been developed in recent years that allow the use of R as a full-blown GIS with capabilities similar or even superior to commerical software.  This lesson will focus on geospatial analysis using the [simple features](https://r-spatial.github.io/sf/){target="_blank"} package.  We will focus entirely on working with vector data in this lesson, but checkout the [raster](https://cran.r-project.org/web/packages/raster/){target="_blank"} and [rgdal](https://cran.r-project.org/web/packages/rgdal/index.html){target="_blank"} packages if you want to work with raster data in R.  There are several useful vignettes in the raster link.
 
 The goals for today are:
 
@@ -53,7 +53,7 @@ Vector data come in three flavors.  The simplest is a __point__, which is a 0-di
 
 ![https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/](figure/pts-lines-polys.png)
 
-*Image [source](https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/)*
+*Image [source](https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/){target="_blank"}*
 
 All vector data are represented similarly, whether they're points, lines or polygons.  Points are defined by a single coordinate location, whereas a line or polygon is several points with a grouping variable that distinguishes one object from another. In all cases, the aggregate dataset is composed of one or more features of the same type (points, lines, or polygons).
 
@@ -67,7 +67,7 @@ The CRS is used to establish a frame of reference for the locations in your spat
 
 ![](figure/crs-comparisons.jpg) 
 
-*Image [source](https://nceas.github.io/oss-lessons/spatial-data-gis-law/1-mon-spatial-data-intro.html)*
+*Image [source](https://nceas.github.io/oss-lessons/spatial-data-gis-law/1-mon-spatial-data-intro.html){target="_blank"}*
 
 To summarize, vector data include the following:
 
@@ -81,9 +81,9 @@ These are all the pieces of information you need to recognize in your data when 
 
 ## Simple features
 
-R has a long history of packages for working with spatial data.  For many years, the [sp](https://cran.r-project.org/web/packages/sp/index.html) package was the standard and most widely used toolset for working with spatial data in R. This package laid the foundation for creating spatial data classes and methods in R, but unfortunately it's development predated a lot of the newer tools that are built around the [tidyverse](https://www.tidyverse.org/).  This makes it incredibly difficult to incorporate `sp` data objects with these newer data analysis workflows.  
+R has a long history of packages for working with spatial data.  For many years, the [sp](https://cran.r-project.org/web/packages/sp/index.html){target="_blank"} package was the standard and most widely used toolset for working with spatial data in R. This package laid the foundation for creating spatial data classes and methods in R, but unfortunately it's development predated a lot of the newer tools that are built around the [tidyverse](https://www.tidyverse.org/){target="_blank"}.  This makes it incredibly difficult to incorporate `sp` data objects with these newer data analysis workflows.  
 
-The [simple features](https://r-spatial.github.io/sf/) or sf package was developed to streamline the use of spatial data in R and to align its functionality with those provided in the tidyverse.  The sf package is already beginning to replace sp as the fundamental spatial model in R for vector data.  A major advantage of sf, as you'll see, is its intuitive data structure that retains many familiar components of the `data.frame` (or more accurately, `tibble`).
+The [simple features](https://r-spatial.github.io/sf/){target="_blank"} or sf package was developed to streamline the use of spatial data in R and to align its functionality with those provided in the tidyverse.  The sf package is already beginning to replace sp as the fundamental spatial model in R for vector data.  A major advantage of sf, as you'll see, is its intuitive data structure that retains many familiar components of the `data.frame` (or more accurately, `tibble`).
 
 Simple Features is a hierarchical data model that represents a wide range of geometry types - it includes all common vector geometry types (but does not include raster) and even allows geometry collections, which can have multiple geometry types in a single object. From the first sf package vignette we see:
 
@@ -127,7 +127,7 @@ Now that we're setup, let's talk about how the `sf` package can be used.  After 
 methods(class = 'sf')
 ```
 
-All of the functions and methods in sf are prefixed with st_, which stands for ‘spatial and temporal’.  This is kind of confusing but this is in reference to standard methods avialable in [PostGIS](https://en.wikipedia.org/wiki/PostGIS), an open-source backend that is used by many geospatial platforms.  An advantage of this prefixing is all commands are easy to find with command-line completion in sf, in addition to having naming continuity with existing software.
+All of the functions and methods in sf are prefixed with st_, which stands for ‘spatial and temporal’.  This is kind of confusing but this is in reference to standard methods avialable in [PostGIS](https://en.wikipedia.org/wiki/PostGIS){target="_blank"}, an open-source backend that is used by many geospatial platforms.  An advantage of this prefixing is all commands are easy to find with command-line completion in sf, in addition to having naming continuity with existing software.
 
 There are two ways to create a spatial data object in R, i.e., an `sf` object, using the sf package.
 
@@ -162,7 +162,7 @@ str(statloc)
 
 The `st_as_sf()` function can be used to make this `data.frame` into a `sf` object, but we have first have to join the two datasets and tell R which column is the x-coordinates and which is the y-coordinates.  We also have to specify a CRS - this is just a text string or number (i.e, EPSG)  in a standard format for geospatial data. A big part of working with spatial data is keeping track of reference systems between different datasets.  Remember that meaningful comparisons between datasets are only possible if the CRS is shared.  
 
-There are many, many types of reference systems and plenty of resources online that provide detailed explanations of the what and why behind the CRS (see [spatialreference.org](http://www.spatialreference.org/) or [this guide](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/OverviewCoordinateReferenceSystems.pdf) from NCEAS).  For now, just realize that we can use a simple text string in R to indicate which CRS we want.  Although this may not always be true, we can make an educated guess that the standard geographic projection with the WGS84 datum applies to our dataset.
+There are many, many types of reference systems and plenty of resources online that provide detailed explanations of the what and why behind the CRS (see [spatialreference.org](http://www.spatialreference.org/){target="_blank"} or [this guide](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/OverviewCoordinateReferenceSystems.pdf){target="_blank"} from NCEAS).  For now, just realize that we can use a simple text string in R to indicate which CRS we want.  Although this may not always be true, we can make an educated guess that the standard geographic projection with the WGS84 datum applies to our dataset.
 
 ## Exercise 2
 
@@ -262,7 +262,7 @@ plot(fish_int$geometry)
 fish_int
 ```
 
-Now we can easily see which stations are in which seagrass polygon.  We can use some familiar tools from dplyr to get the aggregate catch data for the different polygon counts.  Specifically, the `FLUCCS` attribute identifies seagrass polygons as continuous (`9116`) or patchy (`9113`) (metadata [here](https://www.arcgis.com/sharing/rest/content/items/f0ecff0cf0de491685f8fb074adb278b/info/metadata/metadata.xml?format=default&output=html).  Maybe we want to summarise species counts by seagrass polygon type.
+Now we can easily see which stations are in which seagrass polygon.  We can use some familiar tools from dplyr to get the aggregate catch data for the different polygon counts.  Specifically, the `FLUCCS` attribute identifies seagrass polygons as continuous (`9116`) or patchy (`9113`) (metadata [here](https://www.arcgis.com/sharing/rest/content/items/f0ecff0cf0de491685f8fb074adb278b/info/metadata/metadata.xml?format=default&output=html){target="_blank"}.  Maybe we want to summarise species counts by seagrass polygon type.
 
 ```{r}
 fish_cnt <- fish_int %>% 
@@ -344,7 +344,7 @@ Now you should be able to:
 
 1) Execute basic geospatial functions in R
 
-This concludes our training workshop. I hope you’ve enjoyed the material and found the content useful. Please continue to use this website as a resource for developing your R skills and definitely checkout our [Data and Resources](https://tbep-tech.github.io/tbep-r-training/Data_and_Resources.html) page for additional learning material.  
+This concludes our training workshop. I hope you’ve enjoyed the material and found the content useful. Please continue to use this website as a resource for developing your R skills and definitely checkout our [Data and Resources](Data_and_Resources.html) page for additional learning material.  
 
 
 

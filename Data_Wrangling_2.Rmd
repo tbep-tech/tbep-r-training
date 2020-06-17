@@ -167,6 +167,8 @@ There are three inter-correlated rules which make a dataset tidy:
 
 ![](figure/tidy-1.png)
 
+For the example tables above, only the first table is tidy. 
+
 There are some very real reasons why you would encounter untidy data:
 
 1.  Most people aren't familiar with the principles of tidy data, and it's hard

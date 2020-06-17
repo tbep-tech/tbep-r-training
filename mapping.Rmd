@@ -135,7 +135,7 @@ There are two ways to create a spatial data object in R, i.e., an `sf` object, u
 
 1) Convert an existing R object with latitude/longitude data that represent point features
 
-We've already imported a shapefile in the first exercise, so let's look at its structure to better understand the `sf` object. The `st_read()` function can be used for import.  Setting `quiet = T` will keep R from being chatty when it imports the data.
+We've already imported a shapefile in exercise 12, so let's look at its structure to better understand the `sf` object. The `st_read()` function can be used for import.  Setting `quiet = T` will keep R from being chatty when it imports the data.
 
 ```{r}
 sgdat <- st_read('data/sgdat.shp', quiet = T)
@@ -200,7 +200,7 @@ There's a shortcut to specifying the CRS if you don't know which one to use.  Re
 st_crs(alldat)
 ```
 
-When we created the `alldat` dataset, we could have used the CRS from the `sgdat` object that we created in the first exercise by using `crs = st_crs(sgdat)` for the `crs` argument.  This is often a quick shortcut for creating an `sf` object without having to look up the CRS number.  
+When we created the `alldat` dataset, we could have used the CRS from the `sgdat` object that we created in exercise 12 by using `crs = st_crs(sgdat)` for the `crs` argument.  This is often a quick shortcut for creating an `sf` object without having to look up the CRS number.  
 
 We can verify that both are now have the same CRS as WGS 84.
 

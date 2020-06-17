@@ -243,13 +243,11 @@ Spreading can be graphically demonstrated:
 
 ## Exercise 7
 
-Let's take a look at the fisheries data.  Are these tidy data?  What rules do they violate?  We can use the functions in the `tidyr` package from the tidyverse to make these data tidy.
+Let's take a look at the fisheries data. These data are already "tidy". To help with the next few examples, we'll gather the  species and catch count data using the `gather` function from the `tidyr` package.
 
-1. Inspect the fisheries dataset  What are the dimensions (hint: `dim`)?  What are the names and column types (hint: `str`)?
+1. Inspect the fisheries dataset.  What are the dimensions (hint: `dim`)?  What are the names and column types (hint: `str`)?
 
-1. We need to make these data tidy. Which columns need to be tidied?  What are your keys? What are your values? 
-
-1. Use the `gather` function to make the data tidy.  Assign the new tidy dataset to a variable in your environment.
+1. Use the `gather` function to "gather" the species columns and count data into two new columns. What are your keys? What are your values?  Assign the new dataset to a variable in your environment.
 
 1. Check the dimensions and structure of your new dataset. What's different?
 
@@ -259,13 +257,13 @@ Let's take a look at the fisheries data.  Are these tidy data?  What rules do th
 dim(fishdat)
 str(fishdat)
 
-# tidy alldat
-tidydat <- fishdat %>%
+# gather the fishdat
+gatherdat <- fishdat %>%
   gather(key = 'Species', value = 'Count', Bluefish, `Common Snook`, Mullets, Pinfish, `Red Drum`, `Sand Seatrout`)
 
 # check dimensions, structure
-dim(tidydat)
-str(tidydat)
+dim(gatherdat)
+str(gatherdat)
 ```
 </div>
 
@@ -275,17 +273,17 @@ The last tool we're going to learn about in `dplyr` is the `summarize` function.
 
 The summarize function is most useful with the `group_by` function.  This function lets you define a column that serves as a grouping variable for developing separate summaries, as compared to summarizing the entire dataset.  The `group_by` function works with any `dplyr` function so it can be quite powerful.
 
-Let's use our tidied fisheries dataset from exercise 2. 
+Let's use our gathered fisheries dataset from exercise 7. 
 
 ```{r}
-head(tidydat)
+head(gatherdat)
 ```
 
 This is not a terribly interesting dataset until we start to evaluate some of the differences.  It's also setup in a way to let us easily group by different variables.  We could ask a simple question: how does total catch vary across species (ignoring gear differences)? 
 
 First we can use `group_by`. Notice the new information at the top of the output.
 ```{r}
-by_spp <- group_by(tidydat, Species)
+by_spp <- group_by(gatherdat, Species)
 by_spp
 ```
 
@@ -297,7 +295,7 @@ by_spp
 
 Of course, this can (and should) be done with pipes:
 ```{r}
-by_spp <- tidydat %>%
+by_spp <- gatherdat %>%
   group_by(Species) %>%
   summarize(totals = sum(Count))
 by_spp
@@ -306,7 +304,7 @@ by_spp
 We can group the dataset by more than one column to get summaries with multiple groups. Here we can look at total count by each unique combination of gear and species.
 
 ```{r}
-by_spp_gear <- tidydat %>%
+by_spp_gear <- gatherdat %>%
   group_by(Species) %>%
   summarize(totals = sum(Count))
 by_spp_gear
@@ -314,7 +312,7 @@ by_spp_gear
 
 We can also get more than one summary at a time.  The summary function can use any function that operates on a vector.  Some common examples include `min`, `max`, `sd`, `var`, `median`, `mean`, and `n`.  It's usually good practice to include a summary of how many observations were in each group, so get used to including the `n` function.
 ```{r}
-more_sums <-tidydat %>%
+more_sums <-gatherdat %>%
   group_by(Species) %>%
   summarize(
     n = n(),
@@ -342,9 +340,9 @@ anyNA(x)
 
 Now we have access to a several tools in the tidyverse to help us wrangle more effectively.  For the final exercise, we're going subset our fisheries data and get a summary.  Specifically, we'll filter our data by Gear type 20 and Pinfish, then summarize the average catch across stations. 
 
-1. Using the tidy data we created in exercise 2, filter the data by Gear type 20 and Pinfish (hint, `filter(Gear == 20 & Species == 'Pinfish')`.
+1. Using the gathered data we created in exercise 7, filter the data by Gear type 20 and Pinfish (hint, `filter(Gear == 20 & Species == 'Pinfish')`.
 
-1. Group the data by site so you can summarize the cach of Pinfish (hint, `group_by(Reference)`.  
+1. Group the data by site so you can summarize the catch of Pinfish (hint, `group_by(Reference)`.  
 
 1. Summarize the count column by taking the average (hint, `summarise(ave = mean(Count))`)
 
@@ -352,7 +350,7 @@ Now we have access to a several tools in the tidyverse to help us wrangle more e
 
 <div class = 'fold o s'>
 ```{r results = 'hide'}
-sumdat <- tidydat %>%
+sumdat <- gatherdat %>%
   filter(Gear == 20 & Species == 'Pinfish') %>% 
   group_by(Reference) %>% 
   summarize(

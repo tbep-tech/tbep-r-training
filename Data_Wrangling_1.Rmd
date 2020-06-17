@@ -298,12 +298,12 @@ A couple comments about piping:
 
 Now that we know how to pipe functions, let's repeat exercise 4.  You should already have code to select and filter the data. Use the following to repeat the analysis but with pipes.  You should only have to create one data object in this exercise. 
 
-1. Using your code from exercise two, try to replicate the steps using pipes.  The steps we used in exercise two were:
+1. Using your code from exercise four, try to replicate the steps using pipes.  The steps we used in exercise four were:
      * From fishdat, select the `Reference`, `Sampling_Date`, `Gear`, and `Sand Seatrout` columns
      * Filter by `Gear` to get only gear 20
      * Rename `Sampling_Date` to `date`
 
-2. When you're done, you should have a data object that's exactly the same as the one you created in exercise two. Try to verify this with the `identical` function from base R (check the help file with `?identical` if you don't know how to use this function).
+2. When you're done, you should have a data object that's exactly the same as the one you created in exercise four. Try to verify this with the `identical` function from base R (check the help file with `?identical` if you don't know how to use this function).
 
 <div class="fold s o">
 ```{r, eval = F}

@@ -53,33 +53,33 @@ spread(table2, key = type, value = count)
 dim(fishdat)
 str(fishdat)
 
-# tidy alldat
-tidydat <- fishdat %>%
+# gather the fishdat
+gatherdat <- fishdat %>%
   gather(key = 'Species', value = 'Count', Bluefish, `Common Snook`, Mullets, Pinfish, `Red Drum`, `Sand Seatrout`)
 
 # check dimensions, structure
-dim(tidydat)
-str(tidydat)
+dim(gatherdat)
+str(gatherdat)
 
-head(tidydat)
+head(gatherdat)
 
-by_spp <- group_by(tidydat, Species)
+by_spp <- group_by(gatherdat, Species)
 by_spp
 
 by_spp <- summarize(by_spp, totals = sum(Count))
 by_spp
 
-by_spp <- tidydat %>%
+by_spp <- gatherdat %>%
   group_by(Species) %>%
   summarize(totals = sum(Count))
 by_spp
 
-by_spp_gear <- tidydat %>%
+by_spp_gear <- gatherdat %>%
   group_by(Species) %>%
   summarize(totals = sum(Count))
 by_spp_gear
 
-more_sums <-tidydat %>%
+more_sums <-gatherdat %>%
   group_by(Species) %>%
   summarize(
     n = n(),
@@ -95,7 +95,7 @@ mean(x, na.rm = T)
 
 anyNA(x)
 
-sumdat <- tidydat %>%
+sumdat <- gatherdat %>%
   filter(Gear == 20 & Species == 'Pinfish') %>% 
   group_by(Reference) %>% 
   summarize(

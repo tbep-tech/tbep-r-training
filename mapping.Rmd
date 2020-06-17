@@ -275,7 +275,7 @@ fish_cnt
 
 Notice that we've retained the `sf` data structure in the aggregated dataset but the structure is now slightly different, both in the attributes and the geometry column.  We now have only two attributes, `FLUCCS` and `cnt`.  The `geometry` column is retianed but now is aggregated to a multipoint objects where all points in continous or patchy seagrass are grouped by row. This is a really powerful feature of `sf`: spatial attributes are retained during the wrangling process.  
 
-We can also visualize this information with ggplot2. 
+We can also visualize this information with ggplot2. This plot shows how many pinfish were caught in the two seagrass coverage categories for all of Old Tampa Bay (`9113`: patchy, `9116`: continuous). 
 
 ```{r, message = F}
 ggplot(fish_cnt, aes(x = FLUCCS, y = cnt)) + 

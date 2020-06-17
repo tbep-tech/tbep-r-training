@@ -301,11 +301,13 @@ Flat data files (text only, rectangular format) present the least complications 
 
 ## The working directory 
 
-Before we import data, we need to talk about the "working directory".  Whenever RStudio is opened, it uses a file location on your computer to access and save data.  If you're using an RStudio project, the working directory where be the folder where you created a project.  If not, it is probably the the user's home directory (e.g., `C:/Users/Marcus`), which you'll want to change to where you have your data.  
+Before we import data, we need to talk about the "working directory".  Whenever RStudio is opened, it uses a file location on your computer to access and save data.  If you're using an RStudio project, the working directory will be the folder where you created the project.  If not, it is probably the the user's home directory (e.g., `C:/Users/Marcus`), which you'll want to change to where you have your data.  
 
-You can see your working directory with the `getwd()` function or from the file path at the top of the console in RStudio.  All files in the File pane window on the bottom right of RStudio are also those within the working directory.  If you want to change your working directory, you can use the `setwd()` function and put the file path (in parentheses) inside the function, e.g., `setwd('C:/Users/Marcus/Desktop/newdirectory')`.  
+You can see your working directory with the `getwd()` function or from the file path at the top of the console in RStudio.  All files in the File pane window on the bottom right of RStudio are also those within the working directory.  If you want to change your working directory, you can use the `setwd()` function and put the file path (as a character string) inside the function, e.g., `setwd('C:/Users/Marcus/Desktop/newdirectory')`.  
 
-The working directory is important to know when you're importing or exporting data.  When you import data, a *relative* file path can be used that is an extension of the working directory.  For example, if your working directory if `'C:/Users/Marcus/Desktop'` and you have a file called `mydata.csv` in that directory,  you can use `read_csv('mydata.csv')` to import the file.  R will know that this file is in your working directory.  If you want to import a file that is not in your working directory, you will have to use an *absolute* path that is the full file location.  Otherwise, R will not know where to look outside of the working directory.  
+The working directory is important to know when you're importing or exporting data.  When you import data, a *relative* file path can be used that is an extension of the working directory.  For example, if your working directory is `'C:/Users/Marcus/Desktop'` and you have a file called `mydata.csv` in that directory,  you can use `read_csv('mydata.csv')` to import the file.  Alternatively, if there's a folder called "data" in your working directory with the file you want to import, you would use `read_csv('data/mydata.csv')`.
+
+If you want to import a file that is not in your working directory, you will have to use an *absolute* path that is the full file location.  Otherwise, R will not know where to look outside of the working directory.  
 
 ### Exercise 3
 

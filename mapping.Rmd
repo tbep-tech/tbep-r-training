@@ -244,9 +244,9 @@ plot(filt_dat$geometry)
 
 Now let's use the fisheries data and seagrass polygons to do a quick geospatial analysis.  Our simple question is:
 
-__How many fish were caught where seagrass was observed in 2016?_
+__How many fish were caught where seagrass was observed in 2016?__
 
-The first task is to subset the 2016 fisheries data by locations where seagrass was observed.  There are a few ways we can do this.  The first is to make simple subset where we filter the station locations using a spatial overlay with the seagrass polygons  The second and more complete approach is to intersect the two data objects to subset and combine the attributes.
+The first task is to subset the 2016 fisheries data by locations where seagrass was observed.  There are a few ways we can do this.  The first is to make a simple subset where we filter the station locations using a spatial overlay with the seagrass polygons  The second and more complete approach is to intersect the two data objects to subset and combine the attributes.
 
 ```{r}
 fish_crop <- filt_dat[sgdat, ]

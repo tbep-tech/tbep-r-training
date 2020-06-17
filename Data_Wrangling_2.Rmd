@@ -281,7 +281,7 @@ Let's use our tidied fisheries dataset from exercise 2.
 head(tidydat)
 ```
 
-This is not a terribly interesting dataset until we start to evaluate some of the differences.  It's also setup in a way to let us easily group by different variables.  We could ask a simple question: how does highway total catch vary across species (ignoring gear differences)? 
+This is not a terribly interesting dataset until we start to evaluate some of the differences.  It's also setup in a way to let us easily group by different variables.  We could ask a simple question: how does total catch vary across species (ignoring gear differences)? 
 
 First we can use `group_by`. Notice the new information at the top of the output.
 ```{r}

@@ -725,7 +725,7 @@ str(tidydat)</code></pre>
 ## 4  1550762 TBM19960~ 1996-03-22     1996    20 2018-04-12 10:25:23 Bluefi~     0
 ## 5  1550828 TBM19960~ 1996-04-26     1996   160 2018-04-12 10:25:23 Bluefi~     0
 ## 6  1550838 TBM19960~ 1996-05-13     1996   300 2018-04-12 10:25:23 Bluefi~     0</code></pre>
-<p>This is not a terribly interesting dataset until we start to evaluate some of the differences. It’s also setup in a way to let us easily group by different variables. We could ask a simple question: how does highway total catch vary across species (ignoring gear differences)?</p>
+<p>This is not a terribly interesting dataset until we start to evaluate some of the differences. It’s also setup in a way to let us easily group by different variables. We could ask a simple question: how does total catch vary across species (ignoring gear differences)?</p>
 <p>First we can use <code>group_by</code>. Notice the new information at the top of the output.</p>
 <pre class="r"><code>by_spp &lt;- group_by(tidydat, Species)
 by_spp</code></pre>

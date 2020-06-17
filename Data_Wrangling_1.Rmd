@@ -76,7 +76,7 @@ Notice that the messages you get after loading are a bit different from other pa
 
 Other packages (e.g., `readxl`) are also included but you will probably not use these as frequently.
 
-A nice freature of tidyverse is the ability to check for and install new versions of each package:
+A nice feature of tidyverse is the ability to check for and install new versions of each package:
 
 ``` r
 tidyverse_update()

@@ -436,9 +436,9 @@ div.tocify {
 <div id="lesson-exercises" class="section level2">
 <h2>Lesson Exercises</h2>
 <ul>
-<li><a href="#exercise-1">Exercise 1</a></li>
-<li><a href="#exercise-2">Exercise 2</a></li>
-<li><a href="#exercise-3">Exercise 3</a></li>
+<li><a href="#exercise-9">Exercise 9</a></li>
+<li><a href="#exercise-10">Exercise 10</a></li>
+<li><a href="#exercise-11">Exercise 11</a></li>
 </ul>
 </div>
 </div>
@@ -500,8 +500,8 @@ plot(hwy ~ displ, data = mpg, main = &#39;Highway mileage by engine size&#39;,
 <pre class="r"><code>hist(mpg$hwy, breaks = 20)</code></pre>
 <p><img src="Viz_and_Graphics_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 </div>
-<div id="exercise-1" class="section level2">
-<h2>Exercise 1</h2>
+<div id="exercise-9" class="section level2">
+<h2>Exercise 9</h2>
 <p>Let’s make some simple graphics of our fisheries dataset using base R. We’ll make a histogram of fish catch with the <code>hist</code> function and a time series plot of catch using the <code>plot</code> function. We’ll also add a title and better axis labels to the plots to make them slightly more palatable.</p>
 <ol style="list-style-type: decimal">
 <li><p>First, start by loading the fish data as you’ve done before. Use <code>read_csv()</code> from the tidyverse.</p></li>
@@ -599,9 +599,9 @@ Execution halted</code></pre>
 <p><img src="Viz_and_Graphics_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 </div>
 </div>
-<div id="exercise-2" class="section level2">
-<h2>Exercise 2</h2>
-<p>Let’s reproduce the histogram and scatterplot we created in exercise 1 using ggplot. This requires us to map the <code>Sampling_Date</code> and <code>Pinfish</code> variables to the x and y aesthetics for <code>geom_point</code>.</p>
+<div id="exercise-10" class="section level2">
+<h2>Exercise 10</h2>
+<p>Let’s reproduce the histogram and scatterplot we created in exercise 9 using ggplot. This requires us to map the <code>Sampling_Date</code> and <code>Pinfish</code> variables to the x and y aesthetics for <code>geom_point</code>.</p>
 <ol style="list-style-type: decimal">
 <li><p>Setup your initial plot with <code>ggplot</code>. Map the x variable to <code>Sampling_Date</code>, the y variable to <code>Pinfish</code>. The setup should look like this: <code>ggplot(fishdat, aes(x = Sampling_Date, y = Pinfish))</code>). What happens if you run only this code?</p></li>
 <li><p>Add the <code>geom_point()</code> geom to your plot using the <code>+</code> operator. Remember the correct placement of <code>+</code>, it always occurs in the line preceding the layer that is being added to the plot.</p></li>
@@ -679,9 +679,9 @@ Execution halted</code></pre>
 <p><img src="Viz_and_Graphics_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 </div>
 </div>
-<div id="exercise-3" class="section level2">
-<h2>Exercise 3</h2>
-<p>Let’s modify the scatterplot we created in exercise 3 by adding a theme, a statistical summary, and facets. We’ll map the <code>stat_smooth</code> function to the Gear type and also use this variable to create a three-panel plot.</p>
+<div id="exercise-11" class="section level2">
+<h2>Exercise 11</h2>
+<p>Let’s modify the scatterplot we created in exercise 10 by adding a theme, a statistical summary, and facets. We’ll map the <code>stat_smooth</code> function to the Gear type and also use this variable to create a three-panel plot.</p>
 <ol style="list-style-type: decimal">
 <li><p>Setup the initial plot as before. Map the x variable to <code>Sampling_Date</code> and the y variable to <code>Pinfish</code>. In addition, use the <code>group</code> argument in the <code>aes()</code> function to group the data by Gear. The intiial <code>ggplot</code> line will look like this <code>ggplot(fishdata, aes(x = Sampling_Date, y = Pinfish, group = Gear)</code>. Add the <code>geom_point</code> geom and the <code>scale_y_continuous</code> scale with <code>trans = "log10"</code> to transform catch.</p></li>
 <li><p>Add one of the pre-packaged themes to the plot: <code>theme_bw()</code>, <code>theme_classic()</code>, or <code>theme_minimal()</code>. You can also use any of the other themes from the tidyverse (see <a href="http://ggplot2.tidyverse.org/reference/ggtheme.html" target="_blank">here</a>) or use one from the <code>ggthemes</code> package (see <a href="https://github.com/jrnold/ggthemes" target="_blank">here</a>). You’ll have to install and load the <code>ggthemes</code> package if using the latter.</p></li>
@@ -781,7 +781,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

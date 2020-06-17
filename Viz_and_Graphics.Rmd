@@ -29,9 +29,9 @@ Get the lesson data: [download zip](data/data.zip)
 
 ## Lesson Exercises
 
-* [Exercise 1]
-* [Exercise 2]
-* [Exercise 3]
+* [Exercise 9]
+* [Exercise 10]
+* [Exercise 11]
 
 # Goals
 
@@ -119,7 +119,7 @@ The only useful argument in `hist` is `breaks` that controls the number of bins.
 hist(mpg$hwy, breaks = 20)
 ```
 
-## Exercise 1
+## Exercise 9
 
 Let's make some simple graphics of our fisheries dataset using base R.  We'll make a histogram of fish catch with the `hist` function and a time series plot of catch using the `plot` function.  We'll also add a title and better axis labels to the plots to make them slightly more palatable.  
 
@@ -274,9 +274,9 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
   geom_point(colour = 'red')
 ```
 
-## Exercise 2
+## Exercise 10
 
-Let's reproduce the histogram and scatterplot we created in exercise 1 using ggplot. This requires us to map the `Sampling_Date` and `Pinfish` variables to the x and y aesthetics for `geom_point`. 
+Let's reproduce the histogram and scatterplot we created in exercise 9 using ggplot. This requires us to map the `Sampling_Date` and `Pinfish` variables to the x and y aesthetics for `geom_point`. 
 
 1. Setup your initial plot with `ggplot`.  Map the x variable to `Sampling_Date`, the y variable to `Pinfish`.  The setup should look like this: `ggplot(fishdat, aes(x = Sampling_Date, y = Pinfish))`).  What happens if you run only this code?
 
@@ -384,9 +384,9 @@ ggplot(mpg, aes(x = displ, y = hwy, colour = drv)) +
   facet_wrap(~ drv, ncol = 3, scales = 'free')
 ```
 
-## Exercise 3
+## Exercise 11
 
-Let's modify the scatterplot we created in exercise 3 by adding a theme, a statistical summary, and facets. We'll map the `stat_smooth` function to the Gear type and also use this variable to create a three-panel plot.  
+Let's modify the scatterplot we created in exercise 10 by adding a theme, a statistical summary, and facets. We'll map the `stat_smooth` function to the Gear type and also use this variable to create a three-panel plot.  
 
 1. Setup the initial plot as before. Map the x variable to `Sampling_Date` and the y variable to `Pinfish`. In addition, use the `group` argument in the `aes()` function to group the data by Gear.  The intiial `ggplot` line will look like this `ggplot(fishdata, aes(x = Sampling_Date, y = Pinfish, group = Gear)`.  Add the `geom_point` geom and the `scale_y_continuous` scale with `trans = "log10"` to transform catch.
 

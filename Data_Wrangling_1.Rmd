@@ -28,8 +28,8 @@ Get the lesson data: [download zip](data/data.zip)
 
 ## Lesson Exercises
 
-* [Exercise 1]
-* [Exercise 2]
+* [Exercise 4]
+* [Exercise 5]
 
 ## Goals
 
@@ -229,7 +229,7 @@ head(dplyr_rnm)
 
 There are many more functions in `dplyr` but the one's above are by far the most used.  As you can imagine, they are most effective when used to together because there is never only one step in the data wrangling process.  After the exercise, we'll talk about how we can efficiently *pipe* the functions in dplyr to create a new data object.
 
-## Exercise 1
+## Exercise 4
 
 Now that you know the basic functions in `dplyr` and how to use them, let's put them to use.  Using `fishdat`, let's select some columns of interest, filter by species and gear type, filter only large catches, and arrange in ascending order.
 
@@ -294,9 +294,9 @@ A couple comments about piping:
 * It's convention to start a new function on the next line after a pipe operator.  This makes the code easier to read and you can also comment out a single step in a long pipe.
 * Don't make your pipes too long, limit them to a particular data object or task.
 
-## Exercise 2
+## Exercise 5
 
-Now that we know how to pipe functions, let's repeat exercise 1.  You should already have code to select and filter the data. Use the following to repeat the analysis but with pipes.  You should only have to create one data object in this exercise. 
+Now that we know how to pipe functions, let's repeat exercise 4.  You should already have code to select and filter the data. Use the following to repeat the analysis but with pipes.  You should only have to create one data object in this exercise. 
 
 1. Using your code from exercise two, try to replicate the steps using pipes.  The steps we used in exercise two were:
      * From fishdat, select the `Reference`, `Sampling_Date`, `Gear`, and `Sand Seatrout` columns

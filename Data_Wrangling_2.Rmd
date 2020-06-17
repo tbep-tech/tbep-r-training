@@ -27,9 +27,9 @@ Get the lesson data: [download zip](data/data.zip)
 
 ## Lesson Exercises
 
-* [Exercise 1]
-* [Exercise 2]
-* [Exercise 3]
+* [Exercise 6]
+* [Exercise 7]
+* [Exercise 8]
 
 ## Goals
 
@@ -106,7 +106,7 @@ joindat <- left_join(fishdat, statloc, by = 'Reference')
 head(joindat)
 ```
 
-## Exercise 1
+## Exercise 6
 
 For this exercise we'll repeat the join we just did, but on a subset of the data. We're going to select some columns of interest from our fisheries dataset, filter by gear type, then use a full_join with the station data. Try to use pipes if you can. 
 
@@ -239,7 +239,7 @@ Spreading can be graphically demonstrated:
 
 ![](figure/tidy-8.png)
 
-## Exercise 2
+## Exercise 7
 
 Let's take a look at the fisheries data.  Are these tidy data?  What rules do they violate?  We can use the functions in the `tidyr` package from the tidyverse to make these data tidy.
 
@@ -336,7 +336,7 @@ A quick check for missing values can be done with `anyNA`. This works on vectors
 anyNA(x)
 ```
 
-## Exercise 3
+## Exercise 8
 
 Now we have access to a several tools in the tidyverse to help us wrangle more effectively.  For the final exercise, we're going subset our fisheries data and get a summary.  Specifically, we'll filter our data by Gear type 20 and Pinfish, then summarize the average catch across stations. 
 

@@ -1,3 +1,4 @@
+library(tidyverse)
 data(mpg)
 plot(hwy ~ displ, data = mpg)
 
@@ -140,9 +141,9 @@ ggplot(mpg, aes(x = displ, y = hwy, colour = drv)) +
 ##   stat_smooth(method = 'lm') +
 ##   facet_wrap(~ Gear, ncol = 3, scales = 'free')
 
-## ggsave('lessons/figure/myfig.jpg', device = 'jpeg', width = 5, height = 4, units = 'in', dpi = 300)
+## ggsave('figure/myfig.jpg', device = 'jpeg', width = 5, height = 4, units = 'in', dpi = 300)
 
 ## # save a plot as png file
-## png('lessons/figure/myfig.png', width = 5, height = 4, units = 'in', res = 300)
+## png('figure/myfig.png', width = 5, height = 4, units = 'in', res = 300)
 ## plot
 ## dev.off()

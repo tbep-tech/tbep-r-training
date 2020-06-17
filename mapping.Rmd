@@ -29,9 +29,9 @@ Get the lesson data: [download zip](data/data.zip)
 
 ## Lesson Exercises
 
-* [Exercise 1]
-* [Exercise 2]
-* [Exercise 3]
+* [Exercise 12]
+* [Exercise 13]
+* [Exercise 14]
 
 R has been around for over twenty years and most of its use has focused on statistical analysis.  Tools for spatial analysis have been developed in recent years that allow the use of R as a full-blown GIS with capabilities similar or even superior to commerical software.  This lesson will focus on geospatial analysis using the [simple features](https://r-spatial.github.io/sf/){target="_blank"} package.  We will focus entirely on working with vector data in this lesson, but checkout the [raster](https://cran.r-project.org/web/packages/raster/){target="_blank"} and [rgdal](https://cran.r-project.org/web/packages/rgdal/index.html){target="_blank"} packages if you want to work with raster data in R.  There are several useful vignettes in the raster link.
 
@@ -91,7 +91,7 @@ Simple Features is a hierarchical data model that represents a wide range of geo
 
 You'll notice that these are the same features we described above, with the addition of "multi" features and geometry collections that include more than one type of feature.
 
-## Exercise 1
+## Exercise 12
 
 Let's get setup for this lesson.  We'll make sure we have the necessary packages installed and loaded.  Then we'll import our datasets. 
 
@@ -164,7 +164,7 @@ The `st_as_sf()` function can be used to make this `data.frame` into a `sf` obje
 
 There are many, many types of reference systems and plenty of resources online that provide detailed explanations of the what and why behind the CRS (see [spatialreference.org](http://www.spatialreference.org/){target="_blank"} or [this guide](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/OverviewCoordinateReferenceSystems.pdf){target="_blank"} from NCEAS).  For now, just realize that we can use a simple text string in R to indicate which CRS we want.  Although this may not always be true, we can make an educated guess that the standard geographic projection with the WGS84 datum applies to our dataset.
 
-## Exercise 2
+## Exercise 13
 
 Let's join the `fishdat` and `statloc` datasets and create an `sf` object using `st_as_sf()` function.  
 
@@ -306,7 +306,7 @@ mapview(sgdat, col.regions = 'green') +
 
 There’s a lot more we can do with `mapview` but the point is that these maps are incredibly easy to make with `sf` objects and they offer a lot more functionality than static plots.
 
-## Exercise 3
+## Exercise 14
 
 We've certainly covered a lot in this lesson, so we'll spend any remaining time we have on getting more comfortable with basic geospatial analysis and mapping in R.  We'll repeat what we just did above, but selecting different years and only continous seagrass.  
 
@@ -314,7 +314,7 @@ We've certainly covered a lot in this lesson, so we'll spend any remaining time 
 
 1. Create a map of this filtered object using `mapview()`.  Use the `zcol` argument to map the color values to different attributes in your dataset, e.g., `Pinfish` or `Bluefish`.  
 
-1. Try combing the map you made in the last step with one for seagrass (hint: `mapview() + mapview()`).  Did you filter the data correcty, e.g., points are showing only above the continous seagrass polygons? 
+1. Try combining the map you made in the last step with one for seagrass (hint: `mapview() + mapview()`).  Did you filter the data correcty, e.g., points are showing only above the continous seagrass polygons? 
 
 <div class="fold s o">
 ```{r results = 'hide'}

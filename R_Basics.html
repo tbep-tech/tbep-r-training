@@ -516,32 +516,32 @@ seq(1, 10)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code># random numbers
 rnorm(100, mean = 10, sd = 2)</code></pre>
-<pre><code>##   [1] 10.209954  7.766835 10.344091 13.759175  9.811018 10.235731  9.817774
-##   [8] 11.989780  9.583366  8.127875  9.541261  7.281173 10.766063 11.323828
-##  [15] 10.550803  9.559934  9.765232 14.296165 10.416793 10.374336 10.124492
-##  [22] 10.024402  9.279930 10.666062  5.851872 10.707372 12.560025 10.122839
-##  [29] 13.102875  7.529768 13.557431 11.778213  8.591195  9.443491 13.741229
-##  [36] 11.368248 11.086549  8.719962 10.266094  9.398511  9.363258 10.773942
-##  [43]  6.525086  7.171358 10.710226 10.834751 10.109973  8.448219  8.335658
-##  [50]  8.871214 10.561549 10.105511 10.254645  7.941941  8.752474 11.645816
-##  [57]  9.906037 10.635355  9.790607 12.903963  8.977376 11.468545 11.009656
-##  [64]  9.240899  8.604856 12.784670 12.471434  7.275992  9.431677 10.963401
-##  [71]  8.519994  8.870647  8.874245 10.199813 10.676148  8.732764  9.782463
-##  [78] 10.764397  8.949495 10.182568 10.345092 12.827370  7.719106 12.960517
-##  [85]  8.360119  9.927758  8.744323 10.834472  7.709923 12.393577 11.254642
-##  [92] 10.893971 13.295471 11.022447  7.579920 11.100216  9.441970  8.585937
-##  [99] 10.709431  9.914809</code></pre>
+<pre><code>##   [1] 11.810777  6.334048 11.393889  8.547689 10.957723  8.814785 10.608897
+##   [8]  7.934130  9.177394 12.148300 14.469917  8.009494  6.394781 11.564076
+##  [15] 11.148042  7.534565 14.216049  8.670635 15.086071 10.093111 13.523217
+##  [22]  9.308990 11.663530 10.967865 10.756389 11.375518 10.154334 11.573982
+##  [29]  8.376553 10.162004 13.498694 10.310393 12.285118 15.063816 11.668188
+##  [36] 12.619123  9.604430  9.665343 10.226310 10.912636  8.635967  9.411504
+##  [43]  8.882006  9.050955 11.198343  8.636914 14.693327 10.660019  7.539236
+##  [50]  9.159160  9.602435 11.216247 11.543795 10.829574  5.853052 10.230098
+##  [57] 10.995854  8.391571  9.723526  9.661826 13.209684  8.226935  7.447073
+##  [64]  9.075085  8.209341 13.720081 11.660804  9.845849 10.452398 10.445947
+##  [71]  6.583871 12.323674 10.454177  8.548871 12.726815 11.244294 10.122090
+##  [78] 10.492096 12.715703 10.622713 10.619934  8.135729  8.824726  7.241989
+##  [85]  8.926008  5.869380 10.234132  8.508204  7.643436  6.788523  9.059374
+##  [92]  8.726762 12.613531  5.314661  6.574727 10.167447 10.953776  7.212519
+##  [99] 12.097724 11.636939</code></pre>
 <pre class="r"><code># average 
 mean(rnorm(100))</code></pre>
-<pre><code>## [1] -0.01264561</code></pre>
+<pre><code>## [1] -0.006751526</code></pre>
 <pre class="r"><code># sum
 sum(rnorm(100))</code></pre>
-<pre><code>## [1] 2.14939</code></pre>
+<pre><code>## [1] -2.243692</code></pre>
 <p>Very often you will see functions used like this:</p>
 <pre class="r"><code>my_random_sum &lt;- sum(rnorm(100))</code></pre>
 <p>In this case the first part of the line is the name of an object. You make this up. Ideally it should have some meaning, but the only rules are that it can’t start with a number and must not have any spaces. The second bit, <code>&lt;-</code>, is the assignment operator. This tells R to take the result of <code>sum(rnorm(100))</code> and store it in an object named, <code>my_random_sum</code>. It is stored in the environment and can be used by just executing it’s name in the console.</p>
 <pre class="r"><code>my_random_sum</code></pre>
-<pre><code>## [1] -19.97988</code></pre>
+<pre><code>## [1] -0.8476726</code></pre>
 <div id="what-is-the-environment" class="section level3">
 <h3>What is the environment?</h3>
 <p>There are two outcomes when you run code. First, the code will simply print output directly in the console. Second, there is no output because you have stored it as a variable using <code>&lt;-</code>. Output that is stored is actually saved in the <code>environment</code>. The environment is the collection of named objects that are stored in memory for your current R session. Anything stored in memory will be accessible by it’s name without running the original script that was used to create it.</p>
@@ -678,11 +678,17 @@ mydf</code></pre>
 <h2>Getting your data into R</h2>
 <p>It is the rare case when you manually enter your data in R, not to mention impractical for most datasets. Most data analysis workflows typically begin with importing a dataset from an external source. Literally, this means committing a dataset to memory (i.e., storing it as a variable) as one of R’s data structure formats.</p>
 <p>Flat data files (text only, rectangular format) present the least complications on import because there is very little to assume about the structure of the data. On import, R tries to guess the data type for each column and this is fairly unambiguous with flat files. We’ll be using <code>read_csv()</code> function from the readr package that comes with the tidyverse.</p>
+</div>
+<div id="the-working-directory" class="section level2">
+<h2>The working directory</h2>
+<p>Before we import data, we need to talk about the “working directory”. Whenever RStudio is opened, it uses a file location on your computer to access and save data. If you’re using an RStudio project, the working directory where be the folder where you created a project. If not, it is probably the the user’s home directory (e.g., <code>C:/Users/Marcus</code>), which you’ll want to change to where you have your data.</p>
+<p>You can see your working directory with the <code>getwd()</code> function or from the file path at the top of the console in RStudio. All files in the File pane window on the bottom right of RStudio are also those within the working directory. If you want to change your working directory, you can use the <code>setwd()</code> function and put the file path (in parentheses) inside the function, e.g., <code>setwd('C:/Users/Marcus/Desktop/newdirectory')</code>.</p>
+<p>The working directory is important to know when you’re importing or exporting data. When you import data, a <em>relative</em> file path can be used that is an extension of the working directory. For example, if your working directory if <code>'C:/Users/Marcus/Desktop'</code> and you have a file called <code>mydata.csv</code> in that directory, you can use <code>read_csv('mydata.csv')</code> to import the file. R will know that this file is in your working directory. If you want to import a file that is not in your working directory, you will have to use an <em>absolute</em> path that is the full file location. Otherwise, R will not know where to look outside of the working directory.</p>
 <div id="exercise-3" class="section level3">
 <h3>Exercise 3</h3>
 <p>Now that we have the data downloaded and extracted to our data folder, we’ll use <code>read_csv</code> to import two files into our environment. The <code>read_csv</code> function comes with the tidyverse package, so make sure that package is loaded (i.e., <code>library(tidyverse)</code>) before you do this exercise. This should have been done in the second exercise.</p>
 <ol style="list-style-type: decimal">
-<li><p>Type the following in your script. Note the use of <em>relative</em> file paths within your project.</p>
+<li><p>Type the following in your script. Note the use of <em>relative</em> file paths within your project. This will only work if the “data” folder is in your working directory (see the explanation above). An <em>absolute</em> file path would be the complete location e.g., <code>'C:/Users/Marcus/Desktop/data/fishdat.csv'</code>). You can use the absolute path if you like.</p>
 <pre class="r"><code>fishdat &lt;- read_csv(&#39;data/fishdat.csv&#39;)
 statloc &lt;- read_csv(&#39;data/statloc.csv&#39;)</code></pre></li>
 <li><p>Send the commands to the console with <code>ctrl+enter</code>.</p></li>

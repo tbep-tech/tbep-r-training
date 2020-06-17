@@ -227,7 +227,7 @@ dplyr_rnm <- rename(fishdat, snook = `Common Snook`)
 head(dplyr_rnm)
 ```
 
-There are many more functions in `dplyr` but the one's above are by far the most used.  As you can imagine, they are most effective when used to together because there is never only one step in the data wrangling process.  After the exercise, we'll talk about how we can efficiently *pipe* the functions in dplyr to create a new data object.
+There are many more functions in `dplyr` but the ones above are by far the most used.  As you can imagine, they are most effective when used to together because there is never only one step in the data wrangling process.  After the exercise, we'll talk about how we can efficiently *pipe* the functions in dplyr to create a new data object.
 
 ## Exercise 4
 

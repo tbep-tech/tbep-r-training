@@ -501,13 +501,13 @@ div.tocify {
 <li><p>If you’re not using RStudio Cloud, create a new project. Name it “r_workshop”. We will use this for the rest of the workshop.</p></li>
 <li><p>Create a new “R Script” in the Source Pane, save that file into your newly created project and name it “first_script.R”. It’ll just be a blank text file at this point.</p></li>
 <li><p>Add in a comment line to separate this section. It should look something like: <code># Exercise 1: Just Getting used to RStudio and Scripts</code>.</p></li>
-<li><p>Lastly, we need to get this project set up with some example data for our exercises (if you’re using RStudio Cloud, ignore this step). You should have downloaded this already, but if not, the data are available <a href="https://SCCWRP.github.io/tbep_r_training/data/datazip.zip">here</a>. The data are in a zipped folder. Download the file to your computer (anywhere). Create a folder in your new project named <code>data</code> and extract the files into this location.</p></li>
+<li><p>Lastly, we need to get this project set up with some example data for our exercises (if you’re using RStudio Cloud, ignore this step). You should have downloaded this already, but if not, the data are available <a href="data/data.zip">here</a>. The data are in a zipped folder. Download the file to your computer (anywhere). Create a folder in your new project named <code>data</code> and extract the files into this location.</p></li>
 </ol>
 </div>
 <div id="r-language-fundamentals" class="section level2">
 <h2>R language fundamentals</h2>
 <p>R is built around functions. These are commands that do specific things based on what you provide. The basic syntax of a function follows the form: <code>function_name(arg1, arg2, ...)</code>.</p>
-<p>With the base install, you will gain access to many functions (3751, to be exact). Some examples:</p>
+<p>With the base install, you will gain access to many functions (2706, to be exact). Some examples:</p>
 <pre class="r"><code># print
 print(&#39;hello world!&#39;)</code></pre>
 <pre><code>## [1] &quot;hello world!&quot;</code></pre>
@@ -516,25 +516,32 @@ seq(1, 10)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code># random numbers
 rnorm(100, mean = 10, sd = 2)</code></pre>
-<pre><code>##   [1] 11.074291  7.854761 11.233758  9.660092 14.232242  7.166781 11.616701  8.329079 10.428689  7.210824 11.492054 11.442643  8.837956 11.279792
-##  [15]  7.988440 11.108501  8.997080 10.690542  9.099117 13.704972  8.690135  9.308316  8.486164 13.523866  8.630110  9.988791  6.182531  9.246111
-##  [29] 10.274699  8.321481  9.351280 10.947045 12.349536  8.565874 10.044489  6.618521 10.445425 11.007375  8.655487  9.791345 10.759735  9.966659
-##  [43]  9.225519 15.726776 11.162956  8.753275 10.900716  4.613166  7.982812 10.067190  9.086514  9.488649 11.505159  9.859760 12.192298 10.622266
-##  [57]  8.338559 10.635797  9.293765 10.603921  9.593160  6.890881  9.949142  8.642237 10.852452  8.674085  5.826972  8.110482  9.747760 11.814779
-##  [71]  8.630143  9.509431  8.820188 11.189569 11.032283  8.777335 11.460612 12.534153  7.483993 10.925591  8.858862 14.564988 11.895616 10.720308
-##  [85]  7.611290  9.660725  8.005699  9.221768 12.746279  6.701645  8.029005  5.601807 10.584161  8.401776  6.646449 13.571455 11.276889  8.279983
-##  [99] 11.071568  9.687628</code></pre>
+<pre><code>##   [1] 11.699928  8.334296 11.905482 10.478514  7.974546  7.520098  7.165413
+##   [8]  6.157770 11.239858 10.116836  8.467385  6.151176 10.385248 11.377233
+##  [15] 13.401778  7.724674  9.635176  7.572532  8.659603  9.563521  9.130723
+##  [22] 10.672159  7.709658  8.877047  8.179413 12.563973 10.046190  7.468208
+##  [29] 14.246508  8.754923 10.049323  8.934735  7.653864 10.251972 10.751956
+##  [36]  9.240470  6.598862  9.636795  5.523351  4.631153 12.127324  5.251212
+##  [43] 11.992355  7.550142 10.320213  9.148933  9.484282  9.581379 11.099413
+##  [50]  7.270715  8.641122 15.134223 12.359663  9.476146 10.126875  7.039480
+##  [57] 11.825126 11.741990 12.107085 11.346750  8.307095  9.049767  7.768348
+##  [64] 10.035462 11.898294 10.283813 11.910903  9.718566 10.361325  5.448777
+##  [71] 11.052941  8.845561 12.127092  9.142291  9.049414 11.912684  8.561793
+##  [78] 11.518729 11.330767  8.157210  9.011391  9.549835 12.474005 10.651929
+##  [85]  8.564102  8.410263  9.622109  5.638698 11.492736  9.948929 10.366237
+##  [92]  8.514383  7.662949 10.111595  9.726662  5.923637  9.766782  7.011029
+##  [99]  8.443671 10.419863</code></pre>
 <pre class="r"><code># average 
 mean(rnorm(100))</code></pre>
-<pre><code>## [1] -0.01506251</code></pre>
+<pre><code>## [1] -0.06513887</code></pre>
 <pre class="r"><code># sum
 sum(rnorm(100))</code></pre>
-<pre><code>## [1] 20.06946</code></pre>
+<pre><code>## [1] -3.354708</code></pre>
 <p>Very often you will see functions used like this:</p>
 <pre class="r"><code>my_random_sum &lt;- sum(rnorm(100))</code></pre>
 <p>In this case the first part of the line is the name of an object. You make this up. Ideally it should have some meaning, but the only rules are that it can’t start with a number and must not have any spaces. The second bit, <code>&lt;-</code>, is the assignment operator. This tells R to take the result of <code>sum(rnorm(100))</code> and store it in an object named, <code>my_random_sum</code>. It is stored in the environment and can be used by just executing it’s name in the console.</p>
 <pre class="r"><code>my_random_sum</code></pre>
-<pre><code>## [1] -2.506854</code></pre>
+<pre><code>## [1] 12.68907</code></pre>
 <div id="what-is-the-environment" class="section level3">
 <h3>What is the environment?</h3>
 <p>There are two outcomes when you run code. First, the code will simply print output directly in the console. Second, there is no output because you have stored it as a variable using <code>&lt;-</code>. Output that is stored is actually saved in the <code>environment</code>. The environment is the collection of named objects that are stored in memory for your current R session. Anything stored in memory will be accessible by it’s name without running the original script that was used to create it.</p>
@@ -689,21 +696,24 @@ dim(fishdat)</code></pre>
 <pre><code>## [1] 2173    3</code></pre>
 <pre class="r"><code># get the column names
 names(fishdat)</code></pre>
-<pre><code>##  [1] &quot;OBJECTID&quot;      &quot;Reference&quot;     &quot;Sampling_Date&quot; &quot;yr&quot;            &quot;Gear&quot;          &quot;ExDate&quot;        &quot;Bluefish&quot;      &quot;Common Snook&quot;  &quot;Mullets&quot;      
-## [10] &quot;Pinfish&quot;       &quot;Red Drum&quot;      &quot;Sand Seatrout&quot;</code></pre>
+<pre><code>##  [1] &quot;OBJECTID&quot;      &quot;Reference&quot;     &quot;Sampling_Date&quot; &quot;yr&quot;           
+##  [5] &quot;Gear&quot;          &quot;ExDate&quot;        &quot;Bluefish&quot;      &quot;Common Snook&quot; 
+##  [9] &quot;Mullets&quot;       &quot;Pinfish&quot;       &quot;Red Drum&quot;      &quot;Sand Seatrout&quot;</code></pre>
 <pre class="r"><code>names(statloc)</code></pre>
 <pre><code>## [1] &quot;Reference&quot; &quot;Latitude&quot;  &quot;Longitude&quot;</code></pre>
 <pre class="r"><code># see the first six rows
 head(fishdat)</code></pre>
 <pre><code>## # A tibble: 6 x 12
-##   OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
-##      &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
-## 1  1550020 TBM1996032006 1996-03-20     1996   300 2018-04-12 10:27:38        0              0       0       0          0               1
-## 2  1550749 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0      54          0               0
-## 3  1550750 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0       0          1               0
-## 4  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23        0              0       0      80          0               0
-## 5  1550828 TBM1996042601 1996-04-26     1996   160 2018-04-12 10:25:23        0              0       0       0          4               0
-## 6  1550838 TBM1996051312 1996-05-13     1996   300 2018-04-12 10:25:23        0              0       0       0          0               1</code></pre>
+##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Bluefish
+##      &lt;dbl&gt; &lt;chr&gt;     &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;
+## 1  1550020 TBM19960~ 1996-03-20     1996   300 2018-04-12 10:27:38        0
+## 2  1550749 TBM19960~ 1996-03-20     1996    22 2018-04-12 10:25:23        0
+## 3  1550750 TBM19960~ 1996-03-20     1996    22 2018-04-12 10:25:23        0
+## 4  1550762 TBM19960~ 1996-03-22     1996    20 2018-04-12 10:25:23        0
+## 5  1550828 TBM19960~ 1996-04-26     1996   160 2018-04-12 10:25:23        0
+## 6  1550838 TBM19960~ 1996-05-13     1996   300 2018-04-12 10:25:23        0
+## # ... with 5 more variables: `Common Snook` &lt;dbl&gt;, Mullets &lt;dbl&gt;,
+## #   Pinfish &lt;dbl&gt;, `Red Drum` &lt;dbl&gt;, `Sand Seatrout` &lt;dbl&gt;</code></pre>
 <pre class="r"><code>head(statloc)</code></pre>
 <pre><code>## # A tibble: 6 x 3
 ##   Reference     Latitude Longitude
@@ -719,10 +729,10 @@ str(fishdat)</code></pre>
 <pre><code>## tibble [2,844 x 12] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ OBJECTID     : num [1:2844] 1550020 1550749 1550750 1550762 1550828 ...
 ##  $ Reference    : chr [1:2844] &quot;TBM1996032006&quot; &quot;TBM1996032004&quot; &quot;TBM1996032004&quot; &quot;TBM1996032207&quot; ...
-##  $ Sampling_Date: Date[1:2844], format: &quot;1996-03-20&quot; &quot;1996-03-20&quot; &quot;1996-03-20&quot; &quot;1996-03-22&quot; ...
+##  $ Sampling_Date: Date[1:2844], format: &quot;1996-03-20&quot; &quot;1996-03-20&quot; ...
 ##  $ yr           : num [1:2844] 1996 1996 1996 1996 1996 ...
 ##  $ Gear         : num [1:2844] 300 22 22 20 160 300 300 300 300 22 ...
-##  $ ExDate       : POSIXct[1:2844], format: &quot;2018-04-12 10:27:38&quot; &quot;2018-04-12 10:25:23&quot; &quot;2018-04-12 10:25:23&quot; &quot;2018-04-12 10:25:23&quot; ...
+##  $ ExDate       : POSIXct[1:2844], format: &quot;2018-04-12 10:27:38&quot; &quot;2018-04-12 10:25:23&quot; ...
 ##  $ Bluefish     : num [1:2844] 0 0 0 0 0 0 0 0 0 0 ...
 ##  $ Common Snook : num [1:2844] 0 0 0 0 0 0 0 0 0 0 ...
 ##  $ Mullets      : num [1:2844] 0 0 0 0 0 0 0 0 0 0 ...

@@ -102,7 +102,7 @@ This exercise will make sure R and RStudio are working and that you can get arou
 
 1. Add in a comment line to separate this section.  It should look something like: `# Exercise 1: Just Getting used to RStudio and Scripts`.
 
-1. Lastly, we need to get this project set up with some example data for our exercises (if you're using RStudio Cloud, ignore this step).  You should have downloaded this already, but if not, the data are available [here](https://SCCWRP.github.io/tbep_r_training/data/datazip.zip).  The data are in a zipped folder.  Download the file to your computer (anywhere).  Create a folder in your new project named `data` and extract the files into this location.  
+1. Lastly, we need to get this project set up with some example data for our exercises (if you're using RStudio Cloud, ignore this step).  You should have downloaded this already, but if not, the data are available [here](data/data.zip).  The data are in a zipped folder.  Download the file to your computer (anywhere).  Create a folder in your new project named `data` and extract the files into this location.  
 
 ## R language fundamentals
 

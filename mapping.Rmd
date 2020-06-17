@@ -99,7 +99,7 @@ Let's get setup for this lesson.  We'll make sure we have the necessary packages
 
 1. At the top of the script, load the `tidyverse`, `sf`, and `mapview` libraries.  Don't forget you can use `install.packages(c('tidyverse', 'sf', 'mapview'))` if the packages aren't installed.
 
-1. Load the `fishdat.csv`, `statloc.csv`, and `sgdat.shp` datasets from your data folder.  For the csv files, use `read_csv()` and for the shapefile use, use the `st_read()` function from the `sf` package.  The shapefile is seagrass polygon data for Old Tampa Bay in 2016. As before, assign each loaded dataset to an object in your workspace.  
+1. Load the `fishdat.csv`, `statloc.csv`, and `sgdat.shp` datasets from your data folder.  For the csv files, use `read_csv()` and for the shapefile, use the `st_read()` function from the `sf` package.  The shapefile is seagrass polygon data for Old Tampa Bay in 2016. As before, assign each loaded dataset to an object in your workspace.  
 
 <div class="fold s o">
 ```{r results = 'hide'}

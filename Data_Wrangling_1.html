@@ -486,7 +486,7 @@ library(tidyverse)</code></pre>
 <h2>Data wrangling with <code>dplyr</code></h2>
 <p><img src="figure/data-science-wrangle.png" /></p>
 <p>The data wrangling process includes data import, tidying, and transformation. The process directly feeds into, and is not mutually exclusive, with the <em>understanding</em> or modelling side of data exploration. More generally, I consider data wrangling as the manipulation or combination of datasets for the purpose of analysis.</p>
-<p>Wrangling begins with import and ends with an output of some kind, such as a plot or a model. In a perfect world, the wrangling process is linear with no need for back-tracking. In reality, we often uncover more information about a dataset, either through wrangling or modeling, that warrants re-evaluation or even gathering more data. Data also come in many forms and the form you need for analysis is rarely the required form of the input data. For these reasons, data wrangling will consume most of your time in data exploration.</p>
+<p>Wrangling begins with import and ends with an output of some kind, such as a plot or a model, but is more often a dataset that has been altered from a raw dataset to suit the needs of an analysis. In a perfect world, the wrangling process is linear with no need for back-tracking. In reality, we often uncover more information about a dataset, either through wrangling or modeling, that warrants re-evaluation or even gathering more data. Data also come in many forms and the form you need for analysis is rarely the required form of the input data. For these reasons, data wrangling will consume most of your time in data exploration.</p>
 <p><strong>All wrangling is based on a purpose.</strong> No one wrangles for the sake of wrangling (usually), so the process always begins by answering the following two questions:</p>
 <ul>
 <li>What do my input data look like?</li>
@@ -602,12 +602,18 @@ head(dplyr_sel3)</code></pre>
 <div id="filtering" class="section level3">
 <h3>Filtering</h3>
 <p>After selecting columns, you’ll probably want to remove observations that don’t fit some criteria. For example, maybe you want to remove all rows with low catch or maybe you want to look only at fish caught in Gear 20 (a 21 m seine net).</p>
-<pre class="r"><code># now filter observations with more than 20 fish caught
-dplyr_high_catch &lt;- filter(fishdat, Mullets &gt; 20)
+<pre class="r"><code># now filter observations with more than 30 Pinfish caught
+dplyr_high_catch &lt;- filter(fishdat, Pinfish &gt; 30)
 head(dplyr_high_catch)</code></pre>
-<pre><code>## # A tibble: 0 x 12
-## # ... with 12 variables: OBJECTID &lt;dbl&gt;, Reference &lt;chr&gt;, Sampling_Date &lt;date&gt;, yr &lt;dbl&gt;, Gear &lt;dbl&gt;, ExDate &lt;dttm&gt;, Bluefish &lt;dbl&gt;, `Common
-## #   Snook` &lt;dbl&gt;, Mullets &lt;dbl&gt;, Pinfish &lt;dbl&gt;, `Red Drum` &lt;dbl&gt;, `Sand Seatrout` &lt;dbl&gt;</code></pre>
+<pre><code>## # A tibble: 6 x 12
+##   OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
+##      &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
+## 1  1550749 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0      54          0               0
+## 2  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23        0              0       0      80          0               0
+## 3  1555103 TBM1996022010 1996-02-20     1996    22 2018-04-12 10:25:29        0              0       0      50          0               0
+## 4  1572931 TBM1996080603 1996-08-06     1996   160 2018-04-12 10:25:36        0              0       0      46          0               0
+## 5  1572932 TBM1996080604 1996-08-06     1996   160 2018-04-12 10:25:36        0              0       0     163          0               0
+## 6  1573079 TBM1996062104 1996-06-21     1996    20 2018-04-12 10:26:15        0              0       0      54          0               0</code></pre>
 <pre class="r"><code># now filter observations for Gear type as 20
 dplyr_gear20 &lt;- filter(fishdat, Gear == 20)
 head(dplyr_gear20)</code></pre>
@@ -620,13 +626,13 @@ head(dplyr_gear20)</code></pre>
 ## 4  1576651 TBM1996022007 1996-02-20     1996    20 2018-04-12 10:25:24        0              0       0       2          0               0
 ## 5  1584465 TBM1996061917 1996-06-19     1996    20 2018-04-12 10:26:04        0              0       0      19          0               0
 ## 6  1584803 TBM1996011905 1996-01-19     1996    20 2018-04-12 10:25:26        0              0       0       0          1               0</code></pre>
-<p>Filtering can take a bit of time to master because there are several ways to tell R what you want. Within the filter function, the working part is a <em>logical selection</em> of <code>TRUE</code> and <code>FALSE</code> values that are used to selected rows (<code>TRUE</code> means I want that row, <code>FALSE</code> means I don’t). Every selection within the filter function, no matter how complicated, will always be a T/F vector. This is similar to running queries on a database if you’re familiar with SQL.</p>
+<p>Filtering can take a bit of time to master because there are several ways to tell R what you want. Within the filter function, the working part is a <em>logical selection</em> of <code>TRUE</code> and <code>FALSE</code> values that are used to select rows (<code>TRUE</code> means I want that row, <code>FALSE</code> means I don’t). Every selection within the filter function, no matter how complicated, will always be a T/F vector. This is similar to running queries on a database if you’re familiar with SQL.</p>
 <p>To use filtering effectively, you have to know how to select the observations that you want using the comparison operators. R provides the standard suite: <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>!=</code> (not equal), and <code>==</code> (equal). When you’re starting out with R, the easiest mistake to make is to use <code>=</code> instead of <code>==</code> when testing for equality.</p>
 <p>Multiple arguments to <code>filter()</code> are combined with “and”: every expression must be true in order for a row to be included in the output. For other types of combinations, you’ll need to use Boolean operators yourself: <code>&amp;</code> is “and”, <code>|</code> is “or”, and <code>!</code> is “not”. This is the complete set of Boolean operations.</p>
 <p><img src="figure/transform-logical.png" /></p>
 <p>Let’s start combining filtering operations.</p>
-<pre class="r"><code># get rows with &gt; 20 and less than 100 Pinfish
-filt1 &lt;- filter(fishdat, Pinfish &gt; 20 &amp; Pinfish &lt; 100)
+<pre class="r"><code># get rows with &gt; 30 and less than 100 Pinfish
+filt1 &lt;- filter(fishdat, Pinfish &gt; 30 &amp; Pinfish &lt; 100)
 head(filt1)</code></pre>
 <pre><code>## # A tibble: 6 x 12
 ##   OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
@@ -634,9 +640,9 @@ head(filt1)</code></pre>
 ## 1  1550749 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0      54          0               0
 ## 2  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23        0              0       0      80          0               0
 ## 3  1555103 TBM1996022010 1996-02-20     1996    22 2018-04-12 10:25:29        0              0       0      50          0               0
-## 4  1555259 TBM1996022104 1996-02-21     1996    20 2018-04-12 10:25:31        0              0       0      29          0               0
-## 5  1572931 TBM1996080603 1996-08-06     1996   160 2018-04-12 10:25:36        0              0       0      46          0               0
-## 6  1573079 TBM1996062104 1996-06-21     1996    20 2018-04-12 10:26:15        0              0       0      54          0               0</code></pre>
+## 4  1572931 TBM1996080603 1996-08-06     1996   160 2018-04-12 10:25:36        0              0       0      46          0               0
+## 5  1573079 TBM1996062104 1996-06-21     1996    20 2018-04-12 10:26:15        0              0       0      54          0               0
+## 6  1635253 TBM1997031016 1997-03-10     1997    20 2018-04-12 10:29:33        0              0       0      66          0               0</code></pre>
 <pre class="r"><code># get rows with gear type 20 or red drum larger than 40
 filt2 &lt;- filter(fishdat, Gear == 20 | `Red Drum` &gt; 40)
 head(filt2)</code></pre>
@@ -734,10 +740,9 @@ head(dplyr_rnm)</code></pre>
 <h2>Exercise 4</h2>
 <p>Now that you know the basic functions in <code>dplyr</code> and how to use them, let’s put them to use. Using <code>fishdat</code>, let’s select some columns of interest, filter by species and gear type, filter only large catches, and arrange in ascending order.</p>
 <ol style="list-style-type: decimal">
-<li><p>Remove all but the <code>Reference</code>, <code>Sampling_Date</code>, <code>Gear</code>, and <code>Sand Seatrout</code> columns. Assign this dataset to a new object in your workspace.</p></li>
-<li><p>Using the new object, filter again to get only Sand Seatrout and Pinfish caugth with Gear 20 (hint, filter by the <code>Gear</code> column<code>and don't forget ot use</code>==`).</p></li>
+<li><p>Remove all but the <code>Reference</code>, <code>Sampling_Date</code>, <code>Gear</code>, and <code>Sand Seatrout</code> columns. Assign this dataset to a new object in your workspace. Don’t forget to use backticks to select column names that have spaces.</p></li>
+<li><p>Using the new object, filter again to get only Sand Seatrout and Pinfish caught with Gear 20 (hint, filter by the <code>Gear</code> column<code>and don't forget ot use</code>==`).</p></li>
 <li><p>Rename the <code>Sampling_Date</code> column to <code>date</code>.</p></li>
-<li><p>When you’re done, type the number of rows in your dataset into the group chat.</p></li>
 </ol>
 <div class="fold s o">
 <pre class="r"><code>ex1 &lt;- select(fishdat, Reference, Sampling_Date, Gear, `Sand Seatrout`)
@@ -789,7 +794,7 @@ good_ex &lt;- fishdat %&gt;%
 </ol>
 <div class="fold s o">
 <pre class="r"><code>ex2 &lt;- fishdat %&gt;% 
-  select(Reference, Reference, Sampling_Date, Gear, `Sand Seatrout`) %&gt;% 
+  select(Reference, Sampling_Date, Gear, `Sand Seatrout`) %&gt;% 
   filter(Gear == 20) %&gt;% 
   rename(date = Sampling_Date)
 identical(ex1, ex2)</code></pre>

@@ -98,7 +98,7 @@ As you'll soon learn using R, there are often several ways to achieve the same g
 
 The data wrangling process includes data import, tidying, and transformation.  The process directly feeds into, and is not mutually exclusive, with the *understanding* or modelling side of data exploration.  More generally, I consider data wrangling as the manipulation or combination of datasets for the purpose of analysis.
 
-Wrangling begins with import and ends with an output of some kind, such as a plot or a model.  In a perfect world, the wrangling process is linear with no need for back-tracking.  In reality, we often uncover more information about a dataset, either through wrangling or modeling, that warrants re-evaluation or even gathering more data.  Data also come in many forms and the form you need for analysis is rarely the required form of the input data.  For these reasons, data wrangling will consume most of your time in data exploration.
+Wrangling begins with import and ends with an output of some kind, such as a plot or a model, but is more often a dataset that has been altered from a raw dataset to suit the needs of an analysis.  In a perfect world, the wrangling process is linear with no need for back-tracking.  In reality, we often uncover more information about a dataset, either through wrangling or modeling, that warrants re-evaluation or even gathering more data.  Data also come in many forms and the form you need for analysis is rarely the required form of the input data.  For these reasons, data wrangling will consume most of your time in data exploration.
 
 **All wrangling is based on a purpose.**  No one wrangles for the sake of wrangling (usually), so the process always begins by answering the following two questions:
 
@@ -162,8 +162,8 @@ head(dplyr_sel3)
 After selecting columns, you'll probably want to remove observations that don't fit some criteria.  For example, maybe you want to remove all rows with low catch or maybe you want to look only at fish caught in Gear 20 (a 21 m seine net). 
 
 ```{r}
-# now filter observations with more than 20 fish caught
-dplyr_high_catch <- filter(fishdat, Mullets > 20)
+# now filter observations with more than 30 Pinfish caught
+dplyr_high_catch <- filter(fishdat, Pinfish > 30)
 head(dplyr_high_catch)
 
 # now filter observations for Gear type as 20
@@ -171,7 +171,7 @@ dplyr_gear20 <- filter(fishdat, Gear == 20)
 head(dplyr_gear20)
 ```
 
-Filtering can take a bit of time to master because there are several ways to tell R what you want. Within the filter function, the working part is a *logical selection* of `TRUE` and `FALSE` values that are used to selected rows (`TRUE` means I want that row, `FALSE` means I don't).  Every selection within the filter function, no matter how complicated, will always be a T/F vector.  This is similar to running queries on a database if you're familiar with SQL.
+Filtering can take a bit of time to master because there are several ways to tell R what you want. Within the filter function, the working part is a *logical selection* of `TRUE` and `FALSE` values that are used to select rows (`TRUE` means I want that row, `FALSE` means I don't).  Every selection within the filter function, no matter how complicated, will always be a T/F vector.  This is similar to running queries on a database if you're familiar with SQL.
 
 To use filtering effectively, you have to know how to select the observations that you want using the comparison operators. R provides the standard suite: `>`, `>=`, `<`, `<=`, `!=` (not equal), and `==` (equal). When you're starting out with R, the easiest mistake to make is to use `=` instead of `==` when testing for equality.
 
@@ -182,8 +182,8 @@ Multiple arguments to `filter()` are combined with "and": every expression must 
 Let's start combining filtering operations.
 
 ```{r}
-# get rows with > 20 and less than 100 Pinfish
-filt1 <- filter(fishdat, Pinfish > 20 & Pinfish < 100)
+# get rows with > 30 and less than 100 Pinfish
+filt1 <- filter(fishdat, Pinfish > 30 & Pinfish < 100)
 head(filt1)
 
 # get rows with gear type 20 or red drum larger than 40
@@ -233,13 +233,11 @@ There are many more functions in `dplyr` but the ones above are by far the most 
 
 Now that you know the basic functions in `dplyr` and how to use them, let's put them to use.  Using `fishdat`, let's select some columns of interest, filter by species and gear type, filter only large catches, and arrange in ascending order.
 
-1.  Remove all but the `Reference`, `Sampling_Date`, `Gear`, and `Sand Seatrout` columns.  Assign this dataset to a new object in your workspace.
+1.  Remove all but the `Reference`, `Sampling_Date`, `Gear`, and `Sand Seatrout` columns.  Assign this dataset to a new object in your workspace.  Don't forget to use backticks to select column names that have spaces.
 
-1. Using the new object, filter again to get only Sand Seatrout and Pinfish caugth with Gear 20 (hint, filter by the `Gear` column` and don't forget ot use `==`). 
+1. Using the new object, filter again to get only Sand Seatrout and Pinfish caught with Gear 20 (hint, filter by the `Gear` column` and don't forget ot use `==`). 
 
 1. Rename the `Sampling_Date` column to `date`. 
-
-1. When you're done, type the number of rows in your dataset into the group chat. 
 
 <div class="fold s o">
 ```{r, eval = F}
@@ -308,7 +306,7 @@ Now that we know how to pipe functions, let's repeat exercise 4.  You should alr
 <div class="fold s o">
 ```{r, eval = F}
 ex2 <- fishdat %>% 
-  select(Reference, Reference, Sampling_Date, Gear, `Sand Seatrout`) %>% 
+  select(Reference, Sampling_Date, Gear, `Sand Seatrout`) %>% 
   filter(Gear == 20) %>% 
   rename(date = Sampling_Date)
 identical(ex1, ex2)

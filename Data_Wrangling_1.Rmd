@@ -141,7 +141,7 @@ str(fishdat)
 
 ### Selecting
 
-Let's begin using dplyr. Don't forget to load the tidyverse if you haven't done so already.  We can use the `select` function to, you guess it, select columns.  
+Let's begin using dplyr. Don't forget to load the tidyverse if you haven't done so already.  We can use the `select` function to, you guessed it, select columns.  
 
 ```{r}
 # first, select some columns

@@ -263,7 +263,7 @@ top10df <- savecols[savecols$rank2015 <= 10,]
 basedat <- cropdat[cropdat$Party %in% top10df$Party,]
 ```
 
-Technically, if this works it's not "wrong", but there are a couple issues that can lead to problems down the line. First, the flow of functions to manipulate the data is not obvious and this makes your code very hard to read. Second, lots of unecessary intermediates have been created in your workspace.  Anything that adds to clutter should be avoided because R is fundamentally based on object assignments.  The less you assign as a variable in your environment the easier it will be to navigate complex scripts.
+Technically, if this works it's not "wrong", but there are a couple of issues that can lead to problems down the line. First, the flow of functions to manipulate the data is not obvious and this makes your code very hard to read. Second, lots of unecessary intermediates have been created in your workspace.  Anything that adds to clutter should be avoided because R is fundamentally based on object assignments.  The less you assign as a variable in your environment the easier it will be to navigate complex scripts.
 
 The good news is that you now know how to use the dplyr functions to wrangle data.  The function names in dplyr were chosen specifically to be descriptive.  This will make your code much more readable than if you were using base R counterparts.  The bad news is that I haven't told you how to easily link the functions.  Fortunately, there's an easy fix to this problem.
 

@@ -96,7 +96,7 @@ This exercise will make sure R and RStudio are working and that you can get arou
 
 1. Start RStudio if using a version you installed OR navigate to [https://rstudio.cloud/project/1318333](https://rstudio.cloud/project/1318333){target="_blank"} if using RStudio Cloud. To start both R and RStudio requires only firing up RStudio.  RStudio should be available from All Programs at the Start Menu.  Fire up RStudio. 
 
-1. If you're not using RStudio Cloud, create a new project.  Name it "r_workshop".  We will use this for the rest of the workshop.
+1. If you're not using RStudio Cloud, create a new project (File menu, New project, New directory, New project, Directory Name...).  Name it "r_workshop".  We will use this for the rest of the workshop.
 
 1. Create a new "R Script" in the Source Pane, save that file into your newly created project and name it "first_script.R". It'll just be a blank text file at this point.
 

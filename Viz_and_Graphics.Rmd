@@ -33,7 +33,7 @@ Get the lesson data: [download zip](data/data.zip)
 * [Exercise 10]
 * [Exercise 11]
 
-# Goals
+## Goals
 
 This section will introduce you to concepts of data visualization and graphics in R.  The entire workflow of data exploration is enhanced through looking at your data, whether you're exploring a dataset for the first time or creating publication-ready figures. Viewing your data provides insight into patterns that can help you explore different hypotheses.  No analysis is complete without a solid graphic.  
 

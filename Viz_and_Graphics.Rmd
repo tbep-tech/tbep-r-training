@@ -343,7 +343,7 @@ ggplot(mpg, aes(x = displ, y = hwy, colour = drv)) +
   theme_bw(base_family = 'serif', base_size = 16)
 ```
 
-In addition to it's functional syntax, the real power of `ggplot` is the ability to add components to the plot that let you quickly evaluate relationships or trends in the data.  Statistical relationships can be added with `stat_smooth`. 
+In addition to its functional syntax, the real power of `ggplot` is the ability to add components to the plot that let you quickly evaluate relationships or trends in the data.  Statistical relationships can be added with `stat_smooth`. 
 
 ```{r}
 ggplot(mpg, aes(x = displ, y = hwy, colour = drv)) + 

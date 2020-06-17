@@ -277,7 +277,7 @@ vec1 + vec2
 
 ### 2-dimensional data
 
-A collection of vectors represented as a single data object are often described as two-dimensional data.  A more common way of storing two-dimensional data is in a data frame (i.e., `data.frame`).  Think of them like your standard spreadsheet, where each column describes a variable and rows link observations between columns.  Here's a simple example:
+A collection of vectors represented as one data object are often described as two-dimensional data, or in R speak, a data frame (i.e., `data.frame()`).  Think of them like your standard spreadsheet, where each column describes a variable (vector) and rows link observations between columns.  Here's a simple example:
 
 ```{r}
 ltrs <- c('a', 'b', 'c')
@@ -289,7 +289,7 @@ mydf
 
 The only constraints required to make a data frame are:
 
-1. Each column contains the same type of data
+1. Each column (vector) contains the same type of data
 
 1. The number of observations in each column is equal.
 

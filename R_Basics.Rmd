@@ -152,7 +152,7 @@ The base install of R is quite powerful, but you will soon have a need or desire
 
 ### CRAN
 
-One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/){target="_blank"}.  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of `r format(Sys.time(), "%Y-%m-%d")`, there are `r nrow(available.packages())` on CRAN! 
+One of the reasons for R's popularity is CRAN, [The Comprehensive R Archive Network](http://cran.r-project.org/){target="_blank"}.  This is where you download R and also where most will gain access to packages (there are other places, but that is for later).  Not much else to say about this now other than to be aware of it.  As of `r format(Sys.time(), "%Y-%m-%d")`, there are `r nrow(available.packages())` packages on CRAN! 
 
 ### Installing packages
 

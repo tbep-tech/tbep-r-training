@@ -246,7 +246,7 @@ Now let's use the fisheries data and seagrass polygons to do a quick geospatial 
 
 __How many fish were caught where seagrass was observed in 2016?__
 
-The first task is to subset the 2016 fisheries data by locations where seagrass was observed.  There are a few ways we can do this.  The first is to make a simple subset where we filter the station locations using a spatial overlay with the seagrass polygons  The second and more complete approach is to intersect the two data objects to subset and combine the attributes.
+The first task is to subset the 2016 fisheries data by locations where seagrass was observed.  There are a few ways we can do this.  The first is to make a simple subset where we filter the station locations using a spatial overlay with the seagrass polygons. With this approach we can see which stations were located over seagrass, but we don't know which polygons they're located in for the seagrass data. 
 
 ```{r}
 fish_crop <- filt_dat[sgdat, ]
@@ -254,7 +254,7 @@ plot(fish_crop$geometry)
 fish_crop
 ```
 
-With this first approach we can see which stations were located over seagrass, but we don't know which polygons they're located in for the seagrass data. A better approach is to use `st_intersection` to both overlay and combine the attribute fields from the two data objects.
+The second and more complete approach is to intersect the two data objects to subset and combine the attributes. We can use `st_intersection` to both overlay and combine the attribute fields from the two data objects.
 
 ```{r}
 fish_int <- st_intersection(alldat, sgdat)

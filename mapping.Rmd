@@ -127,7 +127,7 @@ Now that we're setup, let's talk about how the `sf` package can be used.  After 
 methods(class = 'sf')
 ```
 
-All of the functions and methods in sf are prefixed with st_, which stands for ‘spatial and temporal’.  This is kind of confusing but this is in reference to standard methods avialable in [PostGIS](https://en.wikipedia.org/wiki/PostGIS){target="_blank"}, an open-source backend that is used by many geospatial platforms.  An advantage of this prefixing is all commands are easy to find with command-line completion in sf, in addition to having naming continuity with existing software.
+All of the functions and methods in sf are prefixed with st_, which stands for ‘spatial and temporal’.  This is kind of confusing but this is in reference to standard methods available in [PostGIS](https://en.wikipedia.org/wiki/PostGIS){target="_blank"}, an open-source backend that is used by many geospatial platforms.  An advantage of this prefixing is all commands are easy to find with command-line completion in sf, in addition to having naming continuity with existing software.
 
 There are two ways to create a spatial data object in R, i.e., an `sf` object, using the sf package.
 

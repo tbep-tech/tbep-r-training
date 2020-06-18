@@ -51,7 +51,7 @@ Most of us are probably familiar with the basic types of spatial data and their 
 
 Vector data come in three flavors.  The simplest is a __point__, which is a 0-dimensional feature that can be used to represent a specific location on the earth, such as a single tree or an entire city. Linear, 1-dimensional features can be represented with points (or vertices) that are connected by a path to form a __line__ and when many points are connected these form a __polyline__. Finally, when a polyline's path returns to its origin to represent an enclosed 2-dimensional space, such as a forest, watershed boundary, or lake, this forms a __polygon__.
 
-![https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/](figure/pts-lines-polys.png)
+![](figure/pts-lines-polys.png)
 
 *Image [source](https://earthdatascience.org/courses/earth-analytics/spatial-data-r/intro-vector-data-r/){target="_blank"}*
 
@@ -160,7 +160,7 @@ str(fishdat)
 str(statloc)
 ```
 
-The `st_as_sf()` function can be used to make this `data.frame` into a `sf` object, but we have first have to join the two datasets and tell R which column is the x-coordinates and which is the y-coordinates.  We also have to specify a CRS - this is just a text string or number (i.e, EPSG)  in a standard format for geospatial data. A big part of working with spatial data is keeping track of reference systems between different datasets.  Remember that meaningful comparisons between datasets are only possible if the CRS is shared.  
+The `st_as_sf()` function can be used to make this `data.frame` into a `sf` object, but we first have to join the two datasets and tell R which column is the x-coordinates and which is the y-coordinates.  We also have to specify a CRS - this is just a text string or number (i.e, EPSG)  in a standard format for geospatial data. A big part of working with spatial data is keeping track of reference systems between different datasets.  Remember that meaningful comparisons between datasets are only possible if the CRS is shared.  
 
 There are many, many types of reference systems and plenty of resources online that provide detailed explanations of the what and why behind the CRS (see [spatialreference.org](http://www.spatialreference.org/){target="_blank"} or [this guide](https://www.nceas.ucsb.edu/~frazier/RSpatialGuides/OverviewCoordinateReferenceSystems.pdf){target="_blank"} from NCEAS).  For now, just realize that we can use a simple text string in R to indicate which CRS we want.  Although this may not always be true, we can make an educated guess that the standard geographic projection with the WGS84 datum applies to our dataset.
 
@@ -168,9 +168,9 @@ There are many, many types of reference systems and plenty of resources online t
 
 Let's join the `fishdat` and `statloc` datasets and create an `sf` object using `st_as_sf()` function.  
 
-1. Join `fishdat` to `statloc` using the `left_join()` function with `by = "Reference"` as the key. Verify the joined dataset has the same number of observations as the original (hint: use `nrow` to check the number of rows before/after joining). 
+1. Join `fishdat` to `statloc` using the `left_join()` function with `by = "Reference"` as the key. 
 
-1. Use `st_as_sf()` to make the joined dataset an `sf` object.  There are two arguments you need to specifiy with `st_as_sf()`: `coords = c('Longitude', 'Latitude')` so R knows which columns are the x/y coordinates and `crs = 4326` to specifiy the CRS as WGS 84.  
+1. Use `st_as_sf()` to make the joined dataset an `sf` object.  There are two arguments you need to specify with `st_as_sf()`: `coords = c('Longitude', 'Latitude')` so R knows which columns in your dataset are the x/y coordinates and `crs = 4326` to specifiy the CRS as WGS 84.  
 
 1. When you're done, inspect the dataset.  How many features are there?  What type of spatial object is this? 
 
@@ -178,11 +178,6 @@ Let's join the `fishdat` and `statloc` datasets and create an `sf` object using 
 ```{r results = 'hide'}
 # Join the data
 alldat <- left_join(fishdat, statloc, by = 'Reference')
-
-# check row counts
-nrow(fishdat)
-nrow(statloc)
-nrow(alldat)
 
 # create spatial data object
 alldat <- st_as_sf(alldat, coords = c('Longitude', 'Latitude'), crs = 4326)
@@ -193,7 +188,7 @@ str(alldat)
 ```
 </div>
 
-There's a shortcut to specifying the CRS if you don't know which one to use.  Remember, for spatial anlaysis make sure to only work with datasets that have the same projections and coordinate systems.  The `st_crs()` function tells us the CRS for a dataset. 
+There's a shortcut to specifying the CRS if you don't know which one to use.  Remember, for spatial anlaysis make sure to only work with datasets that have the same projections and coordinate systems.  The `st_crs()` function tells us the CRS for an existing `sf` obj. 
 
 ```{r}
 # check crs
@@ -202,7 +197,7 @@ st_crs(alldat)
 
 When we created the `alldat` dataset, we could have used the CRS from the `sgdat` object that we created in exercise 12 by using `crs = st_crs(sgdat)` for the `crs` argument.  This is often a quick shortcut for creating an `sf` object without having to look up the CRS number.  
 
-We can verify that both are now have the same CRS as WGS 84.
+We can verify that both now have the same CRS.
 
 ```{r}
 # verify the polygon and point data have the same crs
@@ -262,7 +257,7 @@ plot(fish_int$geometry)
 fish_int
 ```
 
-Now we can easily see which stations are in which seagrass polygon.  We can use some familiar tools from dplyr to get the aggregate catch data for the different polygon counts.  Specifically, the `FLUCCS` attribute identifies seagrass polygons as continuous (`9116`) or patchy (`9113`) (metadata [here](https://www.arcgis.com/sharing/rest/content/items/f0ecff0cf0de491685f8fb074adb278b/info/metadata/metadata.xml?format=default&output=html){target="_blank"}.  Maybe we want to summarise species counts by seagrass polygon type.
+Now we can easily see which stations are in which seagrass polygon.  We can use some familiar tools from dplyr to get the aggregate catch data for the different polygon counts.  Specifically, the `FLUCCS` attribute identifies seagrass polygons as continuous (`9116`) or patchy (`9113`) (metadata [here](https://www.arcgis.com/sharing/rest/content/items/f0ecff0cf0de491685f8fb074adb278b/info/metadata/metadata.xml?format=default&output=html){target="_blank"}).  Maybe we want to summarise species counts by seagrass polygon type.
 
 ```{r}
 fish_cnt <- fish_int %>% 
@@ -273,7 +268,7 @@ fish_cnt <- fish_int %>%
 fish_cnt
 ```
 
-Notice that we've retained the `sf` data structure in the aggregated dataset but the structure is now slightly different, both in the attributes and the geometry column.  We now have only two attributes, `FLUCCS` and `cnt`.  The `geometry` column is retianed but now is aggregated to a multipoint objects where all points in continous or patchy seagrass are grouped by row. This is a really powerful feature of `sf`: spatial attributes are retained during the wrangling process.  
+Notice that we've retained the `sf` data structure in the aggregated dataset but the structure is now slightly different, both in the attributes and the geometry column.  We now have only two attributes, `FLUCCS` and `cnt`.  The `geometry` column is retained but now is aggregated to a multipoint object where all points in continous or patchy seagrass are grouped by row. This is a really powerful feature of `sf`: spatial attributes are retained during the wrangling process.  
 
 We can also visualize this information with ggplot2. This plot shows how many pinfish were caught in the two seagrass coverage categories for all of Old Tampa Bay (`9113`: patchy, `9116`: continuous). 
 
@@ -294,7 +289,7 @@ For `ggplot`, all we need is to use the `geom_sf()` geom.
 # use ggplot with sf objects
 ggplot() + 
   geom_sf(data = sgdat, fill = 'green') + 
-  geom_sf(data = alldat, aes(fill = 'Gear')) 
+  geom_sf(data = alldat) 
 ```
 
 The `mapview` packages lets us create interactive maps to zoom and select data.  Note that we can also combine separate mapview objects with the `+` operator.
@@ -308,20 +303,18 @@ There’s a lot more we can do with `mapview` but the point is that these maps a
 
 ## Exercise 14
 
-We've certainly covered a lot in this lesson, so we'll spend any remaining time we have on getting more comfortable with basic geospatial analysis and mapping in R.  We'll repeat what we just did above, but selecting different years and only continous seagrass.  
+We've certainly covered a lot in this lesson, so we'll spend any remaining time we have on getting more comfortable with basic geospatial analysis and mapping in R.  
 
-1. Start by filtering the `fish_int` object by the 9116 `FLUCCS` code and only `2016` data.  (hint: use `filter(FLUCSS == 9116)` and then `filter(yr == 2016)`)
+1. Start by creating an intersection of the `alldat` object you created in exercise 13 with the seagrass data.  This is the same process shown in the examples above (e.g., `st_intersection(alldat, sgdat)`.  Make sure to store the intersected object as a new variable in your workspace.
 
-1. Create a map of this filtered object using `mapview()`.  Use the `zcol` argument to map the color values to different attributes in your dataset, e.g., `Pinfish` or `Bluefish`.  
+1. Create a map of this intersected object using `mapview()`.  Use the `zcol` argument to map the color values to different attributes in your dataset, e.g., `Pinfish` or `Bluefish`.  
 
-1. Try combining the map you made in the last step with one for seagrass (hint: `mapview() + mapview()`).  Did you filter the data correcty, e.g., points are showing only above the continous seagrass polygons? 
+1. Try combining the map you made in the last step with one for seagrass (hint: `mapview() + mapview()`).
 
 <div class="fold s o">
 ```{r results = 'hide'}
-# filter alldat 
-tomap <- fish_int %>% 
-  filter(FLUCCS == 9116) %>% 
-  filter(yr == 2016)
+# intersect data
+tomap <- st_intersection(alldat, sgdat)
 
 # make map
 mapview(tomap, zcol = 'Pinfish')

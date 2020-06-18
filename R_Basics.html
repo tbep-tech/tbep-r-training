@@ -516,25 +516,25 @@ seq(1, 10)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code># random numbers
 rnorm(100, mean = 10, sd = 2)</code></pre>
-<pre><code>##   [1]  6.603181 10.290324  8.248764 11.295295  8.559920 13.473499 10.780067 13.390638 13.092810  6.488976  8.221083  7.767604 11.181308 13.106854
-##  [15]  9.572781 12.437369 11.814349  7.264801  6.542486  7.867337  8.955874  4.306042 12.732240  9.254957 11.640507  7.833687  9.530359  7.542667
-##  [29] 12.075153 12.268342 10.868586 12.336027 17.112986  9.941578 12.393301 12.270635 11.703694 12.718607  8.691464 12.774268  8.987379  6.900945
-##  [43]  9.165903  9.111063  8.764541 10.564275 10.993069 10.246935 10.744721 10.810957 12.636368  6.153820  8.216023  9.883877 15.038925  8.662262
-##  [57] 11.073797 10.403149 10.504406 11.549509  9.868625  7.745110  7.091737 13.952857  9.495416 10.323674 10.766780 10.283465  9.819141  5.260228
-##  [71] 13.288137  9.600409 12.824711  7.016186 11.091910 10.226909  9.596791  5.323975 11.029392  8.799281 11.744291 10.998667 11.167452 10.270525
-##  [85] 11.303874  7.791219  8.265082  7.671840 15.154011 10.604646  8.599178 12.969555 11.678991  8.288626 10.258746  7.211864  8.161851  6.956932
-##  [99] 12.886228  7.932466</code></pre>
+<pre><code>##   [1] 11.504757 10.940071  8.166165 10.946216 10.937703  9.781417  9.192145 11.549839 11.891701 10.712626 10.741840 10.571541  7.879922  9.796187
+##  [15]  8.347504 10.084669  8.535041  7.661566  6.638004 11.597894  9.570633 11.206573  7.201720 10.352467  9.178014  9.389163 11.643733 10.961777
+##  [29] 10.694967 11.450456  5.706157  8.826516 12.318566  2.978438 12.939079 13.449297  9.946029  8.468268  9.571161 11.593423  9.625393  7.366697
+##  [43] 12.339422 10.571601 10.710382 12.633574  5.983011  9.392177  9.631549  8.271880  8.463394  9.991732 10.150341 11.914486 12.689823  9.846744
+##  [57]  8.587778 12.629901  7.129301 11.168820  6.777766  9.506044 11.398856  8.181581 10.027958  8.905350 11.224460  9.121134  9.570188  6.228653
+##  [71]  7.177392 13.225821 10.814776 11.597791 12.128592  6.795653  9.340728  9.484593 12.364916  8.436238  8.997726  8.502785 11.762180  6.763241
+##  [85] 13.962821 14.575896 10.956968  9.915110  8.441246 10.842925 11.357043 10.110491  6.910323  9.627438  7.415723 15.259199 11.430427 13.937029
+##  [99] 10.579750 10.852796</code></pre>
 <pre class="r"><code># average 
 mean(rnorm(100))</code></pre>
-<pre><code>## [1] -0.08657188</code></pre>
+<pre><code>## [1] 0.1035349</code></pre>
 <pre class="r"><code># sum
 sum(rnorm(100))</code></pre>
-<pre><code>## [1] 3.491741</code></pre>
+<pre><code>## [1] -16.39718</code></pre>
 <p>Very often you will see functions used like this:</p>
 <pre class="r"><code>my_random_sum &lt;- sum(rnorm(100))</code></pre>
 <p>In this case the first part of the line is the name of an object. You make this up. Ideally it should have some meaning, but the only rules are that it can’t start with a number and must not have any spaces. The second bit, <code>&lt;-</code>, is the assignment operator. This tells R to take the result of <code>sum(rnorm(100))</code> and store it in an object named, <code>my_random_sum</code>. It is stored in the environment and can be used by just executing it’s name in the console.</p>
 <pre class="r"><code>my_random_sum</code></pre>
-<pre><code>## [1] 6.923074</code></pre>
+<pre><code>## [1] 2.052352</code></pre>
 <div id="what-is-the-environment" class="section level3">
 <h3>What is the environment?</h3>
 <p>There are two outcomes when you run code. First, the code will simply print output directly in the console. Second, there is no output because you have stored it as a variable using <code>&lt;-</code>. Output that is stored is actually saved in the <code>environment</code>. The environment is the collection of named objects that are stored in memory for your current R session. Anything stored in memory will be accessible by it’s name without running the original script that was used to create it.</p>

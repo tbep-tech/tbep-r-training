@@ -23,11 +23,6 @@ str(statloc)
 # Join the data
 alldat <- left_join(fishdat, statloc, by = 'Reference')
 
-# check row counts
-nrow(fishdat)
-nrow(statloc)
-nrow(alldat)
-
 # create spatial data object
 alldat <- st_as_sf(alldat, coords = c('Longitude', 'Latitude'), crs = 4326)
 
@@ -77,15 +72,13 @@ ggplot(fish_cnt, aes(x = FLUCCS, y = cnt)) +
 # use ggplot with sf objects
 ggplot() + 
   geom_sf(data = sgdat, fill = 'green') + 
-  geom_sf(data = alldat, aes(fill = 'Gear')) 
+  geom_sf(data = alldat) 
 
 mapview(sgdat, col.regions = 'green') +
   mapview(alldat, zcol = 'Gear')
 
-# filter alldat 
-tomap <- fish_int %>% 
-  filter(FLUCCS == 9116) %>% 
-  filter(yr == 2016)
+# intersect data
+tomap <- st_intersection(alldat, sgdat)
 
 # make map
 mapview(tomap, zcol = 'Pinfish')

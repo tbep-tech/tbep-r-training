@@ -185,6 +185,8 @@ library("sf")
 library("mapview")
     ```
 
+An important aspect of packages is that you only need to download them once, but every time you start RStudio you need to load them with the `library()` function.  Loading a package makes all of its functions available in your current R session.
+
 ### Getting Help
 
 Being able to find help and interpret that help is probably one of the most important skills for learning a new language.  R is no different. Help on functions and packages can be accessed directly from R, can be found on CRAN and other official R resources, searched on Google, found on StackOverflow, or from any number of fantastic online resources. I will cover a few of these here. 
@@ -227,7 +229,7 @@ Blind googling can require a bit of strategy to get the info you want.  Some poi
 * Take note of the number of hits and date of a web page
 * When in doubt, search with the exact error message (see here for [details](https://cran.r-project.org/doc/manuals/R-lang.html#Exception-handling){target="_blank"} about warnings vs errors)
 
-One specific resource that I use quite a bit is [StackOverflow with the 'r' tag](http://stackoverflow.com/questions/tagged/r){target="_blank"}.  StackOverflow is a discussion forum for all things related to programming.  You can then use this tag and the search functions in StackOverflow and find answers to almost anything you can think of. However, these forums are also very strict and I typically use them to find answers not to ask questions.  
+One specific resource that I use quite a bit is [StackOverflow with the 'r' tag](http://stackoverflow.com/questions/tagged/r){target="_blank"}.  StackOverflow is a discussion forum for all things related to programming.  You can then use this tag and the search functions in StackOverflow and find answers to almost anything you can think of. However, these forums are also very strict and I typically use them to find answers, not to ask questions.  
 
 ### Other Resources
 
@@ -309,11 +311,11 @@ The working directory is important to know when you're importing or exporting da
 
 If you want to import a file that is not in your working directory, you will have to use an *absolute* path that is the full file location.  Otherwise, R will not know where to look outside of the working directory.  
 
-### Exercise 3
+## Exercise 3
 
 Now that we have the data downloaded and extracted to our data folder, we'll use `read_csv` to import two files into our environment.  The `read_csv` function comes with the tidyverse package, so make sure that package is loaded (i.e., `library(tidyverse)`) before you do this exercise.  This should have been done in the second exercise.
 
-1. Type the following in your script.  Note the use of *relative* file paths within your project.  This will only work if the "data" folder is in your working directory (see the explanation above).  An *absolute* file path would be the complete location e.g., `'C:/Users/Marcus/Desktop/data/fishdat.csv'`).  You can use the absolute path if you like.
+1. Type the following in your script.  Note the use of *relative* file paths within your project (see the explanation above).
 
     ```{r}
 fishdat <- read_csv('data/fishdat.csv')

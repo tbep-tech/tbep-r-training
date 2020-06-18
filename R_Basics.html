@@ -516,25 +516,25 @@ seq(1, 10)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code># random numbers
 rnorm(100, mean = 10, sd = 2)</code></pre>
-<pre><code>##   [1] 11.504757 10.940071  8.166165 10.946216 10.937703  9.781417  9.192145 11.549839 11.891701 10.712626 10.741840 10.571541  7.879922  9.796187
-##  [15]  8.347504 10.084669  8.535041  7.661566  6.638004 11.597894  9.570633 11.206573  7.201720 10.352467  9.178014  9.389163 11.643733 10.961777
-##  [29] 10.694967 11.450456  5.706157  8.826516 12.318566  2.978438 12.939079 13.449297  9.946029  8.468268  9.571161 11.593423  9.625393  7.366697
-##  [43] 12.339422 10.571601 10.710382 12.633574  5.983011  9.392177  9.631549  8.271880  8.463394  9.991732 10.150341 11.914486 12.689823  9.846744
-##  [57]  8.587778 12.629901  7.129301 11.168820  6.777766  9.506044 11.398856  8.181581 10.027958  8.905350 11.224460  9.121134  9.570188  6.228653
-##  [71]  7.177392 13.225821 10.814776 11.597791 12.128592  6.795653  9.340728  9.484593 12.364916  8.436238  8.997726  8.502785 11.762180  6.763241
-##  [85] 13.962821 14.575896 10.956968  9.915110  8.441246 10.842925 11.357043 10.110491  6.910323  9.627438  7.415723 15.259199 11.430427 13.937029
-##  [99] 10.579750 10.852796</code></pre>
+<pre><code>##   [1] 10.344502 15.690711 11.355897  9.405147  9.851021 10.416672 11.363096  9.229196  9.098256  9.432462  8.875196 10.073902 10.032543 10.001759
+##  [15] 11.412658  7.124819  7.449895  9.854906  8.352782  9.559885 10.780880  9.295447 11.593540 13.469964  6.734613 10.352086  9.481092 15.199759
+##  [29] 11.491648 12.847065 10.217442  7.511187 11.219568 11.603422  8.741593  9.817326 12.462663 10.958933 11.395363 10.020758  9.498919  9.037012
+##  [43]  6.947904 11.623839 11.715677  9.816367 11.060450 10.096784  7.137597  9.720870  8.700547 12.532816  8.316082  9.854276  7.738174  7.380189
+##  [57]  8.392754  9.410776  9.541273  9.694791  7.903997  8.481510 12.258385 11.697684 11.506484 12.479067 13.225164  8.736004 12.657351  9.384211
+##  [71] 11.800139  9.062567  9.418829 13.732913  8.504134  9.599339 10.561210 10.727084  7.499182  9.915726 11.816760 10.193306 11.394517  7.661027
+##  [85] 12.036037  8.210367  9.245822 12.210995  9.281225  4.833749  7.549386 12.245736  8.121455  8.965361 11.186589 11.104895  9.969243 10.624235
+##  [99]  9.878235 10.386003</code></pre>
 <pre class="r"><code># average 
 mean(rnorm(100))</code></pre>
-<pre><code>## [1] 0.1035349</code></pre>
+<pre><code>## [1] 0.01714559</code></pre>
 <pre class="r"><code># sum
 sum(rnorm(100))</code></pre>
-<pre><code>## [1] -16.39718</code></pre>
+<pre><code>## [1] 2.090306</code></pre>
 <p>Very often you will see functions used like this:</p>
 <pre class="r"><code>my_random_sum &lt;- sum(rnorm(100))</code></pre>
 <p>In this case the first part of the line is the name of an object. You make this up. Ideally it should have some meaning, but the only rules are that it can’t start with a number and must not have any spaces. The second bit, <code>&lt;-</code>, is the assignment operator. This tells R to take the result of <code>sum(rnorm(100))</code> and store it in an object named, <code>my_random_sum</code>. It is stored in the environment and can be used by just executing it’s name in the console.</p>
 <pre class="r"><code>my_random_sum</code></pre>
-<pre><code>## [1] 2.052352</code></pre>
+<pre><code>## [1] -5.011294</code></pre>
 <div id="what-is-the-environment" class="section level3">
 <h3>What is the environment?</h3>
 <p>There are two outcomes when you run code. First, the code will simply print output directly in the console. Second, there is no output because you have stored it as a variable using <code>&lt;-</code>. Output that is stored is actually saved in the <code>environment</code>. The environment is the collection of named objects that are stored in memory for your current R session. Anything stored in memory will be accessible by it’s name without running the original script that was used to create it.</p>
@@ -570,6 +570,7 @@ install.packages(&quot;mapview&quot;)</code></pre></li>
 library(&quot;sf&quot;)
 library(&quot;mapview&quot;)</code></pre></li>
 </ol>
+<p>An important aspect of packages is that you only need to download them once, but every time you start RStudio you need to load them with the <code>library()</code> function. Loading a package makes all of its functions available in your current R session.</p>
 <div id="getting-help" class="section level3">
 <h3>Getting Help</h3>
 <p>Being able to find help and interpret that help is probably one of the most important skills for learning a new language. R is no different. Help on functions and packages can be accessed directly from R, can be found on CRAN and other official R resources, searched on Google, found on StackOverflow, or from any number of fantastic online resources. I will cover a few of these here.</p>
@@ -609,7 +610,7 @@ apropos(&quot;print&quot;) # Returns all available functions with &quot;print&qu
 <li>Take note of the number of hits and date of a web page</li>
 <li>When in doubt, search with the exact error message (see here for <a href="https://cran.r-project.org/doc/manuals/R-lang.html#Exception-handling" target="_blank">details</a> about warnings vs errors)</li>
 </ul>
-<p>One specific resource that I use quite a bit is <a href="http://stackoverflow.com/questions/tagged/r" target="_blank">StackOverflow with the ‘r’ tag</a>. StackOverflow is a discussion forum for all things related to programming. You can then use this tag and the search functions in StackOverflow and find answers to almost anything you can think of. However, these forums are also very strict and I typically use them to find answers not to ask questions.</p>
+<p>One specific resource that I use quite a bit is <a href="http://stackoverflow.com/questions/tagged/r" target="_blank">StackOverflow with the ‘r’ tag</a>. StackOverflow is a discussion forum for all things related to programming. You can then use this tag and the search functions in StackOverflow and find answers to almost anything you can think of. However, these forums are also very strict and I typically use them to find answers, not to ask questions.</p>
 </div>
 <div id="other-resources" class="section level3">
 <h3>Other Resources</h3>
@@ -678,11 +679,12 @@ mydf</code></pre>
 <p>You can see your working directory with the <code>getwd()</code> function or from the file path at the top of the console in RStudio. All files in the File pane window on the bottom right of RStudio are also those within the working directory. If you want to change your working directory, you can use the <code>setwd()</code> function and put the file path (as a character string) inside the function, e.g., <code>setwd('C:/Users/Marcus/Desktop/newdirectory')</code>.</p>
 <p>The working directory is important to know when you’re importing or exporting data. When you import data, a <em>relative</em> file path can be used that is an extension of the working directory. For example, if your working directory is <code>'C:/Users/Marcus/Desktop'</code> and you have a file called <code>mydata.csv</code> in that directory, you can use <code>read_csv('mydata.csv')</code> to import the file. Alternatively, if there’s a folder called “data” in your working directory with the file you want to import, you would use <code>read_csv('data/mydata.csv')</code>.</p>
 <p>If you want to import a file that is not in your working directory, you will have to use an <em>absolute</em> path that is the full file location. Otherwise, R will not know where to look outside of the working directory.</p>
-<div id="exercise-3" class="section level3">
-<h3>Exercise 3</h3>
+</div>
+<div id="exercise-3" class="section level2">
+<h2>Exercise 3</h2>
 <p>Now that we have the data downloaded and extracted to our data folder, we’ll use <code>read_csv</code> to import two files into our environment. The <code>read_csv</code> function comes with the tidyverse package, so make sure that package is loaded (i.e., <code>library(tidyverse)</code>) before you do this exercise. This should have been done in the second exercise.</p>
 <ol style="list-style-type: decimal">
-<li><p>Type the following in your script. Note the use of <em>relative</em> file paths within your project. This will only work if the “data” folder is in your working directory (see the explanation above). An <em>absolute</em> file path would be the complete location e.g., <code>'C:/Users/Marcus/Desktop/data/fishdat.csv'</code>). You can use the absolute path if you like.</p>
+<li><p>Type the following in your script. Note the use of <em>relative</em> file paths within your project (see the explanation above).</p>
 <pre class="r"><code>fishdat &lt;- read_csv(&#39;data/fishdat.csv&#39;)
 statloc &lt;- read_csv(&#39;data/statloc.csv&#39;)</code></pre></li>
 <li><p>Send the commands to the console with <code>ctrl+enter</code>.</p></li>
@@ -765,7 +767,6 @@ str(fishdat)</code></pre>
 <p>You can also view each dataset in a spreadsheet style in the scripting window:</p>
 <pre class="r"><code>View(fishdat)
 View(statloc)</code></pre>
-</div>
 <div id="other-ways-to-import-data" class="section level3">
 <h3>Other ways to import data</h3>
 <p>You might want to import an Excel spreadsheet as well. In the old days, importing spreadsheets into R was almost impossible given the proprietary data structure used by Microsoft. The tools available in R have since matured and it’s now pretty painless to import a spreadsheet. The <code>readxl</code> package is the most recent and by far most flexible data import package for Excel files. It comes with the <code>tidyverse</code> family of packages.</p>

@@ -733,15 +733,15 @@ head(dplyr_rnm)</code></pre>
 ## 4  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23        0     0       0      80          0               0
 ## 5  1550828 TBM1996042601 1996-04-26     1996   160 2018-04-12 10:25:23        0     0       0       0          4               0
 ## 6  1550838 TBM1996051312 1996-05-13     1996   300 2018-04-12 10:25:23        0     0       0       0          0               1</code></pre>
-<p>There are many more functions in <code>dplyr</code> but the ones above are by far the most used. As you can imagine, they are most effective when used to together because there is never only one step in the data wrangling process. After the exercise, we’ll talk about how we can efficiently <em>pipe</em> the functions in dplyr to create a new data object.</p>
+<p>There are many more functions in <code>dplyr</code> but the ones above are by far the most used. As you can imagine, they are most effective when used together because there is never only one step in the data wrangling process. After the exercise, we’ll talk about how we can efficiently <em>pipe</em> the functions in dplyr to create a new data object.</p>
 </div>
 </div>
 <div id="exercise-4" class="section level2">
 <h2>Exercise 4</h2>
-<p>Now that you know the basic functions in <code>dplyr</code> and how to use them, let’s put them to use. Using <code>fishdat</code>, let’s select some columns of interest, filter by species and gear type, filter only large catches, and arrange in ascending order.</p>
+<p>Now that you know the basic functions in <code>dplyr</code> and how to use them, let’s put them to use. Using <code>fishdat</code>, let’s select some columns of interest, filter by gear type, and rename one of the columns.</p>
 <ol style="list-style-type: decimal">
-<li><p>Remove all but the <code>Reference</code>, <code>Sampling_Date</code>, <code>Gear</code>, and <code>Sand Seatrout</code> columns. Assign this dataset to a new object in your workspace. Don’t forget to use backticks to select column names that have spaces.</p></li>
-<li><p>Using the new object, filter again to get only Sand Seatrout and Pinfish caught with Gear 20 (hint, filter by the <code>Gear</code> column<code>and don't forget ot use</code>==`).</p></li>
+<li><p>Select the <code>Reference</code>, <code>Sampling_Date</code>, <code>Gear</code>, and <code>Sand Seatrout</code> columns. Assign this dataset to a new object in your workspace. Don’t forget to use backticks to select column names that have spaces.</p></li>
+<li><p>Using the new object, filter to get all rows where Gear is equal to 20 (hint, filter by the <code>Gear</code> column and don’t forget ot use <code>==</code>).</p></li>
 <li><p>Rename the <code>Sampling_Date</code> column to <code>date</code>.</p></li>
 </ol>
 <div class="fold s o">
@@ -790,14 +790,13 @@ good_ex &lt;- fishdat %&gt;%
 <li>Filter by <code>Gear</code> to get only gear 20</li>
 <li>Rename <code>Sampling_Date</code> to <code>date</code></li>
 </ul></li>
-<li>When you’re done, you should have a data object that’s exactly the same as the one you created in exercise four. Try to verify this with the <code>identical</code> function from base R (check the help file with <code>?identical</code> if you don’t know how to use this function).</li>
 </ol>
 <div class="fold s o">
 <pre class="r"><code>ex2 &lt;- fishdat %&gt;% 
   select(Reference, Sampling_Date, Gear, `Sand Seatrout`) %&gt;% 
   filter(Gear == 20) %&gt;% 
   rename(date = Sampling_Date)
-identical(ex1, ex2)</code></pre>
+head(ex2)</code></pre>
 </div>
 </div>
 <div id="next-time" class="section level2">

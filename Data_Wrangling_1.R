@@ -96,4 +96,4 @@ good_ex <- fishdat %>%
 ##   select(Reference, Sampling_Date, Gear, `Sand Seatrout`) %>%
 ##   filter(Gear == 20) %>%
 ##   rename(date = Sampling_Date)
-## identical(ex1, ex2)
+## head(ex2)

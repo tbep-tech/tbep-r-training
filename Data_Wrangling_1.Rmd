@@ -227,15 +227,15 @@ dplyr_rnm <- rename(fishdat, snook = `Common Snook`)
 head(dplyr_rnm)
 ```
 
-There are many more functions in `dplyr` but the ones above are by far the most used.  As you can imagine, they are most effective when used to together because there is never only one step in the data wrangling process.  After the exercise, we'll talk about how we can efficiently *pipe* the functions in dplyr to create a new data object.
+There are many more functions in `dplyr` but the ones above are by far the most used.  As you can imagine, they are most effective when used together because there is never only one step in the data wrangling process.  After the exercise, we'll talk about how we can efficiently *pipe* the functions in dplyr to create a new data object.
 
 ## Exercise 4
 
-Now that you know the basic functions in `dplyr` and how to use them, let's put them to use.  Using `fishdat`, let's select some columns of interest, filter by species and gear type, filter only large catches, and arrange in ascending order.
+Now that you know the basic functions in `dplyr` and how to use them, let's put them to use.  Using `fishdat`, let's select some columns of interest, filter by gear type, and rename one of the columns.
 
-1.  Remove all but the `Reference`, `Sampling_Date`, `Gear`, and `Sand Seatrout` columns.  Assign this dataset to a new object in your workspace.  Don't forget to use backticks to select column names that have spaces.
+1.  Select the `Reference`, `Sampling_Date`, `Gear`, and `Sand Seatrout` columns.  Assign this dataset to a new object in your workspace.  Don't forget to use backticks to select column names that have spaces.
 
-1. Using the new object, filter again to get only Sand Seatrout and Pinfish caught with Gear 20 (hint, filter by the `Gear` column` and don't forget ot use `==`). 
+1. Using the new object, filter to get all rows where Gear is equal to 20 (hint, filter by the `Gear` column and don't forget ot use `==`). 
 
 1. Rename the `Sampling_Date` column to `date`. 
 
@@ -301,15 +301,13 @@ Now that we know how to pipe functions, let's repeat exercise 4.  You should alr
      * Filter by `Gear` to get only gear 20
      * Rename `Sampling_Date` to `date`
 
-2. When you're done, you should have a data object that's exactly the same as the one you created in exercise four. Try to verify this with the `identical` function from base R (check the help file with `?identical` if you don't know how to use this function).
-
 <div class="fold s o">
 ```{r, eval = F}
 ex2 <- fishdat %>% 
   select(Reference, Sampling_Date, Gear, `Sand Seatrout`) %>% 
   filter(Gear == 20) %>% 
   rename(date = Sampling_Date)
-identical(ex1, ex2)
+head(ex2)
 ```
 </div>
 

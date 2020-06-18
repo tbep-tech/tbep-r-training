@@ -459,7 +459,7 @@ div.tocify {
 <div id="base-r-graphics" class="section level2">
 <h2>Base R graphics</h2>
 <p>In theory, all of your plotting needs can be accomplished with functions in base R. However, these graphics are not easy to customize and it’s very tedious to create publication-quality graphics. For these reasons, base R graphics are rarely taught but I believe they still serve a purpose in the data exploration workflow. Base R graphics are extremely fast and simple to use for exploring data. I caution you in using these functions for anything beyond simple exploration.</p>
-<p>My most frequent use for base R graphics inlude:</p>
+<p>My most frequent use for base R graphics include:</p>
 <ul>
 <li>Simple scatterplots to see how two variables are related (<code>plot</code>)</li>
 <li>Histograms to explore the distribution of a variable (<code>hist</code>)</li>
@@ -493,7 +493,7 @@ plot(hwy ~ displ, data = mpg, main = &#39;Highway mileage by engine size&#39;,
      xlab = &#39;engine size (l)&#39;, ylab = &#39;highway (mpg)&#39;)</code></pre>
 <p><img src="Viz_and_Graphics_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <p>Notice how the plots are different depending on where the additional arguments are used. Confusing, right? You’ll waste a lot of time trying to tweak the base graphics.</p>
-<p>The <code>hist</code> (histogram) function is the only other plotting function from base R that is worth showing. This gets you info on the basic distribution of a variable and is a graphical way of assessing the spread and central tendency (e.g., mean) of a variable.</p>
+<p>The <code>hist</code> (histogram) function is the only other plotting function from base R that is worth showing. This gets you info on the basic distribution of a variable and is a graphical way of assessing the spread and central tendency (i.e., variance and mean) of a variable.</p>
 <pre class="r"><code>hist(mpg$hwy)</code></pre>
 <p><img src="Viz_and_Graphics_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>The only useful argument in <code>hist</code> is <code>breaks</code> that controls the number of bins.</p>
@@ -502,22 +502,15 @@ plot(hwy ~ displ, data = mpg, main = &#39;Highway mileage by engine size&#39;,
 </div>
 <div id="exercise-9" class="section level2">
 <h2>Exercise 9</h2>
-<p>Let’s make some simple graphics of our fisheries dataset using base R. We’ll make a histogram of fish catch with the <code>hist</code> function and a time series plot of catch using the <code>plot</code> function. We’ll also add a title and better axis labels to the plots to make them slightly more palatable.</p>
+<p>Let’s make a simple graphic of our fisheries dataset using base R. We’ll make a time series plot of catch using the <code>plot</code> function. We’ll also add a title and better axis labels to the plot to make it slightly more palatable.</p>
 <ol style="list-style-type: decimal">
 <li><p>First, start by loading the fish data as you’ve done before. Use <code>read_csv()</code> from the tidyverse.</p></li>
-<li><p>Make a histogram of fish catch for the <code>Red Drum</code> column using <code>hist()</code>. How are the data distributed? What does it look like if you do <code>hist(log10(fishdat$</code>Red Drum<code>))</code>? Try changing the <code>breaks</code> argument.</p></li>
 <li><p>Make a time series plot of <code>Pinfish</code> catch over time using the <code>plot</code> function. Try creating the plot using the <code>formula</code> notation (hint: <code>Pinfish ~ Sampling_Date</code>). Remember you have to use the <code>data</code> argument when you’re using the formula (i.e., <code>data = fishdat</code>).</p></li>
 <li><p>Give the plot an informative title using the <code>main</code> argument directly in the plot function, something like <code>main = "Pinfish catch for all stations over time"</code>.</p></li>
 </ol>
 <div class="fold s o">
 <pre class="r"><code># load the fish data
 fishdat &lt;- read_csv(&#39;data/fishdat.csv&#39;)
-
-# histogram
-hist(fishdat$`Red Drum`)
-     
-# histogram, log10
-hist(log10(fishdat$`Red Drum`))
      
 # time series plot
 plot(Pinfish ~ Sampling_Date, data = fishdat)
@@ -533,7 +526,7 @@ plot(Pinfish ~ Sampling_Date, data = fishdat, main = &#39;Pinfish catch for all 
 <p>The <code>ggplot2</code> package (full <a href="http://ggplot2.tidyverse.org/index.html" target="_blank">reference</a>) is a huge improvement over base R because it was developed following a strict philosophy known as the <em>grammar of graphics</em>. This philosophy was designed to make thinking, reasoning, and communicating about graphs easier by following a few simple rules. Like building a sentence in speech (aka grammar), all graphs start with a foundational component that is used for building other graph pieces.</p>
 <p>With ggplot2, you begin a plot with the function <code>ggplot()</code>. <code>ggplot()</code> creates a coordinate system that you can add layers to. The first argument of <code>ggplot()</code> is the dataset to use in the graph. So <code>ggplot(data = mpg)</code> creates an empty base graph.</p>
 <pre class="r"><code>ggplot(data = mpg)</code></pre>
-<p>You complete your graph by adding one or more layers (aka <code>geoms</code>) to <code>ggplot()</code>. The function <code>geom_point()</code> adds a layer of points to your plot, which creates a scatterplot. Ggplot2 comes with many geom functions that each add a different type of layer to a plot.</p>
+<p>The next step is to add one or more layers (aka <code>geoms</code>) to <code>ggplot()</code>. The function <code>geom_point()</code> adds a layer of points to your plot, which creates a scatterplot. Ggplot2 comes with many geom functions that each add a different type of layer to a plot.</p>
 <pre class="r"><code>ggplot(data = mpg) +
   geom_point()</code></pre>
 <p>Each geom function in ggplot2 takes a <code>mapping</code> argument. This defines how variables in your dataset are mapped to visual properties. The <code>mapping</code> argument is defined with <code>aes()</code>, and the <code>x</code> and <code>y</code> arguments of <code>aes()</code> specify which variables to map to the x and y axes. ggplot2 looks for the mapped variable in the <code>data</code> argument, in this case, <code>mpg</code>.</p>
@@ -601,19 +594,20 @@ Execution halted</code></pre>
 </div>
 <div id="exercise-10" class="section level2">
 <h2>Exercise 10</h2>
-<p>Let’s reproduce the histogram and scatterplot we created in exercise 9 using ggplot. This requires us to map the <code>Sampling_Date</code> and <code>Pinfish</code> variables to the x and y aesthetics for <code>geom_point</code>.</p>
+<p>Let’s reproduce the time series plot we created in exercise 9 using ggplot. This requires us to map the <code>Sampling_Date</code> and <code>Pinfish</code> variables to the x and y aesthetics for <code>geom_point</code>.</p>
 <ol style="list-style-type: decimal">
 <li><p>Setup your initial plot with <code>ggplot</code>. Map the x variable to <code>Sampling_Date</code>, the y variable to <code>Pinfish</code>. The setup should look like this: <code>ggplot(fishdat, aes(x = Sampling_Date, y = Pinfish))</code>). What happens if you run only this code?</p></li>
 <li><p>Add the <code>geom_point()</code> geom to your plot using the <code>+</code> operator. Remember the correct placement of <code>+</code>, it always occurs in the line preceding the layer that is being added to the plot.</p></li>
-<li><p>The catch data are heavily skewed. We can easily transform the y-axis by adding a scale. GGplot has multiple scale functions that accomplish different tasks, all of which relate to setting limits or characteristics of measured variables in your data. Add the following after <code>geom_point()</code> (remember to put a <code>+</code> after <code>geom_point()</code>): <code>scale_y_continuous('log-Catch, Pinfish', trans = 'log10')</code>. How does the plot look now?</p></li>
+<li><p>The catch data are heavily skewed. We can easily transform the y-axis by adding a scale. Ggplot has multiple scale functions that accomplish different tasks, all of which relate to setting limits or characteristics of measured variables in your data. Add the following after <code>geom_point()</code> (remember to put a <code>+</code> after <code>geom_point()</code>): <code>scale_y_continuous('log-Catch, Pinfish', trans = 'log10')</code>. How does the plot look now?</p></li>
 </ol>
 <div class="fold s o">
 <pre class="r"><code>ggplot(fishdat, aes(x = Sampling_Date, y = Pinfish)) +
   geom_point() + 
   scale_y_continuous(&#39;log-Catch, Pinfish&#39;, trans = &#39;log10&#39;)</code></pre>
 </div>
-<div id="modifying-plot-components" class="section level3">
-<h3>Modifying plot components</h3>
+</div>
+<div id="modifying-plot-components" class="section level2">
+<h2>Modifying plot components</h2>
 <p>There are countless ways we can modify a ggplot, either by manipulating the appearance or adding information that improves our understanding of what we see. In the previous exercise, we used a scale to transform an axis. In this next section we’ll cover three additional ways to modify a plot:</p>
 <ul>
 <li>Modifying the appearance of the plot as a whole can be done using the <code>theme</code> function for individual parts or by using a pre-packaged theme that modifies many parts at once.</li>
@@ -678,24 +672,22 @@ Execution halted</code></pre>
   facet_wrap(~ drv, ncol = 3, scales = &#39;free&#39;)</code></pre>
 <p><img src="Viz_and_Graphics_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 </div>
-</div>
 <div id="exercise-11" class="section level2">
 <h2>Exercise 11</h2>
-<p>Let’s modify the scatterplot we created in exercise 10 by adding a theme, a statistical summary, and facets. We’ll map the <code>stat_smooth</code> function to the Gear type and also use this variable to create a three-panel plot.</p>
+<p>Let’s modify the time series plot we created in exercise 10 by adding a theme, a statistical summary, and facets. We’ll map the <code>stat_smooth</code> function to the Gear type and also use this variable to create a three-panel plot.</p>
 <ol style="list-style-type: decimal">
-<li><p>Setup the initial plot as before. Map the x variable to <code>Sampling_Date</code> and the y variable to <code>Pinfish</code>. In addition, use the <code>group</code> argument in the <code>aes()</code> function to group the data by Gear. The intiial <code>ggplot</code> line will look like this <code>ggplot(fishdata, aes(x = Sampling_Date, y = Pinfish, group = Gear)</code>. Add the <code>geom_point</code> geom and the <code>scale_y_continuous</code> scale with <code>trans = "log10"</code> to transform catch.</p></li>
-<li><p>Add one of the pre-packaged themes to the plot: <code>theme_bw()</code>, <code>theme_classic()</code>, or <code>theme_minimal()</code>. You can also use any of the other themes from the tidyverse (see <a href="http://ggplot2.tidyverse.org/reference/ggtheme.html" target="_blank">here</a>) or use one from the <code>ggthemes</code> package (see <a href="https://github.com/jrnold/ggthemes" target="_blank">here</a>). You’ll have to install and load the <code>ggthemes</code> package if using the latter.</p></li>
+<li><p>Setup the initial plot as before. Map the x variable to <code>Sampling_Date</code> and the y variable to <code>Pinfish</code>. The intiial <code>ggplot</code> line will look like this <code>ggplot(fishdata, aes(x = Sampling_Date, y = Pinfish)</code>. Add the <code>geom_point</code> geom and the <code>scale_y_continuous</code> scale with <code>trans = "log10"</code> to transform catch.</p></li>
+<li><p>Add one of these thems to the plot: <code>theme_bw()</code>, <code>theme_classic()</code>, or <code>theme_minimal()</code>.</p></li>
 <li><p>Add the <code>stat_smooth</code> function with the argument <code>method = "lm"</code> to add linear smooths between catch and time for each gear type.</p></li>
 <li><p>Use <code>facet_wrap</code> to create a three-panel plot by depth category (hint: <code>facet_wrap(~ Gear, ncol = 3)</code>).</p></li>
-<li><p>You can change the scaling of the axes to make them specific to each facet. Try using the argument <code>scales = "free"</code> within <code>facet_wrap</code>. How does this change the interpretation?</p></li>
 </ol>
 <div class="fold s o">
-<pre class="r"><code>ggplot(fishdat, aes(x = Sampling_Date, y = Pinfish, group = Gear)) +
+<pre class="r"><code>ggplot(fishdat, aes(x = Sampling_Date, y = Pinfish)) +
   geom_point() + 
   scale_y_continuous(&#39;log-Catch, Pinfish&#39;, trans = &#39;log10&#39;) + 
   theme_minimal() + 
   stat_smooth(method = &#39;lm&#39;) + 
-  facet_wrap(~ Gear, ncol = 3, scales = &#39;free&#39;)</code></pre>
+  facet_wrap(~ Gear, ncol = 3)</code></pre>
 </div>
 </div>
 <div id="saving-your-plots" class="section level2">

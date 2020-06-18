@@ -23,15 +23,8 @@ hist(mpg$hwy)
 
 hist(mpg$hwy, breaks = 20)
 
-## 
 ## # load the fish data
 ## fishdat <- read_csv('data/fishdat.csv')
-## 
-## # histogram
-## hist(fishdat$`Red Drum`)
-## 
-## # histogram, log10
-## hist(log10(fishdat$`Red Drum`))
 ## 
 ## # time series plot
 ## plot(Pinfish ~ Sampling_Date, data = fishdat)
@@ -134,12 +127,12 @@ ggplot(mpg, aes(x = displ, y = hwy, colour = drv)) +
   stat_smooth(method = 'lm') + 
   facet_wrap(~ drv, ncol = 3, scales = 'free')
 
-## ggplot(fishdat, aes(x = Sampling_Date, y = Pinfish, group = Gear)) +
+## ggplot(fishdat, aes(x = Sampling_Date, y = Pinfish)) +
 ##   geom_point() +
 ##   scale_y_continuous('log-Catch, Pinfish', trans = 'log10') +
 ##   theme_minimal() +
 ##   stat_smooth(method = 'lm') +
-##   facet_wrap(~ Gear, ncol = 3, scales = 'free')
+##   facet_wrap(~ Gear, ncol = 3)
 
 ## ggsave('figure/myfig.jpg', device = 'jpeg', width = 5, height = 4, units = 'in', dpi = 300)
 

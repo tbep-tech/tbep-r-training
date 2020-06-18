@@ -54,7 +54,7 @@ Last lesson we learned the following functions from the `dplyr` package (cheatsh
 
 As before, we only have one hour to cover the basics of data wrangling. It’s an unrealistic expectation that you will be a ninja wrangler after this training. As such, the goals are to expose you to fundamentals and to develop an appreciation of what’s possible. I also want to provide resources that you can use for follow-up learning on your own.
 
-Today you should be able to answer (or be able to find answers to) the following:
+After this lesson you should be able to answer (or be able to find answers to) the following:
 
 * How are data joined?
 * What is tidy data?
@@ -74,7 +74,7 @@ library(tidyverse)
 
 ## Combining data
 
-Combining data is a common task of data wrangling.  Perhaps we want to combine information between two datasets that share a common identifier.  As a real world example, our fisheries data contain information about fish catch, but we also want to include spatial about the stations (i.e., lat, lon).  We would need to (and we will) combine data if this information is in two different places.  Combining data with dplyr is called joining.
+Combining data is a common task of data wrangling.  Perhaps we want to combine information between two datasets that share a common identifier.  As a real world example, our fisheries data contain information about fish catch, but we also want to include spatial information about the stations (i.e., lat, lon).  We would need to (and we will) combine data if this information is in two different places.  Combining data with dplyr is called joining.
 
 All joins require that each of the tables can be linked by shared identifiers.  These are called 'keys' and are usually represented as a separate column that acts as a unique variable for the observations.  The "Station ID" is a common key, but remember that a key might need to be unique for each row.  It doesn't make sense to join two tables by station ID if multiple site visits were made. In that case, your key should include some information about the site visit **and** station ID.
 
@@ -112,7 +112,7 @@ For this exercise we'll repeat the join we just did, but on a subset of the data
 
 1. Select the `Reference`, `Sampling_Date`, `Gear`, and `Common Snook` columns from the fisheries dataset (hint, use `select` from dplyr).
 
-1. Filter the fisheries dataset by gear type five (hint, use `filter == 5`).  Check the dimensions of the new dataset with `dim`. 
+1. Filter the fisheries dataset by gear type 20 (hint, use `filter == 20`).  Check the dimensions of the new dataset with `dim`. 
 
 1. Use a `full_join` to join the fisheries dataset with the station location dataset.  What is the key value for joining?  
 
@@ -129,7 +129,7 @@ statloc <- read_csv('data/statloc.csv')
 # wrangle before join
 joindat <- fishdat %>% 
   select(Reference, Sampling_Date, Gear, `Common Snook`) %>% 
-  filter(Gear == 5) 
+  filter(Gear == 20) 
 
 dim(joindat)
 
@@ -184,6 +184,8 @@ This means for most real analyses, you'll need to do some tidying. The first ste
 1. One observation might be scattered across multiple rows.
 
 To fix these problems, you'll need the two most important functions in tidyr: `gather()` and `spread()`.
+
+Side note: Recent versions of tidyr have the `pivot_longer()` and `pivot_wider()` functions that accomplish similar tasks.  Some may find these functions more intuitive, but I present the former here for legacy purposes. 
 
 ### Gathering
 
@@ -243,7 +245,7 @@ Spreading can be graphically demonstrated:
 
 ## Exercise 7
 
-Let's take a look at the fisheries data. These data are already "tidy". To help with the next few examples, we'll gather the  species and catch count data using the `gather` function from the `tidyr` package.
+Let's take a look at the fisheries data. Are these data "tidy"? To help with the next few examples, we'll gather the  species and catch count data using the `gather` function from the `tidyr` package.
 
 1. Inspect the fisheries dataset.  What are the dimensions (hint: `dim`)?  What are the names and column types (hint: `str`)?
 
@@ -279,7 +281,7 @@ Let's use our gathered fisheries dataset from exercise 7.
 head(gatherdat)
 ```
 
-This is not a terribly interesting dataset until we start to evaluate some of the differences.  It's also setup in a way to let us easily group by different variables.  We could ask a simple question: how does total catch vary across species (ignoring gear differences)? 
+It's difficult to see patterns until we start to evaluate some of the differences.  It's also setup in a way to let us easily group by different variables.  We could ask a simple question: how does total catch vary across species (ignoring gear differences)? 
 
 First we can use `group_by`. Notice the new information at the top of the output.
 ```{r}
@@ -305,7 +307,7 @@ We can group the dataset by more than one column to get summaries with multiple 
 
 ```{r}
 by_spp_gear <- gatherdat %>%
-  group_by(Species) %>%
+  group_by(Species, Gear) %>%
   summarize(totals = sum(Count))
 by_spp_gear
 ```
@@ -323,7 +325,7 @@ more_sums <-gatherdat %>%
 more_sums
 ```
 
-Finally, many of the summary functions we've used (e.g., `sum`, `min`, `max`, `mean`) will not work correctly if there are missing observations in your data.  You'll see these as `NA` (or sometimes `NaN`) entries.  You have to use the argument `na.rm = T` to explicitly tell R how to handle the missing values.
+Finally, many of the summary functions we've used (e.g., `sum`, `min`, `max`, `mean`) will not work correctly if there are missing observations in your data.  You'll see these as `NA` (or sometimes `NaN`) entries.  You have to use the argument `na.rm = T` to explicitly tell R how to handle the missing values.  Setting `na.rm = T` says to remove the `NA` values when summarizing the data.
 
 ```{r}
 x <- c(1, 2, NA, 4)

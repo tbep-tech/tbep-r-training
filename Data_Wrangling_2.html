@@ -456,7 +456,7 @@ div.tocify {
 <li>Arranging rows by a variable with <code>arrange</code></li>
 </ul>
 <p>As before, we only have one hour to cover the basics of data wrangling. It’s an unrealistic expectation that you will be a ninja wrangler after this training. As such, the goals are to expose you to fundamentals and to develop an appreciation of what’s possible. I also want to provide resources that you can use for follow-up learning on your own.</p>
-<p>Today you should be able to answer (or be able to find answers to) the following:</p>
+<p>After this lesson you should be able to answer (or be able to find answers to) the following:</p>
 <ul>
 <li>How are data joined?</li>
 <li>What is tidy data?</li>
@@ -470,7 +470,7 @@ install.packages(&#39;tidyverse&#39;)</code></pre>
 </div>
 <div id="combining-data" class="section level2">
 <h2>Combining data</h2>
-<p>Combining data is a common task of data wrangling. Perhaps we want to combine information between two datasets that share a common identifier. As a real world example, our fisheries data contain information about fish catch, but we also want to include spatial about the stations (i.e., lat, lon). We would need to (and we will) combine data if this information is in two different places. Combining data with dplyr is called joining.</p>
+<p>Combining data is a common task of data wrangling. Perhaps we want to combine information between two datasets that share a common identifier. As a real world example, our fisheries data contain information about fish catch, but we also want to include spatial information about the stations (i.e., lat, lon). We would need to (and we will) combine data if this information is in two different places. Combining data with dplyr is called joining.</p>
 <p>All joins require that each of the tables can be linked by shared identifiers. These are called ‘keys’ and are usually represented as a separate column that acts as a unique variable for the observations. The “Station ID” is a common key, but remember that a key might need to be unique for each row. It doesn’t make sense to join two tables by station ID if multiple site visits were made. In that case, your key should include some information about the site visit <strong>and</strong> station ID.</p>
 <div id="types-of-joins" class="section level3">
 <h3>Types of joins</h3>
@@ -507,7 +507,7 @@ head(joindat)</code></pre>
 <p>For this exercise we’ll repeat the join we just did, but on a subset of the data. We’re going to select some columns of interest from our fisheries dataset, filter by gear type, then use a full_join with the station data. Try to use pipes if you can.</p>
 <ol style="list-style-type: decimal">
 <li><p>Select the <code>Reference</code>, <code>Sampling_Date</code>, <code>Gear</code>, and <code>Common Snook</code> columns from the fisheries dataset (hint, use <code>select</code> from dplyr).</p></li>
-<li><p>Filter the fisheries dataset by gear type five (hint, use <code>filter == 5</code>). Check the dimensions of the new dataset with <code>dim</code>.</p></li>
+<li><p>Filter the fisheries dataset by gear type 20 (hint, use <code>filter == 20</code>). Check the dimensions of the new dataset with <code>dim</code>.</p></li>
 <li><p>Use a <code>full_join</code> to join the fisheries dataset with the station location dataset. What is the key value for joining?</p></li>
 <li><p>Check the dimensions of the new table. What happened? Select only the <code>StationID</code>, <code>StationWaterDepth</code>, <code>SampleLatitude</code>, and <code>SampleLongitude</code> columns from the master data.</p></li>
 </ol>
@@ -521,7 +521,7 @@ statloc &lt;- read_csv(&#39;data/statloc.csv&#39;)
 # wrangle before join
 joindat &lt;- fishdat %&gt;% 
   select(Reference, Sampling_Date, Gear, `Common Snook`) %&gt;% 
-  filter(Gear == 5) 
+  filter(Gear == 20) 
 
 dim(joindat)
 
@@ -607,6 +607,7 @@ table4a  # cases</code></pre>
 <li><p>One observation might be scattered across multiple rows.</p></li>
 </ol>
 <p>To fix these problems, you’ll need the two most important functions in tidyr: <code>gather()</code> and <code>spread()</code>.</p>
+<p>Side note: Recent versions of tidyr have the <code>pivot_longer()</code> and <code>pivot_wider()</code> functions that accomplish similar tasks. Some may find these functions more intuitive, but I present the former here for legacy purposes.</p>
 <div id="gathering" class="section level3">
 <h3>Gathering</h3>
 <p>A common problem is a dataset where some of the column names are not names of variables, but <em>values</em> of a variable. Take <code>table4a</code>: the column names <code>1999</code> and <code>2000</code> represent values of the <code>year</code> variable, and each row represents two observations, not one.</p>
@@ -679,7 +680,7 @@ table4a  # cases</code></pre>
 </div>
 <div id="exercise-7" class="section level2">
 <h2>Exercise 7</h2>
-<p>Let’s take a look at the fisheries data. These data are already “tidy”. To help with the next few examples, we’ll gather the species and catch count data using the <code>gather</code> function from the <code>tidyr</code> package.</p>
+<p>Let’s take a look at the fisheries data. Are these data “tidy”? To help with the next few examples, we’ll gather the species and catch count data using the <code>gather</code> function from the <code>tidyr</code> package.</p>
 <ol style="list-style-type: decimal">
 <li><p>Inspect the fisheries dataset. What are the dimensions (hint: <code>dim</code>)? What are the names and column types (hint: <code>str</code>)?</p></li>
 <li><p>Use the <code>gather</code> function to “gather” the species columns and count data into two new columns. What are your keys? What are your values? Assign the new dataset to a variable in your environment.</p></li>
@@ -714,7 +715,7 @@ str(gatherdat)</code></pre>
 ## 4  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23 Bluefish     0
 ## 5  1550828 TBM1996042601 1996-04-26     1996   160 2018-04-12 10:25:23 Bluefish     0
 ## 6  1550838 TBM1996051312 1996-05-13     1996   300 2018-04-12 10:25:23 Bluefish     0</code></pre>
-<p>This is not a terribly interesting dataset until we start to evaluate some of the differences. It’s also setup in a way to let us easily group by different variables. We could ask a simple question: how does total catch vary across species (ignoring gear differences)?</p>
+<p>It’s difficult to see patterns until we start to evaluate some of the differences. It’s also setup in a way to let us easily group by different variables. We could ask a simple question: how does total catch vary across species (ignoring gear differences)?</p>
 <p>First we can use <code>group_by</code>. Notice the new information at the top of the output.</p>
 <pre class="r"><code>by_spp &lt;- group_by(gatherdat, Species)
 by_spp</code></pre>
@@ -761,18 +762,24 @@ by_spp</code></pre>
 ## 6 Sand Seatrout   7789</code></pre>
 <p>We can group the dataset by more than one column to get summaries with multiple groups. Here we can look at total count by each unique combination of gear and species.</p>
 <pre class="r"><code>by_spp_gear &lt;- gatherdat %&gt;%
-  group_by(Species) %&gt;%
+  group_by(Species, Gear) %&gt;%
   summarize(totals = sum(Count))
 by_spp_gear</code></pre>
-<pre><code>## # A tibble: 6 x 2
-##   Species       totals
-##   &lt;chr&gt;          &lt;dbl&gt;
-## 1 Bluefish           7
-## 2 Common Snook    3898
-## 3 Mullets           17
-## 4 Pinfish        98182
-## 5 Red Drum        3422
-## 6 Sand Seatrout   7789</code></pre>
+<pre><code>## # A tibble: 36 x 3
+## # Groups:   Species [6]
+##    Species       Gear totals
+##    &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+##  1 Bluefish        20      1
+##  2 Bluefish        22      0
+##  3 Bluefish       160      6
+##  4 Bluefish       251      0
+##  5 Bluefish       300      0
+##  6 Bluefish       301      0
+##  7 Common Snook    20     20
+##  8 Common Snook    22      0
+##  9 Common Snook   160   3866
+## 10 Common Snook   251     12
+## # ... with 26 more rows</code></pre>
 <p>We can also get more than one summary at a time. The summary function can use any function that operates on a vector. Some common examples include <code>min</code>, <code>max</code>, <code>sd</code>, <code>var</code>, <code>median</code>, <code>mean</code>, and <code>n</code>. It’s usually good practice to include a summary of how many observations were in each group, so get used to including the <code>n</code> function.</p>
 <pre class="r"><code>more_sums &lt;-gatherdat %&gt;%
   group_by(Species) %&gt;%
@@ -792,7 +799,7 @@ more_sums</code></pre>
 ## 4 Pinfish        2844         0      2530 98182
 ## 5 Red Drum       2844         0       123  3422
 ## 6 Sand Seatrout  2844         0       560  7789</code></pre>
-<p>Finally, many of the summary functions we’ve used (e.g., <code>sum</code>, <code>min</code>, <code>max</code>, <code>mean</code>) will not work correctly if there are missing observations in your data. You’ll see these as <code>NA</code> (or sometimes <code>NaN</code>) entries. You have to use the argument <code>na.rm = T</code> to explicitly tell R how to handle the missing values.</p>
+<p>Finally, many of the summary functions we’ve used (e.g., <code>sum</code>, <code>min</code>, <code>max</code>, <code>mean</code>) will not work correctly if there are missing observations in your data. You’ll see these as <code>NA</code> (or sometimes <code>NaN</code>) entries. You have to use the argument <code>na.rm = T</code> to explicitly tell R how to handle the missing values. Setting <code>na.rm = T</code> says to remove the <code>NA</code> values when summarizing the data.</p>
 <pre class="r"><code>x &lt;- c(1, 2, NA, 4)
 mean(x)</code></pre>
 <pre><code>## [1] NA</code></pre>

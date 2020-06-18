@@ -22,7 +22,7 @@ statloc <- read_csv('data/statloc.csv')
 # wrangle before join
 joindat <- fishdat %>% 
   select(Reference, Sampling_Date, Gear, `Common Snook`) %>% 
-  filter(Gear == 5) 
+  filter(Gear == 20) 
 
 dim(joindat)
 
@@ -75,7 +75,7 @@ by_spp <- gatherdat %>%
 by_spp
 
 by_spp_gear <- gatherdat %>%
-  group_by(Species) %>%
+  group_by(Species, Gear) %>%
   summarize(totals = sum(Count))
 by_spp_gear
 

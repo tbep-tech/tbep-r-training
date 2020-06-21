@@ -44,6 +44,7 @@ This is a list of the data sources used in this workshop. For live-coding, pleas
 * [Topical cheatsheets from **RStudio**, also viewed from the help menu](http://www.rstudio.com/resources/cheatsheets/){target="_blank"}
 * [Cheatsheet from CRAN of **base R functions**](http://cran.r-project.org/doc/contrib/Short-refcard.pdf){target="_blank"} 
 * [Totally awesome **R-related artwork** by Allison Horst](https://github.com/allisonhorst/stats-illustrations){target="_blank"}
+* [**Color reference** PDF with text names](http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf){target="_blank"}, [**Color cheatsheet** PDF from NCEAS](https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf){target="_blank"}
 
 #### *R eBooks/Courses*
 

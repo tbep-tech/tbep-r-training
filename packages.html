@@ -417,9 +417,9 @@ div.tocify {
 </div>
 
 
-<p>This document provides a step-by-step guide to creating a simple R package. It is not meant as a comprehensive list of resources about package development, but instead is meant to serve as an archive of steps outlined in the live demo. There are many, many resources online that can help you build R packages and we encourage you to look elsewhere for a more detailed coverage of packages. In particular, the <a href="https://r-pkgs.org/">R Packages</a> book by Hadley Wickham is a great resource.</p>
-<p>The workflow in this document also begins by creating a GitHub repository, which of course assumes you have a GitHub account. Linking a repository to an R package can also occur at any step in the package developmen process, although it should begin at the start for full version control.</p>
-<p>This document also uses simple processing <a href="R/myscript.R">script</a> and <a href="data/example_len_dat.csv">dataset</a> as an example for creating the package. You can download them and follow along in this document to create your own package. The approach is meant to demonstrate a common challenge most analysts or researchers may have where a script has been written to accomplish some task, but it may be nice to “package” the code into discrete functions for easy access.</p>
+<p>This document provides a step-by-step guide to creating a simple R package. It is not meant as a comprehensive list of resources about package development, but instead is meant to serve as an archive of steps outlined in the live demo. There are many, many resources online that can help you build R packages and we encourage you to look elsewhere for a more detailed coverage of packages. See the <a href="">Resources</a> at the end of this document.</p>
+<p>The workflow in this document also begins by creating a GitHub repository, which of course assumes you have a <a href="https://github.com/join">GitHub account</a>. Linking a repository to an R package can also occur at any step in the package development process, although it should begin at the start for full version control.</p>
+<p>This document also uses a simple processing <a href="R/myscript.R">script</a> and <a href="data/example_len_dat.csv">dataset</a> as examples for creating the package. You can download them and follow along in this document to create your own package. The approach is meant to demonstrate a common challenge most analysts or researchers may have where a script has been written to accomplish some task, but it may be nice to “package” the code into discrete functions for easy access.</p>
 <div id="outline" class="section level2">
 <h2>Outline</h2>
 <ul>
@@ -430,6 +430,7 @@ div.tocify {
 <li><a href="">Step 5</a>: Function documentation</li>
 <li><a href="">Step 6</a>: Package checks</li>
 <li><a href="">Step 7</a>: Installing your package</li>
+<li><a href="">Resources</a></li>
 </ul>
 </div>
 <div id="step-1" class="section level2">
@@ -444,10 +445,10 @@ div.tocify {
 <h2>Step 2</h2>
 <p>In RStudio, go to the File Menu and select <code>New Project...</code>. Select the version control option when the new project dialogue box pops up.</p>
 <p><img src="figure/newprojbox.PNG" /></p>
-<p>Select the Git option and then enter the URL for your Github repository. The URL can be copied to your clipboard from the repository webpage you just setup. Make sure it ends in .git.</p>
+<p>Select the Git option and then enter the URL for your Github repository. The URL can be copied to your clipboard from the repository webpage you just setup. Make sure it ends in <code>.git</code>.</p>
 <p><img src="figure/gitreposetup.PNG" /></p>
-<p>The new RStudio project will open in a new R session after you enter the repository information. It will only include two files, the <code>.gitignore</code> file and the <code>.Rproj</code> file that is include in every RStudio project. The former can be used to add files you don’t want to track on version control.</p>
-<p>Now that the project is created, you can make your first commit and push it to your repository. Click the “commit” button under the Git pane in RStudio.n</p>
+<p>The RStudio project will open in a new R session after you enter the repository information. It will only include two files, the <code>.gitignore</code> file and the <code>.Rproj</code> file that is included in every RStudio project. The former can be used to add files you don’t want to track on version control.</p>
+<p>Now that the project is created, you can make your first commit and push it to your repository. Click the “Commit” button under the Git pane in RStudio.</p>
 <p><img src="figure/gitpane.PNG" /></p>
 <p>A new window will popup with the files that you want to push to GitHub. Click the box next to each file to stage them, enter a commit message, and push them to GitHub. The push button is the green arrow.</p>
 <p><img src="figure/gitstagecommit.PNG" /></p>
@@ -492,8 +493,9 @@ Plot / gridExtra::tableGrob(summary, rows = NULL) +
   plot_layout(heights = c(2,0.8)) +
   plot_annotation(title = &#39;Lagodon rhomboides&#39;, theme= theme(plot.title = element_text(face = &quot;italic&quot;)))</code></pre>
 <p><img src="figure/unnamed-chunk-1-1.png" width="576" /></p>
-<p>It’s likely we’ll want to create these plots for different species. We can create a function that simplifies this for us so we don’t have to rerun the script every time. Highlight the lines of code that process and plot the data, then use the <em>Extract function</em> shortcut in RStudio (<code>Ctrl + Alt + X</code>). You should see something like this. This will get you most of the way and with some minor editing we can create a new function.</p>
-<pre class="r"><code>sumplot &lt;- function(tbhdat, Scientificname) {
+<p>It’s likely we’ll want to create these plots for different species. We can create a function that simplifies this for us so we don’t have to rerun the script every time to create the new plot. Highlight the lines of code that process and plot the data, then use the <em>Extract function</em> shortcut in RStudio (<code>Ctrl + Alt + x</code>). You should see something like this. This will get you most of the way and with some minor editing we can create a new function.</p>
+<pre class="r"><code>sumplot &lt;- function(tbhdat, Scientificname){
+  
   # preprocess length data
   Plot &lt;- tbhdat %&gt;%
     filter(Scientificname == !!Scientificname) %&gt;%
@@ -524,7 +526,7 @@ Plot / gridExtra::tableGrob(summary, rows = NULL) +
   return(p)
   
 }</code></pre>
-<p>Now save this function to a separate R script and put it in a folder called R in the project’s home directory. You can simplify the original processing script by sourcing the new script with <code>source()</code>.</p>
+<p>Now save this function to a separate R script called <code>sumplot.R</code> and put it in a folder called <code>R</code> in the project’s home directory. You can simplify the original processing script by sourcing the new script with <code>source()</code>.</p>
 <pre class="r"><code># load packages
 library(tidyverse)
 library(gridExtra)
@@ -540,25 +542,25 @@ sumplot(tbhdat, &#39;Lagodon rhomboides&#39;)</code></pre>
 </div>
 <div id="step-4" class="section level2">
 <h2>Step 4</h2>
-<p>Create the package template in your project using the <code>create_package()</code> function from the usethis package.</p>
+<p>Create the package template in your project using the <code>create_package()</code> function from the <a href="https://usethis.r-lib.org/">usethis</a> package.</p>
 <pre class="r"><code>usethis::create_package()</code></pre>
 <p>Follow the on-screen instructions and select the option to overwrite the <code>.Rproj</code> file. You should now see your project similar as before but with a new file tree structure. This is the basic template for an R package.</p>
-<p>This first thing to do is to modify the <code>DESCRIPTION</code> file. This is metadata for your package and also includes the other packages that your package depends on. It should look something like this when you’re done. Note the <code>Imports</code> field where we import dplyr, tidyr, ggplot, gridExtra, and patchwork packages that are used in our plotting function.</p>
+<p>The first thing to do is to modify the <code>DESCRIPTION</code> file. This is metadata for your package and also includes the other packages that your package depends on. It should look something like this when you’re done. Note the <code>Imports</code> field where we import dplyr, tidyr, ggplot2, gridExtra, and patchwork packages that are used in our plotting function. Note that our original script imported the tidyverse which includes dplyr, ggplot2, and tidyr. It is not possible to include the tidyverse directly in the <code>Imports</code> field because it is a collection of multiple packages.</p>
 <p><img src="figure/descriptionfile.PNG" /></p>
 </div>
 <div id="step-5" class="section level2">
 <h2>Step 5</h2>
-<p>After the <code>DESCRIPTION</code> file is done, you can start creating documentation for your functions. This uses the roxygen2 library that comes with RStudio to convert the text in the <code>.R</code> function file to a <code>.Rd</code> file in the <code>man</code> folder. This is all done automatically in a later step.</p>
-<p>Open the R funtion file you created in <a href="">Step 3</a>. Place the cursor anywhere inside the function and use the “Insert Roxygen Skeleton” shortcut with <code>Ctrl + Shift + Alt + R</code>. You should see this at the top of your function.</p>
+<p>After the <code>DESCRIPTION</code> file is done, you can start creating documentation for your functions. This uses the <a href="https://roxygen2.r-lib.org/">roxygen2</a> packages that comes with RStudio to convert the text documentation in the <code>.R</code> function file to a <code>.Rd</code> file in the <code>man</code> folder. This is all done automatically in a later step.</p>
+<p>Open the R function file you created in <a href="">Step 3</a>. Place the cursor anywhere inside the function and use the “Insert Roxygen Skeleton” shortcut with <code>Ctrl + Shift + Alt + r</code>. You should see this at the top of your function.</p>
 <p><img src="figure/roxygenskeleton.PNG" /></p>
-<p>Enter any relevant informaiton in the roxygen documentation to describe your function. You can also include and <code>@import</code> field to explictly include any packages that have function used within your funciton. It should look something like this when you’re done.</p>
+<p>Enter any relevant information in the roxygen documentation to describe your function. You must also include an <code>@import</code> field to explicitly include any packages that have functions used within your function. It should look something like this when you’re done.</p>
 <p><img src="figure/roxygenfilled.PNG" /></p>
 <p>Finally, the documentation <code>.Rd</code> file is created with the <code>document()</code> function from devtools. You’ll see a new <code>man</code> folder after running the function.</p>
 <pre class="r"><code>devtools::document()</code></pre>
 </div>
 <div id="step-6" class="section level2">
 <h2>Step 6</h2>
-<p>If you’re satisfied with your package, you can load it with <code>load_all()</code> to test the functions. This loads your package in your current Environment as if it was a package you loaded with the <code>library()</code> function, where the only difference is the package is not actually installed yet.</p>
+<p>If you’re satisfied with your package, you can load it with <code>load_all()</code> to test the functions. This loads your package in your current Environment as if it was a package you loaded with the <code>library()</code> function, where the only difference is the package is not actually installed on your computer.</p>
 <pre class="r"><code>devtools::load_all()</code></pre>
 <p>You can also run checks on your package to make sure you’ve done everything right, i.e., all dependencies are correctly indicated, the examples run, the documentation is correct, etc. This is always a good idea to make sure that you and others can actually install and use the package. These are the same checks used by CRAN for incoming packages.</p>
 <pre class="r"><code>devtools::check()</code></pre>

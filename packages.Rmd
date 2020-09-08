@@ -1,0 +1,219 @@
+---
+title: "Creating an R package crash course"
+output: 
+  html_document:
+    toc: true
+    toc_float: 
+       collapsed: true
+self_contained: yes
+css: styles.css
+---
+
+```{r setup, message = F, warning = F, results = 'hide', echo = F}
+knitr::opts_chunk$set(echo = T, warning = F, message = F, fig.path = 'figure/')
+```
+
+This document provides a step-by-step guide to creating a simple R package.  It is not meant as a comprehensive list of resources about package development, but instead is meant to serve as an archive of steps outlined in the live demo.  There are many, many resources online that can help you build R packages and we encourage you to look elsewhere for a more detailed coverage of packages.  In particular, the [R Packages](https://r-pkgs.org/) book by Hadley Wickham is a great resource. 
+
+The workflow in this document also begins by creating a GitHub repository, which of course assumes you have a GitHub account.  Linking a repository to an R package can also occur at any step in the package developmen process, although it should begin at the start for full version control.  
+
+This document also uses simple processing [script](R/myscript.R) and [dataset](data/example_len_dat.csv) as an example for creating the package.  You can download them and follow along in this document to create your own package.  The approach is meant to demonstrate a common challenge most analysts or researchers may have where a script has been written to accomplish some task, but it may be nice to "package" the code into discrete functions for easy access. 
+
+## Outline
+
+* [Step 1](): Git setup
+* [Step 2](): RStudio Project setup
+* [Step 3](): Making functions
+* [Step 4](): Create package template
+* [Step 5](): Function documentation
+* [Step 6](): Package checks
+* [Step 7](): Installing your package
+
+## Step 1
+
+Start by creating a new repository on your GitHub account.  On your main page, click repositories on the top, then New. You should see a screen like this: 
+
+![](figure/gitnew.PNG)
+
+Give the repository a name and a brief description of what you plan to include. After you create the repository, you should see a screen with information about setting up the repository on your local machine. 
+
+![](figure/gitsetup.PNG)
+
+These instructions tell you how to setup a repository on the command line.  In the next step, we'll do this directly in RStudio. 
+
+## Step 2
+
+In RStudio, go to the File Menu and select `New Project...`.  Select the version control option when the new project dialogue box pops up. 
+
+![](figure/newprojbox.PNG)
+
+Select the Git option and then enter the URL for your Github repository.  The URL can be copied to your clipboard from the repository webpage you just setup.  Make sure it ends in .git.  
+
+![](figure/gitreposetup.PNG)
+
+The new RStudio project will open in a new R session after you enter the repository information.  It will only include two files, the `.gitignore` file and the `.Rproj` file that is include in every RStudio project.  The former can be used to add files you don't want to track on version control.  
+
+Now that the project is created, you can make your first commit and push it to your repository.  Click the "commit" button under the Git pane in RStudio.n
+
+![](figure/gitpane.PNG)
+
+A new window will popup with the files that you want to push to GitHub.  Click the box next to each file to stage them, enter a commit message, and push them to GitHub. The push button is the green arrow.  
+
+![](figure/gitstagecommit.PNG)
+
+Your repository page on GitHub will now include the files you committed and pushed. 
+
+![](figure/mygitpackage.PNG)
+
+## Step 3
+
+We can start populating our RStudio project with R code and data now that the project is setup and under full version control with Git.  Copy the [data processing script](R/myscript.R) and [data](data/example_len_dat.csv) into the project home directory.  This is a script that imports the Tampa Bay fisheries data, summarizes length data for a selected species and gear type, then creates a plot of the result. 
+
+```{r, message = F, warning = F, fig.height = 6, fig.width = 6}
+# load packages
+library(tidyverse)
+library(gridExtra)
+library(patchwork)
+
+# load data
+tbhdat <- read.csv('data/example_len_dat.csv', stringsAsFactors = F)
+
+# preprocess length data
+Plot <- tbhdat %>%
+  filter(Scientificname == 'Lagodon rhomboides') %>%
+  ggplot() +
+  geom_histogram(aes(x=sl), color = "black", fill = NA, binwidth = 10) +
+  labs(x = "Standard length (mm)", y = "Frequency") +
+  facet_wrap(~ Gear, ncol = 1) +
+  theme_classic() +
+  theme(panel.border = element_rect(color = "black", fill = NA)) +
+  theme(strip.background = element_rect(fill = "gray90"))
+
+#get length summary data
+summary <- tbhdat %>%
+  filter(Scientificname == 'Lagodon rhomboides') %>%
+  group_by(Gear) %>%
+  summarise(min_sl = min(sl),
+            max_sl = max(sl),
+            mean_sl = round(mean(sl), digits = 2),
+            sd_sl = round(sd(sl), digits = 2),
+            Num_lengths = n()) %>%
+  ungroup()
+
+# combine plot and summary table
+Plot / gridExtra::tableGrob(summary, rows = NULL) +
+  plot_layout(heights = c(2,0.8)) +
+  plot_annotation(title = 'Lagodon rhomboides', theme= theme(plot.title = element_text(face = "italic")))
+```
+
+It's likely we'll want to create these plots for different species.  We can create a function that simplifies this for us so we don't have to rerun the script every time.  Highlight the lines of code that process and plot the data, then use the *Extract function* shortcut in RStudio (`Ctrl + Alt + X`).  You should see something like this. This will get you most of the way and with some minor editing we can create a new function. 
+
+```{r}
+sumplot <- function(tbhdat, Scientificname) {
+  # preprocess length data
+  Plot <- tbhdat %>%
+    filter(Scientificname == !!Scientificname) %>%
+    ggplot() +
+    geom_histogram(aes(x=sl), color = "black", fill = NA, binwidth = 10) +
+    labs(x = "Standard length (mm)", y = "Frequency") +
+    facet_wrap(~ Gear, ncol = 1) +
+    theme_classic() +
+    theme(panel.border = element_rect(color = "black", fill = NA)) +
+    theme(strip.background = element_rect(fill = "gray90"))
+  
+  #get length summary data
+  summary <- tbhdat %>%
+    filter(Scientificname == !!Scientificname) %>%
+    group_by(Gear) %>%
+    summarise(min_sl = min(sl),
+              max_sl = max(sl),
+              mean_sl = round(mean(sl), digits = 2),
+              sd_sl = round(sd(sl), digits = 2),
+              Num_lengths = n()) %>%
+    ungroup()
+  
+  # combine plot and summary table
+  p <- Plot / gridExtra::tableGrob(summary, rows = NULL) +
+    plot_layout(heights = c(2,0.8)) +
+    plot_annotation(title = Scientificname, theme= theme(plot.title = element_text(face = "italic")))
+  
+  return(p)
+  
+}
+```
+
+Now save this function to a separate R script and put it in a folder called R in the project's home directory.  You can simplify the original processing script by sourcing the new script with `source()`. 
+
+```{r, message = F, warning = F, fig.height = 6, fig.width = 6}
+# load packages
+library(tidyverse)
+library(gridExtra)
+library(patchwork)
+
+source('R/sumplot.R')
+
+# load data
+tbhdat <- read.csv('data/example_len_dat.csv', stringsAsFactors = F)
+
+sumplot(tbhdat, 'Lagodon rhomboides')
+```
+
+## Step 4
+
+Create the package template in your project using the `create_package()` function from the usethis package. 
+
+```{r, eval = F}
+usethis::create_package()
+```
+
+Follow the on-screen instructions and select the option to overwrite the `.Rproj` file.  You should now see your project similar as before but with a new file tree structure.  This is the basic template for an R package. 
+
+This first thing to do is to modify the `DESCRIPTION` file.  This is metadata for your package and also includes the other packages that your package depends on. It should look something like this when you're done.  Note the `Imports` field where we import dplyr, tidyr, ggplot, gridExtra, and patchwork packages that are used in our plotting function.
+
+![](figure/descriptionfile.PNG)
+
+## Step 5
+
+After the `DESCRIPTION` file is done, you can start creating documentation for your functions.  This uses the roxygen2 library that comes with RStudio to convert the text in the `.R` function file to a `.Rd` file in the `man` folder.  This is all done automatically in a later step. 
+
+Open the R funtion file you created in [Step 3]().  Place the cursor anywhere inside the function and use the "Insert Roxygen Skeleton" shortcut with `Ctrl + Shift + Alt + R`.  You should see this at the top of your function. 
+
+![](figure/roxygenskeleton.PNG)
+
+Enter any relevant informaiton in the roxygen documentation to describe your function.  You can also include and `@import` field to explictly include any packages that have function used within your funciton.  It should look something like this when you're done. 
+
+![](figure/roxygenfilled.PNG)
+
+Finally, the documentation `.Rd` file is created with the `document()` function from devtools. You'll see a new `man` folder after running the function.
+
+```{r, eval = F}
+devtools::document()
+```
+
+## Step 6
+
+If you're satisfied with your package, you can load it with `load_all()` to test the functions.  This loads your package in your current Environment as if it was a package you loaded with the `library()` function, where the only difference is the package is not actually installed yet. 
+
+```{r, eval = F}
+devtools::load_all()
+```
+
+You can also run checks on your package to make sure you've done everything right, i.e., all dependencies are correctly indicated, the examples run, the documentation is correct, etc.  This is always a good idea to make sure that you and others can actually install and use the package.  These are the same checks used by CRAN for incoming packages. 
+
+```{r, eval = F}
+devtools::check()
+```
+
+## Step 7
+
+Push your final package to GitHub using the same workflow as before (i.e., stage, commit, and push all changes).  After this is done, you or anybody else can download and install your package. 
+
+```{r, eval = F}
+devtools::install_github('fawda123/mypackage')
+```
+
+## Resources
+
+* [*Source content*](https://github.com/tbep-tech/tbep-r-training)
+* [*R Packages*](https://r-pkgs.org/)
+* [*Happy Git and GitHub for the useR*](https://happygitwithr.com/)

@@ -13,7 +13,7 @@ css: styles.css
 knitr::opts_chunk$set(echo = T, warning = F, message = F, fig.path = 'figure/')
 ```
 
-This document provides a step-by-step guide to creating a simple R package.  It is not meant as a comprehensive list of resources about package development, but instead is meant to serve as an archive of steps outlined in the live demo.  There are many, many resources online that can help you build R packages and we encourage you to look elsewhere for a more detailed coverage of packages.  See the [Resources]() at the end of this document.
+This document provides a step-by-step guide to creating a simple R package.  It is not meant as a comprehensive list of resources about package development, but instead is meant to serve as an archive of steps outlined in the live demo.  There are many, many resources online that can help you build R packages and we encourage you to look elsewhere for a more detailed coverage of packages.  See the [Resources] at the end of this document.
 
 The workflow in this document also begins by creating a GitHub repository, which of course assumes you have a [GitHub account](https://github.com/join).  Linking a repository to an R package can also occur at any step in the package development process, although it should begin at the start for full version control.  
 
@@ -21,14 +21,14 @@ This document also uses a simple processing [script](R/myscript.R) and [dataset]
 
 ## Outline
 
-* [Step 1](): Git setup
-* [Step 2](): RStudio Project setup
-* [Step 3](): Making functions
-* [Step 4](): Create package template
-* [Step 5](): Function documentation
-* [Step 6](): Package checks
-* [Step 7](): Installing your package
-* [Resources]()
+* [Step 1] Git setup
+* [Step 2] RStudio Project setup
+* [Step 3] Making functions
+* [Step 4] Create package template
+* [Step 5] Function documentation
+* [Step 6] Package checks
+* [Step 7] Installing your package
+* [Resources]
 
 ## Step 1
 

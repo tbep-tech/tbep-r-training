@@ -22,4 +22,14 @@ Full disclaimer:
 
 ## Why Shiny? 
 
+The simple answer:
+
+Advantages of Shiny: easy to get started, no web experience needed, but fully customizable
+
+## What is reactivity?
+
+## Sharing your applications
+
 ## Resources
+
+* [Mastering Shiny](https://mastering-shiny.org/index.html): By Hadley Wickham, to be published June 2021

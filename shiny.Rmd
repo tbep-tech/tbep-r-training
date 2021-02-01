@@ -41,6 +41,12 @@ Shiny can be challenging at first because it introduces a new way of thinking ab
 
 A shiny app runs from an R script, but instead of executing code linearly, it uses *reactive* programming that detects when an input is changed on the application, runs the minimal amount of code that uses that input, then updates the output as needed.  So, rather than thinking of the script as linear, think of it as having interconnected components that share pieces of information to produce the results.  This can be daunting at first because it requires you think about which pieces of your code require inputs from other pieces and how that information is used to create output.  
 
+Reactivity can be conceptualized by the building blocks of a Shiny app.  Every Shiny app has the following:
+
+* User interface (UI)
+* Server 
+
+
 User interface: inputs, outputs
 server: processing
 

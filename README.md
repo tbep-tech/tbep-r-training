@@ -1,6 +1,8 @@
 
 # tbep-r-training
 
+[![build](https://github.com/tbep-tech/tbep-r-training/workflows/build/badge.svg)](https://github.com/tbep-tech/tbep-r-training/actions)
+
 This is a collection of miscellaneous R training material created by TBEP.  
 
 * June 2020 full course [link](https://tbep-tech.github.io/tbep-r-training/index.html)

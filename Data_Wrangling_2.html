@@ -28,6 +28,15 @@
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
   pre:not([class]) {
@@ -73,7 +82,8 @@ h6 {
 }
 </style>
 
-<link rel="stylesheet" href="css\styles.css" type="text/css" />
+
+<link rel="stylesheet" href="css/styles.css" type="text/css" />
 
 
 
@@ -352,14 +362,14 @@ div.tocify {
       <ul class="nav navbar-nav">
         <li>
   <a href="R_Basics.html">
-    <span class="fa fa-university"></span>
+    <span class="fas fa-university"></span>
      
     R Basics
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-wrench"></span>
+    <span class="fas fa-wrench"></span>
      
     Data wrangling
      
@@ -376,14 +386,14 @@ div.tocify {
 </li>
 <li>
   <a href="Viz_and_Graphics.html">
-    <span class="fa fa-chart-line"></span>
+    <span class="fas fa-chart-line"></span>
      
     Viz and graphics
   </a>
 </li>
 <li>
   <a href="mapping.html">
-    <span class="fa fa-globe-americas"></span>
+    <span class="fas fa-globe-americas"></span>
      
     Spatial analysis and mapping
   </a>
@@ -392,14 +402,14 @@ div.tocify {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="Data_and_Resources.html">
-    <span class="fa fa-list"></span>
+    <span class="fas fa-list"></span>
      
     Data and resources
   </a>
 </li>
 <li>
   <a href="https://github.com/tbep-tech/tbep-r-training">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -490,16 +500,17 @@ statloc &lt;- read_csv(&#39;data/statloc.csv&#39;)
 # join the two 
 joindat &lt;- left_join(fishdat, statloc, by = &#39;Reference&#39;)
 head(joindat)</code></pre>
-<pre><code>## # A tibble: 6 x 14
-##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout` Latitude
-##      &lt;dbl&gt; &lt;chr&gt;     &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;    &lt;dbl&gt;
-## 1  1550020 TBM19960~ 1996-03-20     1996   300 2018-04-12 10:27:38        0              0       0       0          0               1     27.9
-## 2  1550749 TBM19960~ 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0      54          0               0     27.9
-## 3  1550750 TBM19960~ 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0       0          1               0     27.9
-## 4  1550762 TBM19960~ 1996-03-22     1996    20 2018-04-12 10:25:23        0              0       0      80          0               0     27.9
-## 5  1550828 TBM19960~ 1996-04-26     1996   160 2018-04-12 10:25:23        0              0       0       0          4               0     28.0
-## 6  1550838 TBM19960~ 1996-05-13     1996   300 2018-04-12 10:25:23        0              0       0       0          0               1     27.9
-## # ... with 1 more variable: Longitude &lt;dbl&gt;</code></pre>
+<pre><code>## [90m# A tibble: 6 x 14[39m
+##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Bluefish
+##      [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;date&gt;[39m[23m        [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dttm&gt;[39m[23m                 [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m  1[4m5[24m[4m5[24m[4m0[24m020 TBM19960… 1996-03-20     [4m1[24m996   300 2018-04-12 [90m10:27:38[39m        0
+## [90m2[39m  1[4m5[24m[4m5[24m[4m0[24m749 TBM19960… 1996-03-20     [4m1[24m996    22 2018-04-12 [90m10:25:23[39m        0
+## [90m3[39m  1[4m5[24m[4m5[24m[4m0[24m750 TBM19960… 1996-03-20     [4m1[24m996    22 2018-04-12 [90m10:25:23[39m        0
+## [90m4[39m  1[4m5[24m[4m5[24m[4m0[24m762 TBM19960… 1996-03-22     [4m1[24m996    20 2018-04-12 [90m10:25:23[39m        0
+## [90m5[39m  1[4m5[24m[4m5[24m[4m0[24m828 TBM19960… 1996-04-26     [4m1[24m996   160 2018-04-12 [90m10:25:23[39m        0
+## [90m6[39m  1[4m5[24m[4m5[24m[4m0[24m838 TBM19960… 1996-05-13     [4m1[24m996   300 2018-04-12 [90m10:25:23[39m        0
+## [90m# … with 7 more variables: `Common Snook` [3m[90m&lt;dbl&gt;[90m[23m, Mullets [3m[90m&lt;dbl&gt;[90m[23m, Pinfish [3m[90m&lt;dbl&gt;[90m[23m,[39m
+## [90m#   `Red Drum` [3m[90m&lt;dbl&gt;[90m[23m, `Sand Seatrout` [3m[90m&lt;dbl&gt;[90m[23m, Latitude [3m[90m&lt;dbl&gt;[90m[23m, Longitude [3m[90m&lt;dbl&gt;[90m[23m[39m</code></pre>
 </div>
 </div>
 <div id="exercise-6" class="section level2">
@@ -537,56 +548,56 @@ dim(joindat)</code></pre>
 <p>The opposite of a tidy dataset is a messy dataset. You should always strive to create a tidy data set as an outcome of the wrangling process. Tidy data are easy to work with and will make downstream analysis much simpler. This will become apparent when we start summarizing and plotting our data.</p>
 <p>To help understand tidy data, it’s useful to look at alternative ways of representing data. The example below shows the same data organised in four different ways. Each dataset shows the same values of four variables <em>country</em>, <em>year</em>, <em>population</em>, and <em>cases</em>, but each dataset organises the values in a different way. Only one of these examples is tidy.</p>
 <pre class="r"><code>table1</code></pre>
-<pre><code>## # A tibble: 6 x 4
+<pre><code>## [90m# A tibble: 6 x 4[39m
 ##   country      year  cases population
-##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
-## 1 Afghanistan  1999    745   19987071
-## 2 Afghanistan  2000   2666   20595360
-## 3 Brazil       1999  37737  172006362
-## 4 Brazil       2000  80488  174504898
-## 5 China        1999 212258 1272915272
-## 6 China        2000 213766 1280428583</code></pre>
+##   [3m[90m&lt;chr&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m      [3m[90m&lt;int&gt;[39m[23m
+## [90m1[39m Afghanistan  [4m1[24m999    745   19[4m9[24m[4m8[24m[4m7[24m071
+## [90m2[39m Afghanistan  [4m2[24m000   [4m2[24m666   20[4m5[24m[4m9[24m[4m5[24m360
+## [90m3[39m Brazil       [4m1[24m999  [4m3[24m[4m7[24m737  172[4m0[24m[4m0[24m[4m6[24m362
+## [90m4[39m Brazil       [4m2[24m000  [4m8[24m[4m0[24m488  174[4m5[24m[4m0[24m[4m4[24m898
+## [90m5[39m China        [4m1[24m999 [4m2[24m[4m1[24m[4m2[24m258 [4m1[24m272[4m9[24m[4m1[24m[4m5[24m272
+## [90m6[39m China        [4m2[24m000 [4m2[24m[4m1[24m[4m3[24m766 [4m1[24m280[4m4[24m[4m2[24m[4m8[24m583</code></pre>
 <pre class="r"><code>table2</code></pre>
-<pre><code>## # A tibble: 12 x 4
+<pre><code>## [90m# A tibble: 12 x 4[39m
 ##    country      year type            count
-##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
-##  1 Afghanistan  1999 cases             745
-##  2 Afghanistan  1999 population   19987071
-##  3 Afghanistan  2000 cases            2666
-##  4 Afghanistan  2000 population   20595360
-##  5 Brazil       1999 cases           37737
-##  6 Brazil       1999 population  172006362
-##  7 Brazil       2000 cases           80488
-##  8 Brazil       2000 population  174504898
-##  9 China        1999 cases          212258
-## 10 China        1999 population 1272915272
-## 11 China        2000 cases          213766
-## 12 China        2000 population 1280428583</code></pre>
+##    [3m[90m&lt;chr&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m           [3m[90m&lt;int&gt;[39m[23m
+## [90m 1[39m Afghanistan  [4m1[24m999 cases             745
+## [90m 2[39m Afghanistan  [4m1[24m999 population   19[4m9[24m[4m8[24m[4m7[24m071
+## [90m 3[39m Afghanistan  [4m2[24m000 cases            [4m2[24m666
+## [90m 4[39m Afghanistan  [4m2[24m000 population   20[4m5[24m[4m9[24m[4m5[24m360
+## [90m 5[39m Brazil       [4m1[24m999 cases           [4m3[24m[4m7[24m737
+## [90m 6[39m Brazil       [4m1[24m999 population  172[4m0[24m[4m0[24m[4m6[24m362
+## [90m 7[39m Brazil       [4m2[24m000 cases           [4m8[24m[4m0[24m488
+## [90m 8[39m Brazil       [4m2[24m000 population  174[4m5[24m[4m0[24m[4m4[24m898
+## [90m 9[39m China        [4m1[24m999 cases          [4m2[24m[4m1[24m[4m2[24m258
+## [90m10[39m China        [4m1[24m999 population [4m1[24m272[4m9[24m[4m1[24m[4m5[24m272
+## [90m11[39m China        [4m2[24m000 cases          [4m2[24m[4m1[24m[4m3[24m766
+## [90m12[39m China        [4m2[24m000 population [4m1[24m280[4m4[24m[4m2[24m[4m8[24m583</code></pre>
 <pre class="r"><code>table3</code></pre>
-<pre><code>## # A tibble: 6 x 3
+<pre><code>## [90m# A tibble: 6 x 3[39m
 ##   country      year rate             
-## * &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;            
-## 1 Afghanistan  1999 745/19987071     
-## 2 Afghanistan  2000 2666/20595360    
-## 3 Brazil       1999 37737/172006362  
-## 4 Brazil       2000 80488/174504898  
-## 5 China        1999 212258/1272915272
-## 6 China        2000 213766/1280428583</code></pre>
+## [90m*[39m [3m[90m&lt;chr&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m            
+## [90m1[39m Afghanistan  [4m1[24m999 745/19987071     
+## [90m2[39m Afghanistan  [4m2[24m000 2666/20595360    
+## [90m3[39m Brazil       [4m1[24m999 37737/172006362  
+## [90m4[39m Brazil       [4m2[24m000 80488/174504898  
+## [90m5[39m China        [4m1[24m999 212258/1272915272
+## [90m6[39m China        [4m2[24m000 213766/1280428583</code></pre>
 <pre class="r"><code># Spread across two tibbles
 table4a  # cases</code></pre>
-<pre><code>## # A tibble: 3 x 3
+<pre><code>## [90m# A tibble: 3 x 3[39m
 ##   country     `1999` `2000`
-## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
-## 1 Afghanistan    745   2666
-## 2 Brazil       37737  80488
-## 3 China       212258 213766</code></pre>
+## [90m*[39m [3m[90m&lt;chr&gt;[39m[23m        [3m[90m&lt;int&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m
+## [90m1[39m Afghanistan    745   [4m2[24m666
+## [90m2[39m Brazil       [4m3[24m[4m7[24m737  [4m8[24m[4m0[24m488
+## [90m3[39m China       [4m2[24m[4m1[24m[4m2[24m258 [4m2[24m[4m1[24m[4m3[24m766</code></pre>
 <pre class="r"><code>table4b  # population</code></pre>
-<pre><code>## # A tibble: 3 x 3
+<pre><code>## [90m# A tibble: 3 x 3[39m
 ##   country         `1999`     `2000`
-## * &lt;chr&gt;            &lt;int&gt;      &lt;int&gt;
-## 1 Afghanistan   19987071   20595360
-## 2 Brazil       172006362  174504898
-## 3 China       1272915272 1280428583</code></pre>
+## [90m*[39m [3m[90m&lt;chr&gt;[39m[23m            [3m[90m&lt;int&gt;[39m[23m      [3m[90m&lt;int&gt;[39m[23m
+## [90m1[39m Afghanistan   19[4m9[24m[4m8[24m[4m7[24m071   20[4m5[24m[4m9[24m[4m5[24m360
+## [90m2[39m Brazil       172[4m0[24m[4m0[24m[4m6[24m362  174[4m5[24m[4m0[24m[4m4[24m898
+## [90m3[39m China       [4m1[24m272[4m9[24m[4m1[24m[4m5[24m272 [4m1[24m280[4m4[24m[4m2[24m[4m8[24m583</code></pre>
 <p>These are all representations of the same underlying data but they are not equally easy to work with. The tidy dataset is much easier to work with inside the tidyverse.</p>
 <p>There are three inter-correlated rules which make a dataset tidy:</p>
 <ol style="list-style-type: decimal">
@@ -612,12 +623,12 @@ table4a  # cases</code></pre>
 <h3>Gathering</h3>
 <p>A common problem is a dataset where some of the column names are not names of variables, but <em>values</em> of a variable. Take <code>table4a</code>: the column names <code>1999</code> and <code>2000</code> represent values of the <code>year</code> variable, and each row represents two observations, not one.</p>
 <pre class="r"><code>table4a</code></pre>
-<pre><code>## # A tibble: 3 x 3
+<pre><code>## [90m# A tibble: 3 x 3[39m
 ##   country     `1999` `2000`
-## * &lt;chr&gt;        &lt;int&gt;  &lt;int&gt;
-## 1 Afghanistan    745   2666
-## 2 Brazil       37737  80488
-## 3 China       212258 213766</code></pre>
+## [90m*[39m [3m[90m&lt;chr&gt;[39m[23m        [3m[90m&lt;int&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m
+## [90m1[39m Afghanistan    745   [4m2[24m666
+## [90m2[39m Brazil       [4m3[24m[4m7[24m737  [4m8[24m[4m0[24m488
+## [90m3[39m China       [4m2[24m[4m1[24m[4m2[24m258 [4m2[24m[4m1[24m[4m3[24m766</code></pre>
 <p>To tidy a dataset like this, we need to <strong>gather</strong> those columns into a new pair of variables. To describe that operation we need three parameters:</p>
 <ul>
 <li><p>The set of columns that represent values, not variables. In this example, those are the columns <code>1999</code> and <code>2000</code>.</p></li>
@@ -627,15 +638,15 @@ table4a  # cases</code></pre>
 <p>Together those parameters generate the call to <code>gather()</code>:</p>
 <pre class="r"><code>table4a %&gt;%
   gather(`1999`, `2000`, key = &quot;year&quot;, value = &quot;cases&quot;)</code></pre>
-<pre><code>## # A tibble: 6 x 3
+<pre><code>## [90m# A tibble: 6 x 3[39m
 ##   country     year   cases
-##   &lt;chr&gt;       &lt;chr&gt;  &lt;int&gt;
-## 1 Afghanistan 1999     745
-## 2 Brazil      1999   37737
-## 3 China       1999  212258
-## 4 Afghanistan 2000    2666
-## 5 Brazil      2000   80488
-## 6 China       2000  213766</code></pre>
+##   [3m[90m&lt;chr&gt;[39m[23m       [3m[90m&lt;chr&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m
+## [90m1[39m Afghanistan 1999     745
+## [90m2[39m Brazil      1999   [4m3[24m[4m7[24m737
+## [90m3[39m China       1999  [4m2[24m[4m1[24m[4m2[24m258
+## [90m4[39m Afghanistan 2000    [4m2[24m666
+## [90m5[39m Brazil      2000   [4m8[24m[4m0[24m488
+## [90m6[39m China       2000  [4m2[24m[4m1[24m[4m3[24m766</code></pre>
 <p>Gathering can be graphically demonstrated:</p>
 <p><img src="figure/tidy-9.png" /></p>
 </div>
@@ -643,21 +654,21 @@ table4a  # cases</code></pre>
 <h3>Spreading</h3>
 <p>Spreading is the opposite of gathering. You use it when an observation is scattered across multiple rows. For example, take <code>table2</code>: an observation is a country in a year, but each observation is spread across two rows.</p>
 <pre class="r"><code>table2</code></pre>
-<pre><code>## # A tibble: 12 x 4
+<pre><code>## [90m# A tibble: 12 x 4[39m
 ##    country      year type            count
-##    &lt;chr&gt;       &lt;int&gt; &lt;chr&gt;           &lt;int&gt;
-##  1 Afghanistan  1999 cases             745
-##  2 Afghanistan  1999 population   19987071
-##  3 Afghanistan  2000 cases            2666
-##  4 Afghanistan  2000 population   20595360
-##  5 Brazil       1999 cases           37737
-##  6 Brazil       1999 population  172006362
-##  7 Brazil       2000 cases           80488
-##  8 Brazil       2000 population  174504898
-##  9 China        1999 cases          212258
-## 10 China        1999 population 1272915272
-## 11 China        2000 cases          213766
-## 12 China        2000 population 1280428583</code></pre>
+##    [3m[90m&lt;chr&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m           [3m[90m&lt;int&gt;[39m[23m
+## [90m 1[39m Afghanistan  [4m1[24m999 cases             745
+## [90m 2[39m Afghanistan  [4m1[24m999 population   19[4m9[24m[4m8[24m[4m7[24m071
+## [90m 3[39m Afghanistan  [4m2[24m000 cases            [4m2[24m666
+## [90m 4[39m Afghanistan  [4m2[24m000 population   20[4m5[24m[4m9[24m[4m5[24m360
+## [90m 5[39m Brazil       [4m1[24m999 cases           [4m3[24m[4m7[24m737
+## [90m 6[39m Brazil       [4m1[24m999 population  172[4m0[24m[4m0[24m[4m6[24m362
+## [90m 7[39m Brazil       [4m2[24m000 cases           [4m8[24m[4m0[24m488
+## [90m 8[39m Brazil       [4m2[24m000 population  174[4m5[24m[4m0[24m[4m4[24m898
+## [90m 9[39m China        [4m1[24m999 cases          [4m2[24m[4m1[24m[4m2[24m258
+## [90m10[39m China        [4m1[24m999 population [4m1[24m272[4m9[24m[4m1[24m[4m5[24m272
+## [90m11[39m China        [4m2[24m000 cases          [4m2[24m[4m1[24m[4m3[24m766
+## [90m12[39m China        [4m2[24m000 population [4m1[24m280[4m4[24m[4m2[24m[4m8[24m583</code></pre>
 <p>To tidy this up, we first analyse the representation in similar way to <code>gather()</code>. This time, however, we only need two parameters:</p>
 <ul>
 <li><p>The column that contains variable names, the <code>key</code> column. Here, it’s <code>type</code>.</p></li>
@@ -665,15 +676,15 @@ table4a  # cases</code></pre>
 </ul>
 <p>Once we’ve figured that out, we can use <code>spread()</code>, as shown programmatically below.</p>
 <pre class="r"><code>spread(table2, key = type, value = count)</code></pre>
-<pre><code>## # A tibble: 6 x 4
+<pre><code>## [90m# A tibble: 6 x 4[39m
 ##   country      year  cases population
-##   &lt;chr&gt;       &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
-## 1 Afghanistan  1999    745   19987071
-## 2 Afghanistan  2000   2666   20595360
-## 3 Brazil       1999  37737  172006362
-## 4 Brazil       2000  80488  174504898
-## 5 China        1999 212258 1272915272
-## 6 China        2000 213766 1280428583</code></pre>
+##   [3m[90m&lt;chr&gt;[39m[23m       [3m[90m&lt;int&gt;[39m[23m  [3m[90m&lt;int&gt;[39m[23m      [3m[90m&lt;int&gt;[39m[23m
+## [90m1[39m Afghanistan  [4m1[24m999    745   19[4m9[24m[4m8[24m[4m7[24m071
+## [90m2[39m Afghanistan  [4m2[24m000   [4m2[24m666   20[4m5[24m[4m9[24m[4m5[24m360
+## [90m3[39m Brazil       [4m1[24m999  [4m3[24m[4m7[24m737  172[4m0[24m[4m0[24m[4m6[24m362
+## [90m4[39m Brazil       [4m2[24m000  [4m8[24m[4m0[24m488  174[4m5[24m[4m0[24m[4m4[24m898
+## [90m5[39m China        [4m1[24m999 [4m2[24m[4m1[24m[4m2[24m258 [4m1[24m272[4m9[24m[4m1[24m[4m5[24m272
+## [90m6[39m China        [4m2[24m000 [4m2[24m[4m1[24m[4m3[24m766 [4m1[24m280[4m4[24m[4m2[24m[4m8[24m583</code></pre>
 <p>Spreading can be graphically demonstrated:</p>
 <p><img src="figure/tidy-8.png" /></p>
 </div>
@@ -706,80 +717,80 @@ str(gatherdat)</code></pre>
 <p>The summarize function is most useful with the <code>group_by</code> function. This function lets you define a column that serves as a grouping variable for developing separate summaries, as compared to summarizing the entire dataset. The <code>group_by</code> function works with any <code>dplyr</code> function so it can be quite powerful.</p>
 <p>Let’s use our gathered fisheries dataset from exercise 7.</p>
 <pre class="r"><code>head(gatherdat)</code></pre>
-<pre><code>## # A tibble: 6 x 8
-##   OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Species  Count
-##      &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;    &lt;dbl&gt;
-## 1  1550020 TBM1996032006 1996-03-20     1996   300 2018-04-12 10:27:38 Bluefish     0
-## 2  1550749 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23 Bluefish     0
-## 3  1550750 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23 Bluefish     0
-## 4  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23 Bluefish     0
-## 5  1550828 TBM1996042601 1996-04-26     1996   160 2018-04-12 10:25:23 Bluefish     0
-## 6  1550838 TBM1996051312 1996-05-13     1996   300 2018-04-12 10:25:23 Bluefish     0</code></pre>
+<pre><code>## [90m# A tibble: 6 x 8[39m
+##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Species Count
+##      [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;date&gt;[39m[23m        [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dttm&gt;[39m[23m              [3m[90m&lt;chr&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m  1[4m5[24m[4m5[24m[4m0[24m020 TBM19960… 1996-03-20     [4m1[24m996   300 2018-04-12 [90m10:27:38[39m Bluefi…     0
+## [90m2[39m  1[4m5[24m[4m5[24m[4m0[24m749 TBM19960… 1996-03-20     [4m1[24m996    22 2018-04-12 [90m10:25:23[39m Bluefi…     0
+## [90m3[39m  1[4m5[24m[4m5[24m[4m0[24m750 TBM19960… 1996-03-20     [4m1[24m996    22 2018-04-12 [90m10:25:23[39m Bluefi…     0
+## [90m4[39m  1[4m5[24m[4m5[24m[4m0[24m762 TBM19960… 1996-03-22     [4m1[24m996    20 2018-04-12 [90m10:25:23[39m Bluefi…     0
+## [90m5[39m  1[4m5[24m[4m5[24m[4m0[24m828 TBM19960… 1996-04-26     [4m1[24m996   160 2018-04-12 [90m10:25:23[39m Bluefi…     0
+## [90m6[39m  1[4m5[24m[4m5[24m[4m0[24m838 TBM19960… 1996-05-13     [4m1[24m996   300 2018-04-12 [90m10:25:23[39m Bluefi…     0</code></pre>
 <p>It’s difficult to see patterns until we start to evaluate some of the differences. It’s also setup in a way to let us easily group by different variables. We could ask a simple question: how does total catch vary across species (ignoring gear differences)?</p>
 <p>First we can use <code>group_by</code>. Notice the new information at the top of the output.</p>
 <pre class="r"><code>by_spp &lt;- group_by(gatherdat, Species)
 by_spp</code></pre>
-<pre><code>## # A tibble: 17,064 x 8
-## # Groups:   Species [6]
-##    OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Species  Count
-##       &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;              &lt;chr&gt;    &lt;dbl&gt;
-##  1  1550020 TBM1996032006 1996-03-20     1996   300 2018-04-12 10:27:38 Bluefish     0
-##  2  1550749 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23 Bluefish     0
-##  3  1550750 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23 Bluefish     0
-##  4  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23 Bluefish     0
-##  5  1550828 TBM1996042601 1996-04-26     1996   160 2018-04-12 10:25:23 Bluefish     0
-##  6  1550838 TBM1996051312 1996-05-13     1996   300 2018-04-12 10:25:23 Bluefish     0
-##  7  1550842 TBM1996051407 1996-05-14     1996   300 2018-04-12 10:25:23 Bluefish     0
-##  8  1551131 TBM1996051415 1996-05-14     1996   300 2018-04-12 10:27:38 Bluefish     0
-##  9  1551311 TBM1996032209 1996-03-22     1996   300 2018-04-12 10:25:20 Bluefish     0
-## 10  1551335 TBM1996041807 1996-04-18     1996    22 2018-04-12 10:25:24 Bluefish     0
-## # ... with 17,054 more rows</code></pre>
+<pre><code>## [90m# A tibble: 17,064 x 8[39m
+## [90m# Groups:   Species [6][39m
+##    OBJECTID Reference Sampling_Date    yr  Gear ExDate              Species
+##       [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;date&gt;[39m[23m        [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dttm&gt;[39m[23m              [3m[90m&lt;chr&gt;[39m[23m  
+## [90m 1[39m  1[4m5[24m[4m5[24m[4m0[24m020 TBM19960… 1996-03-20     [4m1[24m996   300 2018-04-12 [90m10:27:38[39m Bluefi…
+## [90m 2[39m  1[4m5[24m[4m5[24m[4m0[24m749 TBM19960… 1996-03-20     [4m1[24m996    22 2018-04-12 [90m10:25:23[39m Bluefi…
+## [90m 3[39m  1[4m5[24m[4m5[24m[4m0[24m750 TBM19960… 1996-03-20     [4m1[24m996    22 2018-04-12 [90m10:25:23[39m Bluefi…
+## [90m 4[39m  1[4m5[24m[4m5[24m[4m0[24m762 TBM19960… 1996-03-22     [4m1[24m996    20 2018-04-12 [90m10:25:23[39m Bluefi…
+## [90m 5[39m  1[4m5[24m[4m5[24m[4m0[24m828 TBM19960… 1996-04-26     [4m1[24m996   160 2018-04-12 [90m10:25:23[39m Bluefi…
+## [90m 6[39m  1[4m5[24m[4m5[24m[4m0[24m838 TBM19960… 1996-05-13     [4m1[24m996   300 2018-04-12 [90m10:25:23[39m Bluefi…
+## [90m 7[39m  1[4m5[24m[4m5[24m[4m0[24m842 TBM19960… 1996-05-14     [4m1[24m996   300 2018-04-12 [90m10:25:23[39m Bluefi…
+## [90m 8[39m  1[4m5[24m[4m5[24m[4m1[24m131 TBM19960… 1996-05-14     [4m1[24m996   300 2018-04-12 [90m10:27:38[39m Bluefi…
+## [90m 9[39m  1[4m5[24m[4m5[24m[4m1[24m311 TBM19960… 1996-03-22     [4m1[24m996   300 2018-04-12 [90m10:25:20[39m Bluefi…
+## [90m10[39m  1[4m5[24m[4m5[24m[4m1[24m335 TBM19960… 1996-04-18     [4m1[24m996    22 2018-04-12 [90m10:25:24[39m Bluefi…
+## [90m# … with 17,054 more rows, and 1 more variable: Count [3m[90m&lt;dbl&gt;[90m[23m[39m</code></pre>
 <p>We can then <code>summarize</code> to get the total count.</p>
 <pre class="r"><code>by_spp &lt;- summarize(by_spp, totals = sum(Count))
 by_spp</code></pre>
-<pre><code>## # A tibble: 6 x 2
+<pre><code>## [90m# A tibble: 6 x 2[39m
 ##   Species       totals
-##   &lt;chr&gt;          &lt;dbl&gt;
-## 1 Bluefish           7
-## 2 Common Snook    3898
-## 3 Mullets           17
-## 4 Pinfish        98182
-## 5 Red Drum        3422
-## 6 Sand Seatrout   7789</code></pre>
+## [90m*[39m [3m[90m&lt;chr&gt;[39m[23m          [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m Bluefish           7
+## [90m2[39m Common Snook    [4m3[24m898
+## [90m3[39m Mullets           17
+## [90m4[39m Pinfish        [4m9[24m[4m8[24m182
+## [90m5[39m Red Drum        [4m3[24m422
+## [90m6[39m Sand Seatrout   [4m7[24m789</code></pre>
 <p>Of course, this can (and should) be done with pipes:</p>
 <pre class="r"><code>by_spp &lt;- gatherdat %&gt;%
   group_by(Species) %&gt;%
   summarize(totals = sum(Count))
 by_spp</code></pre>
-<pre><code>## # A tibble: 6 x 2
+<pre><code>## [90m# A tibble: 6 x 2[39m
 ##   Species       totals
-##   &lt;chr&gt;          &lt;dbl&gt;
-## 1 Bluefish           7
-## 2 Common Snook    3898
-## 3 Mullets           17
-## 4 Pinfish        98182
-## 5 Red Drum        3422
-## 6 Sand Seatrout   7789</code></pre>
+## [90m*[39m [3m[90m&lt;chr&gt;[39m[23m          [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m Bluefish           7
+## [90m2[39m Common Snook    [4m3[24m898
+## [90m3[39m Mullets           17
+## [90m4[39m Pinfish        [4m9[24m[4m8[24m182
+## [90m5[39m Red Drum        [4m3[24m422
+## [90m6[39m Sand Seatrout   [4m7[24m789</code></pre>
 <p>We can group the dataset by more than one column to get summaries with multiple groups. Here we can look at total count by each unique combination of gear and species.</p>
 <pre class="r"><code>by_spp_gear &lt;- gatherdat %&gt;%
   group_by(Species, Gear) %&gt;%
   summarize(totals = sum(Count))
 by_spp_gear</code></pre>
-<pre><code>## # A tibble: 36 x 3
-## # Groups:   Species [6]
+<pre><code>## [90m# A tibble: 36 x 3[39m
+## [90m# Groups:   Species [6][39m
 ##    Species       Gear totals
-##    &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;
-##  1 Bluefish        20      1
-##  2 Bluefish        22      0
-##  3 Bluefish       160      6
-##  4 Bluefish       251      0
-##  5 Bluefish       300      0
-##  6 Bluefish       301      0
-##  7 Common Snook    20     20
-##  8 Common Snook    22      0
-##  9 Common Snook   160   3866
-## 10 Common Snook   251     12
-## # ... with 26 more rows</code></pre>
+##    [3m[90m&lt;chr&gt;[39m[23m        [3m[90m&lt;dbl&gt;[39m[23m  [3m[90m&lt;dbl&gt;[39m[23m
+## [90m 1[39m Bluefish        20      1
+## [90m 2[39m Bluefish        22      0
+## [90m 3[39m Bluefish       160      6
+## [90m 4[39m Bluefish       251      0
+## [90m 5[39m Bluefish       300      0
+## [90m 6[39m Bluefish       301      0
+## [90m 7[39m Common Snook    20     20
+## [90m 8[39m Common Snook    22      0
+## [90m 9[39m Common Snook   160   [4m3[24m866
+## [90m10[39m Common Snook   251     12
+## [90m# … with 26 more rows[39m</code></pre>
 <p>We can also get more than one summary at a time. The summary function can use any function that operates on a vector. Some common examples include <code>min</code>, <code>max</code>, <code>sd</code>, <code>var</code>, <code>median</code>, <code>mean</code>, and <code>n</code>. It’s usually good practice to include a summary of how many observations were in each group, so get used to including the <code>n</code> function.</p>
 <pre class="r"><code>more_sums &lt;-gatherdat %&gt;%
   group_by(Species) %&gt;%
@@ -790,15 +801,15 @@ by_spp_gear</code></pre>
     total = sum(Count)
   )
 more_sums</code></pre>
-<pre><code>## # A tibble: 6 x 5
+<pre><code>## [90m# A tibble: 6 x 5[39m
 ##   Species           n min_count max_count total
-##   &lt;chr&gt;         &lt;int&gt;     &lt;dbl&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1 Bluefish       2844         0         2     7
-## 2 Common Snook   2844         0       127  3898
-## 3 Mullets        2844         0         5    17
-## 4 Pinfish        2844         0      2530 98182
-## 5 Red Drum       2844         0       123  3422
-## 6 Sand Seatrout  2844         0       560  7789</code></pre>
+## [90m*[39m [3m[90m&lt;chr&gt;[39m[23m         [3m[90m&lt;int&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m     [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m Bluefish       [4m2[24m844         0         2     7
+## [90m2[39m Common Snook   [4m2[24m844         0       127  [4m3[24m898
+## [90m3[39m Mullets        [4m2[24m844         0         5    17
+## [90m4[39m Pinfish        [4m2[24m844         0      [4m2[24m530 [4m9[24m[4m8[24m182
+## [90m5[39m Red Drum       [4m2[24m844         0       123  [4m3[24m422
+## [90m6[39m Sand Seatrout  [4m2[24m844         0       560  [4m7[24m789</code></pre>
 <p>Finally, many of the summary functions we’ve used (e.g., <code>sum</code>, <code>min</code>, <code>max</code>, <code>mean</code>) will not work correctly if there are missing observations in your data. You’ll see these as <code>NA</code> (or sometimes <code>NaN</code>) entries. You have to use the argument <code>na.rm = T</code> to explicitly tell R how to handle the missing values. Setting <code>na.rm = T</code> says to remove the <code>NA</code> values when summarizing the data.</p>
 <pre class="r"><code>x &lt;- c(1, 2, NA, 4)
 mean(x)</code></pre>
@@ -856,7 +867,7 @@ sumdat</code></pre>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -895,7 +906,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

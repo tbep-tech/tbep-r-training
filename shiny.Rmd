@@ -19,6 +19,8 @@ Full disclaimer: Much of this content was pillaged from the [Mastering Shiny](ht
 
 * [What is and Why Shiny?]
 * [New concepts]
+* [A simple example]
+* [A better example]
 * [Resources]
 
 ## What is and why Shiny? 
@@ -39,20 +41,106 @@ More simply, Shiny lets you create a web interface for any R workflow. This mean
 
 Shiny can be challenging at first because it introduces a new way of thinking about your code. "Simple" R scripts are designed to run linearly, being read from top to bottom.  You write your script, source the code to your console, and get some results or objects created after running the script. 
 
-A shiny app runs from an R script, but instead of executing code linearly, it uses *reactive* programming that detects when an input is changed on the application, runs the minimal amount of code that uses that input, then updates the output as needed.  So, rather than thinking of the script as linear, think of it as having interconnected components that share pieces of information to produce the results.  This can be daunting at first because it requires you think about which pieces of your code require inputs from other pieces and how that information is used to create output.  
+A shiny app runs from an R script, but instead of executing code linearly, it uses __reactive__ programming that detects when an input is changed on the application, runs the minimal amount of code that uses that input, then updates the output as needed.  So, rather than thinking of the script as linear, think of it as having interconnected components that share pieces of information to produce the results.  
 
-Reactivity can be conceptualized by the building blocks of a Shiny app.  Every Shiny app has the following:
+This can be daunting at first because it requires you think about which pieces of your code require inputs from other pieces and how that information is used to create output.  Reactivity can be conceptualized by the building blocks of a Shiny app.  Every Shiny app has the following:
 
-* User interface (UI)
-* Server 
+* __User interface (UI)__: Includes all inputs and outputs, as well as the appearance of the dashboard
+* __Server__: The guts or engine of how the inputs are used to create the outputs, this is where your complicated workflow can live.  
 
+In practice, this looks like this: 
 
-User interface: inputs, outputs
-server: processing
+```{r, eval = F}
+library(shiny)
+ui <- fluidPage()
+server <- function(input, output){}
+shinyApp(ui = ui, server = server)
+```
 
-## Using RMarkdown for shiny apps
+For a real Shiny app, this code would live in a standalone script.  You launch the dashboard by sourcing the script or hitting the green "Run app" button on the top right. 
 
-## A motivating example
+```{r, echo = F, out.width = '100%', fig.align = 'center'}
+knitr::include_graphics('figure/simpleapp.PNG')
+```
+
+If you run this code, you'll see a local web browser pop up.  It will be empty because this app does nothing, but this a starting point for creating your application.  All we need to do is populate the `ui` and `server` objects with code to do some things.  
+
+## A simple example
+
+Now let's make our simple example do something.  As with most problems, it's good to start with identifying where you want to go and then working backwards to figure out how to get there.  Let's end with a simple histogram to visualize some data for the normal distribution but with different sample sizes. 
+
+```{r}
+dat <- rnorm(100)
+hist(dat)
+```
+
+Changing the sample size:
+
+```{r}
+dat <- rnorm(10)
+hist(dat)
+```
+
+To make a Shiny app out of this, we need to identify our inputs and our outputs.  The input in this case is the sample size and the output is the plot.  Inputs/outputs go in the `ui` object and are used by `server` object. Putting this into our template would look something like this: 
+
+```{r}
+library(shiny)
+
+ui <- fluidPage(
+  numericInput('n', 'Sample size', value = 50),
+  plotOutput('myplot')
+)
+
+server <- function(input, output){
+  output$myplot <- renderPlot({
+    dat <- rnorm(input$n)
+    hist(dat)
+  })
+}
+
+shinyApp(ui = ui, server = server)
+```
+
+Okay, so what is happening under the hood when you change the sample size?  
+
+1. The `input` value `n` from the `ui` is sent to the server, seen as `input$n`. 
+1. The `dat` object is created as a random sample with size `n` and then a histogram is created as output for `renderPlot`
+1. The plot output named `myplot` is appended to the `output` list of objects
+1. The plot is then rendered on the `ui` side using `plotOutput` and referencing the `myplot` name of the object. 
+
+```{r, echo = F, fig.align = 'center', out.width = '100%'}
+knitr::include_graphics('figure/simpleappflo.png')
+```
+ 
+All of this happens each time the input values are changed, such that the output __reacts__ to any change in the input. 
+
+There are some general rules and concepts about Shiny reactivity that are shown here that apply to any Shiny application.  
+
+* All input objects are defined in the `ui` file, given a name using the `fooInput()` function, and then referenced in the `server` file by `input$name` (`input$n` in this case). 
+    ```{r, eval = F}
+    numericInput('n', 'Sample size', value = 50)
+    ```
+* All output objects are in the server file by assigning a "rendered" object to the `output` object by `output$name` (`output$myplot` in this case).
+    ```{r, eval = F}
+    output$myplot <- renderPlot({
+      dat <- rnorm(input$n)
+      hist(dat)
+    })
+    ```
+* The `ui` file controls where and when the output is rendered, typically using a function named `fooOutput()` that has a complementary reactive function named `renderFoo()`
+    ```{r, eval = F}
+    plotOutput('myplot')
+    ```
+* The `ui` file can be declared with a function (`fluidPage()` here as one type of layout) with at least two inputs (one input, one output) separated by commas. 
+* The `server` file can be declared with the `server()` function where the input is evaluated as a standalone group of operations with the curly braces `{}`
+
+You're well on your way to understanding Shiny once you master the concepts demonstrated by the simple example above.  Once you master the concepts, the rest is just finding the right reactive functions that do you what you need.
+
+An overview of the standard Shiny input options is here: <https://shiny.rstudio.com/gallery/widget-gallery.html>
+
+A totally non-exhaustive list of the output functions (remember `renderFoo()` for `server`, `fooOutput()` for `ui`) that you'll most commonly use are `renderPlot()`/`plotOutput()`, `renderTable()`/`tableOutput()`, `renderText()`/`textOutput()`, and `renderUI()``/uiOutput()`.  
+
+## A better example
 
 Last year we talked about using R to [write your own functions](https://tbep-tech.github.io/tbep-r-training/functions.html).  We started with a simple example of filtering and plotting data from the FWC [Fisheries Independent Monitoring](https://geodata.myfwc.com/datasets/68fb6774b58a40a08a6f87959aaa53c4_26/data) dataset.  
 

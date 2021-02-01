@@ -23,8 +23,15 @@ Full disclaimer: Much of this content was pillaged from the [Mastering Shiny](ht
 
 ## What is and why Shiny? 
 
-The simple answer:
+Shiny is an R package that lets you create rich, interactive web applications.  Shiny lets you take an existing R script and expose it using a web browser so that you or anybody else can use it outside of R.  Shiny is commonly used to: 
 
+* Communicate complex workflows to a non-technical audience with informative visualizations and interactive components
+* Share your analysis easily with colleagues without having to walk them through details of your script
+* Help inform your understanding of an analysis by creating a user interface to quickly evaluate 
+
+In the applied sciences world, Shiny can be a very important tool to "bridge the research-management divide"!  
+
+There are many advantages to using Shiny over other platforms for creating web applications.  As R users, the beauty of Shiny is that you only need to know how to use R.  You do not need to know anything about web programming, such as HTML, CSS, or 
 Advantages of Shiny: easy to get started, no web experience needed, but fully customizable
 
 ## New concepts

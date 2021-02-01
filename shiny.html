@@ -457,7 +457,7 @@ div.tocify {
 <p>A Shiny app runs from an R script, but instead of executing code linearly, it uses <strong>reactive</strong> programming that detects when an input is changed on the application, runs the minimal amount of code that uses that input, then updates the output as needed. So, rather than thinking of the script as linear, think of it as having interconnected components that share pieces of information to produce the results.</p>
 <p>This can be daunting at first because it requires you think about which pieces of your code require inputs from other pieces and how that information is used to create output. Reactivity can be conceptualized by the building blocks of a Shiny app. Every Shiny app has the following:</p>
 <ul>
-<li><strong>User interface (UI)</strong>: Includes all inputs and outputs, as well as the appearance of the dashboard</li>
+<li><strong>User interface (UI)</strong>: Includes all inputs and outputs, as well as the appearance of the dashboard. Here, when we say “output” we mean the final product (e.g. a plot, table, etc.) that is placed on the <code>ui</code>, but created by processing inputs sent to the <code>server</code>.</li>
 <li><strong>Server</strong>: The guts or engine of how the inputs are used to create the outputs, this is where your complicated workflow can live.</li>
 </ul>
 <p>In practice, it looks like this:</p>
@@ -668,6 +668,7 @@ shinyApp(ui = ui, server = server)</code></pre>
 <li>Think about the layout of the application. This can influence how a “user” experiences an application. A terrible layout will make for a terrible experience. There are many options for Shiny (native Shiny <a href="https://shiny.rstudio.com/articles/layout-guide.html">layouts</a>, <a href="https://rmarkdown.rstudio.com/flexdashboard/">flexdashboard</a>, <a href="https://rstudio.github.io/shinydashboard/">shinydashboard</a>, rendered in <a href="https://shiny.rstudio.com/articles/interactive-docs.html">RMarkdown</a>)</li>
 <li>Create <a href="https://shiny.rstudio.com/articles/dynamic-ui.html">dynamic user inputs</a> that change based on values of the other inputs. For example, Red Drum have a typical size range and it may not make sense to have the default ranges as the entire range of all fish in the database.</li>
 </ol>
+<p>Here’s the <a href="https://github.com/fawda123/shinyex">source code</a> and <a href="https://beckmw.shinyapps.io/shinyex/">hosted application</a> that includes these changes.</p>
 </div>
 <div id="sharing-your-applications" class="section level2">
 <h2>Sharing your applications</h2>
@@ -691,6 +692,7 @@ shinyApp(ui = ui, server = server)</code></pre>
 <li><a href="https://github.com/rstudio/cheatsheets/raw/master/shiny.pdf">RStudio Shiny cheatsheet</a></li>
 <li><a href="https://shiny.rstudio.com/gallery/">R Shiny Gallery</a>: Great examples, including source code</li>
 <li><a href="https://github.com/search?q=topic%3Ashiny+org%3Atbep-tech+fork%3Atrue">TBEP Shiny apps</a></li>
+<li><a href="https://beckmw.shinyapps.io/shinyex/">Example catch data application</a> and <a href="https://github.com/fawda123/shinyex">source code</a></li>
 </ul>
 </div>
 

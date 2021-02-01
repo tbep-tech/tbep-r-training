@@ -427,50 +427,51 @@ div.tocify {
 </div>
 
 
-<p>Full disclaimer: Much of this content was pillaged from the <a href="https://mastering-shiny.org/index.html">Mastering Shiny</a> text. Please consult that text for a much more informed description of how to build shiny apps!</p>
 <div id="outline" class="section level2">
 <h2>Outline</h2>
 <ul>
-<li><a href="#what-is-and-why-shiny">What is and Why Shiny?</a></li>
+<li><a href="#what-is-shiny">What is Shiny?</a></li>
 <li><a href="#new-concepts">New concepts</a></li>
 <li><a href="#a-simple-example">A simple example</a></li>
 <li><a href="#a-better-example">A better example</a></li>
+<li><a href="#sharing-your-applications">Sharing your applications</a></li>
+<li><a href="#final-thoughts">Final thoughts</a></li>
 <li><a href="#resources">Resources</a></li>
 </ul>
 </div>
-<div id="what-is-and-why-shiny" class="section level2">
-<h2>What is and why Shiny?</h2>
+<div id="what-is-shiny" class="section level2">
+<h2>What is Shiny?</h2>
 <p>Shiny is an R package that lets you create rich, interactive web applications. Shiny lets you take an existing R script and expose it using a web browser so that you or anybody else can use it outside of R. Shiny is commonly used to:</p>
 <ul>
 <li>Communicate complex workflows to a non-technical audience with informative visualizations and interactive components</li>
 <li>Share your analysis easily with colleagues without having to walk them through details of your script</li>
 <li>Help inform your understanding of an analysis by creating a user interface to quickly evaluate</li>
 </ul>
-<p>In the applied sciences world, Shiny can be a very important tool to “bridge the research-management divide”! A very simple example is the use of Shiny to replace a 500 page document with hundreds of figures with a simple application that allows the user to jump to an exact slide of the data that they want.</p>
+<p>In the applied sciences world, Shiny can be a very important tool to “bridge the research-management divide”! A very simple example is the use of Shiny to replace a 500 page document that has hundreds of figures with a simple application that allows the user to jump to an exact slice of the data that they want.</p>
 <p>There are many advantages to using Shiny over other platforms for creating web applications. As R users, the beauty of Shiny is that you only need to know how to use R. You do not need to know anything about web programming, such as HTML, CSS, or JavaScript. On the other hand, Shiny gives you the power to tap into the broader suite of web programming tools when you’re ready to or have a need to expand your application.</p>
-<p>More simply, Shiny lets you create a web interface for any R workflow. This means that whatever custom analysis or graphic you’ve made can be fully integrated into your dashboard, unlike other platforms that may have rigid and less customizable templates designed for ease of use.</p>
+<p>More simply, Shiny lets you create a web interface for any R workflow. This means that any custom analysis or graphic you’ve made can be fully integrated into your dashboard, unlike other platforms that may have rigid and less customizable templates designed for ease of use.</p>
 </div>
 <div id="new-concepts" class="section level2">
 <h2>New concepts</h2>
-<p>Shiny can be challenging at first because it introduces a new way of thinking about your code. “Simple” R scripts are designed to run linearly, being read from top to bottom. You write your script, source the code to your console, and get some results or objects created after running the script.</p>
-<p>A shiny app runs from an R script, but instead of executing code linearly, it uses <strong>reactive</strong> programming that detects when an input is changed on the application, runs the minimal amount of code that uses that input, then updates the output as needed. So, rather than thinking of the script as linear, think of it as having interconnected components that share pieces of information to produce the results.</p>
+<p>Shiny can be challenging at first because it introduces a new way of thinking about your code. “Simple” R scripts are run linearly, being read from top to bottom. You write your script, source the code to your console, and get some results or objects created after running the script.</p>
+<p>A Shiny app runs from an R script, but instead of executing code linearly, it uses <strong>reactive</strong> programming that detects when an input is changed on the application, runs the minimal amount of code that uses that input, then updates the output as needed. So, rather than thinking of the script as linear, think of it as having interconnected components that share pieces of information to produce the results.</p>
 <p>This can be daunting at first because it requires you think about which pieces of your code require inputs from other pieces and how that information is used to create output. Reactivity can be conceptualized by the building blocks of a Shiny app. Every Shiny app has the following:</p>
 <ul>
 <li><strong>User interface (UI)</strong>: Includes all inputs and outputs, as well as the appearance of the dashboard</li>
 <li><strong>Server</strong>: The guts or engine of how the inputs are used to create the outputs, this is where your complicated workflow can live.</li>
 </ul>
-<p>In practice, this looks like this:</p>
+<p>In practice, it looks like this:</p>
 <pre class="r"><code>library(shiny)
 ui &lt;- fluidPage()
 server &lt;- function(input, output){}
 shinyApp(ui = ui, server = server)</code></pre>
-<p>For a real Shiny app, this code would live in a standalone script. You launch the dashboard by sourcing the script or hitting the green “Run app” button on the top right.</p>
+<p>For a real Shiny app, this code would live in a standalone script. You launch the dashboard by sourcing the script or hitting the green “Run App” button on the top right.</p>
 <p><img src="figure/simpleapp.PNG" width="100%" style="display: block; margin: auto;" /></p>
-<p>If you run this code, you’ll see a local web browser pop up. It will be empty because this app does nothing, but this a starting point for creating your application. All we need to do is populate the <code>ui</code> and <code>server</code> objects with code to do some things.</p>
+<p>If you run this code, you’ll see a local web browser pop up. It will be empty because this app does nothing, but this only a starting point. All we need to do is populate the <code>ui</code> and <code>server</code> objects with code to do some things.</p>
 </div>
 <div id="a-simple-example" class="section level2">
 <h2>A simple example</h2>
-<p>Now let’s make our simple example do something. As with most problems, it’s good to start with identifying where you want to go and then working backwards to figure out how to get there. Let’s end with a simple histogram to visualize some data for the normal distribution but with different sample sizes.</p>
+<p>Now let’s make our simple example do something. As with most problems, it’s good to start with identifying where you want to go and then working backwards to figure out how to get there. Let’s end with a simple histogram to visualize some data for the normal distribution, but with different sample sizes.</p>
 <pre class="r"><code>dat &lt;- rnorm(100)
 hist(dat)</code></pre>
 <p><img src="figure/unnamed-chunk-3-1.png" width="672" /></p>
@@ -478,11 +479,11 @@ hist(dat)</code></pre>
 <pre class="r"><code>dat &lt;- rnorm(10)
 hist(dat)</code></pre>
 <p><img src="figure/unnamed-chunk-4-1.png" width="672" /></p>
-<p>To make a Shiny app out of this, we need to identify our inputs and our outputs. The input in this case is the sample size and the output is the plot. Inputs/outputs go in the <code>ui</code> object and are used by <code>server</code> object. Putting this into our template would look something like this:</p>
+<p>To make a Shiny app out of this, we need to identify our inputs and our outputs. The input in this case is the sample size and the output is the plot. Inputs/outputs go in the <code>ui</code> object. The <code>server</code> takes the inputs, does something with them, then sends the results back to the <code>ui</code>. Putting this into our template would look something like this:</p>
 <pre class="r"><code>library(shiny)
 
 ui &lt;- fluidPage(
-  numericInput(&#39;n&#39;, &#39;Sample size&#39;, value = 50),
+  numericInput(inputId = &#39;n&#39;, label = &#39;Sample size&#39;, value = 50),
   plotOutput(&#39;myplot&#39;)
 )
 
@@ -498,46 +499,198 @@ shinyApp(ui = ui, server = server)</code></pre>
 <p>Okay, so what is happening under the hood when you change the sample size?</p>
 <ol style="list-style-type: decimal">
 <li>The <code>input</code> value <code>n</code> from the <code>ui</code> is sent to the server, seen as <code>input$n</code>.</li>
-<li>The <code>dat</code> object is created as a random sample with size <code>n</code> and then a histogram is created as output for <code>renderPlot</code></li>
+<li>The <code>dat</code> object is created as a random sample with size <code>n</code> and then a histogram is created as reactive output for <code>renderPlot</code></li>
 <li>The plot output named <code>myplot</code> is appended to the <code>output</code> list of objects</li>
 <li>The plot is then rendered on the <code>ui</code> side using <code>plotOutput</code> and referencing the <code>myplot</code> name of the object.</li>
 </ol>
 <p><img src="figure/simpleappflo.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>All of this happens each time the input values are changed, such that the output <strong>reacts</strong> to any change in the input.</p>
-<p>There are some general rules and concepts about Shiny reactivity that are shown here that apply to any Shiny application.</p>
+<p>All of this happens each time the input values are changed, such that the output <strong>reacts</strong> to any change in the input. This is a fundamental principle for Shiny.</p>
+<p>There are some general rules and concepts about Shiny reactivity that are shown here that apply to most Shiny applications.</p>
 <ul>
-<li><p>All input objects are defined in the <code>ui</code> file, given a name using the <code>fooInput()</code> function, and then referenced in the <code>server</code> file by <code>input$name</code> (<code>input$n</code> in this case).</p>
-<pre class="r"><code>numericInput(&#39;n&#39;, &#39;Sample size&#39;, value = 50)</code></pre></li>
+<li><p>All input objects are defined in the <code>ui</code> file, given a name inside the <code>fooInput()</code> function, and then referenced in the <code>server</code> file by <code>input$name</code> (<code>input$n</code> in this case).</p>
+<pre class="r"><code>numericInput(inputId = &#39;n&#39;, label = &#39;Sample size&#39;, value = 50)</code></pre></li>
 <li><p>All output objects are in the server file by assigning a “rendered” object to the <code>output</code> object by <code>output$name</code> (<code>output$myplot</code> in this case).</p>
 <pre class="r"><code>output$myplot &lt;- renderPlot({
   dat &lt;- rnorm(input$n)
   hist(dat)
 })</code></pre></li>
-<li><p>The <code>ui</code> file controls where and when the output is rendered, typically using a function named <code>fooOutput()</code> that has a complementary reactive function named <code>renderFoo()</code></p>
+<li><p>The <code>ui</code> file controls where and when the output is rendered, typically using a function named <code>fooOutput()</code> that has a complementary reactive function named <code>renderFoo()</code> in the <code>server</code> file.</p>
 <pre class="r"><code>plotOutput(&#39;myplot&#39;)</code></pre></li>
 <li><p>The <code>ui</code> file can be declared with a function (<code>fluidPage()</code> here as one type of layout) with at least two inputs (one input, one output) separated by commas.</p></li>
 <li><p>The <code>server</code> file can be declared with the <code>server()</code> function where the input is evaluated as a standalone group of operations with the curly braces <code>{}</code></p></li>
 </ul>
-<p>You’re well on your way to understanding Shiny once you master the concepts demonstrated by the simple example above. Once you master the concepts, the rest is just finding the right reactive functions that do you what you need.</p>
+<p>You’re well on your way to understanding Shiny once you master the concepts demonstrated by the simple example above. Once you master the concepts, the rest is just finding the right reactive functions that do you what you need (and then fiddling with the layout of course).</p>
 <p>An overview of the standard Shiny input options is here: <a href="https://shiny.rstudio.com/gallery/widget-gallery.html" class="uri">https://shiny.rstudio.com/gallery/widget-gallery.html</a></p>
-<p>A totally non-exhaustive list of the output functions (remember <code>renderFoo()</code> for <code>server</code>, <code>fooOutput()</code> for <code>ui</code>) that you’ll most commonly use are <code>renderPlot()</code>/<code>plotOutput()</code>, <code>renderTable()</code>/<code>tableOutput()</code>, <code>renderText()</code>/<code>textOutput()</code>, and <code>renderUI()``/uiOutput()</code>.</p>
+<p>A totally non-exhaustive list of the reactive render and complementary output functions (remember <code>renderFoo()</code> for <code>server</code>, <code>fooOutput()</code> for <code>ui</code>) that you’ll most commonly use are <code>renderPlot()</code>/<code>plotOutput()</code>, <code>renderTable()</code>/<code>tableOutput()</code>, <code>renderText()</code>/<code>textOutput()</code>, and <code>renderUI()</code>/<code>uiOutput()</code>.</p>
 </div>
 <div id="a-better-example" class="section level2">
 <h2>A better example</h2>
-<p>Last year we talked about using R to <a href="https://tbep-tech.github.io/tbep-r-training/functions.html">write your own functions</a>. We started with a simple example of filtering and plotting data from the FWC <a href="https://geodata.myfwc.com/datasets/68fb6774b58a40a08a6f87959aaa53c4_26/data">Fisheries Independent Monitoring</a> dataset.</p>
-</div>
-<div id="debugging-r-shiny-apps" class="section level2">
-<h2>Debugging R Shiny apps</h2>
-<p>Use the browser() but DO NOT run from the knit option.</p>
+<p>Last year we talked about using R to <a href="https://tbep-tech.github.io/tbep-r-training/functions.html">write your own functions</a>. We started with a simple example of filtering and plotting data from the FWC <a href="https://geodata.myfwc.com/datasets/68fb6774b58a40a08a6f87959aaa53c4_26/data">Fisheries Independent Monitoring</a> dataset. Here we’ll do the same, but develop a Shiny app around this function.</p>
+<p>First, we import the data:</p>
+<pre class="r"><code>url &lt;- &#39;https://raw.githubusercontent.com/tbep-tech/tbep-r-training/013432d6924d278a9fbb151591ddcfd5b7de87ab/data/otbfimdat.csv&#39;
+otbfimdat &lt;- read.csv(url, stringsAsFactors = F)</code></pre>
+<p>Now we create a function that filters these data by species range, size name, and gear and then plots the results over time.</p>
+<pre class="r"><code>plotcatch &lt;- function(name, szrng, gearsel, datin){
+  
+  subdat &lt;- datin %&gt;% 
+    filter(Commonname %in% name) %&gt;% 
+    filter(avg_size &gt; szrng[1] &amp; avg_size &lt; szrng[2]) %&gt;% 
+    filter(Gear %in% gearsel) %&gt;% 
+    mutate(Sampling_Date = as.POSIXct(
+      Sampling_Date, 
+      format = &#39;%Y-%m-%d %H:%M:%S&#39;, 
+      tz = &#39;America/New_York&#39;
+      )
+    )
+  
+  p &lt;- ggplot(subdat, aes(x = Sampling_Date, y = TotalNum)) + 
+    geom_point() + 
+    scale_y_log10() + 
+    geom_smooth(method = &#39;lm&#39;) + 
+    labs(
+      x = NULL,
+      y = &#39;Total catch&#39;, 
+      title = paste0(name, &quot; catch in gear &quot;, gearsel), 
+      subtitle = paste0(&quot;Data subset to ave size between &quot;, szrng[1], &#39;-&#39;, szrng[2], &quot; inches&quot;)
+    )
+  
+  p 
+  
+}</code></pre>
+<p>Now we show how the function is used. We want to plot red drum in the size range 20 to 30 inches for gear type 20.</p>
+<pre class="r"><code>plotcatch(&#39;Red Drum&#39;, c(25, 30), 20, otbfimdat)</code></pre>
+<p><img src="figure/unnamed-chunk-12-1.png" width="672" /></p>
+<p>The benefit of creating a function are that it simplifies filtering and plotting, minimizes errors with copy/paste, and increases reproducibility. Let’s step it up a notch and wrap a Shiny app around this function. This could be useful for your own needs (rapidly checking catch data) or for sharing this workflow with your colleagues that might not use R.</p>
+<p>As stated in the simple example above, we first need to identify where we want to go to determine what we need to include in the Shiny app. We want to create the plot by providing options on which fish, size ranges, and gear type to evaluate. So, we create three objects that include those options.</p>
+<pre class="r"><code>fish &lt;- unique(otbfimdat$Commonname)
+size &lt;- range(otbfimdat$avg_size, na.rm = T)
+gear &lt;- unique(otbfimdat$Gear)</code></pre>
+<p>Based on these inputs, we can then figure out which of the Shiny input functions we need to include in our <code>ui</code> function. The <code>fish</code> and <code>gear</code> types are categorical data, so <code>selectInput()</code> is a correct option. The <code>size</code> values are continuous data that could be chosen with the <code>sliderInput()</code> function to pick a range of values.</p>
+<pre class="r"><code>ui &lt;- fluidPage(
+  selectInput(inputId = &#39;fishsel&#39;, label = &#39;Select species&#39;, choices = fish, 
+              selected = &#39;Red Drum&#39;),
+  sliderInput(inputId = &#39;sizesel&#39;, label  = &#39;Select size range (in)&#39;, 
+              min = size[1], max = size[2], value = size),
+  selectInput(InputId = &#39;gearsel&#39;, label = &#39;Select gear&#39;, choices = gear, 
+              selected = &#39;20&#39;)
+)</code></pre>
+<p>Then, on the <code>server</code> side we need to use the inputs in our plotting function. We also use <code>renderPlot()</code> since the inputs are used reactively and assign the plot to the output object with a name of our choosing (<code>plo</code>).</p>
+<pre class="r"><code>server &lt;- function(input, output){
+  output$plo &lt;- renderPlot({
+    plotcatch(
+      name = input$fishsel, 
+      szrng = input$sizesel, 
+      gearsel = input$gearsel, 
+      datin = otbfimdat)
+  })
+}</code></pre>
+<p>Then we go back to the <code>ui</code> and add the plot output using the name we assigned to the output in the last step.</p>
+<pre class="r"><code>ui &lt;- fluidPage(
+  selectInput(inputId = &#39;fishsel&#39;, label = &#39;Select species&#39;, choices = fish, 
+              selected = &#39;Red Drum&#39;),
+  sliderInput(inputId = &#39;sizesel&#39;, label  = &#39;Select size range (in)&#39;, 
+              min = size[1], max = size[2], value = size),
+  selectInput(inputId = &#39;gearsel&#39;, label = &#39;Select gear&#39;, choices = gear, 
+              selected = &#39;20&#39;), 
+  renderPlot(&#39;plo&#39;)
+)</code></pre>
+<p>All together, it should look something like this. Note that we need to include all the dependencies since Shiny apps are modular just like regular R scripts. This includes the libraries, data import, options used in the Shiny inputs, and the code for the plotting function. The reactive components are a small part of this app.</p>
+<pre class="r"><code>library(shiny)
+library(tidyverse)
+
+# plotting function
+plotcatch &lt;- function(name, szrng, gearsel, datin){
+  
+  subdat &lt;- datin %&gt;% 
+    filter(Commonname %in% name) %&gt;% 
+    filter(avg_size &gt; szrng[1] &amp; avg_size &lt; szrng[2]) %&gt;% 
+    filter(Gear %in% gearsel) %&gt;% 
+    mutate(Sampling_Date = as.POSIXct(
+      Sampling_Date, 
+      format = &#39;%Y-%m-%d %H:%M:%S&#39;, 
+      tz = &#39;America/New_York&#39;
+      )
+    )
+  
+  p &lt;- ggplot(subdat, aes(x = Sampling_Date, y = TotalNum)) + 
+    geom_point() + 
+    scale_y_log10() + 
+    geom_smooth(method = &#39;lm&#39;) + 
+    labs(
+      x = NULL,
+      y = &#39;Total catch&#39;, 
+      title = paste0(name, &quot; catch in gear &quot;, gearsel), 
+      subtitle = paste0(&quot;Data subset to ave size between &quot;, szrng[1], &#39;-&#39;, szrng[2], &quot; inches&quot;)
+    )
+  
+  p 
+  
+}
+
+# import data
+url &lt;- &#39;https://raw.githubusercontent.com/tbep-tech/tbep-r-training/013432d6924d278a9fbb151591ddcfd5b7de87ab/data/otbfimdat.csv&#39;
+otbfimdat &lt;- read.csv(url, stringsAsFactors = F)
+
+# get selection options
+fish &lt;- unique(otbfimdat$Commonname)
+size &lt;- range(otbfimdat$avg_size, na.rm = T)
+gear &lt;- unique(otbfimdat$Gear)
+
+# Shiny UI
+ui &lt;- fluidPage(
+  selectInput(inputId = &#39;fishsel&#39;, label = &#39;Select species&#39;, choices = fish, 
+              selected = &#39;Red Drum&#39;),
+  sliderInput(inputId = &#39;sizesel&#39;, label  = &#39;Select size range (in)&#39;, 
+              min = size[1], max = size[2], value = size),
+  selectInput(inputId = &#39;gearsel&#39;, label = &#39;Select gear&#39;, choices = gear, 
+              selected = &#39;20&#39;), 
+  plotOutput(&#39;plo&#39;)
+)
+
+# Shiny server
+server &lt;- function(input, output){
+  output$plo &lt;- renderPlot({
+    plotcatch(
+      name = input$fishsel, 
+      szrng = input$sizesel, 
+      gearsel = input$gearsel, 
+      datin = otbfimdat)
+  })
+}
+
+# run app
+shinyApp(ui = ui, server = server)</code></pre>
+<p><div style="width: 100% ; height: 400px ; text-align: center; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;" class="muted well">Shiny applications not supported in static R Markdown documents</div></p>
+<p>This is a working application that does what we want. There are of course improvements that can be made for simplifying the interface and making the code more efficient. Here are a few considerations:</p>
+<ol style="list-style-type: decimal">
+<li>Change the data import workflow so that the input data is imported more efficiently into the application. Since these data are “static”, there’s no need to import a massive csv each time. Save it as an RData object outside of the app and import that instead. This will cut down on load times.</li>
+<li>Create a script for functions that is sourced by the application. This will make the application code easier to read and simpler to manage in the long run.</li>
+<li>Think about the layout of the application. This can influence how a “user” experiences an application. A terrible layout will make for a terrible experience. There are many options for Shiny (native Shiny <a href="https://shiny.rstudio.com/articles/layout-guide.html">layouts</a>, <a href="https://rmarkdown.rstudio.com/flexdashboard/">flexdashboard</a>, <a href="https://rstudio.github.io/shinydashboard/">shinydashboard</a>, rendered in <a href="https://shiny.rstudio.com/articles/interactive-docs.html">RMarkdown</a>)</li>
+<li>Create <a href="https://shiny.rstudio.com/articles/dynamic-ui.html">dynamic user inputs</a> that change based on values of the other inputs. For example, Red Drum have a typical size range and it may not make sense to have the default ranges as the entire range of all fish in the database.</li>
+</ol>
 </div>
 <div id="sharing-your-applications" class="section level2">
 <h2>Sharing your applications</h2>
+<p>The real value of Shiny is the ability to host the application online - anyone with access to the internet can access your application. They do not need to know anything about R nor have anything installed (besides a web browser) to use the application.</p>
+<p>There are a few <a href="https://shiny.rstudio.com/deploy/">options</a>, ranging from simple to more difficult. There are tradeoffs with each.</p>
+<ol style="list-style-type: decimal">
+<li><p>Deploy to the cloud on <a href="https://www.shinyapps.io/">shinyapps.io</a>. This is very simple thanks to the <a href="https://rstudio.github.io/rsconnect/">rsconnect</a> package. The advantage is that someone else is maintaining the server and all of your dependencies, but not without a price. The free tier is good for very simple apps with not a lot of users, but you’ll need to purchase a larger plan if you expect anybody but yourself and a few of your colleagues to use the app.</p></li>
+<li><p>Use the open-source <a href="https://rstudio.com/products/shiny/shiny-server/">Shiny Server</a> for full ownership of your application. This requires a bit of knowledge on server maintenance/management, typically on a Unix operating system. You’ll be responsible for maintaining the Shiny server, RStudio server, and any of the application dependencies. If you’re proficient in Unix, this is a very doable option.</p></li>
+<li><p>Use <a href="https://rstudio.com/products/connect/">RStudio Connect</a> as a commercial solution to hosting applications. It’s a business model version, typically for large companies that comes with a price, but still allows a degree of ownership.</p></li>
+</ol>
+</div>
+<div id="final-thoughts" class="section level2">
+<h2>Final thoughts</h2>
+<p>As with all one hour tutorials, we’ve barely scratched the surface of how to use Shiny and what it can provide for you. If you can master Shiny, you’ll find it a valuable asset both for your own work and for collaborating with others, particularly those that need R results to make decisions. Please continue to learn how to use Shiny, using the content in this tutorial and through the resources below.</p>
+<p>If all of this is daunting, try opening a new RMarkdown file in RStudio using the Shiny template. This is a working application. Try modifying, adding, or deleting any of the code to see how it works. Learning by doing is the best approach.</p>
 </div>
 <div id="resources" class="section level2">
 <h2>Resources</h2>
 <ul>
 <li><a href="https://mastering-shiny.org/index.html">Mastering Shiny</a>: By Hadley Wickham, to be published June 2021</li>
 <li><a href="https://github.com/rstudio/cheatsheets/raw/master/shiny.pdf">RStudio Shiny cheatsheet</a></li>
+<li><a href="https://shiny.rstudio.com/gallery/">R Shiny Gallery</a>: Great examples, including source code</li>
+<li><a href="https://github.com/search?q=topic%3Ashiny+org%3Atbep-tech+fork%3Atrue">TBEP Shiny apps</a></li>
 </ul>
 </div>
 

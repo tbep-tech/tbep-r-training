@@ -13,14 +13,14 @@ css: styles.css
 knitr::opts_chunk$set(echo = T, warning = F, message = F, fig.path = 'figure/')
 ```
 
-Full disclaimer: 
+Full disclaimer: Much of this content was pillaged from the [Mastering Shiny](https://mastering-shiny.org/index.html) text.  Please consult that text for a much more informed description of how to build shiny apps!
 
 ## Outline
 
-* [Why Shiny?]
+* [What is and Why Shiny?]
 * [Resources]
 
-## Why Shiny? 
+## What is and why Shiny? 
 
 The simple answer:
 
@@ -33,3 +33,4 @@ Advantages of Shiny: easy to get started, no web experience needed, but fully cu
 ## Resources
 
 * [Mastering Shiny](https://mastering-shiny.org/index.html): By Hadley Wickham, to be published June 2021
+* [RStudio Shiny cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/shiny.pdf)

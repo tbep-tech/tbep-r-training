@@ -29,14 +29,17 @@ Shiny is an R package that lets you create rich, interactive web applications.  
 * Share your analysis easily with colleagues without having to walk them through details of your script
 * Help inform your understanding of an analysis by creating a user interface to quickly evaluate 
 
-In the applied sciences world, Shiny can be a very important tool to "bridge the research-management divide"!  
+In the applied sciences world, Shiny can be a very important tool to "bridge the research-management divide"!  A very simple example is the use of Shiny to replace a 500 page document with hundreds of figures with a simple application that allows the user to jump to an exact slide of the data that they want.   
 
-There are many advantages to using Shiny over other platforms for creating web applications.  As R users, the beauty of Shiny is that you only need to know how to use R.  You do not need to know anything about web programming, such as HTML, CSS, or 
-Advantages of Shiny: easy to get started, no web experience needed, but fully customizable
+There are many advantages to using Shiny over other platforms for creating web applications.  As R users, the beauty of Shiny is that you only need to know how to use R.  You do not need to know anything about web programming, such as HTML, CSS, or JavaScript.  On the other hand, Shiny gives you the power to tap into the broader suite of web programming tools when you're ready to or have a need to expand your application. 
+
+More simply, Shiny lets you create a web interface for any R workflow. This means that whatever custom analysis or graphic you've made can be fully integrated into your dashboard, unlike other platforms that may have rigid and less customizable templates designed for ease of use.  
 
 ## New concepts
 
-Reactivity: your script is no longer linear!  
+Shiny can be challenging at first because it introduces a new way of thinking about your code. "Simple" R scripts are designed to run linearly, being read from top to bottom.  You write your script, source the code to your console, and get some results or objects created after running the script. 
+
+A shiny app runs from an R script, but instead of executing code linearly, it uses *reactive* programming that detects when an input is changed on the application, runs the minimal amount of code that uses that input, then updates the output as needed.  So, rather than thinking of the script as linear, think of it as having interconnected components that share pieces of information to produce the results.  This can be daunting at first because it requires you think about which pieces of your code require inputs from other pieces and how that information is used to create output.  
 
 User interface: inputs, outputs
 server: processing

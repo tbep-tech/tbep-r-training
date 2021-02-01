@@ -1,0 +1,25 @@
+---
+title: "A soft introduction to Shiny"
+output: 
+  html_document:
+    toc: true
+    toc_float: 
+       collapsed: true
+self_contained: yes
+css: styles.css
+---
+
+```{r setup, message = F, warning = F, results = 'hide', echo = F}
+knitr::opts_chunk$set(echo = T, warning = F, message = F, fig.path = 'figure/')
+```
+
+Full disclaimer: 
+
+## Outline
+
+* [Why Shiny?]
+* [Resources]
+
+## Why Shiny? 
+
+## Resources

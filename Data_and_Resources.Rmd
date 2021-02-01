@@ -58,3 +58,9 @@ This is a list of the data sources used in this workshop. For live-coding, pleas
 
 * [Jenny Bryan's **Happy Git and Github for the useR**](http://happygitwithr.com/){target="_blank"}
 * [Coding Club **Intro to Github**](https://ourcodingclub.github.io/2017/02/27/git.html){target="_blank"}
+
+### Additional training topics
+
+* [Writing functions in R](https://tbep-tech.github.io/tbep-r-training/functions.html)
+* [Creating an R package crash course](https://tbep-tech.github.io/tbep-r-training/packages.html)
+* [A soft introduction to Shiny](https://tbep-tech.github.io/tbep-r-training/shiny.html)

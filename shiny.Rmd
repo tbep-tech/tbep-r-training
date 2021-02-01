@@ -47,7 +47,7 @@ A Shiny app runs from an R script, but instead of executing code linearly, it us
 
 This can be daunting at first because it requires you think about which pieces of your code require inputs from other pieces and how that information is used to create output.  Reactivity can be conceptualized by the building blocks of a Shiny app.  Every Shiny app has the following:
 
-* __User interface (UI)__: Includes all inputs and outputs, as well as the appearance of the dashboard
+* __User interface (UI)__: Includes all inputs and outputs, as well as the appearance of the dashboard.  Here, when we say "output" we mean the final product (e.g. a plot, table, etc.) that is placed on the `ui`, but created by processing inputs sent to the `server`.
 * __Server__: The guts or engine of how the inputs are used to create the outputs, this is where your complicated workflow can live.  
 
 In practice, it looks like this: 
@@ -319,6 +319,8 @@ This is a working application that does what we want.  There are of course impro
 1. Think about the layout of the application.  This can influence how a "user" experiences an application.  A terrible layout will make for a terrible experience. There are many options for Shiny (native Shiny [layouts](https://shiny.rstudio.com/articles/layout-guide.html), [flexdashboard](https://rmarkdown.rstudio.com/flexdashboard/), [shinydashboard](https://rstudio.github.io/shinydashboard/), rendered in [RMarkdown](https://shiny.rstudio.com/articles/interactive-docs.html))
 1. Create [dynamic user inputs](https://shiny.rstudio.com/articles/dynamic-ui.html) that change based on values of the other inputs.  For example, Red Drum have a typical size range and it may not make sense to have the default ranges as the entire range of all fish in the database. 
 
+Here's the [source code](https://github.com/fawda123/shinyex) and [hosted application](https://beckmw.shinyapps.io/shinyex/) that includes these changes.
+
 ## Sharing your applications
 
 The real value of Shiny is the ability to host the application online - anyone with access to the internet can access your application.  They do not need to know anything about R nor have anything installed (besides a web browser) to use the application.  
@@ -343,3 +345,4 @@ If all of this is daunting, try opening a new RMarkdown file in RStudio using th
 * [RStudio Shiny cheatsheet](https://github.com/rstudio/cheatsheets/raw/master/shiny.pdf)
 * [R Shiny Gallery](https://shiny.rstudio.com/gallery/): Great examples, including source code
 * [TBEP Shiny apps](https://github.com/search?q=topic%3Ashiny+org%3Atbep-tech+fork%3Atrue)
+* [Example catch data application](https://beckmw.shinyapps.io/shinyex/) and [source code](https://github.com/fawda123/shinyex)

@@ -18,6 +18,7 @@ Full disclaimer: Much of this content was pillaged from the [Mastering Shiny](ht
 ## Outline
 
 * [What is and Why Shiny?]
+* [New concepts]
 * [Resources]
 
 ## What is and why Shiny? 
@@ -26,7 +27,22 @@ The simple answer:
 
 Advantages of Shiny: easy to get started, no web experience needed, but fully customizable
 
-## What is reactivity?
+## New concepts
+
+Reactivity: your script is no longer linear!  
+
+User interface: inputs, outputs
+server: processing
+
+## Using RMarkdown for shiny apps
+
+## A motivating example
+
+Last year we talked about using R to [write your own functions](https://tbep-tech.github.io/tbep-r-training/functions.html).  We started with a simple example of filtering and plotting data from the FWC [Fisheries Independent Monitoring](https://geodata.myfwc.com/datasets/68fb6774b58a40a08a6f87959aaa53c4_26/data) dataset.  
+
+## Debugging R Shiny apps
+
+Use the browser() but DO NOT run from the knit option. 
 
 ## Sharing your applications
 

@@ -19,11 +19,11 @@ jobs:
       - uses: r-lib/actions/setup-pandoc@v1
       - name: Install macOS dependencies
         run: |
-          brew install cairo
           brew install gdal
       - name: Install R package dependencies
         run: |
-          install.packages(c("rmarkdown", "dplyr", "tidyverse", "sf", "mapview", "remotes", "shiny", "crayon"))
+          install.packages(c("rmarkdown", "dplyr", "tidyverse", "sf", "mapview", "remotes", "shiny"))
+          remotes::install_version('crayon', version = '1.3.4')
           remotes::install_github("tbep-tech/tbeptools")
         shell: Rscript {0}
       - name: Render site

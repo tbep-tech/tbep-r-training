@@ -28,6 +28,15 @@
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
   pre:not([class]) {
@@ -73,7 +82,8 @@ h6 {
 }
 </style>
 
-<link rel="stylesheet" href="css\styles.css" type="text/css" />
+
+<link rel="stylesheet" href="css/styles.css" type="text/css" />
 
 
 
@@ -352,14 +362,14 @@ div.tocify {
       <ul class="nav navbar-nav">
         <li>
   <a href="R_Basics.html">
-    <span class="fa fa-university"></span>
+    <span class="fas fa-university"></span>
      
     R Basics
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-wrench"></span>
+    <span class="fas fa-wrench"></span>
      
     Data wrangling
      
@@ -376,14 +386,14 @@ div.tocify {
 </li>
 <li>
   <a href="Viz_and_Graphics.html">
-    <span class="fa fa-chart-line"></span>
+    <span class="fas fa-chart-line"></span>
      
     Viz and graphics
   </a>
 </li>
 <li>
   <a href="mapping.html">
-    <span class="fa fa-globe-americas"></span>
+    <span class="fas fa-globe-americas"></span>
      
     Spatial analysis and mapping
   </a>
@@ -392,14 +402,14 @@ div.tocify {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="Data_and_Resources.html">
-    <span class="fa fa-list"></span>
+    <span class="fas fa-list"></span>
      
     Data and resources
   </a>
 </li>
 <li>
   <a href="https://github.com/tbep-tech/tbep-r-training">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -460,6 +470,14 @@ install.packages(&#39;tidyverse&#39;)</code></pre>
 <p>After installation, we can load the package:</p>
 <pre class="r"><code># load
 library(tidyverse)</code></pre>
+<pre><code>## ── [1mAttaching packages[22m ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## [32m✔[39m [34mggplot2[39m 3.3.3     [32m✔[39m [34mpurrr  [39m 0.3.4
+## [32m✔[39m [34mtibble [39m 3.0.6     [32m✔[39m [34mstringr[39m 1.4.0
+## [32m✔[39m [34mtidyr  [39m 1.1.2     [32m✔[39m [34mforcats[39m 0.5.1
+## [32m✔[39m [34mreadr  [39m 1.4.0</code></pre>
+<pre><code>## ── [1mConflicts[22m ────────────────────────────────────────── tidyverse_conflicts() ──
+## [31m✖[39m [34mdplyr[39m::[32mfilter()[39m masks [34mstats[39m::filter()
+## [31m✖[39m [34mdplyr[39m::[32mlag()[39m    masks [34mstats[39m::lag()</code></pre>
 <p>Notice that the messages you get after loading are a bit different from other packages. That’s because tidyverse is a package that manages other packages. Loading tidyverse will load all of the core packagbes:</p>
 <ul>
 <li><a href="http://ggplot2.tidyverse.org" target="_blank">ggplot2</a>, for data visualisation.</li>
@@ -513,31 +531,34 @@ fishdat &lt;- read_csv(&#39;data/fishdat.csv&#39;)
 
 # see first six rows
 head(fishdat)</code></pre>
-<pre><code>## # A tibble: 6 x 12
-##   OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
-##      &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
-## 1  1550020 TBM1996032006 1996-03-20     1996   300 2018-04-12 10:27:38        0              0       0       0          0               1
-## 2  1550749 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0      54          0               0
-## 3  1550750 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0       0          1               0
-## 4  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23        0              0       0      80          0               0
-## 5  1550828 TBM1996042601 1996-04-26     1996   160 2018-04-12 10:25:23        0              0       0       0          4               0
-## 6  1550838 TBM1996051312 1996-05-13     1996   300 2018-04-12 10:25:23        0              0       0       0          0               1</code></pre>
+<pre><code>## [90m# A tibble: 6 x 12[39m
+##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Bluefish
+##      [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;date&gt;[39m[23m        [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dttm&gt;[39m[23m                 [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m  1[4m5[24m[4m5[24m[4m0[24m020 TBM19960… 1996-03-20     [4m1[24m996   300 2018-04-12 [90m10:27:38[39m        0
+## [90m2[39m  1[4m5[24m[4m5[24m[4m0[24m749 TBM19960… 1996-03-20     [4m1[24m996    22 2018-04-12 [90m10:25:23[39m        0
+## [90m3[39m  1[4m5[24m[4m5[24m[4m0[24m750 TBM19960… 1996-03-20     [4m1[24m996    22 2018-04-12 [90m10:25:23[39m        0
+## [90m4[39m  1[4m5[24m[4m5[24m[4m0[24m762 TBM19960… 1996-03-22     [4m1[24m996    20 2018-04-12 [90m10:25:23[39m        0
+## [90m5[39m  1[4m5[24m[4m5[24m[4m0[24m828 TBM19960… 1996-04-26     [4m1[24m996   160 2018-04-12 [90m10:25:23[39m        0
+## [90m6[39m  1[4m5[24m[4m5[24m[4m0[24m838 TBM19960… 1996-05-13     [4m1[24m996   300 2018-04-12 [90m10:25:23[39m        0
+## [90m# … with 5 more variables: `Common Snook` [3m[90m&lt;dbl&gt;[90m[23m, Mullets [3m[90m&lt;dbl&gt;[90m[23m, Pinfish [3m[90m&lt;dbl&gt;[90m[23m,[39m
+## [90m#   `Red Drum` [3m[90m&lt;dbl&gt;[90m[23m, `Sand Seatrout` [3m[90m&lt;dbl&gt;[90m[23m[39m</code></pre>
 <pre class="r"><code># dimensions
 dim(fishdat)</code></pre>
 <pre><code>## [1] 2844   12</code></pre>
 <pre class="r"><code># column names
 names(fishdat)</code></pre>
-<pre><code>##  [1] &quot;OBJECTID&quot;      &quot;Reference&quot;     &quot;Sampling_Date&quot; &quot;yr&quot;            &quot;Gear&quot;          &quot;ExDate&quot;        &quot;Bluefish&quot;      &quot;Common Snook&quot;  &quot;Mullets&quot;      
-## [10] &quot;Pinfish&quot;       &quot;Red Drum&quot;      &quot;Sand Seatrout&quot;</code></pre>
+<pre><code>##  [1] &quot;OBJECTID&quot;      &quot;Reference&quot;     &quot;Sampling_Date&quot; &quot;yr&quot;           
+##  [5] &quot;Gear&quot;          &quot;ExDate&quot;        &quot;Bluefish&quot;      &quot;Common Snook&quot; 
+##  [9] &quot;Mullets&quot;       &quot;Pinfish&quot;       &quot;Red Drum&quot;      &quot;Sand Seatrout&quot;</code></pre>
 <pre class="r"><code># structure
 str(fishdat)</code></pre>
-<pre><code>## tibble [2,844 x 12] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+<pre><code>## spec_tbl_df [2,844 × 12] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
 ##  $ OBJECTID     : num [1:2844] 1550020 1550749 1550750 1550762 1550828 ...
 ##  $ Reference    : chr [1:2844] &quot;TBM1996032006&quot; &quot;TBM1996032004&quot; &quot;TBM1996032004&quot; &quot;TBM1996032207&quot; ...
-##  $ Sampling_Date: Date[1:2844], format: &quot;1996-03-20&quot; &quot;1996-03-20&quot; &quot;1996-03-20&quot; &quot;1996-03-22&quot; ...
+##  $ Sampling_Date: Date[1:2844], format: &quot;1996-03-20&quot; &quot;1996-03-20&quot; ...
 ##  $ yr           : num [1:2844] 1996 1996 1996 1996 1996 ...
 ##  $ Gear         : num [1:2844] 300 22 22 20 160 300 300 300 300 22 ...
-##  $ ExDate       : POSIXct[1:2844], format: &quot;2018-04-12 10:27:38&quot; &quot;2018-04-12 10:25:23&quot; &quot;2018-04-12 10:25:23&quot; &quot;2018-04-12 10:25:23&quot; ...
+##  $ ExDate       : POSIXct[1:2844], format: &quot;2018-04-12 10:27:38&quot; &quot;2018-04-12 10:25:23&quot; ...
 ##  $ Bluefish     : num [1:2844] 0 0 0 0 0 0 0 0 0 0 ...
 ##  $ Common Snook : num [1:2844] 0 0 0 0 0 0 0 0 0 0 ...
 ##  $ Mullets      : num [1:2844] 0 0 0 0 0 0 0 0 0 0 ...
@@ -546,18 +567,18 @@ str(fishdat)</code></pre>
 ##  $ Sand Seatrout: num [1:2844] 1 0 0 0 0 1 5 66 0 0 ...
 ##  - attr(*, &quot;spec&quot;)=
 ##   .. cols(
-##   ..   OBJECTID = col_double(),
-##   ..   Reference = col_character(),
-##   ..   Sampling_Date = col_date(format = &quot;&quot;),
-##   ..   yr = col_double(),
-##   ..   Gear = col_double(),
-##   ..   ExDate = col_datetime(format = &quot;&quot;),
-##   ..   Bluefish = col_double(),
-##   ..   `Common Snook` = col_double(),
-##   ..   Mullets = col_double(),
-##   ..   Pinfish = col_double(),
-##   ..   `Red Drum` = col_double(),
-##   ..   `Sand Seatrout` = col_double()
+##   ..   OBJECTID = [32mcol_double()[39m,
+##   ..   Reference = [31mcol_character()[39m,
+##   ..   Sampling_Date = [34mcol_date(format = &quot;&quot;)[39m,
+##   ..   yr = [32mcol_double()[39m,
+##   ..   Gear = [32mcol_double()[39m,
+##   ..   ExDate = [34mcol_datetime(format = &quot;&quot;)[39m,
+##   ..   Bluefish = [32mcol_double()[39m,
+##   ..   `Common Snook` = [32mcol_double()[39m,
+##   ..   Mullets = [32mcol_double()[39m,
+##   ..   Pinfish = [32mcol_double()[39m,
+##   ..   `Red Drum` = [32mcol_double()[39m,
+##   ..   `Sand Seatrout` = [32mcol_double()[39m
 ##   .. )</code></pre>
 <div id="selecting" class="section level3">
 <h3>Selecting</h3>
@@ -565,39 +586,40 @@ str(fishdat)</code></pre>
 <pre class="r"><code># first, select some columns
 dplyr_sel1 &lt;- select(fishdat, Sampling_Date, Gear, Pinfish)
 head(dplyr_sel1)</code></pre>
-<pre><code>## # A tibble: 6 x 3
+<pre><code>## [90m# A tibble: 6 x 3[39m
 ##   Sampling_Date  Gear Pinfish
-##   &lt;date&gt;        &lt;dbl&gt;   &lt;dbl&gt;
-## 1 1996-03-20      300       0
-## 2 1996-03-20       22      54
-## 3 1996-03-20       22       0
-## 4 1996-03-22       20      80
-## 5 1996-04-26      160       0
-## 6 1996-05-13      300       0</code></pre>
+##   [3m[90m&lt;date&gt;[39m[23m        [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m 1996-03-20      300       0
+## [90m2[39m 1996-03-20       22      54
+## [90m3[39m 1996-03-20       22       0
+## [90m4[39m 1996-03-22       20      80
+## [90m5[39m 1996-04-26      160       0
+## [90m6[39m 1996-05-13      300       0</code></pre>
 <pre class="r"><code># select everything but ObjectId and ExDate
 dplyr_sel2 &lt;- select(fishdat, -OBJECTID, -ExDate)
 head(dplyr_sel2)</code></pre>
-<pre><code>## # A tibble: 6 x 10
-##   Reference     Sampling_Date    yr  Gear Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
-##   &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
-## 1 TBM1996032006 1996-03-20     1996   300        0              0       0       0          0               1
-## 2 TBM1996032004 1996-03-20     1996    22        0              0       0      54          0               0
-## 3 TBM1996032004 1996-03-20     1996    22        0              0       0       0          1               0
-## 4 TBM1996032207 1996-03-22     1996    20        0              0       0      80          0               0
-## 5 TBM1996042601 1996-04-26     1996   160        0              0       0       0          4               0
-## 6 TBM1996051312 1996-05-13     1996   300        0              0       0       0          0               1</code></pre>
+<pre><code>## [90m# A tibble: 6 x 10[39m
+##   Reference Sampling_Date    yr  Gear Bluefish `Common Snook` Mullets Pinfish
+##   [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;date&gt;[39m[23m        [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m    [3m[90m&lt;dbl&gt;[39m[23m          [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m   [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m TBM19960… 1996-03-20     [4m1[24m996   300        0              0       0       0
+## [90m2[39m TBM19960… 1996-03-20     [4m1[24m996    22        0              0       0      54
+## [90m3[39m TBM19960… 1996-03-20     [4m1[24m996    22        0              0       0       0
+## [90m4[39m TBM19960… 1996-03-22     [4m1[24m996    20        0              0       0      80
+## [90m5[39m TBM19960… 1996-04-26     [4m1[24m996   160        0              0       0       0
+## [90m6[39m TBM19960… 1996-05-13     [4m1[24m996   300        0              0       0       0
+## [90m# … with 2 more variables: `Red Drum` [3m[90m&lt;dbl&gt;[90m[23m, `Sand Seatrout` [3m[90m&lt;dbl&gt;[90m[23m[39m</code></pre>
 <pre class="r"><code># select columns that contain the letter c
 dplyr_sel3 &lt;- select(fishdat, matches(&#39;c&#39;))
 head(dplyr_sel3)</code></pre>
-<pre><code>## # A tibble: 6 x 3
+<pre><code>## [90m# A tibble: 6 x 3[39m
 ##   OBJECTID Reference     `Common Snook`
-##      &lt;dbl&gt; &lt;chr&gt;                  &lt;dbl&gt;
-## 1  1550020 TBM1996032006              0
-## 2  1550749 TBM1996032004              0
-## 3  1550750 TBM1996032004              0
-## 4  1550762 TBM1996032207              0
-## 5  1550828 TBM1996042601              0
-## 6  1550838 TBM1996051312              0</code></pre>
+##      [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m                  [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m  1[4m5[24m[4m5[24m[4m0[24m020 TBM1996032006              0
+## [90m2[39m  1[4m5[24m[4m5[24m[4m0[24m749 TBM1996032004              0
+## [90m3[39m  1[4m5[24m[4m5[24m[4m0[24m750 TBM1996032004              0
+## [90m4[39m  1[4m5[24m[4m5[24m[4m0[24m762 TBM1996032207              0
+## [90m5[39m  1[4m5[24m[4m5[24m[4m0[24m828 TBM1996042601              0
+## [90m6[39m  1[4m5[24m[4m5[24m[4m0[24m838 TBM1996051312              0</code></pre>
 </div>
 <div id="filtering" class="section level3">
 <h3>Filtering</h3>
@@ -605,27 +627,31 @@ head(dplyr_sel3)</code></pre>
 <pre class="r"><code># now filter observations with more than 30 Pinfish caught
 dplyr_high_catch &lt;- filter(fishdat, Pinfish &gt; 30)
 head(dplyr_high_catch)</code></pre>
-<pre><code>## # A tibble: 6 x 12
-##   OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
-##      &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
-## 1  1550749 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0      54          0               0
-## 2  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23        0              0       0      80          0               0
-## 3  1555103 TBM1996022010 1996-02-20     1996    22 2018-04-12 10:25:29        0              0       0      50          0               0
-## 4  1572931 TBM1996080603 1996-08-06     1996   160 2018-04-12 10:25:36        0              0       0      46          0               0
-## 5  1572932 TBM1996080604 1996-08-06     1996   160 2018-04-12 10:25:36        0              0       0     163          0               0
-## 6  1573079 TBM1996062104 1996-06-21     1996    20 2018-04-12 10:26:15        0              0       0      54          0               0</code></pre>
+<pre><code>## [90m# A tibble: 6 x 12[39m
+##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Bluefish
+##      [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;date&gt;[39m[23m        [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dttm&gt;[39m[23m                 [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m  1[4m5[24m[4m5[24m[4m0[24m749 TBM19960… 1996-03-20     [4m1[24m996    22 2018-04-12 [90m10:25:23[39m        0
+## [90m2[39m  1[4m5[24m[4m5[24m[4m0[24m762 TBM19960… 1996-03-22     [4m1[24m996    20 2018-04-12 [90m10:25:23[39m        0
+## [90m3[39m  1[4m5[24m[4m5[24m[4m5[24m103 TBM19960… 1996-02-20     [4m1[24m996    22 2018-04-12 [90m10:25:29[39m        0
+## [90m4[39m  1[4m5[24m[4m7[24m[4m2[24m931 TBM19960… 1996-08-06     [4m1[24m996   160 2018-04-12 [90m10:25:36[39m        0
+## [90m5[39m  1[4m5[24m[4m7[24m[4m2[24m932 TBM19960… 1996-08-06     [4m1[24m996   160 2018-04-12 [90m10:25:36[39m        0
+## [90m6[39m  1[4m5[24m[4m7[24m[4m3[24m079 TBM19960… 1996-06-21     [4m1[24m996    20 2018-04-12 [90m10:26:15[39m        0
+## [90m# … with 5 more variables: `Common Snook` [3m[90m&lt;dbl&gt;[90m[23m, Mullets [3m[90m&lt;dbl&gt;[90m[23m, Pinfish [3m[90m&lt;dbl&gt;[90m[23m,[39m
+## [90m#   `Red Drum` [3m[90m&lt;dbl&gt;[90m[23m, `Sand Seatrout` [3m[90m&lt;dbl&gt;[90m[23m[39m</code></pre>
 <pre class="r"><code># now filter observations for Gear type as 20
 dplyr_gear20 &lt;- filter(fishdat, Gear == 20)
 head(dplyr_gear20)</code></pre>
-<pre><code>## # A tibble: 6 x 12
-##   OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
-##      &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
-## 1  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23        0              0       0      80          0               0
-## 2  1555259 TBM1996022104 1996-02-21     1996    20 2018-04-12 10:25:31        0              0       0      29          0               0
-## 3  1573079 TBM1996062104 1996-06-21     1996    20 2018-04-12 10:26:15        0              0       0      54          0               0
-## 4  1576651 TBM1996022007 1996-02-20     1996    20 2018-04-12 10:25:24        0              0       0       2          0               0
-## 5  1584465 TBM1996061917 1996-06-19     1996    20 2018-04-12 10:26:04        0              0       0      19          0               0
-## 6  1584803 TBM1996011905 1996-01-19     1996    20 2018-04-12 10:25:26        0              0       0       0          1               0</code></pre>
+<pre><code>## [90m# A tibble: 6 x 12[39m
+##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Bluefish
+##      [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;date&gt;[39m[23m        [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dttm&gt;[39m[23m                 [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m  1[4m5[24m[4m5[24m[4m0[24m762 TBM19960… 1996-03-22     [4m1[24m996    20 2018-04-12 [90m10:25:23[39m        0
+## [90m2[39m  1[4m5[24m[4m5[24m[4m5[24m259 TBM19960… 1996-02-21     [4m1[24m996    20 2018-04-12 [90m10:25:31[39m        0
+## [90m3[39m  1[4m5[24m[4m7[24m[4m3[24m079 TBM19960… 1996-06-21     [4m1[24m996    20 2018-04-12 [90m10:26:15[39m        0
+## [90m4[39m  1[4m5[24m[4m7[24m[4m6[24m651 TBM19960… 1996-02-20     [4m1[24m996    20 2018-04-12 [90m10:25:24[39m        0
+## [90m5[39m  1[4m5[24m[4m8[24m[4m4[24m465 TBM19960… 1996-06-19     [4m1[24m996    20 2018-04-12 [90m10:26:04[39m        0
+## [90m6[39m  1[4m5[24m[4m8[24m[4m4[24m803 TBM19960… 1996-01-19     [4m1[24m996    20 2018-04-12 [90m10:25:26[39m        0
+## [90m# … with 5 more variables: `Common Snook` [3m[90m&lt;dbl&gt;[90m[23m, Mullets [3m[90m&lt;dbl&gt;[90m[23m, Pinfish [3m[90m&lt;dbl&gt;[90m[23m,[39m
+## [90m#   `Red Drum` [3m[90m&lt;dbl&gt;[90m[23m, `Sand Seatrout` [3m[90m&lt;dbl&gt;[90m[23m[39m</code></pre>
 <p>Filtering can take a bit of time to master because there are several ways to tell R what you want. Within the filter function, the working part is a <em>logical selection</em> of <code>TRUE</code> and <code>FALSE</code> values that are used to select rows (<code>TRUE</code> means I want that row, <code>FALSE</code> means I don’t). Every selection within the filter function, no matter how complicated, will always be a T/F vector. This is similar to running queries on a database if you’re familiar with SQL.</p>
 <p>To use filtering effectively, you have to know how to select the observations that you want using the comparison operators. R provides the standard suite: <code>&gt;</code>, <code>&gt;=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>!=</code> (not equal), and <code>==</code> (equal). When you’re starting out with R, the easiest mistake to make is to use <code>=</code> instead of <code>==</code> when testing for equality.</p>
 <p>Multiple arguments to <code>filter()</code> are combined with “and”: every expression must be true in order for a row to be included in the output. For other types of combinations, you’ll need to use Boolean operators yourself: <code>&amp;</code> is “and”, <code>|</code> is “or”, and <code>!</code> is “not”. This is the complete set of Boolean operations.</p>
@@ -634,51 +660,59 @@ head(dplyr_gear20)</code></pre>
 <pre class="r"><code># get rows with &gt; 30 and less than 100 Pinfish
 filt1 &lt;- filter(fishdat, Pinfish &gt; 30 &amp; Pinfish &lt; 100)
 head(filt1)</code></pre>
-<pre><code>## # A tibble: 6 x 12
-##   OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
-##      &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
-## 1  1550749 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0      54          0               0
-## 2  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23        0              0       0      80          0               0
-## 3  1555103 TBM1996022010 1996-02-20     1996    22 2018-04-12 10:25:29        0              0       0      50          0               0
-## 4  1572931 TBM1996080603 1996-08-06     1996   160 2018-04-12 10:25:36        0              0       0      46          0               0
-## 5  1573079 TBM1996062104 1996-06-21     1996    20 2018-04-12 10:26:15        0              0       0      54          0               0
-## 6  1635253 TBM1997031016 1997-03-10     1997    20 2018-04-12 10:29:33        0              0       0      66          0               0</code></pre>
+<pre><code>## [90m# A tibble: 6 x 12[39m
+##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Bluefish
+##      [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;date&gt;[39m[23m        [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dttm&gt;[39m[23m                 [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m  1[4m5[24m[4m5[24m[4m0[24m749 TBM19960… 1996-03-20     [4m1[24m996    22 2018-04-12 [90m10:25:23[39m        0
+## [90m2[39m  1[4m5[24m[4m5[24m[4m0[24m762 TBM19960… 1996-03-22     [4m1[24m996    20 2018-04-12 [90m10:25:23[39m        0
+## [90m3[39m  1[4m5[24m[4m5[24m[4m5[24m103 TBM19960… 1996-02-20     [4m1[24m996    22 2018-04-12 [90m10:25:29[39m        0
+## [90m4[39m  1[4m5[24m[4m7[24m[4m2[24m931 TBM19960… 1996-08-06     [4m1[24m996   160 2018-04-12 [90m10:25:36[39m        0
+## [90m5[39m  1[4m5[24m[4m7[24m[4m3[24m079 TBM19960… 1996-06-21     [4m1[24m996    20 2018-04-12 [90m10:26:15[39m        0
+## [90m6[39m  1[4m6[24m[4m3[24m[4m5[24m253 TBM19970… 1997-03-10     [4m1[24m997    20 2018-04-12 [90m10:29:33[39m        0
+## [90m# … with 5 more variables: `Common Snook` [3m[90m&lt;dbl&gt;[90m[23m, Mullets [3m[90m&lt;dbl&gt;[90m[23m, Pinfish [3m[90m&lt;dbl&gt;[90m[23m,[39m
+## [90m#   `Red Drum` [3m[90m&lt;dbl&gt;[90m[23m, `Sand Seatrout` [3m[90m&lt;dbl&gt;[90m[23m[39m</code></pre>
 <pre class="r"><code># get rows with gear type 20 or red drum larger than 40
 filt2 &lt;- filter(fishdat, Gear == 20 | `Red Drum` &gt; 40)
 head(filt2)</code></pre>
-<pre><code>## # A tibble: 6 x 12
-##   OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
-##      &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
-## 1  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23        0              0       0      80          0               0
-## 2  1555259 TBM1996022104 1996-02-21     1996    20 2018-04-12 10:25:31        0              0       0      29          0               0
-## 3  1573079 TBM1996062104 1996-06-21     1996    20 2018-04-12 10:26:15        0              0       0      54          0               0
-## 4  1576651 TBM1996022007 1996-02-20     1996    20 2018-04-12 10:25:24        0              0       0       2          0               0
-## 5  1584465 TBM1996061917 1996-06-19     1996    20 2018-04-12 10:26:04        0              0       0      19          0               0
-## 6  1584803 TBM1996011905 1996-01-19     1996    20 2018-04-12 10:25:26        0              0       0       0          1               0</code></pre>
+<pre><code>## [90m# A tibble: 6 x 12[39m
+##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Bluefish
+##      [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;date&gt;[39m[23m        [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dttm&gt;[39m[23m                 [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m  1[4m5[24m[4m5[24m[4m0[24m762 TBM19960… 1996-03-22     [4m1[24m996    20 2018-04-12 [90m10:25:23[39m        0
+## [90m2[39m  1[4m5[24m[4m5[24m[4m5[24m259 TBM19960… 1996-02-21     [4m1[24m996    20 2018-04-12 [90m10:25:31[39m        0
+## [90m3[39m  1[4m5[24m[4m7[24m[4m3[24m079 TBM19960… 1996-06-21     [4m1[24m996    20 2018-04-12 [90m10:26:15[39m        0
+## [90m4[39m  1[4m5[24m[4m7[24m[4m6[24m651 TBM19960… 1996-02-20     [4m1[24m996    20 2018-04-12 [90m10:25:24[39m        0
+## [90m5[39m  1[4m5[24m[4m8[24m[4m4[24m465 TBM19960… 1996-06-19     [4m1[24m996    20 2018-04-12 [90m10:26:04[39m        0
+## [90m6[39m  1[4m5[24m[4m8[24m[4m4[24m803 TBM19960… 1996-01-19     [4m1[24m996    20 2018-04-12 [90m10:25:26[39m        0
+## [90m# … with 5 more variables: `Common Snook` [3m[90m&lt;dbl&gt;[90m[23m, Mullets [3m[90m&lt;dbl&gt;[90m[23m, Pinfish [3m[90m&lt;dbl&gt;[90m[23m,[39m
+## [90m#   `Red Drum` [3m[90m&lt;dbl&gt;[90m[23m, `Sand Seatrout` [3m[90m&lt;dbl&gt;[90m[23m[39m</code></pre>
 <pre class="r"><code># get rows gear 20 or gear 5
 filt3 &lt;- filter(fishdat, Gear == 20 | Gear == 5)
 head(filt3)</code></pre>
-<pre><code>## # A tibble: 6 x 12
-##   OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
-##      &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
-## 1  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23        0              0       0      80          0               0
-## 2  1555259 TBM1996022104 1996-02-21     1996    20 2018-04-12 10:25:31        0              0       0      29          0               0
-## 3  1573079 TBM1996062104 1996-06-21     1996    20 2018-04-12 10:26:15        0              0       0      54          0               0
-## 4  1576651 TBM1996022007 1996-02-20     1996    20 2018-04-12 10:25:24        0              0       0       2          0               0
-## 5  1584465 TBM1996061917 1996-06-19     1996    20 2018-04-12 10:26:04        0              0       0      19          0               0
-## 6  1584803 TBM1996011905 1996-01-19     1996    20 2018-04-12 10:25:26        0              0       0       0          1               0</code></pre>
+<pre><code>## [90m# A tibble: 6 x 12[39m
+##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Bluefish
+##      [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;date&gt;[39m[23m        [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dttm&gt;[39m[23m                 [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m  1[4m5[24m[4m5[24m[4m0[24m762 TBM19960… 1996-03-22     [4m1[24m996    20 2018-04-12 [90m10:25:23[39m        0
+## [90m2[39m  1[4m5[24m[4m5[24m[4m5[24m259 TBM19960… 1996-02-21     [4m1[24m996    20 2018-04-12 [90m10:25:31[39m        0
+## [90m3[39m  1[4m5[24m[4m7[24m[4m3[24m079 TBM19960… 1996-06-21     [4m1[24m996    20 2018-04-12 [90m10:26:15[39m        0
+## [90m4[39m  1[4m5[24m[4m7[24m[4m6[24m651 TBM19960… 1996-02-20     [4m1[24m996    20 2018-04-12 [90m10:25:24[39m        0
+## [90m5[39m  1[4m5[24m[4m8[24m[4m4[24m465 TBM19960… 1996-06-19     [4m1[24m996    20 2018-04-12 [90m10:26:04[39m        0
+## [90m6[39m  1[4m5[24m[4m8[24m[4m4[24m803 TBM19960… 1996-01-19     [4m1[24m996    20 2018-04-12 [90m10:25:26[39m        0
+## [90m# … with 5 more variables: `Common Snook` [3m[90m&lt;dbl&gt;[90m[23m, Mullets [3m[90m&lt;dbl&gt;[90m[23m, Pinfish [3m[90m&lt;dbl&gt;[90m[23m,[39m
+## [90m#   `Red Drum` [3m[90m&lt;dbl&gt;[90m[23m, `Sand Seatrout` [3m[90m&lt;dbl&gt;[90m[23m[39m</code></pre>
 <pre class="r"><code># get rows with gear 20 or gear 5 using different syntax
 filt4 &lt;- filter(fishdat, Gear %in% c(20, 5))
 head(filt4)</code></pre>
-<pre><code>## # A tibble: 6 x 12
-##   OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
-##      &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
-## 1  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23        0              0       0      80          0               0
-## 2  1555259 TBM1996022104 1996-02-21     1996    20 2018-04-12 10:25:31        0              0       0      29          0               0
-## 3  1573079 TBM1996062104 1996-06-21     1996    20 2018-04-12 10:26:15        0              0       0      54          0               0
-## 4  1576651 TBM1996022007 1996-02-20     1996    20 2018-04-12 10:25:24        0              0       0       2          0               0
-## 5  1584465 TBM1996061917 1996-06-19     1996    20 2018-04-12 10:26:04        0              0       0      19          0               0
-## 6  1584803 TBM1996011905 1996-01-19     1996    20 2018-04-12 10:25:26        0              0       0       0          1               0</code></pre>
+<pre><code>## [90m# A tibble: 6 x 12[39m
+##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Bluefish
+##      [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;date&gt;[39m[23m        [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dttm&gt;[39m[23m                 [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m  1[4m5[24m[4m5[24m[4m0[24m762 TBM19960… 1996-03-22     [4m1[24m996    20 2018-04-12 [90m10:25:23[39m        0
+## [90m2[39m  1[4m5[24m[4m5[24m[4m5[24m259 TBM19960… 1996-02-21     [4m1[24m996    20 2018-04-12 [90m10:25:31[39m        0
+## [90m3[39m  1[4m5[24m[4m7[24m[4m3[24m079 TBM19960… 1996-06-21     [4m1[24m996    20 2018-04-12 [90m10:26:15[39m        0
+## [90m4[39m  1[4m5[24m[4m7[24m[4m6[24m651 TBM19960… 1996-02-20     [4m1[24m996    20 2018-04-12 [90m10:25:24[39m        0
+## [90m5[39m  1[4m5[24m[4m8[24m[4m4[24m465 TBM19960… 1996-06-19     [4m1[24m996    20 2018-04-12 [90m10:26:04[39m        0
+## [90m6[39m  1[4m5[24m[4m8[24m[4m4[24m803 TBM19960… 1996-01-19     [4m1[24m996    20 2018-04-12 [90m10:25:26[39m        0
+## [90m# … with 5 more variables: `Common Snook` [3m[90m&lt;dbl&gt;[90m[23m, Mullets [3m[90m&lt;dbl&gt;[90m[23m, Pinfish [3m[90m&lt;dbl&gt;[90m[23m,[39m
+## [90m#   `Red Drum` [3m[90m&lt;dbl&gt;[90m[23m, `Sand Seatrout` [3m[90m&lt;dbl&gt;[90m[23m[39m</code></pre>
 <p>As a side note, any variable (i.e., column name) with spaces or non-standard characters can be referenced by enclosing it with backticks (see <a href="http://adv-r.had.co.nz/Environments.html#binding" target="_blank">here</a>).</p>
 </div>
 <div id="mutating" class="section level3">
@@ -687,52 +721,60 @@ head(filt4)</code></pre>
 <pre class="r"><code># add a column as bluefish divided by 100
 dplyr_mut &lt;- mutate(fishdat, Bluefish_p100 = Bluefish / 100)
 head(dplyr_mut)</code></pre>
-<pre><code>## # A tibble: 6 x 13
-##   OBJECTID Reference  Sampling_Date    yr  Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout` Bluefish_p100
-##      &lt;dbl&gt; &lt;chr&gt;      &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;         &lt;dbl&gt;
-## 1  1550020 TBM199603~ 1996-03-20     1996   300 2018-04-12 10:27:38        0              0       0       0          0               1             0
-## 2  1550749 TBM199603~ 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0      54          0               0             0
-## 3  1550750 TBM199603~ 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0       0          1               0             0
-## 4  1550762 TBM199603~ 1996-03-22     1996    20 2018-04-12 10:25:23        0              0       0      80          0               0             0
-## 5  1550828 TBM199604~ 1996-04-26     1996   160 2018-04-12 10:25:23        0              0       0       0          4               0             0
-## 6  1550838 TBM199605~ 1996-05-13     1996   300 2018-04-12 10:25:23        0              0       0       0          0               1             0</code></pre>
+<pre><code>## [90m# A tibble: 6 x 13[39m
+##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Bluefish
+##      [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;date&gt;[39m[23m        [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dttm&gt;[39m[23m                 [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m  1[4m5[24m[4m5[24m[4m0[24m020 TBM19960… 1996-03-20     [4m1[24m996   300 2018-04-12 [90m10:27:38[39m        0
+## [90m2[39m  1[4m5[24m[4m5[24m[4m0[24m749 TBM19960… 1996-03-20     [4m1[24m996    22 2018-04-12 [90m10:25:23[39m        0
+## [90m3[39m  1[4m5[24m[4m5[24m[4m0[24m750 TBM19960… 1996-03-20     [4m1[24m996    22 2018-04-12 [90m10:25:23[39m        0
+## [90m4[39m  1[4m5[24m[4m5[24m[4m0[24m762 TBM19960… 1996-03-22     [4m1[24m996    20 2018-04-12 [90m10:25:23[39m        0
+## [90m5[39m  1[4m5[24m[4m5[24m[4m0[24m828 TBM19960… 1996-04-26     [4m1[24m996   160 2018-04-12 [90m10:25:23[39m        0
+## [90m6[39m  1[4m5[24m[4m5[24m[4m0[24m838 TBM19960… 1996-05-13     [4m1[24m996   300 2018-04-12 [90m10:25:23[39m        0
+## [90m# … with 6 more variables: `Common Snook` [3m[90m&lt;dbl&gt;[90m[23m, Mullets [3m[90m&lt;dbl&gt;[90m[23m, Pinfish [3m[90m&lt;dbl&gt;[90m[23m,[39m
+## [90m#   `Red Drum` [3m[90m&lt;dbl&gt;[90m[23m, `Sand Seatrout` [3m[90m&lt;dbl&gt;[90m[23m, Bluefish_p100 [3m[90m&lt;dbl&gt;[90m[23m[39m</code></pre>
 <pre class="r"><code># add a column for many/few mullet
 dplyr_mut2 &lt;- mutate(fishdat, mullet_cat = ifelse(Mullets &lt; 20, &#39;few&#39;, &#39;many&#39;))
 head(dplyr_mut2)</code></pre>
-<pre><code>## # A tibble: 6 x 13
-##   OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout` mullet_cat
-##      &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt; &lt;chr&gt;     
-## 1  1550020 TBM1996032006 1996-03-20     1996   300 2018-04-12 10:27:38        0              0       0       0          0               1 few       
-## 2  1550749 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0      54          0               0 few       
-## 3  1550750 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0       0          1               0 few       
-## 4  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23        0              0       0      80          0               0 few       
-## 5  1550828 TBM1996042601 1996-04-26     1996   160 2018-04-12 10:25:23        0              0       0       0          4               0 few       
-## 6  1550838 TBM1996051312 1996-05-13     1996   300 2018-04-12 10:25:23        0              0       0       0          0               1 few</code></pre>
+<pre><code>## [90m# A tibble: 6 x 13[39m
+##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Bluefish
+##      [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;date&gt;[39m[23m        [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dttm&gt;[39m[23m                 [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m  1[4m5[24m[4m5[24m[4m0[24m020 TBM19960… 1996-03-20     [4m1[24m996   300 2018-04-12 [90m10:27:38[39m        0
+## [90m2[39m  1[4m5[24m[4m5[24m[4m0[24m749 TBM19960… 1996-03-20     [4m1[24m996    22 2018-04-12 [90m10:25:23[39m        0
+## [90m3[39m  1[4m5[24m[4m5[24m[4m0[24m750 TBM19960… 1996-03-20     [4m1[24m996    22 2018-04-12 [90m10:25:23[39m        0
+## [90m4[39m  1[4m5[24m[4m5[24m[4m0[24m762 TBM19960… 1996-03-22     [4m1[24m996    20 2018-04-12 [90m10:25:23[39m        0
+## [90m5[39m  1[4m5[24m[4m5[24m[4m0[24m828 TBM19960… 1996-04-26     [4m1[24m996   160 2018-04-12 [90m10:25:23[39m        0
+## [90m6[39m  1[4m5[24m[4m5[24m[4m0[24m838 TBM19960… 1996-05-13     [4m1[24m996   300 2018-04-12 [90m10:25:23[39m        0
+## [90m# … with 6 more variables: `Common Snook` [3m[90m&lt;dbl&gt;[90m[23m, Mullets [3m[90m&lt;dbl&gt;[90m[23m, Pinfish [3m[90m&lt;dbl&gt;[90m[23m,[39m
+## [90m#   `Red Drum` [3m[90m&lt;dbl&gt;[90m[23m, `Sand Seatrout` [3m[90m&lt;dbl&gt;[90m[23m, mullet_cat [3m[90m&lt;chr&gt;[90m[23m[39m</code></pre>
 <p>Some other useful dplyr functions include <code>arrange</code> to sort the observations (rows) by a column and <code>rename</code> to (you guessed it) rename a column.</p>
 <pre class="r"><code># arrange by maximum size
 dplyr_arr &lt;- arrange(fishdat, `Sand Seatrout`)
 head(dplyr_arr)</code></pre>
-<pre><code>## # A tibble: 6 x 12
-##   OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Bluefish `Common Snook` Mullets Pinfish `Red Drum` `Sand Seatrout`
-##      &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt;          &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
-## 1  1550749 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0      54          0               0
-## 2  1550750 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0              0       0       0          1               0
-## 3  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23        0              0       0      80          0               0
-## 4  1550828 TBM1996042601 1996-04-26     1996   160 2018-04-12 10:25:23        0              0       0       0          4               0
-## 5  1551311 TBM1996032209 1996-03-22     1996   300 2018-04-12 10:25:20        0              0       0       1          0               0
-## 6  1551335 TBM1996041807 1996-04-18     1996    22 2018-04-12 10:25:24        0              0       0       1          0               0</code></pre>
+<pre><code>## [90m# A tibble: 6 x 12[39m
+##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Bluefish
+##      [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;date&gt;[39m[23m        [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dttm&gt;[39m[23m                 [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m  1[4m5[24m[4m5[24m[4m0[24m749 TBM19960… 1996-03-20     [4m1[24m996    22 2018-04-12 [90m10:25:23[39m        0
+## [90m2[39m  1[4m5[24m[4m5[24m[4m0[24m750 TBM19960… 1996-03-20     [4m1[24m996    22 2018-04-12 [90m10:25:23[39m        0
+## [90m3[39m  1[4m5[24m[4m5[24m[4m0[24m762 TBM19960… 1996-03-22     [4m1[24m996    20 2018-04-12 [90m10:25:23[39m        0
+## [90m4[39m  1[4m5[24m[4m5[24m[4m0[24m828 TBM19960… 1996-04-26     [4m1[24m996   160 2018-04-12 [90m10:25:23[39m        0
+## [90m5[39m  1[4m5[24m[4m5[24m[4m1[24m311 TBM19960… 1996-03-22     [4m1[24m996   300 2018-04-12 [90m10:25:20[39m        0
+## [90m6[39m  1[4m5[24m[4m5[24m[4m1[24m335 TBM19960… 1996-04-18     [4m1[24m996    22 2018-04-12 [90m10:25:24[39m        0
+## [90m# … with 5 more variables: `Common Snook` [3m[90m&lt;dbl&gt;[90m[23m, Mullets [3m[90m&lt;dbl&gt;[90m[23m, Pinfish [3m[90m&lt;dbl&gt;[90m[23m,[39m
+## [90m#   `Red Drum` [3m[90m&lt;dbl&gt;[90m[23m, `Sand Seatrout` [3m[90m&lt;dbl&gt;[90m[23m[39m</code></pre>
 <pre class="r"><code># rename some columns
 dplyr_rnm &lt;- rename(fishdat, snook = `Common Snook`)
 head(dplyr_rnm)</code></pre>
-<pre><code>## # A tibble: 6 x 12
-##   OBJECTID Reference     Sampling_Date    yr  Gear ExDate              Bluefish snook Mullets Pinfish `Red Drum` `Sand Seatrout`
-##      &lt;dbl&gt; &lt;chr&gt;         &lt;date&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dttm&gt;                 &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;      &lt;dbl&gt;           &lt;dbl&gt;
-## 1  1550020 TBM1996032006 1996-03-20     1996   300 2018-04-12 10:27:38        0     0       0       0          0               1
-## 2  1550749 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0     0       0      54          0               0
-## 3  1550750 TBM1996032004 1996-03-20     1996    22 2018-04-12 10:25:23        0     0       0       0          1               0
-## 4  1550762 TBM1996032207 1996-03-22     1996    20 2018-04-12 10:25:23        0     0       0      80          0               0
-## 5  1550828 TBM1996042601 1996-04-26     1996   160 2018-04-12 10:25:23        0     0       0       0          4               0
-## 6  1550838 TBM1996051312 1996-05-13     1996   300 2018-04-12 10:25:23        0     0       0       0          0               1</code></pre>
+<pre><code>## [90m# A tibble: 6 x 12[39m
+##   OBJECTID Reference Sampling_Date    yr  Gear ExDate              Bluefish
+##      [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;chr&gt;[39m[23m     [3m[90m&lt;date&gt;[39m[23m        [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dbl&gt;[39m[23m [3m[90m&lt;dttm&gt;[39m[23m                 [3m[90m&lt;dbl&gt;[39m[23m
+## [90m1[39m  1[4m5[24m[4m5[24m[4m0[24m020 TBM19960… 1996-03-20     [4m1[24m996   300 2018-04-12 [90m10:27:38[39m        0
+## [90m2[39m  1[4m5[24m[4m5[24m[4m0[24m749 TBM19960… 1996-03-20     [4m1[24m996    22 2018-04-12 [90m10:25:23[39m        0
+## [90m3[39m  1[4m5[24m[4m5[24m[4m0[24m750 TBM19960… 1996-03-20     [4m1[24m996    22 2018-04-12 [90m10:25:23[39m        0
+## [90m4[39m  1[4m5[24m[4m5[24m[4m0[24m762 TBM19960… 1996-03-22     [4m1[24m996    20 2018-04-12 [90m10:25:23[39m        0
+## [90m5[39m  1[4m5[24m[4m5[24m[4m0[24m828 TBM19960… 1996-04-26     [4m1[24m996   160 2018-04-12 [90m10:25:23[39m        0
+## [90m6[39m  1[4m5[24m[4m5[24m[4m0[24m838 TBM19960… 1996-05-13     [4m1[24m996   300 2018-04-12 [90m10:25:23[39m        0
+## [90m# … with 5 more variables: snook [3m[90m&lt;dbl&gt;[90m[23m, Mullets [3m[90m&lt;dbl&gt;[90m[23m, Pinfish [3m[90m&lt;dbl&gt;[90m[23m, `Red[39m
+## [90m#   Drum` [3m[90m&lt;dbl&gt;[90m[23m, `Sand Seatrout` [3m[90m&lt;dbl&gt;[90m[23m[39m</code></pre>
 <p>There are many more functions in <code>dplyr</code> but the ones above are by far the most used. As you can imagine, they are most effective when used together because there is never only one step in the data wrangling process. After the exercise, we’ll talk about how we can efficiently <em>pipe</em> the functions in dplyr to create a new data object.</p>
 </div>
 </div>
@@ -827,7 +869,7 @@ head(ex2)</code></pre>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -866,7 +908,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0

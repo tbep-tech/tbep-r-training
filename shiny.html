@@ -467,11 +467,11 @@ server &lt;- function(input, output){}
 shinyApp(ui = ui, server = server)</code></pre>
 <p>For a real Shiny app, this code would live in a standalone script. You launch the dashboard by sourcing the script or hitting the green “Run App” button on the top right.</p>
 <p><img src="figure/simpleapp.PNG" width="100%" style="display: block; margin: auto;" /></p>
-<p>If you run this code, you’ll see a local web browser pop up. It will be empty because this app does nothing, but this only a starting point. All we need to do is populate the <code>ui</code> and <code>server</code> objects with code to do some things.</p>
+<p>If you run this code, you’ll see a local web browser pop up. It will be empty because this app does nothing, but this is only a starting point. All we need to do is populate the <code>ui</code> and <code>server</code> objects with code to do some things.</p>
 </div>
 <div id="a-simple-example" class="section level2">
 <h2>A simple example</h2>
-<p>Now let’s make our simple example do something. As with most problems, it’s good to start with identifying where you want to go and then working backwards to figure out how to get there. Let’s end with a simple histogram to visualize some data for the normal distribution, but with different sample sizes.</p>
+<p>Now let’s make our simple example do something. As with most problems, it’s good to start with identifying where you want to go and then work backwards to figure out how to get there. Let’s end with a simple histogram to visualize some data for the normal distribution, but with different sample sizes.</p>
 <pre class="r"><code>dat &lt;- rnorm(100)
 hist(dat)</code></pre>
 <p><img src="figure/unnamed-chunk-3-1.png" width="672" /></p>
@@ -519,7 +519,7 @@ shinyApp(ui = ui, server = server)</code></pre>
 <li><p>The <code>ui</code> file can be declared with a function (<code>fluidPage()</code> here as one type of layout) with at least two inputs (one input, one output) separated by commas.</p></li>
 <li><p>The <code>server</code> file can be declared with the <code>server()</code> function where the input is evaluated as a standalone group of operations with the curly braces <code>{}</code></p></li>
 </ul>
-<p>You’re well on your way to understanding Shiny once you master the concepts demonstrated by the simple example above. Once you master the concepts, the rest is just finding the right reactive functions that do you what you need (and then fiddling with the layout of course).</p>
+<p>You’re well on your way to understanding Shiny once you master the concepts demonstrated by the simple example above. Once you master the concepts, the rest is just finding the right reactive functions that do you what you need and then fiddling with the layout.</p>
 <p>An overview of the standard Shiny input options is here: <a href="https://shiny.rstudio.com/gallery/widget-gallery.html" class="uri">https://shiny.rstudio.com/gallery/widget-gallery.html</a></p>
 <p>A totally non-exhaustive list of the reactive render and complementary output functions (remember <code>renderFoo()</code> for <code>server</code>, <code>fooOutput()</code> for <code>ui</code>) that you’ll most commonly use are <code>renderPlot()</code>/<code>plotOutput()</code>, <code>renderTable()</code>/<code>tableOutput()</code>, <code>renderText()</code>/<code>textOutput()</code>, and <code>renderUI()</code>/<code>uiOutput()</code>.</p>
 </div>
@@ -557,10 +557,10 @@ otbfimdat &lt;- read.csv(url, stringsAsFactors = F)</code></pre>
   p 
   
 }</code></pre>
-<p>Now we show how the function is used. We want to plot red drum in the size range 20 to 30 inches for gear type 20.</p>
+<p>Now we show how the function is used. We want to plot red drum in the size range 25 to 30 inches for gear type 20.</p>
 <pre class="r"><code>plotcatch(&#39;Red Drum&#39;, c(25, 30), 20, otbfimdat)</code></pre>
 <p><img src="figure/unnamed-chunk-12-1.png" width="672" /></p>
-<p>The benefit of creating a function are that it simplifies filtering and plotting, minimizes errors with copy/paste, and increases reproducibility. Let’s step it up a notch and wrap a Shiny app around this function. This could be useful for your own needs (rapidly checking catch data) or for sharing this workflow with your colleagues that might not use R.</p>
+<p>Functions are beneficial because they simplify the working parts of your code, minimize errors with copy/paste, and increase reproducibility. Let’s step it up a notch and wrap a Shiny app around this function. This could be useful for your own needs (rapidly checking catch data) or for sharing this workflow with your colleagues that might not use R.</p>
 <p>As stated in the simple example above, we first need to identify where we want to go to determine what we need to include in the Shiny app. We want to create the plot by providing options on which fish, size ranges, and gear type to evaluate. So, we create three objects that include those options.</p>
 <pre class="r"><code>fish &lt;- unique(otbfimdat$Commonname)
 size &lt;- range(otbfimdat$avg_size, na.rm = T)

@@ -465,7 +465,7 @@ div.tocify {
 <ul>
 <li>The growth of R as explained in the <a href="https://stackoverflow.blog/2017/10/10/impressive-growth-r/" target="_blank">Stack Overflow blog</a>, <a href="http://blog.revolutionanalytics.com/2016/07/r-moves-up-to-5th-place-in-ieee-language-rankings.html" target="_blank">IEEE rating</a></li>
 </ul>
-<p>R is also an open-source programming language - not only is it free, but this means anybody can contribute to it’s development. As of 2021-02-02, there are 17038 supplemental packages for R on CRAN!</p>
+<p>R is also an open-source programming language - not only is it free, but this means anybody can contribute to it’s development. As of 2021-02-02, there are 17037 supplemental packages for R on CRAN!</p>
 </div>
 </div>
 <div id="rstudio" class="section level2">
@@ -517,7 +517,7 @@ div.tocify {
 <div id="r-language-fundamentals" class="section level2">
 <h2>R language fundamentals</h2>
 <p>R is built around functions. These are commands that do specific things based on what you provide. The basic syntax of a function follows the form: <code>function_name(arg1, arg2, ...)</code>.</p>
-<p>With the base install, you will gain access to many functions (3748, to be exact). Some examples:</p>
+<p>With the base install, you will gain access to many functions (3750, to be exact). Some examples:</p>
 <pre class="r"><code># print
 print(&#39;hello world!&#39;)</code></pre>
 <pre><code>## [1] &quot;hello world!&quot;</code></pre>
@@ -526,32 +526,32 @@ seq(1, 10)</code></pre>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <pre class="r"><code># random numbers
 rnorm(100, mean = 10, sd = 2)</code></pre>
-<pre><code>##   [1]  9.307360  5.612918 11.972557  7.779011 12.508342  9.130443  9.499432
-##   [8] 10.164009  7.820306  9.642493  9.118210  9.590978 10.875313  9.626214
-##  [15]  8.696646 11.453331 12.750947 10.965762 10.435030 11.607273  9.161100
-##  [22]  6.731884  8.900885  9.771135  7.170836  8.000243 12.233355  8.347254
-##  [29]  8.527505 11.670258 11.150131 10.592283 11.488379 10.034507  7.074002
-##  [36]  6.291815  5.405222 10.442571  7.049919  8.196207  7.795400  5.332276
-##  [43] 11.534976 10.513290  8.836077  6.023031  7.510383  7.600400  7.245056
-##  [50]  7.485756 10.456245 11.290574  9.682435  7.730672 10.746506  9.212774
-##  [57]  8.372188  9.167783 10.088741  8.264242  8.217719 11.293116 12.016448
-##  [64] 10.630999  9.354988 11.175237  7.113352  7.554323  9.321555  7.386420
-##  [71]  7.530711  9.751887 10.387509  7.466456 10.374122  8.231294 12.258253
-##  [78]  8.662549  9.668146  8.729449  9.538106 12.806856  9.054312 10.943877
-##  [85]  7.498934  7.456755  9.889604  9.998371  9.359098 12.239711  9.520004
-##  [92]  8.630600 14.157396 11.943325  8.867040 13.189688  6.588246  7.175150
-##  [99] 12.805033 10.437020</code></pre>
+<pre><code>##   [1]  9.709615  9.646504  9.090071  8.038349 11.730064  9.733774  8.933867
+##   [8]  8.682537 11.282883  8.604820 10.810025 11.117488  7.393826 14.483794
+##  [15] 11.716076  8.235974 11.540088 10.612671 11.102565  7.949979 10.893721
+##  [22] 13.792365  9.639929 10.841279 10.489234  9.876342 11.177800 11.264418
+##  [29] 10.359317  9.634582  7.956702  9.593372  9.277823 11.871693 10.135587
+##  [36]  9.160433 11.970171 12.038705  9.726040 11.066542 13.447539 10.796311
+##  [43]  7.055081  7.810532  4.361364 11.796145  7.193721 10.724125  8.077418
+##  [50] 13.120174  8.895814  9.759735 10.591540  8.256827 10.047095 11.006716
+##  [57]  8.343619 11.782255  6.002702 11.460922  9.675331 11.013224 11.078907
+##  [64] 11.840151  6.350678 14.146625 12.027649  9.088326  7.771969 11.540401
+##  [71] 14.443702  6.539330 10.936273 13.579097  5.967722  5.456939 10.557785
+##  [78]  9.835832  8.688965 10.471491 10.119953  7.523767 11.207147 10.539368
+##  [85] 12.223388  8.550434 10.418613  8.352223 10.000758  7.463948  9.160891
+##  [92] 10.914805  7.166382  9.558414  9.640833 12.147009 10.772696 10.406085
+##  [99] 12.599297  7.410595</code></pre>
 <pre class="r"><code># average 
 mean(rnorm(100))</code></pre>
-<pre><code>## [1] -0.004588617</code></pre>
+<pre><code>## [1] -0.03516275</code></pre>
 <pre class="r"><code># sum
 sum(rnorm(100))</code></pre>
-<pre><code>## [1] 7.928818</code></pre>
+<pre><code>## [1] -1.874938</code></pre>
 <p>Very often you will see functions used like this:</p>
 <pre class="r"><code>my_random_sum &lt;- sum(rnorm(100))</code></pre>
 <p>In this case the first part of the line is the name of an object. You make this up. Ideally it should have some meaning, but the only rules are that it can’t start with a number and must not have any spaces. The second bit, <code>&lt;-</code>, is the assignment operator. This tells R to take the result of <code>sum(rnorm(100))</code> and store it in an object named, <code>my_random_sum</code>. It is stored in the environment and can be used by just executing it’s name in the console.</p>
 <pre class="r"><code>my_random_sum</code></pre>
-<pre><code>## [1] 4.514945</code></pre>
+<pre><code>## [1] 0.7773808</code></pre>
 <div id="what-is-the-environment" class="section level3">
 <h3>What is the environment?</h3>
 <p>There are two outcomes when you run code. First, the code will simply print output directly in the console. Second, there is no output because you have stored it as a variable using <code>&lt;-</code>. Output that is stored is actually saved in the <code>environment</code>. The environment is the collection of named objects that are stored in memory for your current R session. Anything stored in memory will be accessible by it’s name without running the original script that was used to create it.</p>
@@ -563,7 +563,7 @@ sum(rnorm(100))</code></pre>
 </div>
 <div id="cran" class="section level3">
 <h3>CRAN</h3>
-<p>One of the reasons for R’s popularity is CRAN, <a href="http://cran.r-project.org/" target="_blank">The Comprehensive R Archive Network</a>. This is where you download R and also where most will gain access to packages (there are other places, but that is for later). Not much else to say about this now other than to be aware of it. As of 2021-02-02, there are 17038 packages on CRAN!</p>
+<p>One of the reasons for R’s popularity is CRAN, <a href="http://cran.r-project.org/" target="_blank">The Comprehensive R Archive Network</a>. This is where you download R and also where most will gain access to packages (there are other places, but that is for later). Not much else to say about this now other than to be aware of it. As of 2021-02-02, there are 17037 packages on CRAN!</p>
 </div>
 <div id="installing-packages" class="section level3">
 <h3>Installing packages</h3>

@@ -507,7 +507,7 @@ shinyApp(ui = ui, server = server)</code></pre>
 <p>All of this happens each time the input values are changed, such that the output <strong>reacts</strong> to any change in the input. This is a fundamental principle for Shiny.</p>
 <p>There are some general rules and concepts about Shiny reactivity that are shown here that apply to most Shiny applications.</p>
 <ul>
-<li><p>All input objects are defined in the <code>ui</code> file, given a name inside the <code>fooInput()</code> function, and then referenced in the <code>server</code> file by <code>input$name</code> (<code>input$n</code> in this case).</p>
+<li><p>All input objects are defined in the <code>ui</code> file, given a name inside the <code>fooInput()</code> function (<code>foo</code> meaning generic, e.g., <code>plot</code>, <code>table</code>, etc.), and then referenced in the <code>server</code> file by <code>input$name</code> (<code>input$n</code> in this case).</p>
 <pre class="r"><code>numericInput(inputId = &#39;n&#39;, label = &#39;Sample size&#39;, value = 50)</code></pre></li>
 <li><p>All output objects are in the server file by assigning a “rendered” object to the <code>output</code> object by <code>output$name</code> (<code>output$myplot</code> in this case).</p>
 <pre class="r"><code>output$myplot &lt;- renderPlot({
@@ -551,13 +551,13 @@ otbfimdat &lt;- read.csv(url, stringsAsFactors = F)</code></pre>
       x = NULL,
       y = &#39;Total catch&#39;, 
       title = paste0(name, &quot; catch in gear &quot;, gearsel), 
-      subtitle = paste0(&quot;Data subset to ave size between &quot;, szrng[1], &#39;-&#39;, szrng[2], &quot; inches&quot;)
+      subtitle = paste0(&quot;Data subset to ave size between &quot;, szrng[1], &#39;-&#39;, szrng[2], &quot; mm&quot;)
     )
   
   p 
   
 }</code></pre>
-<p>Now we show how the function is used. We want to plot red drum in the size range 25 to 30 inches for gear type 20.</p>
+<p>Now we show how the function is used. We want to plot red drum in the size range 25 to 30 mm for gear type 20.</p>
 <pre class="r"><code>plotcatch(&#39;Red Drum&#39;, c(25, 30), 20, otbfimdat)</code></pre>
 <p><img src="figure/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Functions are beneficial because they simplify the working parts of your code, minimize errors with copy/paste, and increase reproducibility. Let’s step it up a notch and wrap a Shiny app around this function. This could be useful for your own needs (rapidly checking catch data) or for sharing this workflow with your colleagues that might not use R.</p>
@@ -620,7 +620,7 @@ plotcatch &lt;- function(name, szrng, gearsel, datin){
       x = NULL,
       y = &#39;Total catch&#39;, 
       title = paste0(name, &quot; catch in gear &quot;, gearsel), 
-      subtitle = paste0(&quot;Data subset to ave size between &quot;, szrng[1], &#39;-&#39;, szrng[2], &quot; inches&quot;)
+      subtitle = paste0(&quot;Data subset to ave size between &quot;, szrng[1], &#39;-&#39;, szrng[2], &quot; mm&quot;)
     )
   
   p 
@@ -668,7 +668,7 @@ shinyApp(ui = ui, server = server)</code></pre>
 <li>Think about the layout of the application. This can influence how a “user” experiences an application. A terrible layout will make for a terrible experience. There are many options for Shiny (native Shiny <a href="https://shiny.rstudio.com/articles/layout-guide.html">layouts</a>, <a href="https://rmarkdown.rstudio.com/flexdashboard/">flexdashboard</a>, <a href="https://rstudio.github.io/shinydashboard/">shinydashboard</a>, rendered in <a href="https://shiny.rstudio.com/articles/interactive-docs.html">RMarkdown</a>)</li>
 <li>Create <a href="https://shiny.rstudio.com/articles/dynamic-ui.html">dynamic user inputs</a> that change based on values of the other inputs. For example, Red Drum have a typical size range and it may not make sense to have the default ranges as the entire range of all fish in the database.</li>
 </ol>
-<p>Here’s the <a href="https://github.com/fawda123/shinyex">source code</a> and <a href="https://beckmw.shinyapps.io/shinyex/">hosted application</a> that includes these changes.</p>
+<p>Here’s the <a href="https://github.com/fawda123/shinyex">source code</a> and <a href="https://beckmw.shinyapps.io/shinyex/">hosted application</a> that includes these changes. If you’re curious, the file structure is shown in the <a href="https://github.com/fawda123/shinyex/blob/master/README.md">README</a>. It works just the same as any regular RStudio project, i.e., there’s a root/working directory and all file paths are relative.</p>
 </div>
 <div id="sharing-your-applications" class="section level2">
 <h2>Sharing your applications</h2>

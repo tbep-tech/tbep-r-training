@@ -551,11 +551,11 @@ otbfimdat &lt;- read.csv(url, stringsAsFactors = F)</code></pre>
     x = NULL,
     y = &#39;Total catch&#39;, 
     title = &quot;Red drum catch in gear 20&quot;, 
-    subtitle = &quot;Data subset to average size between 18-27 inches&quot;
+    subtitle = &quot;Data subset to average size between 18-27 mm&quot;
   )
 p1</code></pre>
 <p><img src="figure/unnamed-chunk-14-1.png" width="672" /></p>
-<p>Not a very interesting story here. Let’s look at another species. The slot limit for spotted sea trout is within 15 and 20 inches.</p>
+<p>Not a very interesting story here. Let’s look at another species. The slot limit for spotted sea trout is within 15 and 20 mm.</p>
 <pre class="r"><code>subdat &lt;- otbfimdat %&gt;% 
   filter(Commonname %in% &#39;Spotted Seatrout&#39;) %&gt;% 
   filter(avg_size &gt; 15 &amp; avg_size &lt; 20) %&gt;% 
@@ -570,7 +570,7 @@ p2 &lt;- ggplot(subdat, aes(x = Sampling_Date, y = TotalNum)) +
     x = NULL,
     y = &#39;Total catch&#39;, 
     title = &quot;Spotted Seatrout catch in gear 20&quot;, 
-    subtitle = &quot;Data subset to average size between 15-20 inches&quot;
+    subtitle = &quot;Data subset to average size between 15-20 mm&quot;
   )
 p2 </code></pre>
 <p><img src="figure/unnamed-chunk-15-1.png" width="672" /></p>
@@ -603,7 +603,7 @@ p2 </code></pre>
       x = NULL,
       y = &#39;Total catch&#39;, 
       title = paste0(name, &quot; catch in gear &quot;, gearsel), 
-      subtitle = paste0(&quot;Data subset to average size between &quot;, szrng[1], &#39;-&#39;, szrng[2], &quot; inches&quot;)
+      subtitle = paste0(&quot;Data subset to average size between &quot;, szrng[1], &#39;-&#39;, szrng[2], &quot; mm&quot;)
     )
   
   p 
@@ -629,7 +629,7 @@ p2 </code></pre>
       x = NULL,
       y = &#39;Total catch&#39;, 
       title = paste0(name, &quot; catch in gear &quot;, gearsel), 
-      subtitle = paste0(&quot;Data subset to average size between &quot;, szrng[1], &#39;-&#39;, szrng[2], &quot; inches&quot;)
+      subtitle = paste0(&quot;Data subset to average size between &quot;, szrng[1], &#39;-&#39;, szrng[2], &quot; mm&quot;)
     )
   
   p
@@ -661,7 +661,7 @@ p &lt;- ggplot(subdat, aes(x = Sampling_Date, y = TotalNum)) +
     x = NULL,
     y = &#39;Total catch&#39;, 
     title = &quot;Spotted Seatrout catch in gear 20&quot;, 
-    subtitle = &quot;Data subset to average size between 15-20 inches&quot;
+    subtitle = &quot;Data subset to average size between 15-20 mm&quot;
   )
 p </code></pre>
 <p>Using the extract function shortcut - not so good, but we can clean it up by hand with minimal effort.</p>
@@ -680,7 +680,7 @@ p </code></pre>
       x = NULL,
       y = &#39;Total catch&#39;, 
       title = &quot;Spotted Seatrout catch in gear 20&quot;, 
-      subtitle = &quot;Data subset to average size between 15-20 inches&quot;
+      subtitle = &quot;Data subset to average size between 15-20 mm&quot;
     )
   p 
 }</code></pre>

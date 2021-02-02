@@ -569,7 +569,7 @@ gear &lt;- unique(otbfimdat$Gear)</code></pre>
 <pre class="r"><code>ui &lt;- fluidPage(
   selectInput(inputId = &#39;fishsel&#39;, label = &#39;Select species&#39;, choices = fish, 
               selected = &#39;Red Drum&#39;),
-  sliderInput(inputId = &#39;sizesel&#39;, label  = &#39;Select size range (in)&#39;, 
+  sliderInput(inputId = &#39;sizesel&#39;, label  = &#39;Select size range (mm)&#39;, 
               min = size[1], max = size[2], value = size),
   selectInput(InputId = &#39;gearsel&#39;, label = &#39;Select gear&#39;, choices = gear, 
               selected = &#39;20&#39;)
@@ -588,7 +588,7 @@ gear &lt;- unique(otbfimdat$Gear)</code></pre>
 <pre class="r"><code>ui &lt;- fluidPage(
   selectInput(inputId = &#39;fishsel&#39;, label = &#39;Select species&#39;, choices = fish, 
               selected = &#39;Red Drum&#39;),
-  sliderInput(inputId = &#39;sizesel&#39;, label  = &#39;Select size range (in)&#39;, 
+  sliderInput(inputId = &#39;sizesel&#39;, label  = &#39;Select size range (mm)&#39;, 
               min = size[1], max = size[2], value = size),
   selectInput(inputId = &#39;gearsel&#39;, label = &#39;Select gear&#39;, choices = gear, 
               selected = &#39;20&#39;), 
@@ -640,7 +640,7 @@ gear &lt;- unique(otbfimdat$Gear)
 ui &lt;- fluidPage(
   selectInput(inputId = &#39;fishsel&#39;, label = &#39;Select species&#39;, choices = fish, 
               selected = &#39;Red Drum&#39;),
-  sliderInput(inputId = &#39;sizesel&#39;, label  = &#39;Select size range (in)&#39;, 
+  sliderInput(inputId = &#39;sizesel&#39;, label  = &#39;Select size range (mm)&#39;, 
               min = size[1], max = size[2], value = size),
   selectInput(inputId = &#39;gearsel&#39;, label = &#39;Select gear&#39;, choices = gear, 
               selected = &#39;20&#39;), 

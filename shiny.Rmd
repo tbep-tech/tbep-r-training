@@ -65,11 +65,11 @@ For a real Shiny app, this code would live in a standalone script.  You launch t
 knitr::include_graphics('figure/simpleapp.PNG')
 ```
 
-If you run this code, you'll see a local web browser pop up.  It will be empty because this app does nothing, but this only a starting point.  All we need to do is populate the `ui` and `server` objects with code to do some things.  
+If you run this code, you'll see a local web browser pop up.  It will be empty because this app does nothing, but this is only a starting point.  All we need to do is populate the `ui` and `server` objects with code to do some things.  
 
 ## A simple example
 
-Now let's make our simple example do something.  As with most problems, it's good to start with identifying where you want to go and then working backwards to figure out how to get there.  Let's end with a simple histogram to visualize some data for the normal distribution, but with different sample sizes. 
+Now let's make our simple example do something.  As with most problems, it's good to start with identifying where you want to go and then work backwards to figure out how to get there.  Let's end with a simple histogram to visualize some data for the normal distribution, but with different sample sizes. 
 
 ```{r}
 dat <- rnorm(100)
@@ -136,7 +136,7 @@ There are some general rules and concepts about Shiny reactivity that are shown 
 * The `ui` file can be declared with a function (`fluidPage()` here as one type of layout) with at least two inputs (one input, one output) separated by commas. 
 * The `server` file can be declared with the `server()` function where the input is evaluated as a standalone group of operations with the curly braces `{}`
 
-You're well on your way to understanding Shiny once you master the concepts demonstrated by the simple example above.  Once you master the concepts, the rest is just finding the right reactive functions that do you what you need (and then fiddling with the layout of course).
+You're well on your way to understanding Shiny once you master the concepts demonstrated by the simple example above.  Once you master the concepts, the rest is just finding the right reactive functions that do you what you need and then fiddling with the layout.
 
 An overview of the standard Shiny input options is here: <https://shiny.rstudio.com/gallery/widget-gallery.html>
 
@@ -185,13 +185,13 @@ plotcatch <- function(name, szrng, gearsel, datin){
 }
 ```
 
-Now we show how the function is used.  We want to plot red drum in the size range 20 to 30 inches for gear type 20. 
+Now we show how the function is used.  We want to plot red drum in the size range 25 to 30 inches for gear type 20. 
 
 ```{r}
 plotcatch('Red Drum', c(25, 30), 20, otbfimdat)
 ```
 
-The benefit of creating a function are that it simplifies filtering and plotting, minimizes errors with copy/paste, and increases reproducibility.  Let's step it up a notch and wrap a Shiny app around this function.  This could be useful for your own needs (rapidly checking catch data) or for sharing this workflow with your colleagues that might not use R. 
+Functions are beneficial because they simplify the working parts of your code, minimize errors with copy/paste, and increase reproducibility.  Let's step it up a notch and wrap a Shiny app around this function.  This could be useful for your own needs (rapidly checking catch data) or for sharing this workflow with your colleagues that might not use R. 
 
 As stated in the simple example above, we first need to identify where we want to go to determine what we need to include in the Shiny app.  We want to create the plot by providing options on which fish, size ranges, and gear type to evaluate. So, we create three objects that include those options. 
 

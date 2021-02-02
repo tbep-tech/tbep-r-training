@@ -118,7 +118,7 @@ All of this happens each time the input values are changed, such that the output
 
 There are some general rules and concepts about Shiny reactivity that are shown here that apply to most Shiny applications.  
 
-* All input objects are defined in the `ui` file, given a name inside the `fooInput()` function, and then referenced in the `server` file by `input$name` (`input$n` in this case). 
+* All input objects are defined in the `ui` file, given a name inside the `fooInput()` function (`foo` meaning generic, e.g., `plot`, `table`, etc.), and then referenced in the `server` file by `input$name` (`input$n` in this case). 
     ```{r, eval = F}
     numericInput(inputId = 'n', label = 'Sample size', value = 50)
     ```
@@ -177,7 +177,7 @@ plotcatch <- function(name, szrng, gearsel, datin){
       x = NULL,
       y = 'Total catch', 
       title = paste0(name, " catch in gear ", gearsel), 
-      subtitle = paste0("Data subset to ave size between ", szrng[1], '-', szrng[2], " inches")
+      subtitle = paste0("Data subset to ave size between ", szrng[1], '-', szrng[2], " mm")
     )
   
   p 
@@ -185,7 +185,7 @@ plotcatch <- function(name, szrng, gearsel, datin){
 }
 ```
 
-Now we show how the function is used.  We want to plot red drum in the size range 25 to 30 inches for gear type 20. 
+Now we show how the function is used.  We want to plot red drum in the size range 25 to 30 mm for gear type 20. 
 
 ```{r}
 plotcatch('Red Drum', c(25, 30), 20, otbfimdat)
@@ -270,7 +270,7 @@ plotcatch <- function(name, szrng, gearsel, datin){
       x = NULL,
       y = 'Total catch', 
       title = paste0(name, " catch in gear ", gearsel), 
-      subtitle = paste0("Data subset to ave size between ", szrng[1], '-', szrng[2], " inches")
+      subtitle = paste0("Data subset to ave size between ", szrng[1], '-', szrng[2], " mm")
     )
   
   p 
@@ -319,7 +319,7 @@ This is a working application that does what we want.  There are of course impro
 1. Think about the layout of the application.  This can influence how a "user" experiences an application.  A terrible layout will make for a terrible experience. There are many options for Shiny (native Shiny [layouts](https://shiny.rstudio.com/articles/layout-guide.html), [flexdashboard](https://rmarkdown.rstudio.com/flexdashboard/), [shinydashboard](https://rstudio.github.io/shinydashboard/), rendered in [RMarkdown](https://shiny.rstudio.com/articles/interactive-docs.html))
 1. Create [dynamic user inputs](https://shiny.rstudio.com/articles/dynamic-ui.html) that change based on values of the other inputs.  For example, Red Drum have a typical size range and it may not make sense to have the default ranges as the entire range of all fish in the database. 
 
-Here's the [source code](https://github.com/fawda123/shinyex) and [hosted application](https://beckmw.shinyapps.io/shinyex/) that includes these changes.
+Here's the [source code](https://github.com/fawda123/shinyex) and [hosted application](https://beckmw.shinyapps.io/shinyex/) that includes these changes.  If you're curious, the file structure is shown in the [README](https://github.com/fawda123/shinyex/blob/master/README.md).  It works just the same as any regular RStudio project, i.e., there's a root/working directory and all file paths are relative.
 
 ## Sharing your applications
 

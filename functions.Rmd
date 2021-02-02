@@ -194,12 +194,12 @@ p1 <- ggplot(subdat, aes(x = Sampling_Date, y = TotalNum)) +
     x = NULL,
     y = 'Total catch', 
     title = "Red drum catch in gear 20", 
-    subtitle = "Data subset to average size between 18-27 inches"
+    subtitle = "Data subset to average size between 18-27 mm"
   )
 p1
 ```
 
-Not a very interesting story here. Let's look at another species. The slot limit for spotted sea trout is within 15 and 20 inches. 
+Not a very interesting story here. Let's look at another species. The slot limit for spotted sea trout is within 15 and 20 mm. 
 
 ```{r}
 subdat <- otbfimdat %>% 
@@ -216,7 +216,7 @@ p2 <- ggplot(subdat, aes(x = Sampling_Date, y = TotalNum)) +
     x = NULL,
     y = 'Total catch', 
     title = "Spotted Seatrout catch in gear 20", 
-    subtitle = "Data subset to average size between 15-20 inches"
+    subtitle = "Data subset to average size between 15-20 mm"
   )
 p2 
 ```
@@ -262,7 +262,7 @@ plotcatch <- function(name, szrng, gearsel, datin){
       x = NULL,
       y = 'Total catch', 
       title = paste0(name, " catch in gear ", gearsel), 
-      subtitle = paste0("Data subset to average size between ", szrng[1], '-', szrng[2], " inches")
+      subtitle = paste0("Data subset to average size between ", szrng[1], '-', szrng[2], " mm")
     )
   
   p 
@@ -295,7 +295,7 @@ plotcatch <- function(name = 'Red Drum', szrng = c(18, 27), gearsel = 20, datin 
       x = NULL,
       y = 'Total catch', 
       title = paste0(name, " catch in gear ", gearsel), 
-      subtitle = paste0("Data subset to average size between ", szrng[1], '-', szrng[2], " inches")
+      subtitle = paste0("Data subset to average size between ", szrng[1], '-', szrng[2], " mm")
     )
   
   p
@@ -340,7 +340,7 @@ p <- ggplot(subdat, aes(x = Sampling_Date, y = TotalNum)) +
     x = NULL,
     y = 'Total catch', 
     title = "Spotted Seatrout catch in gear 20", 
-    subtitle = "Data subset to average size between 15-20 inches"
+    subtitle = "Data subset to average size between 15-20 mm"
   )
 p 
 ```
@@ -363,7 +363,7 @@ plotcatch <- function(otbfimdat, Commonname, avg_size, Gear, Sampling_Date, Tota
       x = NULL,
       y = 'Total catch', 
       title = "Spotted Seatrout catch in gear 20", 
-      subtitle = "Data subset to average size between 15-20 inches"
+      subtitle = "Data subset to average size between 15-20 mm"
     )
   p 
 }

@@ -207,7 +207,7 @@ Based on these inputs, we can then figure out which of the Shiny input functions
 ui <- fluidPage(
   selectInput(inputId = 'fishsel', label = 'Select species', choices = fish, 
               selected = 'Red Drum'),
-  sliderInput(inputId = 'sizesel', label  = 'Select size range (in)', 
+  sliderInput(inputId = 'sizesel', label  = 'Select size range (mm)', 
               min = size[1], max = size[2], value = size),
   selectInput(InputId = 'gearsel', label = 'Select gear', choices = gear, 
               selected = '20')
@@ -234,7 +234,7 @@ Then we go back to the `ui` and add the plot output using the name we assigned t
 ui <- fluidPage(
   selectInput(inputId = 'fishsel', label = 'Select species', choices = fish, 
               selected = 'Red Drum'),
-  sliderInput(inputId = 'sizesel', label  = 'Select size range (in)', 
+  sliderInput(inputId = 'sizesel', label  = 'Select size range (mm)', 
               min = size[1], max = size[2], value = size),
   selectInput(inputId = 'gearsel', label = 'Select gear', choices = gear, 
               selected = '20'), 
@@ -290,7 +290,7 @@ gear <- unique(otbfimdat$Gear)
 ui <- fluidPage(
   selectInput(inputId = 'fishsel', label = 'Select species', choices = fish, 
               selected = 'Red Drum'),
-  sliderInput(inputId = 'sizesel', label  = 'Select size range (in)', 
+  sliderInput(inputId = 'sizesel', label  = 'Select size range (mm)', 
               min = size[1], max = size[2], value = size),
   selectInput(inputId = 'gearsel', label = 'Select gear', choices = gear, 
               selected = '20'), 

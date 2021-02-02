@@ -331,7 +331,7 @@ There are a few [options](https://shiny.rstudio.com/deploy/), ranging from simpl
 
 1. Use the open-source [Shiny Server](https://rstudio.com/products/shiny/shiny-server/) for full ownership of your application.  This requires a bit of knowledge on server maintenance/management, typically on a Unix operating system.  You'll be responsible for maintaining the Shiny server, RStudio server, and any of the application dependencies.  If you're proficient in Unix, this is a very doable option.
 
-1. Use [RStudio Connect](https://rstudio.com/products/connect/) as a commercial solution to hosting applications.  It's a business model version, typically for large companies that comes with a price, but still allows a degree of ownership.
+1. Use [RStudio Connect](https://rstudio.com/products/connect/) as a commercial solution to hosting applications.  It's a business model version, typically for large companies that comes with a price, while still allowing some ownership.
 
 ## Final thoughts
 

@@ -22,8 +22,9 @@ jobs:
           brew install gdal
       - name: Install R package dependencies
         run: |
-          install.packages(c("rmarkdown", "remotes", "dplyr", "tidyverse", "sf", "mapview", "shiny", "patchwork"))
+          install.packages(c("rmarkdown", "remotes", "dplyr", "tidyverse", "sf", "mapview", "shiny", "patchwork", "webshot"))
           remotes::install_version("crayon", version = "1.3.4")
+          webshot::install_phantomjs()
         shell: Rscript {0}
       - name: Render site
         run: Rscript -e "rmarkdown::render_site(encoding = 'UTF-8')"

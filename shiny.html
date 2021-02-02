@@ -495,7 +495,7 @@ server &lt;- function(input, output){
 }
 
 shinyApp(ui = ui, server = server)</code></pre>
-<p><div style="width: 100% ; height: 400px ; text-align: center; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;" class="muted well">Shiny applications not supported in static R Markdown documents</div></p>
+<p><img src="figure/unnamed-chunk-5-1.png" width="672" /></p>
 <p>Okay, so what is happening under the hood when you change the sample size?</p>
 <ol style="list-style-type: decimal">
 <li>The <code>input</code> value <code>n</code> from the <code>ui</code> is sent to the server, seen as <code>input$n</code>.</li>
@@ -660,7 +660,7 @@ server &lt;- function(input, output){
 
 # run app
 shinyApp(ui = ui, server = server)</code></pre>
-<p><div style="width: 100% ; height: 400px ; text-align: center; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;" class="muted well">Shiny applications not supported in static R Markdown documents</div></p>
+<p><img src="figure/unnamed-chunk-17-1.png" width="672" /></p>
 <p>This is a working application that does what we want. There are of course improvements that can be made for simplifying the interface and making the code more efficient. Here are a few considerations:</p>
 <ol style="list-style-type: decimal">
 <li>Change the data import workflow so that the input data is imported more efficiently into the application. Since these data are “static”, there’s no need to import a massive csv each time. Save it as an RData object outside of the app and import that instead. This will cut down on load times.</li>
@@ -677,7 +677,7 @@ shinyApp(ui = ui, server = server)</code></pre>
 <ol style="list-style-type: decimal">
 <li><p>Deploy to the cloud on <a href="https://www.shinyapps.io/">shinyapps.io</a>. This is very simple thanks to the <a href="https://rstudio.github.io/rsconnect/">rsconnect</a> package. The advantage is that someone else is maintaining the server and all of your dependencies, but not without a price. The free tier is good for very simple apps with not a lot of users, but you’ll need to purchase a larger plan if you expect anybody but yourself and a few of your colleagues to use the app.</p></li>
 <li><p>Use the open-source <a href="https://rstudio.com/products/shiny/shiny-server/">Shiny Server</a> for full ownership of your application. This requires a bit of knowledge on server maintenance/management, typically on a Unix operating system. You’ll be responsible for maintaining the Shiny server, RStudio server, and any of the application dependencies. If you’re proficient in Unix, this is a very doable option.</p></li>
-<li><p>Use <a href="https://rstudio.com/products/connect/">RStudio Connect</a> as a commercial solution to hosting applications. It’s a business model version, typically for large companies that comes with a price, but still allows a degree of ownership.</p></li>
+<li><p>Use <a href="https://rstudio.com/products/connect/">RStudio Connect</a> as a commercial solution to hosting applications. It’s a business model version, typically for large companies that comes with a price, while still allowing some ownership.</p></li>
 </ol>
 </div>
 <div id="final-thoughts" class="section level2">

@@ -25,17 +25,19 @@ library(tidyverse)
 * [Final thoughts]
 * [Resources]
 
+Disclaimer: The [Mastering Shiny](https://mastering-shiny.org/) text is a much more comprehensive and informative text on developing Shiny apps.  Many of the ideas and (only some) of the text here were adapted from that resource.
+
 ## What is Shiny? 
 
 Shiny is an R package that lets you create rich, interactive web applications.  Shiny lets you take an existing R script and expose it using a web browser so that you or anybody else can use it outside of R.  Shiny is commonly used to: 
 
 * Communicate complex workflows to a non-technical audience with informative visualizations and interactive components
 * Share your analysis easily with colleagues without having to walk them through details of your script
-* Help inform your understanding of an analysis by creating a user interface to quickly evaluate 
+* Help inform your understanding of an analysis by creating a user interface to quickly evaluate data
 
-In the applied sciences world, Shiny can be a very important tool to "bridge the research-management divide"!  A very simple example is the use of Shiny to replace a 500 page document that has hundreds of figures with a simple application that allows the user to jump to an exact slice of the data that they want.   
+In the applied sciences world, Shiny can be a very important tool to "bridge the research-management divide".  A very simple example is the use of Shiny to replace a 500 page document that has hundreds of figures with a simple application that allows the user to jump to an exact slice of the data that they want.   
 
-There are many advantages to using Shiny over other platforms for creating web applications.  As R users, the beauty of Shiny is that you only need to know how to use R.  You do not need to know anything about web programming, such as HTML, CSS, or JavaScript.  On the other hand, Shiny gives you the power to tap into the broader suite of web programming tools when you're ready to or have a need to expand your application. 
+There are many advantages to using Shiny over other platforms for creating web applications.  As R users, the value of Shiny is that you only need to know how to use R.  You do not need to know anything about web programming, such as HTML, CSS, or JavaScript.  On the other hand, Shiny gives you the power to tap into the broader suite of web programming tools when you're ready to or have a need to expand your application. 
 
 More simply, Shiny lets you create a web interface for any R workflow. This means that any custom analysis or graphic you've made can be fully integrated into your dashboard, unlike other platforms that may have rigid and less customizable templates designed for ease of use.  
 
@@ -47,10 +49,10 @@ A Shiny app runs from an R script, but instead of executing code linearly, it us
 
 This can be daunting at first because it requires you think about which pieces of your code require inputs from other pieces and how that information is used to create output.  Reactivity can be conceptualized by the building blocks of a Shiny app.  Every Shiny app has the following:
 
-* __User interface (UI)__: Includes all inputs and outputs, as well as the appearance of the dashboard.  Here, when we say "output" we mean the final product (e.g. a plot, table, etc.) that is placed on the `ui`, but created by processing inputs sent to the `server`.
-* __Server__: The guts or engine of how the inputs are used to create the outputs, this is where your complicated workflow can live.  
+* __User interface (UI)__: Includes all inputs and outputs, as well as the appearance of the dashboard.  Here, when we say "output" we mean the final product (e.g. a plot, table, etc.) that is placed on the `ui`, but created by processing inputs sent to the `server`.  In web-speak, this is the front end.
+* __Server__: The guts or engine of how the inputs are used to create the outputs, this is where the working parts of your analysis live.  It can be as simple or as complicated as you like.  In web-speak, this is the back end.
 
-In practice, it looks like this: 
+At it's core, a Shiny app is an R script that contains The `ui` and `server` components.  In practice, it looks like this: 
 
 ```{r, eval = F}
 library(shiny)
@@ -59,7 +61,7 @@ server <- function(input, output){}
 shinyApp(ui = ui, server = server)
 ```
 
-For a real Shiny app, this code would live in a standalone script.  You launch the dashboard by sourcing the script or hitting the green "Run App" button on the top right. 
+You "launch" or run the dashboard by sourcing the script or hitting the green "Run App" button on the top right. 
 
 ```{r, echo = F, out.width = '100%', fig.align = 'center'}
 knitr::include_graphics('figure/simpleapp.PNG')
@@ -83,7 +85,7 @@ dat <- rnorm(10)
 hist(dat)
 ```
 
-To make a Shiny app out of this, we need to identify our inputs and our outputs.  The input in this case is the sample size and the output is the plot.  Inputs/outputs go in the `ui` object.  The `server` takes the inputs, does something with them, then sends the results back to the `ui`. Putting this into our template would look something like this: 
+To make a Shiny app out of this, we need to identify our inputs and our outputs.  The input in this case is what we want to be able to modify (the sample size) and the output is the plot.  Inputs/outputs go in the `ui` object.  The `server` takes the inputs, does something with them, then sends the results back to the `ui`. Putting this into our template would look something like this: 
 
 ```{r}
 library(shiny)
@@ -105,24 +107,24 @@ shinyApp(ui = ui, server = server)
 
 Okay, so what is happening under the hood when you change the sample size?  
 
-1. The `input` value `n` from the `ui` is sent to the server, seen as `input$n`. 
-1. The `dat` object is created as a random sample with size `n` and then a histogram is created as reactive output for `renderPlot`
-1. The plot output named `myplot` is appended to the `output` list of objects
-1. The plot is then rendered on the `ui` side using `plotOutput` and referencing the `myplot` name of the object. 
+1. The `input` value `n` (you name it) from the `ui` is sent to the `server`, seen as `input$n`. 
+1. The `dat` object is created as a random sample with size `n` and then a histogram is created as reactive output with `renderPlot`
+1. The plot output named `myplot` (you name it) is appended to the `output` list of objects
+1. The plot is then rendered on the `ui` side using `plotOutput` by referencing the `myplot` name from the `output` object. 
 
 ```{r, echo = F, fig.align = 'center', out.width = '100%'}
 knitr::include_graphics('figure/simpleappflo.png')
 ```
  
-All of this happens each time the input values are changed, such that the output __reacts__ to any change in the input. This is a fundamental principle for Shiny. 
+All of this happens each time the input values are changed, such that the output __reacts__ to any change in the input. This is a fundamental principle of Shiny functionality. 
 
 There are some general rules and concepts about Shiny reactivity that are shown here that apply to most Shiny applications.  
 
-* All input objects are defined in the `ui` file, given a name inside the `fooInput()` function (`foo` meaning generic, e.g., `plot`, `table`, etc.), and then referenced in the `server` file by `input$name` (`input$n` in this case). 
+* All input objects are defined in the `ui` object, given a name inside the `fooInput()` function (`foo` meaning generic, e.g., `plot`, `table`, etc.), and then referenced in the `server` file by `input$name` (`input$n` in this case). 
     ```{r, eval = F}
     numericInput(inputId = 'n', label = 'Sample size', value = 50)
     ```
-* All output objects are in the server file by assigning a "rendered" object to the `output` object by `output$name` (`output$myplot` in this case).
+* All output objects to use in the `ui` object are created in the `server` object by assigning a "rendered" object to the `output` object by `output$name` (`output$myplot` in this case).
     ```{r, eval = F}
     output$myplot <- renderPlot({
       dat <- rnorm(input$n)
@@ -134,13 +136,13 @@ There are some general rules and concepts about Shiny reactivity that are shown 
     plotOutput('myplot')
     ```
 * The `ui` file can be declared with a function (`fluidPage()` here as one type of layout) with at least two inputs (one input, one output) separated by commas. 
-* The `server` file can be declared with the `server()` function where the input is evaluated as a standalone group of operations with the curly braces `{}`
+* The `server` file can be declared with the `server()` function, where the input is evaluated as a standalone group of operations with the curly braces `{}`.
 
 You're well on your way to understanding Shiny once you master the concepts demonstrated by the simple example above.  Once you master the concepts, the rest is just finding the right reactive functions that do you what you need and then fiddling with the layout.
 
 An overview of the standard Shiny input options is here: <https://shiny.rstudio.com/gallery/widget-gallery.html>
 
-A totally non-exhaustive list of the reactive render and complementary output functions (remember `renderFoo()` for `server`, `fooOutput()` for `ui`) that you'll most commonly use are `renderPlot()`/`plotOutput()`, `renderTable()`/`tableOutput()`, `renderText()`/`textOutput()`, and `renderUI()`/`uiOutput()`.  
+A totally non-exhaustive list of the reactive render and complementary output functions that you'll most commonly use are `renderPlot()`/`plotOutput()`, `renderTable()`/`tableOutput()`, `renderText()`/`textOutput()`, and `renderUI()`/`uiOutput()`.  Just remember `renderFoo()` for `server` and `fooOutput()` for `ui`.
 
 ## A better example
 
@@ -153,7 +155,7 @@ url <- 'https://raw.githubusercontent.com/tbep-tech/tbep-r-training/013432d6924d
 otbfimdat <- read.csv(url, stringsAsFactors = F)
 ```
 
-Now we create a function that filters these data by species range, size name, and gear and then plots the results over time. 
+Now we create a function that filters these data by species range, size name, and gear and then plots the results over time. The creation and purpose of this function is explained in the link above, but in short, we use it to filter by species size classes to plot trends over time. 
 
 ```{r}
 plotcatch <- function(name, szrng, gearsel, datin){
@@ -193,7 +195,7 @@ plotcatch('Red Drum', c(25, 30), 20, otbfimdat)
 
 Functions are beneficial because they simplify the working parts of your code, minimize errors with copy/paste, and increase reproducibility.  Let's step it up a notch and wrap a Shiny app around this function.  This could be useful for your own needs (rapidly checking catch data) or for sharing this workflow with your colleagues that might not use R. 
 
-As stated in the simple example above, we first need to identify where we want to go to determine what we need to include in the Shiny app.  We want to create the plot by providing options on which fish, size ranges, and gear type to evaluate. So, we create three objects that include those options. 
+As stated in the simple example above, we first need to identify where we want to go to determine what we need to include in the Shiny app.  We want to create the plot by providing options on which fish, size ranges, and gear type to evaluate. Before we do anything with Shiny, we can create three objects that include those options. 
 
 ```{r}
 fish <- unique(otbfimdat$Commonname)
@@ -201,7 +203,7 @@ size <- range(otbfimdat$avg_size, na.rm = T)
 gear <- unique(otbfimdat$Gear)
 ```
 
-Based on these inputs, we can then figure out which of the Shiny input functions we need to include in our `ui` function.  The `fish` and `gear` types are categorical data, so `selectInput()` is a correct option.  The `size` values are continuous data that could be chosen with the `sliderInput()` function to pick a range of values.  
+Then we can start working on the `ui` inputs.  Based on the type of data in the inputs, we can figure out which of the Shiny input functions we need to include in our `ui` function.  The `fish` and `gear` types are categorical data, so `selectInput()` is a correct option.  The `size` values are continuous data that could be chosen with the `sliderInput()` function to pick a range of values.  Each input function has a unique id, label, set of choices, and default selected value(s).   
 
 ```{r, eval = F}
 ui <- fluidPage(
@@ -223,7 +225,8 @@ server <- function(input, output){
       name = input$fishsel, 
       szrng = input$sizesel, 
       gearsel = input$gearsel, 
-      datin = otbfimdat)
+      datin = otbfimdat
+      )
   })
 }
 ```
@@ -242,7 +245,7 @@ ui <- fluidPage(
 )
 ```
 
-All together, it should look something like this.  Note that we need to include all the dependencies since Shiny apps are modular just like regular R scripts. This includes the libraries, data import, options used in the Shiny inputs, and the code for the plotting function. The reactive components are a small part of this app.
+All together, it should look something like this.  Note that we need to include all the dependencies since Shiny apps are modular just like regular R scripts. This includes the libraries,  the code for the plotting function, data import, and options used in the Shiny inputs.  The actual Shiny components are a small part of this app at the bottom.
 
 ```{r, eval = T}
 library(shiny)
@@ -312,7 +315,7 @@ server <- function(input, output){
 shinyApp(ui = ui, server = server)
 ```
 
-This is a working application that does what we want.  There are of course improvements that can be made for simplifying the interface and making the code more efficient. Here are a few considerations:
+This is a working application that does what we want.  There are of course improvements that can be made for simplifying the interface and making the code more efficient. These might not seem important now, but you'll get a sense of good coding practices for Shiny once you develop more apps.  Here are a few considerations:
 
 1. Change the data import workflow so that the input data is imported more efficiently into the application.  Since these data are "static", there's no need to import a massive csv each time.  Save it as an RData object outside of the app and import that instead. This will cut down on load times.
 1. Create a script for functions that is sourced by the application.  This will make the application code easier to read and simpler to manage in the long run. 

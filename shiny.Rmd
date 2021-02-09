@@ -120,7 +120,7 @@ All of this happens each time the input values are changed, such that the output
 
 There are some general rules and concepts about Shiny reactivity that are shown here that apply to most Shiny applications.  
 
-* All input objects are defined in the `ui` object, given a name inside the `fooInput()` function (`foo` meaning generic, e.g., `plot`, `table`, etc.), and then referenced in the `server` file by `input$name` (`input$n` in this case). 
+* All input objects are defined in the `ui` object, given a name inside the input function and then referenced in the `server` file by `input$name` (`input$n` in this case). 
     ```{r, eval = F}
     numericInput(inputId = 'n', label = 'Sample size', value = 50)
     ```
@@ -131,14 +131,14 @@ There are some general rules and concepts about Shiny reactivity that are shown 
       hist(dat)
     })
     ```
-* The `ui` file controls where and when the output is rendered, typically using a function named `fooOutput()` that has a complementary reactive function named `renderFoo()` in the `server` file.
+* The `ui` file controls where and when the output is rendered, typically using a function named `fooOutput()` (`foo` meaning generic, e.g., `plot`, `table`, etc.) that has a complementary reactive function named `renderFoo()` in the `server` file.
     ```{r, eval = F}
     plotOutput('myplot')
     ```
 * The `ui` file can be declared with a function (`fluidPage()` here as one type of layout) with at least two inputs (one input, one output) separated by commas. 
 * The `server` file can be declared with the `server()` function, where the input is evaluated as a standalone group of operations with the curly braces `{}`.
 
-You're well on your way to understanding Shiny once you master the concepts demonstrated by the simple example above.  Once you master the concepts, the rest is just finding the right reactive functions that do you what you need and then fiddling with the layout.
+You're well on your way to understanding Shiny once you master the concepts demonstrated by the simple example above.  Once you master the concepts, the rest is just finding the right reactive functions that do what you need and then fiddling with the layout.
 
 An overview of the standard Shiny input options is here: <https://shiny.rstudio.com/gallery/widget-gallery.html>
 
@@ -155,7 +155,7 @@ url <- 'https://raw.githubusercontent.com/tbep-tech/tbep-r-training/013432d6924d
 otbfimdat <- read.csv(url, stringsAsFactors = F)
 ```
 
-Now we create a function that filters these data by species range, size name, and gear and then plots the results over time. The creation and purpose of this function is explained in the link above, but in short, we use it to filter by species size classes to plot trends over time. 
+Now we create a function that filters these data by species, size range, and gear and then plots the results over time. The creation and purpose of this function is explained in the link above, but in short, we use it to filter by species size classes to plot trends over time. 
 
 ```{r}
 plotcatch <- function(name, szrng, gearsel, datin){
@@ -326,9 +326,9 @@ Here's the [source code](https://github.com/fawda123/shinyex) and [hosted applic
 
 ## Sharing your applications
 
-The real value of Shiny is the ability to host the application online - anyone with access to the internet can access your application.  They do not need to know anything about R nor have anything installed (besides a web browser) to use the application.  
+The real value of Shiny is the ability to host the application online - anyone with access to the internet can access your application.  They do not need to know anything about R, nor have anything installed (besides a web browser) to use the application.  
 
-There are a few [options](https://shiny.rstudio.com/deploy/), ranging from simple to more difficult.  There are tradeoffs with each.
+There are a few [options](https://shiny.rstudio.com/deploy/), varying in ease of use and level of support.  There are tradeoffs with each.
 
 1. Deploy to the cloud on [shinyapps.io](https://www.shinyapps.io/).  This is very simple thanks to the [rsconnect](https://rstudio.github.io/rsconnect/) package.  The advantage is that someone else is maintaining the server and all of your dependencies, but not without a price.  The free tier is good for very simple apps with not a lot of users, but you'll need to purchase a larger plan if you expect anybody but yourself and a few of your colleagues to use the app. 
 

@@ -25,6 +25,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -81,7 +83,6 @@ h6 {
   text-align: left;
 }
 </style>
-
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
 
@@ -362,14 +363,14 @@ div.tocify {
       <ul class="nav navbar-nav">
         <li>
   <a href="R_Basics.html">
-    <span class="fas fa-university"></span>
+    <span class="fa fa-university"></span>
      
     R Basics
   </a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fas fa-wrench"></span>
+    <span class="fa fa-wrench"></span>
      
     Data wrangling
      
@@ -386,14 +387,14 @@ div.tocify {
 </li>
 <li>
   <a href="Viz_and_Graphics.html">
-    <span class="fas fa-chart-line"></span>
+    <span class="fa fa-chart-line"></span>
      
     Viz and graphics
   </a>
 </li>
 <li>
   <a href="mapping.html">
-    <span class="fas fa-globe-americas"></span>
+    <span class="fa fa-globe-americas"></span>
      
     Spatial analysis and mapping
   </a>
@@ -402,14 +403,14 @@ div.tocify {
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="Data_and_Resources.html">
-    <span class="fas fa-list"></span>
+    <span class="fa fa-list"></span>
      
     Data and resources
   </a>
 </li>
 <li>
   <a href="https://github.com/tbep-tech/tbep-r-training">
-    <span class="fas fa-github fa-lg"></span>
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -508,19 +509,19 @@ shinyApp(ui = ui, server = server)</code></pre>
 <p>All of this happens each time the input values are changed, such that the output <strong>reacts</strong> to any change in the input. This is a fundamental principle of Shiny functionality.</p>
 <p>There are some general rules and concepts about Shiny reactivity that are shown here that apply to most Shiny applications.</p>
 <ul>
-<li><p>All input objects are defined in the <code>ui</code> object, given a name inside the <code>fooInput()</code> function (<code>foo</code> meaning generic, e.g., <code>plot</code>, <code>table</code>, etc.), and then referenced in the <code>server</code> file by <code>input$name</code> (<code>input$n</code> in this case).</p>
+<li><p>All input objects are defined in the <code>ui</code> object, given a name inside the input function and then referenced in the <code>server</code> file by <code>input$name</code> (<code>input$n</code> in this case).</p>
 <pre class="r"><code>numericInput(inputId = &#39;n&#39;, label = &#39;Sample size&#39;, value = 50)</code></pre></li>
 <li><p>All output objects to use in the <code>ui</code> object are created in the <code>server</code> object by assigning a “rendered” object to the <code>output</code> object by <code>output$name</code> (<code>output$myplot</code> in this case).</p>
 <pre class="r"><code>output$myplot &lt;- renderPlot({
   dat &lt;- rnorm(input$n)
   hist(dat)
 })</code></pre></li>
-<li><p>The <code>ui</code> file controls where and when the output is rendered, typically using a function named <code>fooOutput()</code> that has a complementary reactive function named <code>renderFoo()</code> in the <code>server</code> file.</p>
+<li><p>The <code>ui</code> file controls where and when the output is rendered, typically using a function named <code>fooOutput()</code> (<code>foo</code> meaning generic, e.g., <code>plot</code>, <code>table</code>, etc.) that has a complementary reactive function named <code>renderFoo()</code> in the <code>server</code> file.</p>
 <pre class="r"><code>plotOutput(&#39;myplot&#39;)</code></pre></li>
 <li><p>The <code>ui</code> file can be declared with a function (<code>fluidPage()</code> here as one type of layout) with at least two inputs (one input, one output) separated by commas.</p></li>
 <li><p>The <code>server</code> file can be declared with the <code>server()</code> function, where the input is evaluated as a standalone group of operations with the curly braces <code>{}</code>.</p></li>
 </ul>
-<p>You’re well on your way to understanding Shiny once you master the concepts demonstrated by the simple example above. Once you master the concepts, the rest is just finding the right reactive functions that do you what you need and then fiddling with the layout.</p>
+<p>You’re well on your way to understanding Shiny once you master the concepts demonstrated by the simple example above. Once you master the concepts, the rest is just finding the right reactive functions that do what you need and then fiddling with the layout.</p>
 <p>An overview of the standard Shiny input options is here: <a href="https://shiny.rstudio.com/gallery/widget-gallery.html" class="uri">https://shiny.rstudio.com/gallery/widget-gallery.html</a></p>
 <p>A totally non-exhaustive list of the reactive render and complementary output functions that you’ll most commonly use are <code>renderPlot()</code>/<code>plotOutput()</code>, <code>renderTable()</code>/<code>tableOutput()</code>, <code>renderText()</code>/<code>textOutput()</code>, and <code>renderUI()</code>/<code>uiOutput()</code>. Just remember <code>renderFoo()</code> for <code>server</code> and <code>fooOutput()</code> for <code>ui</code>.</p>
 </div>
@@ -530,7 +531,7 @@ shinyApp(ui = ui, server = server)</code></pre>
 <p>First, we import the data:</p>
 <pre class="r"><code>url &lt;- &#39;https://raw.githubusercontent.com/tbep-tech/tbep-r-training/013432d6924d278a9fbb151591ddcfd5b7de87ab/data/otbfimdat.csv&#39;
 otbfimdat &lt;- read.csv(url, stringsAsFactors = F)</code></pre>
-<p>Now we create a function that filters these data by species range, size name, and gear and then plots the results over time. The creation and purpose of this function is explained in the link above, but in short, we use it to filter by species size classes to plot trends over time.</p>
+<p>Now we create a function that filters these data by species, size range, and gear and then plots the results over time. The creation and purpose of this function is explained in the link above, but in short, we use it to filter by species size classes to plot trends over time.</p>
 <pre class="r"><code>plotcatch &lt;- function(name, szrng, gearsel, datin){
   
   subdat &lt;- datin %&gt;% 
@@ -674,8 +675,8 @@ shinyApp(ui = ui, server = server)</code></pre>
 </div>
 <div id="sharing-your-applications" class="section level2">
 <h2>Sharing your applications</h2>
-<p>The real value of Shiny is the ability to host the application online - anyone with access to the internet can access your application. They do not need to know anything about R nor have anything installed (besides a web browser) to use the application.</p>
-<p>There are a few <a href="https://shiny.rstudio.com/deploy/">options</a>, ranging from simple to more difficult. There are tradeoffs with each.</p>
+<p>The real value of Shiny is the ability to host the application online - anyone with access to the internet can access your application. They do not need to know anything about R, nor have anything installed (besides a web browser) to use the application.</p>
+<p>There are a few <a href="https://shiny.rstudio.com/deploy/">options</a>, varying in ease of use and level of support. There are tradeoffs with each.</p>
 <ol style="list-style-type: decimal">
 <li><p>Deploy to the cloud on <a href="https://www.shinyapps.io/">shinyapps.io</a>. This is very simple thanks to the <a href="https://rstudio.github.io/rsconnect/">rsconnect</a> package. The advantage is that someone else is maintaining the server and all of your dependencies, but not without a price. The free tier is good for very simple apps with not a lot of users, but you’ll need to purchase a larger plan if you expect anybody but yourself and a few of your colleagues to use the app.</p></li>
 <li><p>Use the open-source <a href="https://rstudio.com/products/shiny/shiny-server/">Shiny Server</a> for full ownership of your application. This requires a bit of knowledge on server maintenance/management, typically on a Unix operating system. You’ll be responsible for maintaining the Shiny server, RStudio server, and any of the application dependencies. If you’re proficient in Unix, this is a very doable option.</p></li>

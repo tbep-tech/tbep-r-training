@@ -595,7 +595,7 @@ gear &lt;- unique(otbfimdat$Gear)</code></pre>
               min = size[1], max = size[2], value = size),
   selectInput(inputId = &#39;gearsel&#39;, label = &#39;Select gear&#39;, choices = gear, 
               selected = &#39;20&#39;), 
-  renderPlot(&#39;plo&#39;)
+  plotOutput(&#39;plo&#39;)
 )</code></pre>
 <p>All together, it should look something like this. Note that we need to include all the dependencies since Shiny apps are modular just like regular R scripts. This includes the libraries, the code for the plotting function, data import, and options used in the Shiny inputs. The actual Shiny components are a small part of this app at the bottom.</p>
 <pre class="r"><code>library(shiny)

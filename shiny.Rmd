@@ -241,7 +241,7 @@ ui <- fluidPage(
               min = size[1], max = size[2], value = size),
   selectInput(inputId = 'gearsel', label = 'Select gear', choices = gear, 
               selected = '20'), 
-  renderPlot('plo')
+  plotOutput('plo')
 )
 ```
 

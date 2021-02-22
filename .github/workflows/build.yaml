@@ -34,9 +34,6 @@ jobs:
           http-user-agent: ${{ matrix.config.http-user-agent }}
       
       - uses: r-lib/actions/setup-pandoc@v1
-      - name: Install macOS dependencies
-        run: |
-          brew install gdal
       - name: Install R package dependencies
         run: |
           install.packages(c("rmarkdown", "remotes", "dplyr", "tidyverse", "sf", "mapview", "shiny", "patchwork", "webshot"))
